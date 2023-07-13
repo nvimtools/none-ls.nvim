@@ -1,10 +1,3 @@
-<!-- markdownlint-configure-file
-{
-  "line-length": false,
-  "no-duplicate-header": false
-}
--->
-
 # Installing and configuring null-ls
 
 You can install null-ls using any package manager. Here is a simple example

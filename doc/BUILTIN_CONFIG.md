@@ -1,10 +1,3 @@
-<!-- markdownlint-configure-file
-{
-  "line-length": false,
-  "no-duplicate-header": false
-}
--->
-
 # Using and configuring built-in sources
 
 null-ls includes a library of built-in sources meant to provide out-of-the-box

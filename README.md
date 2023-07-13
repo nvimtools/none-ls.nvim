@@ -1,10 +1,3 @@
-<!-- markdownlint-configure-file
-{
-  "line-length": false,
-  "no-inline-html": false
-}
--->
-
 # null-ls.nvim
 
 Use Neovim as a language server to inject LSP diagnostics, code actions, and
@@ -41,13 +34,9 @@ versions.
 null-ls sources are able to hook into the following LSP features:
 
 - Code actions
-
 - Diagnostics (file- and project-level)
-
 - Formatting (including range formatting)
-
 - Hover
-
 - Completion
 
 null-ls includes built-in sources for each of these features to provide
@@ -306,7 +295,8 @@ If you run into plenary-related issues while running the tests, make sure you
 have an up-to-date version of the plugin by clearing that cache with:
 `make clean`.
 
-All tests expect to run on the latest release version of Neovim and are not guaranteed to work on versions built from `HEAD`.
+All tests expect to run on the latest release version of Neovim and are not
+guaranteed to work on versions built from `HEAD`.
 
 ## Alternatives
 
@@ -314,12 +304,9 @@ All tests expect to run on the latest release version of Neovim and are not guar
   [diagnostic-languageserver](https://github.com/iamcco/diagnostic-languageserver):
   general-purpose language servers that can provide formatting and diagnostics
   from CLI output.
-
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint): a Lua plugin that
   focuses on providing diagnostics from CLI output.
-
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim): a Lua plugin
   that (surprise) focuses on formatting.
-
 - [hover.nvim](https://github.com/lewis6991/hover.nvim): Hover plugin framework
   for Neovim.

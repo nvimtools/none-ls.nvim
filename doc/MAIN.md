@@ -1,9 +1,3 @@
-<!-- markdownlint-configure-file
-{
-  "line-length": false
-}
--->
-
 # null-ls Documentation
 
 Splits into the following documents:
