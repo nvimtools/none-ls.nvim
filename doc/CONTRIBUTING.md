@@ -3,34 +3,27 @@
 ## General
 
 - Before committing, please go through the following steps:
+    1. Lint Lua files with [selene](https://github.com/Kampfkarren/selene)
+    2. Format Lua files with [StyLua](https://github.com/JohnnyMorganz/StyLua)
+    3. If you've updated documentation, format Markdown files with
+       [Prettier](https://github.com/prettier/prettier)
 
-1. Lint Lua files with [selene](https://github.com/Kampfkarren/selene)
-2. Format Lua files with [StyLua](https://github.com/JohnnyMorganz/StyLua)
-3. If you've updated documentation, format Markdown files with
-   [Prettier](https://github.com/prettier/prettier)
+       All are available as null-ls built-ins. Failing to lint and format files will
+       cause CI failures, which will prevent your PR from getting merged.
 
-   All are available as null-ls built-ins. Failing to lint and format files will
-   cause CI failures, which will prevent your PR from getting merged.
-
-   Optionally, you can install
-   [Pre-Commit](https://pre-commit.com/index.html#install) hooks by cloning the
-   project and running `make install-hooks` to locally enforce checks on commit.
-
+       Optionally, you can install
+       [Pre-Commit](https://pre-commit.com/index.html#install) hooks by cloning the
+       project and running `make install-hooks` to locally enforce checks on commit.
 - Use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
   style for your commits.
-
 - Squash your commits so that one commit represents one complete change.
-
 - Mark your PR as WIP until it's ready to merge.
-
 - Make sure tests are passing by running `make test` in the root of the project.
   Smaller features / fixes should have unit test coverage, and larger features
   should have E2E coverage.
-
 - We use Plenary's test suite, which uses a stripped-down version of
   [busted](https://github.com/Olivine-Labs/busted). If you're unsure how to
   write tests for your PR, please let us know and we can help.
-
 - To format Lua code blocks in our Markdown documentation, we recommend
   [cbfmt](https://github.com/lukas-reineke/cbfmt), which is available as a
   null-ls built-in.
@@ -39,20 +32,15 @@
 
 - Check if there is an open issue requesting the built-in you are adding and
   mention in your PR that it closes any relevant issue(s).
-
 - Check other built-in sources for examples and, whenever possible, use helpers
   to reduce the number of lines of code in your PR.
-
 - A built-in source's arguments are the minimal arguments required for the
   source to work. Leave out non-essential arguments.
-
 - Built-in sources should target the latest available version of the underlying
   program unless there is a compelling and widespread reason to use an older
   version. If older versions require different arguments, mention that in the
   documentation. If they require a different parser, create a separate built-in.
-
 - Make sure your built-in source has a `name`.
-
 - If the source doesn't use `generator_factory` to spawn an external command,
   define a `can_run` field to verify if the plugin is installed. Note that this
   is only necessary for clarification when `:checkhealth` is run. For example,
