@@ -1,17 +1,14 @@
-name: autogen
-
+name: Autogen
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
 jobs:
   metadata-diff:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 

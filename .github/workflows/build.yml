@@ -1,17 +1,14 @@
-name: default
-
+name: Build
 on:
   pull_request:
-  # Also build the default branch so cache is available to PRs.
   push:
     branches: [main]
-
 jobs:
   stylua:
     name: Check codestyle
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: JohnnyMorganz/stylua-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,7 +19,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: NTBBloodbath/selene-action@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -31,12 +28,12 @@ jobs:
 
   test:
     name: Run tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: null-ls.nvim
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: nvim-lua/plenary.nvim
           path: null-ls.nvim/.tests/site/pack/deps/start/plenary.nvim
