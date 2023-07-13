@@ -3048,6 +3048,27 @@ local sources = { null_ls.builtins.formatting.dprint }
 
 - you need to install dprint to use this builtin and then run `dprint init` to initialize it in your project directory.
 
+### [dtsfmt](https://github.com/dts-lang/rustfmt)
+
+Auto formatter for device tree source files
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.dtsfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "dts" }`
+- Method: `formatting`
+- Command: `dtsfmt`
+- Args: `{ "--emit=stdout" }`
+
+#### Notes
+
+- Requires that `dtsfmt` is executable and on $PATH.
+
 ### [elm_format](https://github.com/avh4/elm-format)
 
 elm-format formats Elm source code according to a standard set of rules based on the official [Elm Style Guide](https://elm-lang.org/docs/style-guide).

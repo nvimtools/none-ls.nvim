@@ -95,6 +95,9 @@ return {
   dosbatch = {
     hover = { "printenv" }
   },
+  dts = {
+    formatting = { "dtsfmt" }
+  },
   elixir = {
     diagnostics = { "credo" },
     formatting = { "mix", "surface" }

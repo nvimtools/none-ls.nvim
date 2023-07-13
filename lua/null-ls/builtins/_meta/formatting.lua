@@ -97,6 +97,9 @@ return {
   dprint = {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "markdown", "toml", "rust", "roslyn" }
   },
+  dtsfmt = {
+    filetypes = { "dts" }
+  },
   elm_format = {
     filetypes = { "elm" }
   },
