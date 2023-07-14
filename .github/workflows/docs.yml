@@ -42,10 +42,10 @@ jobs:
           nvim --headless -u $script -c "lua require('ts-vimdoc').docgen({ project_name='null-ls', input_file='README.md', output_file='doc/null-ls.txt' })" -c "qa"
 
           for file in "${files[@]}"; do
-            nvim --headless -u $script -c "lua require('ts-vimdoc').docgen({ project_name='null-ls', input_file='$file.md', output_file='doc/$file.txt' })" -c "qa"
+            nvim --headless -u $script -c "lua require('ts-vimdoc').docgen({ project_name='null-ls', input_file='doc/$file.md', output_file='doc/$file.txt' })" -c "qa"
           done
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Auto generate docs
+          commit_message: 'chore: Auto generate docs'
