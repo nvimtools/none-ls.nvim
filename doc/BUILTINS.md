@@ -3027,6 +3027,23 @@ local sources = { null_ls.builtins.formatting.djlint }
 - Command: `djlint`
 - Args: `{ "--reformat", "-" }`
 
+### [docformatter](https://github.com/PyCQA/docformatter)
+
+Python formatter complaint with the PEP 257 standard
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.docformatter }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `formatting`
+- Command: `docformatter`
+- Args: `{ "-" }`
+
 ### [dprint](https://dprint.dev/)
 
 A pluggable and configurable code formatting platform written in Rust.

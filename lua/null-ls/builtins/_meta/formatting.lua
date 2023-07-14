@@ -94,6 +94,9 @@ return {
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
   },
+  docformatter = {
+    filetypes = { "python" }
+  },
   dprint = {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "markdown", "toml", "rust", "roslyn" }
   },
