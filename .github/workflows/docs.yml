@@ -1,0 +1,51 @@
+name: Auto Generate Docs
+on:
+  push:
+    branches: [main]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: nightly
+
+      - name: Install Neovim plugins
+        run: |
+          mkdir -p ~/.local/share/nvim/site/pack/vendor/start
+          git clone --depth 1 https://github.com/ibhagwan/ts-vimdoc.nvim ~/.local/share/nvim/site/pack/vendor/start/ts-vimdoc.nvim
+          git clone --depth 1 https://github.com/nvim-treesitter/nvim-treesitter ~/.local/share/nvim/site/pack/vendor/start/nvim-treesitter
+
+      - name: Build parser
+        run: |
+          export PACKPATH=$HOME/.local/share/nvim/site
+          nvim --headless -u ~/.local/share/nvim/site/pack/vendor/start/ts-vimdoc.nvim/scripts/init.lua -c "TSUpdateSync markdown" -c "TSUpdateSync markdown_inline" -c "qa"
+
+      - name: Generate markdown docs
+        run: bash ./scripts/autogen.sh
+
+      - name: Generate vimdoc
+        run: |
+          export PATH="${PWD}/build/:${PATH}"
+          export PACKPATH=$HOME/.local/share/nvim/site
+
+          files=(BUILTINS BUILTIN_CONFIG CONFIG CONTRIBUTING HELPERS MAIN SOURCES TESTING)
+          script=~/.local/share/nvim/site/pack/vendor/start/ts-vimdoc.nvim/scripts/init.lua
+
+          nvim --headless -u $script -c "lua require('ts-vimdoc').docgen({ project_name='null-ls', input_file='README.md', output_file='doc/null-ls.txt' })" -c "qa"
+
+          for file in "${files[@]}"; do
+            nvim --headless -u $script -c "lua require('ts-vimdoc').docgen({ project_name='null-ls', input_file='$file.md', output_file='doc/$file.txt' })" -c "qa"
+          done
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto generate docs
