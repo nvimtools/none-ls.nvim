@@ -3581,6 +3581,30 @@ local sources = { null_ls.builtins.formatting.isort }
 - Command: `isort`
 - Args: `{ "--stdout", "--filename", "$FILENAME", "-" }`
 
+### [isortd](https://github.com/urm8/isortd)
+
+isortd is a small HTTP server that exposes isort’s functionality over a simple protocol. The main benefit of using it is to avoid the cost of starting up a new isort process every time you want to format a file.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.isortd }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `formatting`
+
+#### Config
+
+##### `hostname` (string)
+
+Address that the isortd server listens on. Defaults to localhost.
+##### `port` (string)
+
+Port that the isortd server listens on. Defaults to 47393.
+
 ### [joker](https://github.com/candid82/joker)
 
 joker is a small Clojure interpreter, linter and formatter written in Go.

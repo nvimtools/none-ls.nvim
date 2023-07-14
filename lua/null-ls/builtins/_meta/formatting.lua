@@ -187,6 +187,9 @@ return {
   isort = {
     filetypes = { "python" }
   },
+  isortd = {
+    filetypes = { "python" }
+  },
   joker = {
     filetypes = { "clj" }
   },
