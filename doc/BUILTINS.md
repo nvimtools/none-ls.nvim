@@ -3510,9 +3510,9 @@ local sources = { null_ls.builtins.formatting.google_java_format }
 #### Defaults
 
 - Filetypes: `{ "java" }`
-- Method: `formatting`
+- Methods: `formatting, range_formatting`
 - Command: `google-java-format`
-- Args: `{ "-" }`
+- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/google_java_format.lua))
 
 ### [haxe_formatter](https://github.com/HaxeCheckstyle/haxe-formatter)
 
