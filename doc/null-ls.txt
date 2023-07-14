@@ -1,0 +1,393 @@
+*null-ls.txt*                                        Last change: 2023 July 13
+
+==============================================================================
+Table of Contents                                  *null-ls-table-of-contents*
+
+Motivation .............................................. |null-ls-motivation|
+Status ...................................................... |null-ls-status|
+Features .................................................. |null-ls-features|
+Setup ........................................................ |null-ls-setup|
+Documentation ........................................ |null-ls-documentation|
+Contributing .......................................... |null-ls-contributing|
+Examples .................................................. |null-ls-examples|
+Parsing buffer content ...................... |null-ls-parsing-buffer-content|
+Parsing CLI program output .............. |null-ls-parsing-cli-program-output|
+FAQ ............................................................ |null-ls-faq|
+Something isn't working! What do I do?  |null-ls-something-isn't-working!-what-do-i-do?|
+My `:checkhealth` output is wrong! What do I do?  |null-ls-my-`:checkhealth`-output-is-wrong!-what-do-i-do?|
+How do I format files? ...................... |null-ls-how-do-i-format-files?|
+How do I format files on save? ...... |null-ls-how-do-i-format-files-on-save?|
+How do I stop Neovim from asking me which server I want to use for formatting?  |null-ls-how-do-i-stop-neovim-from-asking-me-which-server-i-want-to-use-for-formatting?|
+How do I view project-level diagnostics?  |null-ls-how-do-i-view-project-level-diagnostics?|
+How do I enable debug mode and get debug output?  |null-ls-how-do-i-enable-debug-mode-and-get-debug-output?|
+Does it work with (other plugin)?  |null-ls-does-it-work-with-(other-plugin)?|
+How does it work? ................................ |null-ls-how-does-it-work?|
+Will it affect my performance? ...... |null-ls-will-it-affect-my-performance?|
+I am seeing a formatting `timeout` error message  |null-ls-i-am-seeing-a-formatting-`timeout`-error-message|
+Tests ........................................................ |null-ls-tests|
+Alternatives .......................................... |null-ls-alternatives|
+
+==============================================================================
+NULL-LS.NVIM                                            *null-ls-null-ls.nvim*
+
+
+Use Neovim as a language server to inject LSP diagnostics, code actions, and
+more via Lua.
+
+
+------------------------------------------------------------------------------
+MOTIVATION                                                *null-ls-motivation*
+
+
+Neovim's LSP ecosystem is growing, and plugins like telescope.nvim
+<https://github.com/nvim-telescope/telescope.nvim> and trouble.nvim
+<https://github.com/folke/trouble.nvim> make it a joy to work with LSP
+features like code actions and diagnostics.
+
+Unlike the VS Code and coc.nvim ecosystems, Neovim doesn't provide a way for
+non-LSP sources to hook into its LSP client. null-ls is an attempt to bridge
+that gap and simplify the process of creating, sharing, and setting up LSP
+sources using pure Lua.
+
+null-ls is also an attempt to reduce the boilerplate required to set up
+general-purpose language servers and improve performance by removing the need
+for external processes.
+
+
+------------------------------------------------------------------------------
+STATUS                                                        *null-ls-status*
+
+
+null-ls is in **beta status**. Please see below for steps to follow if
+something doesn't work the way you expect (or doesn't work at all).
+
+null-ls is developed on and tested against the latest stable version of
+Neovim. Support for versions built from `HEAD` is provided on a best-effort
+basis, and users are encouraged to contribute fixes to any issues exclusive to
+these versions.
+
+
+------------------------------------------------------------------------------
+FEATURES                                                    *null-ls-features*
+
+
+null-ls sources are able to hook into the following LSP features:
+
+- Code actions
+- Diagnostics (file- and project-level)
+- Formatting (including range formatting)
+- Hover
+- Completion
+null-ls includes built-in sources for each of these features to provide
+out-of-the-box functionality. See BUILTINS <doc/BUILTINS.md> for a list of
+available built-in sources and BUILTIN_CONFIG <doc/BUILTIN_CONFIG.md> for
+instructions on how to set up and configure these sources.
+
+null-ls also provides helpers to streamline the process of spawning and
+transforming the output of command-line processes into an LSP-friendly format.
+If you want to create your own source, either for personal use or for a
+plugin, see HELPERS <doc/HELPERS.md> for details.
+
+
+------------------------------------------------------------------------------
+SETUP                                                          *null-ls-setup*
+
+
+Install null-ls using your favorite package manager. The plugin depends on
+plenary.nvim <https://github.com/nvim-lua/plenary.nvim>, which you are
+(probably) already using.
+
+To get started, you must set up null-ls and register at least one source. See
+BUILTINS <doc/BUILTINS.md> for a list of available built-in sources and CONFIG
+<doc/CONFIG.md> for information about setting up and configuring null-ls.
+
+>lua
+    local null_ls = require("null-ls")
+    
+    null_ls.setup({
+        sources = {
+            null_ls.builtins.formatting.stylua,
+            null_ls.builtins.diagnostics.eslint,
+            null_ls.builtins.completion.spell,
+        },
+    })
+<
+
+------------------------------------------------------------------------------
+DOCUMENTATION                                          *null-ls-documentation*
+
+
+The definitive source for information about null-ls is its documentation
+<doc/MAIN.md>, which contains information about how null-ls works, how to set
+it up, and how to create sources.
+
+
+------------------------------------------------------------------------------
+CONTRIBUTING                                            *null-ls-contributing*
+
+
+Contributions to add new features and built-ins for any language are always
+welcome. See CONTRIBUTING <doc/CONTRIBUTING.md> for guidelines.
+
+
+------------------------------------------------------------------------------
+EXAMPLES                                                    *null-ls-examples*
+
+
+
+                                                                              
+PARSING BUFFER CONTENT                        *null-ls-parsing-buffer-content*
+
+The following example demonstrates a diagnostic source that will parse the
+current buffer's content and show instances of the word `really` as LSP
+warnings.
+
+>lua
+    local null_ls = require("null-ls")
+    
+    local no_really = {
+        method = null_ls.methods.DIAGNOSTICS,
+        filetypes = { "markdown", "text" },
+        generator = {
+            fn = function(params)
+                local diagnostics = {}
+                -- sources have access to a params object
+                -- containing info about the current file and editor state
+                for i, line in ipairs(params.content) do
+                    local col, end_col = line:find("really")
+                    if col and end_col then
+                        -- null-ls fills in undefined positions
+                        -- and converts source diagnostics into the required format
+                        table.insert(diagnostics, {
+                            row = i,
+                            col = col,
+                            end_col = end_col + 1,
+                            source = "no-really",
+                            message = "Don't use 'really!'",
+                            severity = vim.diagnostic.severity.WARN,
+                        })
+                    end
+                end
+                return diagnostics
+            end,
+        },
+    }
+    
+    null_ls.register(no_really)
+<
+
+                                                                              
+PARSING CLI PROGRAM OUTPUT                *null-ls-parsing-cli-program-output*
+
+null-ls includes helpers to simplify the process of spawning and capturing the
+output of CLI programs. This example shows how to pass the content of the
+current buffer to `markdownlint` via `stdin` and convert its output (which it
+sends to `stderr`) into LSP diagnostics:
+
+>lua
+    local null_ls = require("null-ls")
+    local helpers = require("null-ls.helpers")
+    
+    local markdownlint = {
+        method = null_ls.methods.DIAGNOSTICS,
+        filetypes = { "markdown" },
+        -- null_ls.generator creates an async source
+        -- that spawns the command with the given arguments and options
+        generator = null_ls.generator({
+            command = "markdownlint",
+            args = { "--stdin" },
+            to_stdin = true,
+            from_stderr = true,
+            -- choose an output format (raw, json, or line)
+            format = "line",
+            check_exit_code = function(code, stderr)
+                local success = code <= 1
+    
+                if not success then
+                    -- can be noisy for things that run often (e.g. diagnostics), but can
+                    -- be useful for things that run on demand (e.g. formatting)
+                    print(stderr)
+                end
+    
+                return success
+            end,
+            -- use helpers to parse the output from string matchers,
+            -- or parse it manually with a function
+            on_output = helpers.diagnostics.from_patterns({
+                {
+                    pattern = [[:(%d+):(%d+) [%w-/]+ (.*)]],
+                    groups = { "row", "col", "message" },
+                },
+                {
+                    pattern = [[:(%d+) [%w-/]+ (.*)]],
+                    groups = { "row", "message" },
+                },
+            }),
+        }),
+    }
+    
+    null_ls.register(markdownlint)
+<
+
+------------------------------------------------------------------------------
+FAQ                                                              *null-ls-faq*
+
+
+
+                                                                              
+SOMETHING ISN'T WORKING! WHAT DO I DO?*null-ls-something-isn't-working!-what-do-i-do?*
+
+**NOTE**: If you run into issues when using null-ls, please follow the steps
+below and **do not** open an issue on the Neovim repository. null-ls is not an
+actual LSP server, so we need to determine whether issues are specific to this
+plugin before sending anything upstream.
+
+1. Make sure your configuration is in line with the latest version of this
+  document.
+2. Enable debug mode <#how-do-i-enable-debug-mode-and-get-debug-output> and
+  check the output of your source(s). If the CLI program is not properly
+  configured or is otherwise not running as expected, that's an issue with the
+  program, not null-ls.
+3. Check the documentation for available configuration options that might
+  solve your issue.
+4. If you're having trouble configuring null-ls or want to know how to achieve
+  a specific result, open a discussion.
+5. If you believe the issue is with null-ls itself or you want to request a
+  new feature, open an issue and provide the information requested in the
+  issue template.
+
+                                                                              
+MY `:CHECKHEALTH` OUTPUT IS WRONG! WHAT DO I DO?*null-ls-my-`:checkhealth`-output-is-wrong!-what-do-i-do?*
+
+Checking whether a given command is executable is tricky, and null-ls' health
+check doesn't handle all cases. null-ls' internal command resolution is
+independent of its health check output, which is for informational purposes.
+
+If you're not sure whether a given command is running as expected, enable
+debug mode <#how-do-i-enable-debug-mode-and-get-debug-output> and check your
+log.
+
+
+                                                                              
+HOW DO I FORMAT FILES?                        *null-ls-how-do-i-format-files?*
+
+Use `vim.lsp.buf.format()`. See `:help vim.lsp.buf.format()` for usage
+instructions.
+
+
+                                                                              
+HOW DO I FORMAT FILES ON SAVE?        *null-ls-how-do-i-format-files-on-save?*
+
+See this wiki page
+<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save>.
+
+
+                                                                              
+HOW DO I STOP NEOVIM FROM ASKING ME WHICH SERVER I WANT TO USE FOR FORMATTING?*null-ls-how-do-i-stop-neovim-from-asking-me-which-server-i-want-to-use-for-formatting?*
+
+See this wiki page
+<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts>.
+
+
+                                                                              
+HOW DO I VIEW PROJECT-LEVEL DIAGNOSTICS?*null-ls-how-do-i-view-project-level-diagnostics?*
+
+For a built-in solution, use `:lua vim.diagnostic.setqflist()`. You can also
+use a plugin like trouble.nvim <https://github.com/folke/trouble.nvim>.
+
+
+                                                                              
+HOW DO I ENABLE DEBUG MODE AND GET DEBUG OUTPUT?*null-ls-how-do-i-enable-debug-mode-and-get-debug-output?*
+
+1. Set `debug` flag to `true` in your config:
+>lua
+    require("null-ls").setup({
+           debug = true,
+       })
+<
+2. Use `:NullLsLog` to open your debug log in the current Neovim instance or
+  `:NullLsInfo` to get the path to your debug log.
+As with LSP logging, debug mode will slow down Neovim. Make sure to disable
+the option after you've collected the information you're looking for.
+
+
+                                                                              
+DOES IT WORK WITH (OTHER PLUGIN)?  *null-ls-does-it-work-with-(other-plugin)?*
+
+In most cases, yes. null-ls tries to act like an actual LSP server as much as
+possible, so it should work seamlessly with most LSP-related plugins. If you
+run into problems, please try to determine which plugin is causing them and
+open an issue.
+
+This wiki page
+<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Compatibility-with-other-plugins>
+mentions plugins that require specific configuration options / tweaks to work
+with null-ls.
+
+
+                                                                              
+HOW DOES IT WORK?                                  *null-ls-how-does-it-work?*
+
+Thanks to hard work by @folke, the plugin wraps the mechanism Neovim uses to
+spawn language servers to start a client entirely in-memory. The client
+attaches to buffers that match defined sources and receives and responds to
+requests, document changes, and other events from Neovim.
+
+
+                                                                              
+WILL IT AFFECT MY PERFORMANCE?        *null-ls-will-it-affect-my-performance?*
+
+More testing is necessary, but since null-ls uses pure Lua and runs entirely
+in memory without any external processes, in most cases it should run faster
+than similar solutions. If you notice that performance is worse with null-ls
+than with an alternative, please open an issue!
+
+
+                                                                              
+I AM SEEING A FORMATTING `TIMEOUT` ERROR MESSAGE*null-ls-i-am-seeing-a-formatting-`timeout`-error-message*
+
+This issue occurs when a formatter takes longer than the default timeout
+value. This is an automatic mechanism and controlled by Neovim. You might want
+to increase the timeout in your call:
+
+>lua
+    vim.lsp.buf.format({ timeout_ms = 2000 })
+<
+
+------------------------------------------------------------------------------
+TESTS                                                          *null-ls-tests*
+
+
+The test suite includes unit and integration tests and depends on
+plenary.nvim. Run `make test` in the root of the project to run the suite or
+`FILE=filename_spec.lua make test-file` to test an individual file.
+
+To avoid a dependency on any plugin managers, the test suite will set up its
+plugin runtime under the `./tests` directory to always have a plenary version
+available.
+
+If you run into plenary-related issues while running the tests, make sure you
+have an up-to-date version of the plugin by clearing that cache with: `make
+clean`.
+
+All tests expect to run on the latest release version of Neovim and are not
+guaranteed to work on versions built from `HEAD`.
+
+
+------------------------------------------------------------------------------
+ALTERNATIVES                                            *null-ls-alternatives*
+
+
+- efm-langserver <https://github.com/mattn/efm-langserver> and
+  diagnostic-languageserver
+  <https://github.com/iamcco/diagnostic-languageserver>: general-purpose
+  language servers that can provide formatting and diagnostics from CLI
+  output.
+- nvim-lint <https://github.com/mfussenegger/nvim-lint>: a Lua plugin that
+  focuses on providing diagnostics from CLI output.
+- formatter.nvim <https://github.com/mhartington/formatter.nvim>: a Lua plugin
+  that (surprise) focuses on formatting.
+- hover.nvim <https://github.com/lewis6991/hover.nvim>: Hover plugin framework
+  for Neovim.
+
+vim:tw=78:ts=8:ft=help:norl:
