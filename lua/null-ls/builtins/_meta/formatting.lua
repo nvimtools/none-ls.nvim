@@ -214,6 +214,9 @@ return {
   latexindent = {
     filetypes = { "tex" }
   },
+  leptosfmt = {
+    filetypes = { "rust" }
+  },
   lua_format = {
     filetypes = { "lua" }
   },

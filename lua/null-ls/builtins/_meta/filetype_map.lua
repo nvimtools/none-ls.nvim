@@ -358,7 +358,7 @@ return {
     formatting = { "rubocop", "rubyfmt", "rufo", "standardrb" }
   },
   rust = {
-    formatting = { "dprint", "rustfmt" }
+    formatting = { "dprint", "leptosfmt", "rustfmt" }
   },
   sass = {
     diagnostics = { "stylelint" },

@@ -3740,6 +3740,23 @@ local sources = { null_ls.builtins.formatting.latexindent }
 - Command: `latexindent`
 - Args: `{ "-" }`
 
+### [leptosfmt](https://github.com/bram209/leptosfmt)
+
+A formatter for the leptos view! macro
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.leptosfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "rust" }`
+- Method: `formatting`
+- Command: `leptosfmt`
+- Args: `{ "--quiet=true", "--stdin=true" }`
+
 ### [lua_format](https://github.com/Koihik/LuaFormatter)
 
 Reformats your Lua source code.
