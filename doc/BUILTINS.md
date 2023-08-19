@@ -3056,7 +3056,7 @@ local sources = { null_ls.builtins.formatting.dprint }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "markdown", "toml", "rust", "roslyn" }`
+- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "markdown", "toml", "rust", "roslyn" }`
 - Method: `formatting`
 - Command: `dprint`
 - Args: `{ "fmt", "--stdin", "$FILENAME" }`
