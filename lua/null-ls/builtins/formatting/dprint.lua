@@ -20,6 +20,7 @@ return h.make_builtin({
         "typescript",
         "typescriptreact",
         "json",
+        "jsonc",
         "markdown",
         "toml",
         "rust",
