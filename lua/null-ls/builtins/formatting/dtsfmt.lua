@@ -14,7 +14,7 @@ return h.make_builtin({
     filetypes = { "dts" },
     generator_opts = {
         command = "dtsfmt",
-        args = { "--emit=stdout" },
+        args = { "--stdin", "$FILENAME" },
         to_stdin = true,
     },
     factory = h.formatter_factory,
