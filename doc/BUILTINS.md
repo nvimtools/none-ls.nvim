@@ -3080,7 +3080,7 @@ local sources = { null_ls.builtins.formatting.dtsfmt }
 - Filetypes: `{ "dts" }`
 - Method: `formatting`
 - Command: `dtsfmt`
-- Args: `{ "--emit=stdout" }`
+- Args: `{ "--stdin", "$FILENAME" }`
 
 #### Notes
 
