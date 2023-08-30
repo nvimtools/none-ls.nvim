@@ -126,7 +126,7 @@ M.show_window = function(opts)
 
     local header = {
         "null-ls",
-        "https://github.com/jose-elias-alvarez/null-ls.nvim",
+        "https://github.com/nvimtools/none-ls.nvim",
     }
     table.insert(highlights, { "NullLsInfoHeader", header[1] })
 

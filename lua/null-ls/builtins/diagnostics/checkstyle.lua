@@ -4,7 +4,7 @@ local function parse_checkstyle_errors(params, output)
     if params.err:match("Must specify a config XML file.") then
         table.insert(output, {
             message = "You need to specify a configuration for checkstyle."
-                .. " See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#checkstyle",
+                .. " See https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#checkstyle",
             severity = vim.diagnostic.severity.ERROR,
             bufnr = params.bufnr,
         })

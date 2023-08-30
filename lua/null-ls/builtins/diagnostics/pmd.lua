@@ -12,7 +12,7 @@ local function parse_pmd_error(params, line, output)
     if line:match("The following option is required: %-%-rulesets") then
         table.insert(output, {
             message = "You need to specify a ruleset for PMD."
-                .. " See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#pmd",
+                .. " See https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#pmd",
             severity = vim.diagnostic.severity.ERROR,
             bufnr = params.bufnr,
         })

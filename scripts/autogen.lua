@@ -21,7 +21,7 @@ local BUILTINS_DIR = join_paths(NULL_LS_DIR, "lua", "null-ls", "builtins")
 local META_DIR = join_paths(BUILTINS_DIR, "_meta")
 local DOC_FILE = join_paths(NULL_LS_DIR, "doc", "BUILTINS.md")
 local BUILTINS_URL_TEMPLATE =
-    "https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/%s/%s.lua"
+    "https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/%s/%s.lua"
 
 -- metadata
 local sources = {}

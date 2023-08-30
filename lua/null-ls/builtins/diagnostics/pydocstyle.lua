@@ -9,7 +9,7 @@ return h.make_builtin({
         url = "https://www.pydocstyle.org/",
         description = "pydocstyle is a static analysis tool for checking compliance with Python docstring conventions.",
         notes = {
-            "May fail to resolve config files. See [the wiki](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Source-specific-Configuration#pydocstyle) for workarounds.",
+            "May fail to resolve config files. See [the wiki](https://github.com/nvimtools/none-ls.nvim/wiki/Source-specific-Configuration#pydocstyle) for workarounds.",
         },
     },
     method = DIAGNOSTICS,

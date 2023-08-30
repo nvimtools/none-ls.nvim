@@ -33,7 +33,7 @@ local function load_plugins()
         {
             "wbthomason/packer.nvim",
             {
-                "jose-elias-alvarez/null-ls.nvim",
+                "nvimtools/none-ls.nvim",
                 requires = { "nvim-lua/plenary.nvim" },
                 config = null_ls_config,
             },

@@ -1650,7 +1650,7 @@ describe("diagnostics", function()
             assert.same({
                 {
                     message = "You need to specify a configuration for checkstyle. See"
-                        .. " https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#checkstyle",
+                        .. " https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#checkstyle",
                     severity = vim.diagnostic.severity.ERROR,
                     bufnr = 42,
                 },
@@ -1905,7 +1905,7 @@ Run with --help for command line help.]],
             assert.same({
                 {
                     message = "You need to specify a ruleset for PMD. See"
-                        .. " https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#pmd",
+                        .. " https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#pmd",
                     severity = vim.diagnostic.severity.ERROR,
                     bufnr = 42,
                 },

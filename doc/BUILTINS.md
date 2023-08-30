@@ -407,7 +407,7 @@ local sources = { null_ls.builtins.diagnostics.actionlint }
 - Filetypes: `{ "yaml" }`
 - Method: `diagnostics`
 - Command: `actionlint`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/actionlint.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/actionlint.lua))
 
 ### [alex](https://github.com/get-alex/alex)
 
@@ -788,7 +788,7 @@ local sources = { null_ls.builtins.diagnostics.cspell }
 - Filetypes: `{}`
 - Method: `diagnostics`
 - Command: `cspell`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/cspell.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/cspell.lua))
 
 ### [cue_fmt](https://github.com/cue-lang/cue)
 
@@ -1349,7 +1349,7 @@ local sources = { null_ls.builtins.diagnostics.mypy }
 - Filetypes: `{ "python" }`
 - Method: `diagnostics`
 - Command: `mypy`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/mypy.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/mypy.lua))
 
 ### [npm_groovy_lint](https://github.com/nvuillam/npm-groovy-lint)
 
@@ -1649,7 +1649,7 @@ local sources = { null_ls.builtins.diagnostics.pydocstyle }
 
 #### Notes
 
-- May fail to resolve config files. See [the wiki](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Source-specific-Configuration#pydocstyle) for workarounds.
+- May fail to resolve config files. See [the wiki](https://github.com/nvimtools/none-ls.nvim/wiki/Source-specific-Configuration#pydocstyle) for workarounds.
 
 ### [pylama](https://github.com/klen/pylama)
 
@@ -2214,7 +2214,7 @@ local sources = { null_ls.builtins.diagnostics.tidy }
 - Filetypes: `{ "html", "xml" }`
 - Method: `diagnostics`
 - Command: `tidy`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/tidy.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/tidy.lua))
 
 ### todo_comments
 
@@ -2329,7 +2329,7 @@ local sources = { null_ls.builtins.diagnostics.vale }
 - Filetypes: `{ "markdown", "tex", "asciidoc" }`
 - Method: `diagnostics`
 - Command: `vale`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/vale.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/vale.lua))
 
 #### Notes
 
@@ -2538,7 +2538,7 @@ local sources = { null_ls.builtins.formatting.autopep8 }
 - Filetypes: `{ "python" }`
 - Methods: `formatting, range_formatting`
 - Command: `autopep8`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/autopep8.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/autopep8.lua))
 
 ### [bean_format](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
 
@@ -2814,7 +2814,7 @@ local sources = { null_ls.builtins.formatting.clang_format }
 - Filetypes: `{ "c", "cpp", "cs", "java", "cuda", "proto" }`
 - Methods: `formatting, range_formatting`
 - Command: `clang-format`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/clang_format.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/clang_format.lua))
 
 ### [cljstyle](https://github.com/greglook/cljstyle)
 
@@ -2971,7 +2971,7 @@ local sources = {
 - Filetypes: `{ "javascript", "javascriptreact", "json", "jsonc", "markdown", "typescript", "typescriptreact" }`
 - Method: `formatting`
 - Command: `deno`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/deno_fmt.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/deno_fmt.lua))
 
 #### Notes
 
@@ -3118,7 +3118,7 @@ local sources = { null_ls.builtins.formatting.emacs_scheme_mode }
 - Filetypes: `{ "scheme", "scheme.guile" }`
 - Method: `formatting`
 - Command: `emacs`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/emacs_scheme_mode.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/emacs_scheme_mode.lua))
 
 #### Notes
 
@@ -3139,7 +3139,7 @@ local sources = { null_ls.builtins.formatting.emacs_vhdl_mode }
 - Filetypes: `{ "vhdl" }`
 - Method: `formatting`
 - Command: `emacs`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/emacs_vhdl_mode.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/emacs_vhdl_mode.lua))
 
 #### Notes
 
@@ -3336,7 +3336,7 @@ local sources = { null_ls.builtins.formatting.format_r }
 - Filetypes: `{ "r", "rmd" }`
 - Method: `formatting`
 - Command: `R`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/format_r.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/format_r.lua))
 
 ### [fourmolu](https://hackage.haskell.org/package/fourmolu)
 
@@ -4104,7 +4104,7 @@ local sources = { null_ls.builtins.formatting.prettier }
 - Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettier`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier.lua))
 
 #### Notes
 
@@ -4126,7 +4126,7 @@ local sources = { null_ls.builtins.formatting.prettierd }
 - Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettierd`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettierd.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettierd.lua))
 
 ### [prettier_d_slim](https://github.com/mikew/prettier_d_slim)
 
@@ -4143,7 +4143,7 @@ local sources = { null_ls.builtins.formatting.prettier_d_slim }
 - Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettier_d_slim`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier_d_slim.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier_d_slim.lua))
 
 #### Notes
 
@@ -4309,7 +4309,7 @@ local sources = { null_ls.builtins.formatting.pyink }
 - Filetypes: `{ "python" }`
 - Methods: `formatting, range_formatting`
 - Command: `pyink`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/pyink.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/pyink.lua))
 
 ### [qmlformat](https://doc-snapshots.qt.io/qt6-dev/qtquick-tools-and-utilities.html#qmlformat)
 
@@ -4441,7 +4441,7 @@ local sources = { null_ls.builtins.formatting.rescript }
 - Filetypes: `{ "rescript" }`
 - Method: `formatting`
 - Command: `rescript`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/rescript.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/rescript.lua))
 
 ### [rome](https://rome.tools)
 
@@ -4556,7 +4556,7 @@ local sources = { null_ls.builtins.formatting.rustfmt }
 #### Notes
 
 - `--edition` defaults to `2015`. To set a different edition, use `extra_args`.
-- See [the wiki](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Source-specific-Configuration#rustfmt) for other workarounds.
+- See [the wiki](https://github.com/nvimtools/none-ls.nvim/wiki/Source-specific-Configuration#rustfmt) for other workarounds.
 
 ### [rustywind](https://github.com/avencera/rustywind)
 
@@ -4822,7 +4822,7 @@ local sources = { null_ls.builtins.formatting.styler }
 - Filetypes: `{ "r", "rmd" }`
 - Method: `formatting`
 - Command: `R`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/styler.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/styler.lua))
 
 ### [stylish_haskell](https://github.com/haskell/stylish-haskell)
 
@@ -4856,7 +4856,7 @@ local sources = { null_ls.builtins.formatting.stylua }
 - Filetypes: `{ "lua", "luau" }`
 - Methods: `formatting, range_formatting`
 - Command: `stylua`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/stylua.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/stylua.lua))
 
 ### [surface](https://hexdocs.pm/surface_formatter/readme.html)
 
@@ -5101,7 +5101,7 @@ local sources = { null_ls.builtins.formatting.uncrustify }
 - Filetypes: `{ "c", "cpp", "cs", "java" }`
 - Method: `formatting`
 - Command: `uncrustify`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/uncrustify.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/uncrustify.lua))
 
 ### [usort](https://github.com/facebookexperimental/usort)
 
@@ -5237,7 +5237,7 @@ local sources = { null_ls.builtins.formatting.yapf }
 - Filetypes: `{ "python" }`
 - Methods: `formatting, range_formatting`
 - Command: `yapf`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/yapf.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/yapf.lua))
 
 ### [yq](https://github.com/mikefarah/yq)
 
