@@ -242,7 +242,7 @@ describe("utils", function()
 
         describe("root_matches", function()
             it("should return true if root matches pattern", function()
-                assert.truthy(utils.root_matches("null%-ls"))
+                assert.truthy(utils.root_matches("none%-ls"))
             end)
 
             it("should return false if root does not match pattern", function()

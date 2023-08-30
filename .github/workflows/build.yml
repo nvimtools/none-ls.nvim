@@ -32,14 +32,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: null-ls.nvim
-      - uses: actions/checkout@v3
+          path: none-ls.nvim
+      - uses: actions/checkout@v2
         with:
           repository: nvim-lua/plenary.nvim
-          path: null-ls.nvim/.tests/site/pack/deps/start/plenary.nvim
+          path: none-ls.nvim/.tests/site/pack/deps/start/plenary.nvim
       - uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
       - run: make test
-        working-directory: null-ls.nvim
+        working-directory: none-ls.nvim
         timeout-minutes: 1
