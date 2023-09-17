@@ -6,18 +6,18 @@ local u = require("null-ls.utils")
 local FORMATTING = methods.internal.FORMATTING
 
 return h.make_builtin({
-    name = "rome",
+    name = "biome",
     meta = {
-        url = "https://rome.tools",
+        url = "https://biomejs.dev",
         description = "Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, and CSS.",
         notes = {
-            "Currently support only JavaScript, TypeScript and JSON. See status [here](https://rome.tools/#language-support)",
+            "Currently support only JavaScript, TypeScript and JSON. See status [here](https://biomejs.dev/internals/language-support/)",
         },
     },
     method = FORMATTING,
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json" },
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" },
     generator_opts = {
-        command = "rome",
+        command = "biome",
         args = {
             "format",
             "--write",
@@ -25,10 +25,7 @@ return h.make_builtin({
         },
         dynamic_command = cmd_resolver.from_node_modules(),
         cwd = h.cache.by_bufnr(function(params)
-            return u.root_pattern(
-                -- https://docs.rome.tools/configuration/
-                "rome.json"
-            )(params.bufname)
+            return u.root_pattern("rome.json", "biome.json")(params.bufname)
         end),
         to_stdin = false,
         to_temp_file = true,
