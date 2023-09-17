@@ -1,4 +1,6 @@
 name: Auto Generate Docs
+permissions:
+  contents: write
 on:
   push:
     branches: [main]
