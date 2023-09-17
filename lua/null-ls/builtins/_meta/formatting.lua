@@ -25,6 +25,9 @@ return {
   bibclean = {
     filetypes = { "bib" }
   },
+  biome = {
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }
+  },
   black = {
     filetypes = { "python" }
   },
@@ -330,9 +333,6 @@ return {
   },
   rescript = {
     filetypes = { "rescript" }
-  },
-  rome = {
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json" }
   },
   rubocop = {
     filetypes = { "ruby" }

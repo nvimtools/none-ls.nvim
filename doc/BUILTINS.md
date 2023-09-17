@@ -443,6 +443,21 @@ local sources = { null_ls.builtins.diagnostics.ansiblelint }
 - Command: `ansible-lint`
 - Args: `{ "-f", "codeclimate", "-q", "--nocolor", "$FILENAME" }`
 
+### [bandit](https://github.com/PyCQA/bandit)
+
+Bandit is a tool designed to find common security issues in Python code.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.bandit }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `diagnostics`
+
 ### [bslint](https://github.com/rokucommunity/bslint)
 
 A brighterscript CLI tool to lint your code without compiling your project.
@@ -2603,6 +2618,27 @@ local sources = { null_ls.builtins.formatting.bibclean }
 
 - See [bibclean: prettyprint and syntax check BibTeX and Scribe bibliography data base files](https://ftp.math.utah.edu/pub/bibclean/) for latest version.
 
+### [biome](https://biomejs.dev)
+
+Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, and CSS.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.biome }
+```
+
+#### Defaults
+
+- Filetypes: `{ "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }`
+- Method: `formatting`
+- Command: `biome`
+- Args: `{ "format", "--write", "$FILENAME" }`
+
+#### Notes
+
+- Currently support only JavaScript, TypeScript and JSON. See status [here](https://biomejs.dev/internals/language-support/)
+
 ### [black](https://github.com/psf/black)
 
 The uncompromising Python code formatter
@@ -3529,7 +3565,7 @@ local sources = { null_ls.builtins.formatting.google_java_format }
 - Filetypes: `{ "java" }`
 - Methods: `formatting, range_formatting`
 - Command: `google-java-format`
-- Args: dynamically resolved (see [source](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/formatting/google_java_format.lua))
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/google_java_format.lua))
 
 ### [haxe_formatter](https://github.com/HaxeCheckstyle/haxe-formatter)
 
@@ -4442,27 +4478,6 @@ local sources = { null_ls.builtins.formatting.rescript }
 - Method: `formatting`
 - Command: `rescript`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/rescript.lua))
-
-### [rome](https://rome.tools)
-
-Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, and CSS.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.formatting.rome }
-```
-
-#### Defaults
-
-- Filetypes: `{ "javascript", "typescript", "javascriptreact", "typescriptreact", "json" }`
-- Method: `formatting`
-- Command: `rome`
-- Args: `{ "format", "--write", "$FILENAME" }`
-
-#### Notes
-
-- Currently support only JavaScript, TypeScript and JSON. See status [here](https://rome.tools/#language-support)
 
 ### [rubocop](https://github.com/rubocop/rubocop)
 

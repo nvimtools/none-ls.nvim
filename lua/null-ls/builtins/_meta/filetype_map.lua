@@ -196,12 +196,12 @@ return {
   javascript = {
     code_actions = { "eslint", "eslint_d", "refactoring", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "jshint", "semistandardjs", "standardjs", "xo" },
-    formatting = { "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rome", "rustywind", "semistandardjs", "standardjs" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rustywind", "semistandardjs", "standardjs" }
   },
   javascriptreact = {
     code_actions = { "eslint", "eslint_d", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semistandardjs", "standardjs", "xo" },
-    formatting = { "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rome", "rustywind", "semistandardjs", "standardjs" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rustywind", "semistandardjs", "standardjs" }
   },
   jinja = {
     formatting = { "sqlfmt" }
@@ -212,10 +212,10 @@ return {
   },
   json = {
     diagnostics = { "cfn_lint", "jsonlint", "spectral", "vacuum" },
-    formatting = { "deno_fmt", "dprint", "fixjson", "jq", "json_tool", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rome" }
+    formatting = { "biome", "deno_fmt", "dprint", "fixjson", "jq", "json_tool", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
   },
   jsonc = {
-    formatting = { "deno_fmt", "dprint", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "biome", "deno_fmt", "dprint", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
   },
   jsonnet = {
     formatting = { "jsonnetfmt" }
@@ -324,7 +324,7 @@ return {
   },
   python = {
     code_actions = { "refactoring" },
-    diagnostics = { "flake8", "mypy", "pycodestyle", "pydocstyle", "pylama", "pylint", "pyproject_flake8", "ruff", "semgrep", "vulture" },
+    diagnostics = { "bandit", "flake8", "mypy", "pycodestyle", "pydocstyle", "pylama", "pylint", "pyproject_flake8", "ruff", "semgrep", "vulture" },
     formatting = { "autoflake", "autopep8", "black", "blackd", "blue", "docformatter", "isort", "isortd", "pyflyby", "pyink", "reorder_python_imports", "ruff", "usort", "yapf" }
   },
   qml = {
@@ -455,12 +455,12 @@ return {
   typescript = {
     code_actions = { "eslint", "eslint_d", "refactoring", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
-    formatting = { "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rome", "rustywind", "standardts" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "standardts" }
   },
   typescriptreact = {
     code_actions = { "eslint", "eslint_d", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
-    formatting = { "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rome", "rustywind", "standardts" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "standardts" }
   },
   verilog = {
     diagnostics = { "verilator" },
