@@ -1,8 +1,10 @@
-*null-ls.txt*                                   Last change: 2023 September 18
+*null-ls.txt*                                   Last change: 2023 September 19
 
 ==============================================================================
 Table of Contents                                  *null-ls-table-of-contents*
 
+Migration ................................................ |null-ls-migration|
+Community ................................................ |null-ls-community|
 Motivation .............................................. |null-ls-motivation|
 Status ...................................................... |null-ls-status|
 Features .................................................. |null-ls-features|
@@ -26,6 +28,39 @@ Will it affect my performance? ...... |null-ls-will-it-affect-my-performance?|
 I am seeing a formatting `timeout` error message  |null-ls-i-am-seeing-a-formatting-`timeout`-error-message|
 Tests ........................................................ |null-ls-tests|
 Alternatives .......................................... |null-ls-alternatives|
+
+==============================================================================
+NONE-LS.NVIM                                            *null-ls-none-ls.nvim*
+
+
+`null-ls.nvim` Reloaded, maintained by the community.
+
+Only the repo name is changed for compatibility concerns. All the API and
+future changes will keep in place as-is.
+
+
+------------------------------------------------------------------------------
+MIGRATION                                                  *null-ls-migration*
+
+
+Replace `jose-elias-alvarez/null-ls.nvim` with `nvimtools/none-ls.nvim` in
+your choice of package manager.
+
+That's it.
+
+
+------------------------------------------------------------------------------
+COMMUNITY                                                  *null-ls-community*
+
+
+Open a pull request to become a collaborator. If you have contributed to
+`null-ls.nvim` before, simply open an issue or comment on that commit.
+
+If you want to make changes, open a new a pull request. Find another
+collaborator to review your changes, as a review is required for the PR to be
+merged by yourself (subject to change if there are more collaborators in the
+future).
+
 
 ==============================================================================
 NULL-LS.NVIM                                            *null-ls-null-ls.nvim*
