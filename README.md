@@ -1,3 +1,36 @@
+<!-- markdownlint-configure-file
+{
+  "line-length": false,
+  "no-inline-html": false
+}
+-->
+
+# none-ls.nvim
+
+`null-ls.nvim` Reloaded, maintained by the community.
+
+Only the repo name is changed for compatibility concerns. All the API and future
+changes will keep in place as-is.
+
+## Migration
+
+Replace `jose-elias-alvarez/null-ls.nvim` with `nvimtools/none-ls.nvim` in your
+choice of package manager.
+
+That's it.
+
+## Community
+
+Open a pull request to become a collaborator. If you have contributed to
+`null-ls.nvim` before, simply open an issue or comment on that commit.
+
+If you want to make changes, open a new a pull request. Find another
+collaborator to review your changes, as a review is required for the PR to be
+merged by yourself (subject to change if there are more collaborators in
+the future).
+
+---
+
 # null-ls.nvim
 
 Use Neovim as a language server to inject LSP diagnostics, code actions, and
@@ -34,9 +67,13 @@ versions.
 null-ls sources are able to hook into the following LSP features:
 
 - Code actions
+
 - Diagnostics (file- and project-level)
+
 - Formatting (including range formatting)
+
 - Hover
+
 - Completion
 
 null-ls includes built-in sources for each of these features to provide
@@ -303,9 +340,12 @@ All tests expect to run on the latest release version of Neovim and are not guar
   [diagnostic-languageserver](https://github.com/iamcco/diagnostic-languageserver):
   general-purpose language servers that can provide formatting and diagnostics
   from CLI output.
+
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint): a Lua plugin that
   focuses on providing diagnostics from CLI output.
+
 - [formatter.nvim](https://github.com/mhartington/formatter.nvim): a Lua plugin
   that (surprise) focuses on formatting.
+
 - [hover.nvim](https://github.com/lewis6991/hover.nvim): Hover plugin framework
   for Neovim.
