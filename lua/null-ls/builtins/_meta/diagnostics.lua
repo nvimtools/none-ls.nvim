@@ -61,9 +61,6 @@ return {
   credo = {
     filetypes = { "elixir" }
   },
-  cspell = {
-    filetypes = {}
-  },
   cue_fmt = {
     filetypes = { "cue" }
   },

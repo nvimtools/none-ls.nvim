@@ -14,65 +14,6 @@ See [BUILTIN_CONFIG](BUILTIN_CONFIG.md) to learn how to set up and configure the
 
 ## Code Actions
 
-### [cspell](https://github.com/streetsidesoftware/cspell)
-
-Injects actions to fix typos found by `cspell`.
-
-**This source is not actively developed in this repository.**
-
-An up-to-date version exists as a companion plugin in [cspell.nvim](https://github.com/davidmh/cspell.nvim)
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.diagnostics.cspell, null_ls.builtins.code_actions.cspell }
-```
-
-#### Defaults
-
-- Filetypes: `{}`
-- Method: `code_action`
-
-#### Config
-
-##### `find_json` (function)
-
-Customizing the location of cspell config
-
-```lua
-local cspell = null_ls.builtins.code_actions.cspell.with({
-    config = {
-        find_json = function(cwd)
-            return vim.fn.expand(cwd .. "/cspell.json")
-        end
-    },
-})
-```
-##### `on_success` (function)
-
-Callback after successful execution of code action.
-
-```lua
-local cspell = null_ls.builtins.code_actions.cspell.with({
-    config = {
-        on_success = function(cspell_config_file, params)
-            -- format the cspell config file
-            os.execute(
-                string.format(
-                    "cat %s | jq -S '.words |= sort' | tee %s > /dev/null",
-                    cspell_config_file,
-                    cspell_config_file
-                )
-            )
-        end
-    },
-})
-```
-
-#### Notes
-
-- This source depends on the `cspell` built-in diagnostics source, so make sure to register it, too.
-
 ### [eslint](https://github.com/eslint/eslint)
 
 Injects actions to fix ESLint issues or ignore broken rules.
@@ -783,27 +724,6 @@ local sources = { null_ls.builtins.diagnostics.credo }
 #### Notes
 
 - Searches upwards from the buffer to the project root and tries to find the first `.credo.exs` file in case the project has nested `credo` configs.
-
-### [cspell](https://github.com/streetsidesoftware/cspell)
-
-cspell is a spell checker for code.
-
-**This source is not actively developed in this repository.**
-
-An up-to-date version exists as a companion plugin in [cspell.nvim](https://github.com/davidmh/cspell.nvim)
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.diagnostics.cspell }
-```
-
-#### Defaults
-
-- Filetypes: `{}`
-- Method: `diagnostics`
-- Command: `cspell`
-- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/cspell.lua))
 
 ### [cue_fmt](https://github.com/cue-lang/cue)
 
