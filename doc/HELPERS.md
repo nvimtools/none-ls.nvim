@@ -254,6 +254,8 @@ with the following changes:
 
 - `ignore_stderr`: set to `true` by default.
 
+- `ignore_stdout`: set to `false` by default.
+
 - `on_output`: will always return an edit that will replace the current buffer's
   content with formatter output. As a result, other options that depend on
   `on_output`, such as `format`, will not have an effect.
