@@ -6,6 +6,7 @@ local u = require("null-ls.utils")
 local output_formats = {
     raw = "raw", -- receive error_output and output directly
     none = nil, -- same as raw but will not send error output
+    ignore = "ignore",
     line = "line", -- call handler once per line of output
     json = "json", -- send processed json output to handler
     json_raw = "json_raw", -- attempt to process json, but send errors to handler
@@ -144,7 +145,7 @@ return function(opts)
                 function(a)
                     return not a or vim.tbl_contains(vim.tbl_values(output_formats), a)
                 end,
-                "raw, line, json, or json_raw",
+                "raw, ignore, line, json, or json_raw",
             },
             from_stderr = { from_stderr, "boolean", true },
             ignore_stderr = { ignore_stderr, "boolean", true },
@@ -220,8 +221,13 @@ return function(opts)
                         error("error in generator output: " .. error_output)
                     end
 
-                    params.output = params.output or output
-                    opts._last_output = output or ""
+                    if format == output_formats.ignore then
+                        params.output = nil
+                        params._last_output = ""
+                    else
+                        params.output = params.output or output
+                        opts._last_output = output or ""
+                    end
 
                     if use_cache then
                         s.set_cache(params.bufnr, command, output)
