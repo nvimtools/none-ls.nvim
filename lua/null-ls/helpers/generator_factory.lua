@@ -207,7 +207,6 @@ return function(opts)
                 log:trace("error output: " .. (error_output or "nil"))
                 log:trace("output: " .. (output or "nil"))
 
-                print(vim.inspect(opts))
                 if ignore_stdout then
                     if error_output then
                         log:trace("ignoring stdout due to generator options")
