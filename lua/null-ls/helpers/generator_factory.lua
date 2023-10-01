@@ -101,13 +101,14 @@ local line_output_wrapper = function(params, done, on_output)
 end
 
 return function(opts)
-    local command, args, env, on_output, format, ignore_stderr, from_stderr, to_stdin, check_exit_code, timeout, to_temp_file, from_temp_file, use_cache, runtime_condition, cwd, dynamic_command, multiple_files, temp_dir, prepend_extra_args =
+    local command, args, env, on_output, format, ignore_stderr, ignore_stdout, from_stderr, to_stdin, check_exit_code, timeout, to_temp_file, from_temp_file, use_cache, runtime_condition, cwd, dynamic_command, multiple_files, temp_dir, prepend_extra_args =
         opts.command,
         opts.args,
         opts.env,
         opts.on_output,
         opts.format,
         opts.ignore_stderr,
+        opts.ignore_stdout,
         opts.from_stderr,
         opts.to_stdin,
         opts.check_exit_code,
@@ -148,6 +149,7 @@ return function(opts)
             },
             from_stderr = { from_stderr, "boolean", true },
             ignore_stderr = { ignore_stderr, "boolean", true },
+            ignore_stdout = { ignore_stdout, "boolean", true },
             to_stdin = { to_stdin, "boolean", true },
             check_exit_code = { check_exit_code, "function", true },
             timeout = { timeout, "number", true },
@@ -205,6 +207,12 @@ return function(opts)
                 log:trace("error output: " .. (error_output or "nil"))
                 log:trace("output: " .. (output or "nil"))
 
+                if ignore_stdout then
+                    if error_output then
+                        log:trace("ignoring stdout due to generator options")
+                    end
+                    output = nil
+                end
                 if ignore_stderr then
                     if error_output then
                         log:trace("ignoring stderr due to generator options")

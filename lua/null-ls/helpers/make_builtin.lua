@@ -36,6 +36,7 @@ local function make_builtin(opts)
         diagnostics_postprocess = opts.diagnostics_postprocess,
         dynamic_command = opts.dynamic_command,
         ignore_stderr = opts.ignore_stderr,
+        ignore_stdout = opts.ignore_stdout,
         runtime_condition = opts.runtime_condition,
         timeout = opts.timeout,
         to_temp_file = opts.to_temp_file,
