@@ -1661,7 +1661,7 @@ local sources = { null_ls.builtins.diagnostics.pyproject_flake8 }
 
 ### [qmllint](https://doc-snapshots.qt.io/qt6-dev/qtquick-tools-and-utilities.html#qmllint)
 
-qmllint is a tool shipped with Qt that verifies the syntatic validity of QML files. It also warns about some QML anti-patterns.
+qmllint is a tool shipped with Qt that verifies the syntactic validity of QML files. It also warns about some QML anti-patterns.
 
 #### Usage
 

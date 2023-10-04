@@ -120,7 +120,7 @@ local diagnostic = {
     `bufnr` so null-ls can then publish diagnostics properly. If specified,
     `filename` should be an absolute path.
 
-  - To prevent peformance issues, multi-file sources should default to the
+  - To prevent performance issues, multi-file sources should default to the
     `ON_SAVE` method.
 
 ### Configuration
