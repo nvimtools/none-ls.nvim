@@ -262,7 +262,7 @@ second argument. Processing will pause until all async generators have called
 local my_source = {}
 
 my_source.generator = {
-    -- must be explictly set
+    -- must be explicitly set
     async = true,
     fn = function(params, done)
         -- always return done() to prevent timeouts

@@ -166,7 +166,7 @@ return h.make_builtin({
                                 end
 
                                 -- Save file before execution, because impl looks for type and its methods and
-                                -- calculates diff between implemeted methods and interface methods and implements missing methods.
+                                -- calculates diff between implemented methods and interface methods and implements missing methods.
                                 -- Do not trigger autocmds, they can format buffer and TS nodes will invalidate.
                                 vim.cmd("noa w")
                                 local receiver = get_receiver(type_spec_node, receiver_type)

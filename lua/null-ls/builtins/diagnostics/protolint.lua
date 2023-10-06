@@ -63,7 +63,7 @@ return h.make_builtin({
             end
 
             for _, issue in ipairs(decoded.lints or {}) do
-                -- We're forced to use to_temp_file since Protolint dosen't accept stdin input.
+                -- We're forced to use to_temp_file since Protolint doesn't accept stdin input.
                 -- Due to the naming of temp files Protolint triggers 'FILE_NAMES_LOWER_SNAKE_CASE' error.
                 -- As a dirty quickfix we simple skip this.
                 if issue.rule ~= "FILE_NAMES_LOWER_SNAKE_CASE" then
