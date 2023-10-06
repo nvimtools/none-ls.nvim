@@ -4861,6 +4861,23 @@ local sources = { null_ls.builtins.formatting.swift_format }
 - Command: `swift-format`
 - Args: `{}`
 
+### [templ](https://templ.guide/commands-and-tools/cli/#formatting-templ-files)
+
+A Go HTML template engine
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.templ }
+```
+
+#### Defaults
+
+- Filetypes: `{ "templ" }`
+- Method: `formatting`
+- Command: `templ`
+- Args: `{ "fmt" }`
+
 ### [taplo](https://taplo.tamasfe.dev/)
 
 A versatile, feature-rich TOML toolkit.
