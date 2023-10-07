@@ -415,6 +415,9 @@ return {
   taplo = {
     filetypes = { "toml" }
   },
+  templ = {
+    filetypes = { "templ" }
+  },
   terrafmt = {
     filetypes = { "markdown" }
   },

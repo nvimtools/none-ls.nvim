@@ -420,6 +420,9 @@ return {
   teal = {
     diagnostics = { "teal" }
   },
+  templ = {
+    formatting = { "templ" }
+  },
   terraform = {
     diagnostics = { "terraform_validate", "tfsec" },
     formatting = { "terraform_fmt" }
