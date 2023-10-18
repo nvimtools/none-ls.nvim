@@ -255,12 +255,12 @@ instructions.
 ### How do I format files on save?
 
 See
-[this wiki page](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save).
+[this wiki page](https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save).
 
 ### How do I stop Neovim from asking me which server I want to use for formatting?
 
 See
-[this wiki page](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts).
+[this wiki page](https://github.com/nvimtools/none-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts).
 
 ### How do I view project-level diagnostics?
 
@@ -290,7 +290,7 @@ possible, so it should work seamlessly with most LSP-related plugins. If you run
 into problems, please try to determine which plugin is causing them and open an
 issue.
 
-[This wiki page](https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Compatibility-with-other-plugins)
+[This wiki page](https://github.com/nvimtools/none-ls.nvim/wiki/Compatibility-with-other-plugins)
 mentions plugins that require specific configuration options / tweaks to work
 with null-ls.
 
