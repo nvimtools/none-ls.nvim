@@ -1,4 +1,4 @@
-*null-ls.txt*                                     Last change: 2023 October 07
+*null-ls.txt*                                     Last change: 2023 October 18
 
 ==============================================================================
 Table of Contents                                  *null-ls-table-of-contents*
@@ -314,14 +314,14 @@ instructions.
 HOW DO I FORMAT FILES ON SAVE?        *null-ls-how-do-i-format-files-on-save?*
 
 See this wiki page
-<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save>.
+<https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save>.
 
 
                                                                               
 HOW DO I STOP NEOVIM FROM ASKING ME WHICH SERVER I WANT TO USE FOR FORMATTING?*null-ls-how-do-i-stop-neovim-from-asking-me-which-server-i-want-to-use-for-formatting?*
 
 See this wiki page
-<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts>.
+<https://github.com/nvimtools/none-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts>.
 
 
                                                                               
@@ -355,7 +355,7 @@ run into problems, please try to determine which plugin is causing them and
 open an issue.
 
 This wiki page
-<https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Compatibility-with-other-plugins>
+<https://github.com/nvimtools/none-ls.nvim/wiki/Compatibility-with-other-plugins>
 mentions plugins that require specific configuration options / tweaks to work
 with null-ls.
 
