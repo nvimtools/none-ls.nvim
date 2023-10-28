@@ -4454,6 +4454,23 @@ local sources = { null_ls.builtins.formatting.ruff }
 - Command: `ruff`
 - Args: `{ "--fix", "-e", "-n", "--stdin-filename", "$FILENAME", "-" }`
 
+### [ruff_format](https://github.com/charliermarsh/ruff/)
+
+An extremely fast Python linter and formatter, written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.ruff_format }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `formatting`
+- Command: `ruff`
+- Args: `{ "format", "-n", "--stdin-filename", "$FILENAME", "-" }`
+
 ### [rufo](https://github.com/ruby-formatter/rufo)
 
 Opinionated ruby formatter.

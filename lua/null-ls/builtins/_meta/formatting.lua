@@ -343,6 +343,9 @@ return {
   ruff = {
     filetypes = { "python" }
   },
+  ruff_format = {
+    filetypes = { "python" }
+  },
   rufo = {
     filetypes = { "ruby" }
   },
