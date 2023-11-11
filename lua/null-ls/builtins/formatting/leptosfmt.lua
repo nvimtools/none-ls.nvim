@@ -13,7 +13,7 @@ return h.make_builtin({
     filetypes = { "rust" },
     generator_opts = {
         command = "leptosfmt",
-        args = { "--quiet=true", "--stdin=true" },
+        args = { "--quiet", "--stdin" },
         to_stdin = true,
     },
     factory = h.formatter_factory,
