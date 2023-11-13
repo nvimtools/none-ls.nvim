@@ -3711,7 +3711,7 @@ local sources = { null_ls.builtins.formatting.leptosfmt }
 - Filetypes: `{ "rust" }`
 - Method: `formatting`
 - Command: `leptosfmt`
-- Args: `{ "--quiet=true", "--stdin=true" }`
+- Args: `{ "--quiet", "--stdin" }`
 
 ### [lua_format](https://github.com/Koihik/LuaFormatter)
 
