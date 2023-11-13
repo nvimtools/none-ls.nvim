@@ -2268,7 +2268,7 @@ local sources = { null_ls.builtins.diagnostics.vale }
 
 #### Notes
 
-- vale does not include a syntax by itself, so you probably need to grab a `vale.ini` (at `~/.vale.ini`) and a StylesPath (somewhere, pointed from `vale.ini`) from [the list of configurations](https://docs.errata.ai/vale/about#open-source-configurations).
+- vale doesn't include a syntax by itself, so you need to [create a `vale.ini`](https://vale.sh/generator)) and download [styles](https://vale.sh/docs/vale-cli/structure/#styles) with `vale sync`.
 
 ### [verilator](https://www.veripool.org/verilator/)
 
