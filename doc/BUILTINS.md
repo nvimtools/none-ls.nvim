@@ -2249,7 +2249,7 @@ local sources = { null_ls.builtins.diagnostics.vacuum }
 - Command: `vacuum`
 - Args: `{ "report", "--stdin", "--stdout" }`
 
-### [vale](https://docs.errata.ai/vale/about)
+### [vale](https://vale.sh/)
 
 Syntax-aware linter for prose built with speed and extensibility in mind.
 
