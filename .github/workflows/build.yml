@@ -9,18 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: JohnnyMorganz/stylua-action@v1
+      - uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always --check .
-          version: 15.1
+          version: v0.15.3
 
   selene:
     name: Lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: NTBBloodbath/selene-action@v1.0.0
+      - uses: NTBBloodbath/selene-action@68d1ed05cd53716aa8b9b3b81f8b63462949fab6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always ./lua
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: none-ls.nvim
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: nvim-lua/plenary.nvim
           path: none-ls.nvim/.tests/site/pack/deps/start/plenary.nvim
