@@ -52,6 +52,7 @@ return h.make_builtin({
         check_exit_code = function(code)
             return code <= 1
         end,
+        to_stdin = false,
         from_stderr = true,
         multiple_files = true,
         on_output = handle_opacheck_output,
