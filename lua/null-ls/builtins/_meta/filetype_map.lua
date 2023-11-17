@@ -338,7 +338,7 @@ return {
     formatting = { "racket_fixw", "raco_fmt" }
   },
   rego = {
-    diagnostics = { "opacheck" },
+    diagnostics = { "opacheck", "regal" },
     formatting = { "rego" }
   },
   rescript = {

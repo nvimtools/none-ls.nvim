@@ -220,6 +220,9 @@ return {
   reek = {
     filetypes = { "ruby" }
   },
+  regal = {
+    filetypes = { "rego" }
+  },
   revive = {
     filetypes = { "go" }
   },

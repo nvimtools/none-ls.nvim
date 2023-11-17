@@ -1693,6 +1693,23 @@ local sources = { null_ls.builtins.diagnostics.reek }
 - Command: `reek`
 - Args: `{ "--format", "json", "--stdin-filename", "$FILENAME" }`
 
+### [regal](https://docs.styra.com/regal)
+
+Regal is a linter for Rego, with the goal of making your Rego magnificent!.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.regal }
+```
+
+#### Defaults
+
+- Filetypes: `{ "rego" }`
+- Method: `diagnostics_on_save`
+- Command: `regal`
+- Args: `{ "lint", "-f", "json", "$ROOT" }`
+
 ### [revive](https://revive.run/)
 
 Fast, configurable, extensible, flexible, and beautiful linter for Go.
