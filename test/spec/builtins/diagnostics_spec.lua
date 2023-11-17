@@ -1,9 +1,9 @@
-local mock = require("luassert.mock")
 local stub = require("luassert.stub")
 local spy = require("luassert.spy")
 
 local diagnostics = require("null-ls.builtins").diagnostics
-mock(require("null-ls.logger"), true)
+
+stub(vim, "notify")
 
 describe("diagnostics", function()
     describe("spectral", function()
@@ -1390,19 +1390,20 @@ describe("diagnostics", function()
 
         it("should create a diagnostic with error severity", function()
             local output = vim.json.decode([[
-            {
-              "errors": [
-                {
-                  "message": "var tenant_id is unsafe",
-                  "code": "rego_unsafe_var_error",
-                  "location": {
-                    "file": "src/geo.rego",
-                    "row": 49,
-                    "col": 3
+              {
+                "errors": [
+                  {
+                    "message": "var tenant_id is unsafe",
+                    "code": "rego_unsafe_var_error",
+                    "location": {
+                      "file": "src/geo.rego",
+                      "row": 49,
+                      "col": 3
+                    }
                   }
-                }
-              ]
-            } ]])
+                ]
+              }
+            ]])
             local diagnostic = parser({ output = output })
             assert.same({
                 {
@@ -1419,18 +1420,83 @@ describe("diagnostics", function()
 
         it("should not create a diagnostic without location", function()
             local output = vim.json.decode([[
-            {
-              "errors": [
-                {
-                  "message": "var tenant_id is unsafe",
-                  "code": "rego_unsafe_var_error"
-                }
-              ]
-            } ]])
+              {
+                "errors": [
+                  {
+                    "message": "var tenant_id is unsafe",
+                    "code": "rego_unsafe_var_error"
+                  }
+                ]
+              }
+            ]])
             local diagnostic = parser({ output = output })
             assert.same({}, diagnostic)
         end)
     end)
+
+    describe("regal", function()
+        local linter = diagnostics.regal
+        local parser = linter._opts.on_output
+
+        it("should create a diagnostic with error severity", function()
+            local output = vim.json.decode([[
+              {
+                "violations": [
+                  {
+                    "title": "prefer-snake-case",
+                    "description": "Prefer snake_case for names",
+                    "category": "style",
+                    "level": "error",
+                    "location": {
+                      "col": 9,
+                      "row": 3,
+                      "file": "test.rego",
+                      "text": "default allowRbac := true"
+                    }
+                  }
+                ]
+              }
+            ]])
+            local diagnostic = parser({ output = output })
+            assert.same({
+                {
+                    row = 3,
+                    col = 9,
+                    severity = 1,
+                    message = "Prefer snake_case for names",
+                    filename = "test.rego",
+                    source = "regal",
+                    code = "prefer-snake-case",
+                },
+            }, diagnostic)
+        end)
+
+        it("should not create a diagnostic without location", function()
+            local output = vim.json.decode([[
+              {
+                "violations": [
+                  {
+                    "title": "prefer-snake-case",
+                    "description": "Prefer snake_case for names",
+                    "category": "style",
+                    "level": "error"
+                  }
+                ]
+              }
+            ]])
+            local diagnostic = parser({ output = output })
+            assert.same({}, diagnostic)
+        end)
+
+        it("should log error for non-json output", function()
+            local diagnostic = parser({ output = "non-json-output", err = "json error" })
+            assert.same({}, diagnostic)
+            assert
+                .stub(vim.notify)
+                .was_called_with("[null-ls] non-json-output", vim.log.levels.ERROR, { title = "null-ls" })
+        end)
+    end)
+
     describe("glslc", function()
         local linter = diagnostics.glslc
         local parser = linter._opts.on_output
