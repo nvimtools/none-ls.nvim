@@ -32,11 +32,11 @@ end
 --- Returns the root directory for the given buffer.
 ---
 ---@param bufnr number
----@return string
-local get_root_dir = function(bufnr)
+---@param cb function(root_dir: string)
+local get_root_dir = function(bufnr, cb)
     local config = c.get()
     local fname = api.nvim_buf_get_name(bufnr)
-    return config.root_dir(fname) or vim.loop.cwd() or "."
+    cb(config.root_dir(fname) or vim.loop.cwd() or ".")
 end
 
 local on_init = function(new_client, initialize_result)
@@ -127,22 +127,24 @@ M.try_add = function(bufnr, cb)
         return
     end
 
-    id = id or M.start_client(get_root_dir(bufnr))
-    if not id then
-        if cb then
-            cb(false)
+    get_root_dir(bufnr, function(root_dir)
+        id = id or M.start_client(root_dir)
+        if not id then
+            if cb then
+                cb(false)
+            end
+            return
         end
-        return
-    end
 
-    local did_attach = lsp.buf_is_attached(bufnr, id) or lsp.buf_attach_client(bufnr, id)
-    if not did_attach then
-        log:warn(string.format("failed to attach buffer %d", bufnr))
-    end
+        local did_attach = lsp.buf_is_attached(bufnr, id) or lsp.buf_attach_client(bufnr, id)
+        if not did_attach then
+            log:warn(string.format("failed to attach buffer %d", bufnr))
+        end
 
-    if cb then
-        cb(did_attach)
-    end
+        if cb then
+            cb(did_attach)
+        end
+    end)
 end
 
 M.setup_buffer = function(bufnr)
