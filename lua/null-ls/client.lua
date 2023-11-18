@@ -186,15 +186,15 @@ M.on_source_change = vim.schedule_wrap(function()
 
     u.buf.for_each_bufnr(function(bufnr)
         if bufnr == current_bufnr then
-            M.retry_add(bufnr)
-
-            -- if in named buffer, we can register conditional sources immediately
-            -- we need to check only for normal buffers, excluding nofile and terminals
-            local buftype = api.nvim_buf_get_option(bufnr, "buftype")
-            local bufname = api.nvim_buf_get_name(bufnr)
-            if s.has_conditional_sources() and bufname ~= "" and buftype == "" then
-                s.register_conditional_sources()
-            end
+            M.retry_add(bufnr, function()
+                -- if in named buffer, we can register conditional sources immediately
+                -- we need to check only for normal buffers, excluding nofile and terminals
+                local buftype = api.nvim_buf_get_option(bufnr, "buftype")
+                local bufname = api.nvim_buf_get_name(bufnr)
+                if s.has_conditional_sources() and bufname ~= "" and buftype == "" then
+                    s.register_conditional_sources()
+                end
+            end)
         else
             api.nvim_create_autocmd("BufEnter", {
                 buffer = bufnr,
@@ -217,7 +217,10 @@ M.on_source_change = vim.schedule_wrap(function()
     end
 end)
 
-M.retry_add = function(bufnr)
+--- This function can be asynchronous. Use cb to run code after the buffer has been retried.
+---
+---@param cb function|nil
+M.retry_add = function(bufnr, cb)
     bufnr = bufnr or api.nvim_get_current_buf()
 
     local did_attach = M.try_add(bufnr)
@@ -226,6 +229,9 @@ M.retry_add = function(bufnr)
         M.notify_client(methods.lsp.DID_OPEN, {
             textDocument = { uri = vim.uri_from_bufnr(bufnr) },
         })
+    end
+    if cb then
+        cb()
     end
 end
 
