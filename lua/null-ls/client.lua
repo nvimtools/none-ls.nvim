@@ -29,6 +29,16 @@ local should_attach = function(bufnr)
     return false
 end
 
+--- Returns the root directory for the given buffer.
+---
+---@param bufnr number
+---@return string
+local get_root_dir = function(bufnr)
+    local config = c.get()
+    local fname = api.nvim_buf_get_name(bufnr)
+    return config.root_dir(fname) or vim.loop.cwd() or "."
+end
+
 local on_init = function(new_client, initialize_result)
     local capability_is_disabled = function(method)
         -- TODO: extract map to prevent future issues
@@ -111,9 +121,7 @@ M.try_add = function(bufnr)
         return false
     end
 
-    local fname = api.nvim_buf_get_name(bufnr)
-    local root_dir = c.get().root_dir(fname) or vim.loop.cwd()
-    id = id or M.start_client(root_dir)
+    id = id or M.start_client(get_root_dir(bufnr))
     if not id then
         return
     end
