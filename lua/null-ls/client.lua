@@ -115,14 +115,23 @@ M.start_client = function(root_dir)
     return id
 end
 
-M.try_add = function(bufnr)
+--- This function can be asynchronous. Use cb to run code after the buffer has been retried.
+---
+---@param cb function(did_attach: bool)|nil
+M.try_add = function(bufnr, cb)
     bufnr = bufnr or api.nvim_get_current_buf()
     if not should_attach(bufnr) then
-        return false
+        if cb then
+            cb(false)
+        end
+        return
     end
 
     id = id or M.start_client(get_root_dir(bufnr))
     if not id then
+        if cb then
+            cb(false)
+        end
         return
     end
 
@@ -131,7 +140,9 @@ M.try_add = function(bufnr)
         log:warn(string.format("failed to attach buffer %d", bufnr))
     end
 
-    return did_attach
+    if cb then
+        cb(did_attach)
+    end
 end
 
 M.setup_buffer = function(bufnr)
@@ -223,16 +234,17 @@ end)
 M.retry_add = function(bufnr, cb)
     bufnr = bufnr or api.nvim_get_current_buf()
 
-    local did_attach = M.try_add(bufnr)
-    if did_attach then
-        -- send synthetic didOpen notification to regenerate diagnostics
-        M.notify_client(methods.lsp.DID_OPEN, {
-            textDocument = { uri = vim.uri_from_bufnr(bufnr) },
-        })
-    end
-    if cb then
-        cb()
-    end
+    M.try_add(bufnr, function(did_attach)
+        if did_attach then
+            -- send synthetic didOpen notification to regenerate diagnostics
+            M.notify_client(methods.lsp.DID_OPEN, {
+                textDocument = { uri = vim.uri_from_bufnr(bufnr) },
+            })
+        end
+        if cb then
+            cb()
+        end
+    end)
 end
 
 M.send_progress_notification = function(token, opts)

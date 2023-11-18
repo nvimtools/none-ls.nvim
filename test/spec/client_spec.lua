@@ -182,17 +182,17 @@ describe("client", function()
             local should_attach = stub.new(nil, nil, true)
             c._set({ should_attach = should_attach })
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.stub(should_attach).was_called_with(mock_bufnr)
-            assert.stub(api.nvim_buf_get_option).was_called_with(mock_bufnr, "buftype")
-            assert.stub(api.nvim_buf_get_option).was_called_with(mock_bufnr, "filetype")
-            assert.stub(api.nvim_buf_get_name).was_called_with(mock_bufnr)
-            assert.stub(sources.get_all).was_called()
-            assert.stub(sources.is_available).was_called_with(mock_sources[1], "")
-            assert.stub(lsp.buf_is_attached).was_called_with(mock_bufnr, mock_client_id)
-            assert.stub(lsp.buf_attach_client).was_called_with(mock_bufnr, mock_client_id)
-            assert.truthy(did_attach)
+            client.try_add(mock_bufnr, function(did_attach)
+                assert.stub(should_attach).was_called_with(mock_bufnr)
+                assert.stub(api.nvim_buf_get_option).was_called_with(mock_bufnr, "buftype")
+                assert.stub(api.nvim_buf_get_option).was_called_with(mock_bufnr, "filetype")
+                assert.stub(api.nvim_buf_get_name).was_called_with(mock_bufnr)
+                assert.stub(sources.get_all).was_called()
+                assert.stub(sources.is_available).was_called_with(mock_sources[1], "")
+                assert.stub(lsp.buf_is_attached).was_called_with(mock_bufnr, mock_client_id)
+                assert.stub(lsp.buf_attach_client).was_called_with(mock_bufnr, mock_client_id)
+                assert.truthy(did_attach)
+            end)
         end)
 
         it("should use cwd as root_dir", function()
@@ -200,10 +200,10 @@ describe("client", function()
             root_dir.returns(nil)
             c._set({ root_dir = root_dir })
 
-            client.try_add(mock_bufnr)
-
-            local opts = lsp.start_client.calls[1].refs[1]
-            assert.equals(opts.root_dir, vim.loop.cwd())
+            client.try_add(mock_bufnr, function()
+                local opts = lsp.start_client.calls[1].refs[1]
+                assert.equals(opts.root_dir, vim.loop.cwd())
+            end)
         end)
 
         it("should use custom root_dir", function()
@@ -211,53 +211,53 @@ describe("client", function()
             root_dir.returns("mock-root")
             c._set({ root_dir = root_dir })
 
-            client.try_add(mock_bufnr)
-
-            local opts = lsp.start_client.calls[1].refs[1]
-            assert.equals(opts.root_dir, "mock-root")
+            client.try_add(mock_bufnr, function()
+                local opts = lsp.start_client.calls[1].refs[1]
+                assert.equals(opts.root_dir, "mock-root")
+            end)
         end)
 
         it("should not attach if user-defined should_attach returns false", function()
             local should_attach = stub.new(nil, nil, false)
             c._set({ should_attach = should_attach })
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.stub(should_attach).was_called_with(mock_bufnr)
-            assert.falsy(did_attach)
+            client.try_add(mock_bufnr, function(did_attach)
+                assert.stub(should_attach).was_called_with(mock_bufnr)
+                assert.falsy(did_attach)
+            end)
         end)
 
         it("should not attach if buftype is not empty", function()
             api.nvim_buf_get_option.returns("nofile")
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.falsy(did_attach)
+            client.try_add(mock_bufnr, function()
+                assert.falsy(did_attach)
+            end)
         end)
 
         it("should not attach if name is empty", function()
             api.nvim_buf_get_name.returns("")
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.falsy(did_attach)
+            client.try_add(mock_bufnr, function()
+                assert.falsy(did_attach)
+            end)
         end)
 
         it("should not attach if no source is available", function()
             sources.is_available.returns(false)
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.falsy(did_attach)
+            client.try_add(mock_bufnr, function()
+                assert.falsy(did_attach)
+            end)
         end)
 
         it("should return true but not attach again if already attached", function()
             lsp.buf_is_attached.returns(true)
 
-            local did_attach = client.try_add(mock_bufnr)
-
-            assert.truthy(did_attach)
-            assert.stub(lsp.buf_attach_client).was_not_called()
+            client.try_add(mock_bufnr, function(did_attach)
+                assert.truthy(did_attach)
+                assert.stub(lsp.buf_attach_client).was_not_called()
+            end)
         end)
     end)
 
