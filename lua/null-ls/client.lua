@@ -70,10 +70,11 @@ end
 
 local M = {}
 
-M.start_client = function(fname)
+---@param root_dir string The root directory of the project.
+M.start_client = function(root_dir)
     local config = {
         name = "null-ls",
-        root_dir = c.get().root_dir(fname) or vim.loop.cwd(),
+        root_dir = root_dir,
         on_init = on_init,
         on_exit = on_exit,
         cmd = require("null-ls.rpc").start, -- pass callback to create rpc client
@@ -110,7 +111,9 @@ M.try_add = function(bufnr)
         return false
     end
 
-    id = id or M.start_client(api.nvim_buf_get_name(bufnr))
+    local fname = api.nvim_buf_get_name(bufnr)
+    local root_dir = c.get().root_dir(fname) or vim.loop.cwd()
+    id = id or M.start_client(root_dir)
     if not id then
         return
     end

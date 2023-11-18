@@ -40,30 +40,18 @@ describe("client", function()
 
     describe("start_client", function()
         it("should start client with options", function()
-            local id = client.start_client()
+            local id = client.start_client("mock-root")
 
             assert.equals(id, mock_client_id)
             local opts = lsp.start_client.calls[1].refs[1]
             assert.equals(opts.name, "null-ls")
-            assert.equals(opts.root_dir, vim.loop.cwd())
+            assert.equals(opts.root_dir, "mock-root")
             assert.equals(opts.cmd, require("null-ls.rpc").start)
             assert.same(opts.flags, { debounce_text_changes = c.get().debounce })
             assert.truthy(type(opts.on_init) == "function")
             assert.truthy(type(opts.on_exit) == "function")
             assert.truthy(type(opts.on_attach) == "function")
             assert.equals(opts.filetypes, mock_filetypes)
-        end)
-
-        it("should use custom root_dir", function()
-            local root_dir = stub.new()
-            root_dir.returns("mock-root")
-            c._set({ root_dir = root_dir })
-
-            client.start_client("mock-file")
-
-            assert.stub(root_dir).was_called_with("mock-file")
-            local opts = lsp.start_client.calls[1].refs[1]
-            assert.equals(opts.root_dir, "mock-root")
         end)
 
         it("should call user-defined on_init with new client and initialize_result", function()
@@ -205,6 +193,28 @@ describe("client", function()
             assert.stub(lsp.buf_is_attached).was_called_with(mock_bufnr, mock_client_id)
             assert.stub(lsp.buf_attach_client).was_called_with(mock_bufnr, mock_client_id)
             assert.truthy(did_attach)
+        end)
+
+        it("should use cwd as root_dir", function()
+            local root_dir = stub.new()
+            root_dir.returns(nil)
+            c._set({ root_dir = root_dir })
+
+            client.try_add(mock_bufnr)
+
+            local opts = lsp.start_client.calls[1].refs[1]
+            assert.equals(opts.root_dir, vim.loop.cwd())
+        end)
+
+        it("should use custom root_dir", function()
+            local root_dir = stub.new()
+            root_dir.returns("mock-root")
+            c._set({ root_dir = root_dir })
+
+            client.try_add(mock_bufnr)
+
+            local opts = lsp.start_client.calls[1].refs[1]
+            assert.equals(opts.root_dir, "mock-root")
         end)
 
         it("should not attach if user-defined should_attach returns false", function()
