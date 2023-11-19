@@ -217,6 +217,30 @@ describe("client", function()
             end)
         end)
 
+        it("should use custom root_dir_async", function()
+            local co = coroutine.running()
+            assert(co, "not running inside a coroutine")
+
+            local root_dir = stub.new()
+            root_dir.returns("to-be-ignored")
+            c._set({
+                root_dir_async = function(_, cb)
+                    vim.schedule(function()
+                        cb("mock-root")
+                    end)
+                end,
+                root_dir = root_dir,
+            })
+
+            client.try_add(mock_bufnr, function()
+                coroutine.resume(co)
+            end)
+
+            coroutine.yield()
+            local opts = lsp.start_client.calls[1].refs[1]
+            assert.equals(opts.root_dir, "mock-root")
+        end)
+
         it("should not attach if user-defined should_attach returns false", function()
             local should_attach = stub.new(nil, nil, false)
             c._set({ should_attach = should_attach })

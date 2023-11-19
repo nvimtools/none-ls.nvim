@@ -55,6 +55,7 @@ local defaults = {
     on_init = nil,
     on_exit = nil,
     root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git"),
+    root_dir_async = nil,
     should_attach = nil,
     sources = nil,
     temp_dir = nil,
@@ -196,6 +197,17 @@ end
 
 If `root_dir` returns `nil`, the root will resolve to the current working
 directory.
+
+### root_dir_async (function)
+
+Like `root_dir` but also accepts a callback parameter allowing it to be
+asynchronous. Overwrites `root_dir` when present.
+
+```lua
+local root_dir_async = function(fname, cb)
+    cb(fname:match("my-project") and "my-project-root")
+end
+```
 
 ### should_attach (function, optional)
 

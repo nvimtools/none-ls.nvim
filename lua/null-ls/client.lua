@@ -36,7 +36,13 @@ end
 local get_root_dir = function(bufnr, cb)
     local config = c.get()
     local fname = api.nvim_buf_get_name(bufnr)
-    cb(config.root_dir(fname) or vim.loop.cwd() or ".")
+    if config.root_dir_async then
+        config.root_dir_async(fname, function(found_root_dir)
+            cb(found_root_dir or vim.loop.cwd() or ".")
+        end)
+    else
+        cb(config.root_dir(fname) or vim.loop.cwd() or ".")
+    end
 end
 
 local on_init = function(new_client, initialize_result)
