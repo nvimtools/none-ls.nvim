@@ -238,6 +238,7 @@ end
 ---@class PathUtils
 ---@field exists fun(filename: string): boolean
 ---@field join function(paths: ...): string
+---@field ancestors fun(start_path: string): fun(): string
 M.path = {
     exists = function(filename)
         local stat = vim.loop.fs_stat(filename)
@@ -245,6 +246,16 @@ M.path = {
     end,
     join = function(...)
         return table.concat(vim.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
+    end,
+    -- An iterator like vim.fs.parents but includes the start_path.
+    ancestors = function(start_path)
+        local function internal()
+            coroutine.yield(start_path)
+            for path in vim.fs.parents(start_path) do
+                coroutine.yield(path)
+            end
+        end
+        return coroutine.wrap(internal)
     end,
 }
 
@@ -274,12 +285,7 @@ M.root_pattern = function(...)
     end
 
     return function(start_path)
-        local start_match = matcher(start_path)
-        if start_match then
-            return start_match
-        end
-
-        for path in vim.fs.parents(start_path) do
+        for path in M.path.ancestors(start_path) do
             local match = matcher(path)
             if match then
                 return match
