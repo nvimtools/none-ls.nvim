@@ -1,6 +1,7 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 local log = require("null-ls.logger")
+local severities = h.diagnostics.severities
 
 local handle_regal_output = function(params)
     local diags = {}
@@ -12,9 +13,10 @@ local handle_regal_output = function(params)
                     col = d.location.col,
                     source = "regal",
                     message = d.description,
-                    severity = vim.diagnostic.severity.ERROR,
+                    severity = severities[d.level] or severities.error,
                     filename = d.location.file,
                     code = d.title,
+                    user_data = { category = d.category },
                 })
             end
         end
