@@ -1462,11 +1462,12 @@ describe("diagnostics", function()
                 {
                     row = 3,
                     col = 9,
-                    severity = 1,
+                    severity = vim.diagnostic.severity.ERROR,
                     message = "Prefer snake_case for names",
                     filename = "test.rego",
                     source = "regal",
                     code = "prefer-snake-case",
+                    user_data = { category = "style" },
                 },
             }, diagnostic)
         end)
@@ -1494,6 +1495,38 @@ describe("diagnostics", function()
             assert
                 .stub(vim.notify)
                 .was_called_with("[null-ls] non-json-output", vim.log.levels.ERROR, { title = "null-ls" })
+        end)
+
+        it("should deduce severiry or fallback to error", function()
+            local output = vim.json.decode([[
+              {
+                "violations": [
+                  {
+                    "title": "prefer-snake-case",
+                    "description": "Prefer snake_case for names",
+                    "category": "style",
+                    "location": {
+                      "col": 9,
+                      "row": 3,
+                      "file": "test.rego",
+                      "text": "default allowRbac := true"
+                    }
+                  }
+                ]
+              }
+            ]])
+
+            output.violations[1].level = "error"
+            local diagnostic = parser({ output = output })
+            assert.same(vim.diagnostic.severity.ERROR, diagnostic[1].severity)
+
+            output.violations[1].level = "warning"
+            diagnostic = parser({ output = output })
+            assert.same(vim.diagnostic.severity.WARN, diagnostic[1].severity)
+
+            output.violations[1].level = "qwe"
+            diagnostic = parser({ output = output })
+            assert.same(vim.diagnostic.severity.ERROR, diagnostic[1].severity)
         end)
     end)
 
