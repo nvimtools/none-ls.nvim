@@ -1462,6 +1462,7 @@ describe("diagnostics", function()
                 {
                     row = 3,
                     col = 9,
+                    end_col = 26,
                     severity = vim.diagnostic.severity.ERROR,
                     message = "Prefer snake_case for names",
                     filename = "test.rego",

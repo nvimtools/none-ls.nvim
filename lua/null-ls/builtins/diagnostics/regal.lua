@@ -8,13 +8,16 @@ local handle_regal_output = function(params)
     if params.output.violations ~= nil then
         for _, d in ipairs(params.output.violations) do
             if d.location ~= nil then
+                local l = d.location
+                local end_col = (l.text ~= nil) and (l.text:len() + 1) or 0
                 table.insert(diags, {
-                    row = d.location.row,
-                    col = d.location.col,
+                    row = l.row,
+                    col = l.col,
+                    end_col = end_col,
                     source = "regal",
                     message = d.description,
                     severity = severities[d.level] or severities.error,
-                    filename = d.location.file,
+                    filename = l.file,
                     code = d.title,
                     user_data = { category = d.category },
                 })
