@@ -42,7 +42,7 @@ local ignore_config_action = function(d)
                     ".rules." .. d.user_data.category .. "." .. d.code .. '.level|="ignore"',
                     REGAL_CFG,
                 },
-                on_exit = function(j, return_val)
+                on_exit = vim.schedule_wrap(function(j, return_val)
                     if return_val ~= 0 then
                         logger:error(j:stderr_result()[1])
                     else
@@ -51,8 +51,9 @@ local ignore_config_action = function(d)
                             vim.log.levels.INFO,
                             { title = "none-ls" }
                         )
+                        vim.api.nvim_command("write")
                     end
-                end,
+                end),
             }):start()
         end,
     }
