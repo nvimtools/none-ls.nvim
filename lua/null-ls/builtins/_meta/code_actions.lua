@@ -28,6 +28,9 @@ return {
   refactoring = {
     filetypes = { "go", "javascript", "lua", "python", "typescript" }
   },
+  regal = {
+    filetypes = { "rego" }
+  },
   shellcheck = {
     filetypes = { "sh" }
   },
