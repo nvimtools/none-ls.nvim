@@ -338,7 +338,6 @@ return {
     formatting = { "racket_fixw", "raco_fmt" }
   },
   rego = {
-    code_actions = { "regal" },
     diagnostics = { "opacheck", "regal" },
     formatting = { "rego" }
   },

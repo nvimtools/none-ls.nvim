@@ -189,21 +189,6 @@ local sources = { null_ls.builtins.code_actions.refactoring }
 
 - Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.range_code_action()` (for the default handler) or `:'<,'>Telescope lsp_range_code_actions` (for Telescope).
 
-### [regal](https://docs.styra.com/regal)
-
-Allows ignoring broken rules from Regal linter.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.code_actions.regal }
-```
-
-#### Defaults
-
-- Filetypes: `{ "rego" }`
-- Method: `code_action`
-
 ### [shellcheck](https://www.shellcheck.net/)
 
 Provides actions to disable ShellCheck errors/warnings, either for the current line or for the entire file.
