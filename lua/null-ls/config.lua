@@ -17,6 +17,7 @@ local defaults = {
     -- format string for vim.notify messages
     notify_format = "[null-ls] %s",
     root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
+    root_dir_async = nil,
     update_in_insert = false,
     -- prevent double setup
     _setup = false,
@@ -25,6 +26,7 @@ local defaults = {
 local config = vim.deepcopy(defaults)
 
 local type_overrides = {
+    root_dir_async = { "function", "nil" },
     on_attach = { "function", "nil" },
     on_init = { "function", "nil" },
     on_exit = { "function", "nil" },

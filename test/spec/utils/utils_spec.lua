@@ -420,4 +420,9 @@ describe("utils", function()
             assert.equals(test_path, u.root_pattern("minimal_init.lua")(start_path))
         end)
     end)
+
+    describe("root_pattern_async", function()
+        -- TODO: Here would be unit tests for root_pattern_async, but Plenary doesn't support them
+        -- (https://github.com/nvim-lua/plenary.nvim/issues/542)
+    end)
 end)
