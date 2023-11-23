@@ -209,6 +209,9 @@ local root_dir_async = function(fname, cb)
 end
 ```
 
+For a utility that asynchronously finds a matching file, see
+`utils.root_pattern_async`.
+
 ### should_attach (function, optional)
 
 A user-defined function that controls whether to enable null-ls for a given

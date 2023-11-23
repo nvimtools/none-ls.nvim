@@ -244,6 +244,21 @@ M.path = {
         local stat = vim.loop.fs_stat(filename)
         return stat ~= nil
     end,
+    exists_async = function(filename)
+        local co = coroutine.running()
+        local fs_stat_err = nil
+        local fs_stat_stat = nil
+        vim.loop.fs_stat(filename, function(err, stat)
+            fs_stat_err, fs_stat_stat = err, stat
+            if coroutine.status(co) == "suspended" then
+                coroutine.resume(co)
+            end
+        end)
+        if fs_stat_err == nil and fs_stat_stat == nil then
+            coroutine.yield()
+        end
+        return fs_stat_stat ~= nil
+    end,
     join = function(...)
         return table.concat(vim.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
     end,
@@ -258,6 +273,41 @@ M.path = {
         return coroutine.wrap(internal)
     end,
 }
+
+--- creates a callback that returns the first root matching a specified pattern
+---@vararg string patterns
+---@return fun(startpath: string, fun(root_dir: string|nil)): nil root_dir
+M.root_pattern_async = function(...)
+    local patterns = vim.tbl_flatten({ ... })
+
+    local function match(path)
+        for _, pattern in ipairs(patterns) do
+            if M.path.exists_async(M.path.join(path, pattern)) then
+                return path
+            end
+        end
+        return nil
+    end
+
+    local function traverse_ancestors(start_path)
+        for path in M.path.ancestors(start_path) do
+            if match(path) then
+                return path
+            end
+        end
+    end
+
+    return function(start_path, cb)
+        coroutine.wrap(function()
+            local result = traverse_ancestors(start_path)
+            -- Schedule, so that clients can freely call Lua API functions.
+            -- They wouldn't be able otherwise, because traverse_ancestors uses vim.loop's callbacks under the hood.
+            vim.schedule(function()
+                cb(result)
+            end)
+        end)()
+    end
+end
 
 --- creates a callback that returns the first root matching a specified pattern
 ---@vararg string patterns
