@@ -2589,9 +2589,9 @@ local sources = { null_ls.builtins.formatting.black }
 #### Defaults
 
 - Filetypes: `{ "python" }`
-- Method: `formatting`
+- Methods: `formatting, range_formatting`
 - Command: `black`
-- Args: `{ "--stdin-filename", "$FILENAME", "--quiet", "-" }`
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/black.lua))
 
 ### [blackd](https://github.com/psf/black)
 
