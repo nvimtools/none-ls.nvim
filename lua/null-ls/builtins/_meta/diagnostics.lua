@@ -307,6 +307,9 @@ return {
   trail_space = {
     filetypes = {}
   },
+  trivy = {
+    filetypes = { "terraform", "tf", "terraform-vars" }
+  },
   tsc = {
     filetypes = { "typescript", "typescriptreact" }
   },

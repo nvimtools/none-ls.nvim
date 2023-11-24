@@ -2198,6 +2198,23 @@ local sources = { null_ls.builtins.diagnostics.trail_space }
 - Filetypes: `{}`
 - Method: `diagnostics`
 
+### [trivy](https://github.com/aquasecurity/trivy)
+
+Find misconfigurations and vulnerabilities
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.trivy }
+```
+
+#### Defaults
+
+- Filetypes: `{ "terraform", "tf", "terraform-vars" }`
+- Method: `diagnostics_on_save`
+- Command: `trivy`
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/trivy.lua))
+
 ### [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
 
 Parses diagnostics from the TypeScript compiler.

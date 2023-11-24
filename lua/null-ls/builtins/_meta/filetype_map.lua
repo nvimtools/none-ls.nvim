@@ -424,11 +424,11 @@ return {
     formatting = { "templ" }
   },
   terraform = {
-    diagnostics = { "terraform_validate", "tfsec" },
+    diagnostics = { "terraform_validate", "tfsec", "trivy" },
     formatting = { "terraform_fmt" }
   },
   ["terraform-vars"] = {
-    diagnostics = { "terraform_validate", "tfsec" },
+    diagnostics = { "terraform_validate", "tfsec", "trivy" },
     formatting = { "terraform_fmt" }
   },
   tex = {
@@ -442,7 +442,7 @@ return {
     hover = { "dictionary" }
   },
   tf = {
-    diagnostics = { "terraform_validate", "tfsec" },
+    diagnostics = { "terraform_validate", "tfsec", "trivy" },
     formatting = { "terraform_fmt" }
   },
   toml = {
