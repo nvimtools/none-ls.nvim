@@ -16,6 +16,7 @@ return h.make_builtin({
         args = { "--fix", "$FILENAME" },
         to_stdin = false,
         to_temp_file = true,
+        prepend_extra_args = true,
     },
     factory = h.formatter_factory,
 })

@@ -82,6 +82,7 @@ return h.make_builtin({
 
             done(issues)
         end,
+        prepend_extra_args = true,
     },
     factory = h.generator_factory,
 })
