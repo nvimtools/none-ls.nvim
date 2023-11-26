@@ -62,7 +62,11 @@ return h.make_builtin({
                 return done(issues)
             end
 
-            for _, issue in ipairs(decoded.lints or {}) do
+            local lints = {}
+            if decoded and decoded.lints and decoded.lints ~= vim.NIL then
+                lints = decoded.lints
+            end
+            for _, issue in ipairs(lints) do
                 -- We're forced to use to_temp_file since Protolint doesn't accept stdin input.
                 -- Due to the naming of temp files Protolint triggers 'FILE_NAMES_LOWER_SNAKE_CASE' error.
                 -- As a dirty quickfix we simple skip this.
