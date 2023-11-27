@@ -111,6 +111,9 @@ local generate_line_disable_action = function(bufnr, row, code, indentation)
         return
     end
     local _, match_row = search_region(bufnr, multiline_command_regex, row - 1, 0, nil, true)
+    if match_row == nil then
+        return
+    end
     row = match_row + 1
     indentation = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1]:match("^%s+") or ""
     return {
