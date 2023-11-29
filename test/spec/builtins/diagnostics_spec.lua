@@ -320,6 +320,9 @@ describe("diagnostics", function()
         local file = {
             [[Any rule whose heading is ~~struck through~~ is deprecated, but still provided for backward-compatibility.]],
         }
+        local file_with_special_characters = {
+            [[• Any rule whose heading is ~~struck through~~ is deprecated, but still provided for backward-compatibility.]],
+        }
 
         it("should create a diagnostic", function()
             local output = [[rules.md:1:46:"is deprecated" may be passive voice]]
@@ -328,6 +331,17 @@ describe("diagnostics", function()
                 row = "1",
                 col = 47,
                 end_col = 59,
+                message = '"is deprecated" may be passive voice',
+            }, diagnostic)
+        end)
+
+        it("should set the correct diagnostic range on lines with multi-byte characters", function()
+            local output = [[rules.md:1:48:"is deprecated" may be passive voice]]
+            local diagnostic = parser(output, { content = file_with_special_characters })
+            assert.same({
+                row = "1",
+                col = 51,
+                end_col = 63,
                 message = '"is deprecated" may be passive voice',
             }, diagnostic)
         end)

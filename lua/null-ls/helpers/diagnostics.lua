@@ -63,6 +63,15 @@ local make_diagnostic = function(entries, defaults, attr_adapters, params, offse
     end
 
     local content_line = params.content and params.content[tonumber(entries["row"])] or nil
+
+    -- In order to match the correct range in lines with multi-byte characters,
+    -- we need to convert the column number to a byte index.
+    -- See: https://github.com/nvimtools/none-ls.nvim/issues/19#issuecomment-1820127436
+    if entries["col"] ~= nil and content_line ~= nil then
+        local byte_index_col = vim.str_byteindex(content_line, tonumber(entries["col"]))
+        entries["col"] = tostring(byte_index_col)
+    end
+
     for attr, adapter in pairs(attr_adapters) do
         entries[attr] = adapter(entries, content_line)
     end
