@@ -2924,6 +2924,23 @@ local sources = { null_ls.builtins.formatting.cue_fmt }
 - Command: `cue`
 - Args: `{ "fmt", "$FILENAME" }`
 
+### [d2_fmt](https://github.com/terrastruct/d2)
+
+Use [d2](https://github.com/terrastruct/d2) to format d2 diagram source.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.d2_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "d2" }`
+- Method: `formatting`
+- Command: `d2`
+- Args: `{ "fmt", "-" }`
+
 ### [dart_format](https://dart.dev/tools/dart-format)
 
 Replace the whitespace in your program with formatting that follows Dart guidelines.
