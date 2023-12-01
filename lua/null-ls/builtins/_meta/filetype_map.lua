@@ -79,6 +79,9 @@ return {
   d = {
     formatting = { "dfmt" }
   },
+  d2 = {
+    formatting = { "d2_fmt" }
+  },
   dart = {
     formatting = { "dart_format" }
   },

@@ -82,6 +82,9 @@ return {
   cueimports = {
     filetypes = { "cue" }
   },
+  d2_fmt = {
+    filetypes = { "d2" }
+  },
   dart_format = {
     filetypes = { "dart" }
   },

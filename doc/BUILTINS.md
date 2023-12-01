@@ -2926,7 +2926,7 @@ local sources = { null_ls.builtins.formatting.cue_fmt }
 
 ### [d2_fmt](https://github.com/terrastruct/d2)
 
-Use [d2](https://github.com/terrastruct/d2) to format d2 diagram source.
+d2 fmt is a tool built into the d2 compiler for formatting d2 diagram source
 
 #### Usage
 
