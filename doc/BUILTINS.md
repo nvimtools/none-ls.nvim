@@ -4503,7 +4503,7 @@ local sources = { null_ls.builtins.formatting.ruff }
 - Filetypes: `{ "python" }`
 - Method: `formatting`
 - Command: `ruff`
-- Args: `{ "format", "--stdin-filename", "$FILENAME", "-" }`
+- Args: `{ "fix", "--stdin-filename", "$FILENAME", "-" }`
 
 ### [rufo](https://github.com/ruby-formatter/rufo)
 
