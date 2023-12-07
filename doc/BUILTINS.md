@@ -4503,7 +4503,7 @@ local sources = { null_ls.builtins.formatting.ruff }
 - Filetypes: `{ "python" }`
 - Method: `formatting`
 - Command: `ruff`
-- Args: `{ "fix", "--stdin-filename", "$FILENAME", "-" }`
+- Args: `{ "--fix", "-e", "-n", "--stdin-filename", "$FILENAME", "-" }`
 
 ### [ruff_format](https://github.com/charliermarsh/ruff/)
 
