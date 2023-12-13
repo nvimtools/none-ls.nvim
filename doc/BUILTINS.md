@@ -5106,6 +5106,23 @@ local sources = { null_ls.builtins.formatting.trim_whitespace }
 - Command: `awk`
 - Args: `{ '{ sub(/[ \t]+$/, ""); print }' }`
 
+### [typstfmt](https://github.com/astrale-sharp/typstfmt)
+
+A formmatter for [typst](https://github.com/typst/typst)
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.typstfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "typ", "typst" }`
+- Method: `formatting`
+- Command: `typstfmt`
+- Args: `{ "-o", "-" }`
+
 ### [uncrustify](https://github.com/uncrustify/uncrustify)
 
 A source code beautifier for C, C++, C#, ObjectiveC, D, Java, Pawn and Vala.
