@@ -448,6 +448,9 @@ return {
   trim_whitespace = {
     filetypes = {}
   },
+  typstfmt = {
+    filetypes = { "typ", "typst" }
+  },
   uncrustify = {
     filetypes = { "c", "cpp", "cs", "java" }
   },

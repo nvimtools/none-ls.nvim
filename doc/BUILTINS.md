@@ -5108,7 +5108,7 @@ local sources = { null_ls.builtins.formatting.trim_whitespace }
 
 ### [typstfmt](https://github.com/astrale-sharp/typstfmt)
 
-A formmatter for [typst](https://github.com/typst/typst)
+Formatter for typst
 
 #### Usage
 

@@ -458,6 +458,9 @@ return {
     diagnostics = { "textlint" },
     formatting = { "textlint" }
   },
+  typ = {
+    formatting = { "typstfmt" }
+  },
   typescript = {
     code_actions = { "eslint", "eslint_d", "refactoring", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
@@ -467,6 +470,9 @@ return {
     code_actions = { "eslint", "eslint_d", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
     formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "standardts" }
+  },
+  typst = {
+    formatting = { "typstfmt" }
   },
   verilog = {
     diagnostics = { "verilator" },
