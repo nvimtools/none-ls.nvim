@@ -13,7 +13,7 @@ return h.make_builtin({
     method = FORMATTING,
     filetypes = { "php" },
     generator_opts = {
-        command = "./vendor/bin/pint",
+        command = vim.fn.executable("pint") == 1 and "pint" or "./vendor/bin/pint",
         args = {
             "--no-interaction",
             "--quiet",
