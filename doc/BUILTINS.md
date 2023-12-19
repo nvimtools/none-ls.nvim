@@ -4098,7 +4098,7 @@ local sources = { null_ls.builtins.formatting.pint }
 
 #### Notes
 
-- Command is `pint` if pint is installed globally else `./vender/bin/pint` if installed per project
+- Command is `./vendor/bin/pint` if pint is installed per project else `pint` if globally installed
 
 ### [prettier](https://github.com/prettier/prettier)
 
