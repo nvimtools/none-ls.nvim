@@ -104,7 +104,7 @@ return {
     filetypes = { "python" }
   },
   dprint = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "markdown", "toml", "rust", "roslyn" }
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "markdown", "python", "toml", "rust", "roslyn" }
   },
   dtsfmt = {
     filetypes = { "dts" }
