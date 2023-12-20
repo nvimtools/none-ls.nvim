@@ -22,6 +22,7 @@ return h.make_builtin({
         "json",
         "jsonc",
         "markdown",
+        "python",
         "toml",
         "rust",
         "roslyn",
