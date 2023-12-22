@@ -4093,8 +4093,12 @@ local sources = { null_ls.builtins.formatting.pint }
 
 - Filetypes: `{ "php" }`
 - Method: `formatting`
-- Command: `./vendor/bin/pint`
+- Command: `pint`
 - Args: `{ "--no-interaction", "--quiet", "$FILENAME" }`
+
+#### Notes
+
+- Command is `./vendor/bin/pint` if pint is installed per project else `pint` if globally installed
 
 ### [prettier](https://github.com/prettier/prettier)
 
