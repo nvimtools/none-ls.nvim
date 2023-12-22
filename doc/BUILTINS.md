@@ -4096,10 +4096,6 @@ local sources = { null_ls.builtins.formatting.pint }
 - Command: `pint`
 - Args: `{ "--no-interaction", "--quiet", "$FILENAME" }`
 
-#### Notes
-
-- Command is `./vendor/bin/pint` if pint is installed per project else `pint` if globally installed
-
 ### [prettier](https://github.com/prettier/prettier)
 
 Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
