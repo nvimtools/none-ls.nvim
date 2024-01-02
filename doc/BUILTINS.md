@@ -4195,6 +4195,23 @@ local sources = { null_ls.builtins.formatting.prettier_standard }
 - Command: `prettier-standard`
 - Args: `{ "--stdin" }`
 
+### [pretty_php](https://github.com/lkrms/pretty-php)
+
+The opinionated PHP code formatter.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.pretty_php }
+```
+
+#### Defaults
+
+- Filetypes: `{ "php" }`
+- Method: `formatting`
+- Command: `pretty-php`
+- Args: `{ "$FILENAME" }`
+
 ### [prismaFmt](https://github.com/prisma/prisma-engines)
 
 Formatter for the prisma filetype.
