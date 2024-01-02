@@ -295,6 +295,9 @@ return {
   prettierd = {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
   },
+  pretty_php = {
+    filetypes = { "php" }
+  },
   prismaFmt = {
     filetypes = { "prisma" }
   },
