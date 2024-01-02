@@ -4,7 +4,7 @@ local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
 
 return h.make_builtin({
-    name = "prettyphp",
+    name = "pretty_php",
     meta = {
         url = "https://github.com/lkrms/pretty-php",
         description = "The opinionated PHP code formatter.",
