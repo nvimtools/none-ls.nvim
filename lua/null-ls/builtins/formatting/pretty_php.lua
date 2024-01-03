@@ -15,6 +15,7 @@ return h.make_builtin({
         command = "pretty-php",
         args = { "$FILENAME" },
         stdin = false,
+        to_temp_file = true,
     },
     factory = h.formatter_factory,
 })
