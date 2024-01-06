@@ -55,9 +55,11 @@ return h.make_builtin({
                 ".prettierrc.json5",
                 ".prettierrc.js",
                 ".prettierrc.cjs",
+                ".prettierrc.mjs",
                 ".prettierrc.toml",
                 "prettier.config.js",
                 "prettier.config.cjs",
+                "prettier.config.mjs",
                 "package.json"
             )(params.bufname)
         end),
