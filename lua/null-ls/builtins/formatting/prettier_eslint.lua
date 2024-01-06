@@ -49,9 +49,11 @@ return h.make_builtin({
                 ".prettierrc.json5",
                 ".prettierrc.js",
                 ".prettierrc.cjs",
-                ".prettier.config.js",
-                ".prettier.config.cjs",
+                ".prettierrc.mjs",
                 ".prettierrc.toml",
+                "prettier.config.js",
+                "prettier.config.cjs",
+                "prettier.config.mjs",
                 "eslint.config.js",
                 -- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
                 ".eslintrc",
