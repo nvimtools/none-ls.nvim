@@ -26,8 +26,8 @@ Open a pull request to become a collaborator. If you have contributed to
 
 If you want to make changes, open a new a pull request. Find another
 collaborator to review your changes, as a review is required for the PR to be
-merged by yourself (subject to change if there are more collaborators in
-the future).
+merged by yourself (subject to change if there are more collaborators in the
+future).
 
 ---
 
@@ -332,7 +332,8 @@ If you run into plenary-related issues while running the tests, make sure you
 have an up-to-date version of the plugin by clearing that cache with:
 `make clean`.
 
-All tests expect to run on the latest release version of Neovim and are not guaranteed to work on versions built from `HEAD`.
+All tests expect to run on the latest release version of Neovim and are not
+guaranteed to work on versions built from `HEAD`.
 
 ## Alternatives
 

@@ -3,17 +3,20 @@
 ## General
 
 - Before committing, please go through the following steps:
-    1. Lint Lua files with [selene](https://github.com/Kampfkarren/selene)
-    2. Format Lua files with [StyLua](https://github.com/JohnnyMorganz/StyLua)
-    3. If you've updated documentation, format Markdown files with
-       [Prettier](https://github.com/prettier/prettier)
 
-       All are available as null-ls built-ins. Failing to lint and format files will
-       cause CI failures, which will prevent your PR from getting merged.
+  1. Lint Lua files with [selene](https://github.com/Kampfkarren/selene)
+  2. Format Lua files with [StyLua](https://github.com/JohnnyMorganz/StyLua)
+  3. If you've updated documentation, format Markdown files with
+     [Prettier](https://github.com/prettier/prettier)
 
-       Optionally, you can install
-       [Pre-Commit](https://pre-commit.com/index.html#install) hooks by cloning the
-       project and running `make install-hooks` to locally enforce checks on commit.
+     All are available as null-ls built-ins. Failing to lint and format files
+     will cause CI failures, which will prevent your PR from getting merged.
+
+     Optionally, you can install
+     [Pre-Commit](https://pre-commit.com/index.html#install) hooks by cloning
+     the project and running `make install-hooks` to locally enforce checks on
+     commit.
+
 - Use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
   style for your commits.
 - Squash your commits so that one commit represents one complete change.
