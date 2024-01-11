@@ -8,32 +8,32 @@ jobs:
     name: Check codestyle
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always --check .
-          version: v0.15.3
+          version: v0.19.1
 
   selene:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: NTBBloodbath/selene-action@68d1ed05cd53716aa8b9b3b81f8b63462949fab6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always ./lua
-          version: 0.24.0
+          version: 0.26.1
 
   test:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           path: none-ls.nvim
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: nvim-lua/plenary.nvim
           path: none-ls.nvim/.tests/site/pack/deps/start/plenary.nvim
