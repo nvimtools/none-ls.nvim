@@ -68,7 +68,7 @@ local make_diagnostic = function(entries, defaults, attr_adapters, params, offse
     -- we need to convert the column number to a byte index.
     -- See: https://github.com/nvimtools/none-ls.nvim/issues/19#issuecomment-1820127436
     if entries["col"] ~= nil and content_line ~= nil then
-        local col = tonumber(entries["col"]) or (1 / 0)
+        local col = tonumber(entries["col"]) or math.huge
         col = math.min(col, string.len(content_line))
         local byte_index_col = vim.str_byteindex(content_line, col)
         entries["col"] = tostring(byte_index_col)
