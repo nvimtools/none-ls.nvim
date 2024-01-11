@@ -22,5 +22,5 @@ return function(module_name)
         patterns[i] = string.gsub(v, "{NAME}", module_name)
     end
 
-    return u.root_pattern(table.unpack(patterns))
+    return u.root_pattern(unpack(patterns))
 end
