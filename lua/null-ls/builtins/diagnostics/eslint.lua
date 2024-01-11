@@ -52,18 +52,7 @@ return h.make_builtin({
         on_output = handle_eslint_output,
         dynamic_command = cmd_resolver.from_node_modules(),
         cwd = h.cache.by_bufnr(function(params)
-            return u.root_pattern(
-                -- https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new
-                "eslint.config.js",
-                -- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
-                ".eslintrc",
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.yaml",
-                ".eslintrc.yml",
-                ".eslintrc.json",
-                "package.json"
-            )(params.bufname)
+            return u.cosmiconfig("eslint")(params.bufname)
         end),
     },
     factory = h.generator_factory,

@@ -48,20 +48,7 @@ return h.make_builtin({
         dynamic_command = cmd_resolver.from_node_modules(),
         to_stdin = true,
         cwd = h.cache.by_bufnr(function(params)
-            return u.root_pattern(
-                -- https://prettier.io/docs/en/configuration.html
-                ".prettierrc",
-                ".prettierrc.json",
-                ".prettierrc.yml",
-                ".prettierrc.yaml",
-                ".prettierrc.json5",
-                ".prettierrc.js",
-                ".prettierrc.cjs",
-                ".prettierrc.toml",
-                "prettier.config.js",
-                "prettier.config.cjs",
-                "package.json"
-            )(params.bufname)
+            return u.cosmiconfig("prettier")(params.bufname)
         end),
     },
     factory = h.formatter_factory,

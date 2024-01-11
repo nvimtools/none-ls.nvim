@@ -348,4 +348,8 @@ M.make_params = function(...)
     return require("null-ls.utils.make_params")(...)
 end
 
+M.cosmiconfig = function(...)
+    return require("null-ls.utils.cosmiconfig")(...)
+end
+
 return M
