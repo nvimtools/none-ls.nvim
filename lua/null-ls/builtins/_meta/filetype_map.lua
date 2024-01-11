@@ -67,7 +67,7 @@ return {
   },
   css = {
     diagnostics = { "stylelint" },
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "stylelint" }
+    formatting = { "prettier", "prettierd", "stylelint" }
   },
   cuda = {
     formatting = { "clang_format" }
@@ -163,7 +163,7 @@ return {
     formatting = { "gofmt", "gofumpt", "goimports", "goimports_reviser", "golines" }
   },
   graphql = {
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "prettier", "prettierd" }
   },
   groovy = {
     diagnostics = { "npm_groovy_lint" },
@@ -173,7 +173,7 @@ return {
     diagnostics = { "haml_lint" }
   },
   handlebars = {
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "prettier", "prettierd" }
   },
   haskell = {
     formatting = { "brittany", "fourmolu", "stylish_haskell" }
@@ -186,7 +186,7 @@ return {
   },
   html = {
     diagnostics = { "markuplint", "tidy" },
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "tidy" }
+    formatting = { "prettier", "prettierd", "rustywind", "tidy" }
   },
   htmldjango = {
     diagnostics = { "curlylint", "djlint" },
@@ -199,12 +199,12 @@ return {
   javascript = {
     code_actions = { "eslint", "eslint_d", "refactoring", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "jshint", "semistandardjs", "standardjs", "xo" },
-    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rustywind", "semistandardjs", "standardjs" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettierd", "rustywind", "semistandardjs", "standardjs" }
   },
   javascriptreact = {
     code_actions = { "eslint", "eslint_d", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semistandardjs", "standardjs", "xo" },
-    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettier_standard", "prettierd", "rustywind", "semistandardjs", "standardjs" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettierd", "rustywind", "semistandardjs", "standardjs" }
   },
   jinja = {
     formatting = { "sqlfmt" }
@@ -215,10 +215,10 @@ return {
   },
   json = {
     diagnostics = { "cfn_lint", "jsonlint", "spectral", "vacuum" },
-    formatting = { "biome", "deno_fmt", "dprint", "fixjson", "jq", "json_tool", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "biome", "deno_fmt", "dprint", "fixjson", "jq", "json_tool", "prettier", "prettierd" }
   },
   jsonc = {
-    formatting = { "biome", "deno_fmt", "dprint", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "biome", "deno_fmt", "dprint", "prettier", "prettierd" }
   },
   jsonnet = {
     formatting = { "jsonnetfmt" }
@@ -238,7 +238,7 @@ return {
   },
   less = {
     diagnostics = { "stylelint" },
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "stylelint" }
+    formatting = { "prettier", "prettierd", "stylelint" }
   },
   lua = {
     code_actions = { "refactoring" },
@@ -255,11 +255,11 @@ return {
   markdown = {
     code_actions = { "ltrs", "proselint" },
     diagnostics = { "alex", "ltrs", "ltrs", "markdownlint", "markdownlint_cli2", "mdl", "proselint", "textidote", "textlint", "vale", "write_good" },
-    formatting = { "cbfmt", "deno_fmt", "dprint", "markdown_toc", "markdownlint", "mdformat", "ocdc", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "remark", "terrafmt", "textlint" },
+    formatting = { "cbfmt", "deno_fmt", "dprint", "markdown_toc", "markdownlint", "mdformat", "ocdc", "prettier", "prettierd", "remark", "terrafmt", "textlint" },
     hover = { "dictionary" }
   },
   ["markdown.mdx"] = {
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd" }
+    formatting = { "prettier", "prettierd" }
   },
   matlab = {
     diagnostics = { "mlint" }
@@ -378,7 +378,7 @@ return {
   },
   scss = {
     diagnostics = { "stylelint" },
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "stylelint" }
+    formatting = { "prettier", "prettierd", "stylelint" }
   },
   sh = {
     code_actions = { "shellcheck" },
@@ -464,12 +464,12 @@ return {
   typescript = {
     code_actions = { "eslint", "eslint_d", "refactoring", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
-    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "standardts" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettierd", "rustywind", "standardts" }
   },
   typescriptreact = {
     code_actions = { "eslint", "eslint_d", "xo" },
     diagnostics = { "deno_lint", "eslint", "eslint_d", "semgrep", "tsc", "xo" },
-    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind", "standardts" }
+    formatting = { "biome", "deno_fmt", "dprint", "eslint", "eslint_d", "prettier", "prettierd", "rustywind", "standardts" }
   },
   typst = {
     formatting = { "typstfmt" }
@@ -487,7 +487,7 @@ return {
   vue = {
     code_actions = { "eslint", "eslint_d" },
     diagnostics = { "eslint", "eslint_d" },
-    formatting = { "eslint", "eslint_d", "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "rustywind" }
+    formatting = { "eslint", "eslint_d", "prettier", "prettierd", "rustywind" }
   },
   xml = {
     diagnostics = { "tidy" },
@@ -495,7 +495,7 @@ return {
   },
   yaml = {
     diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint" },
-    formatting = { "prettier", "prettier_d_slim", "prettier_eslint", "prettierd", "yamlfix", "yamlfmt", "yq" }
+    formatting = { "prettier", "prettierd", "yamlfix", "yamlfmt", "yq" }
   },
   ["yaml.ansible"] = {
     diagnostics = { "ansiblelint" }
