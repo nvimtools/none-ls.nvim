@@ -1782,7 +1782,7 @@ local sources = { null_ls.builtins.diagnostics.rubocop }
 - Command: `rubocop`
 - Args: `{ "-f", "json", "--force-exclusion", "--stdin", "$FILENAME" }`
 
-### [ruff](https://github.com/charliermarsh/ruff/)
+### [ruff](https://github.com/astral-sh/ruff/)
 
 An extremely fast Python linter, written in Rust.
 
@@ -4445,7 +4445,7 @@ local sources = { null_ls.builtins.formatting.rubyfmt }
 
 - Install to your PATH with `brew install rubyfmt`. Ensure you have the latest version.
 
-### [ruff](https://github.com/charliermarsh/ruff/)
+### [ruff](https://github.com/astral-sh/ruff/)
 
 An extremely fast Python linter, written in Rust.
 
@@ -4462,9 +4462,9 @@ local sources = { null_ls.builtins.formatting.ruff }
 - Command: `ruff`
 - Args: `{ "--fix", "-e", "-n", "--stdin-filename", "$FILENAME", "-" }`
 
-### [ruff_format](https://github.com/charliermarsh/ruff/)
+### [ruff_format](https://github.com/astral-sh/ruff/)
 
-An extremely fast Python linter and formatter, written in Rust.
+An extremely fast Python formatter, written in Rust.
 
 #### Usage
 
