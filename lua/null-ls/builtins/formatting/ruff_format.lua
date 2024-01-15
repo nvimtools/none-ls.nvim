@@ -6,8 +6,8 @@ local FORMATTING = methods.internal.FORMATTING
 return h.make_builtin({
     name = "ruff",
     meta = {
-        url = "https://github.com/charliermarsh/ruff/",
-        description = "An extremely fast Python linter and formatter, written in Rust.",
+        url = "https://github.com/astral-sh/ruff/",
+        description = "An extremely fast Python formatter, written in Rust.",
     },
     method = FORMATTING,
     filetypes = { "python" },
