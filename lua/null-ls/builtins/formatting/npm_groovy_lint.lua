@@ -13,7 +13,8 @@ return h.make_builtin({
     filetypes = { "groovy", "java", "Jenkinsfile" },
     generator_opts = {
         command = "npm-groovy-lint",
-        args = { "--format", "-" },
+        args = { "--failon", "none", "--format", "-" },
+        timeout = 5000,
         to_stdin = true,
     },
     factory = h.formatter_factory,
