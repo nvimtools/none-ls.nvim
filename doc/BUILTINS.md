@@ -3942,7 +3942,7 @@ local sources = { null_ls.builtins.formatting.npm_groovy_lint }
 - Filetypes: `{ "groovy", "java", "Jenkinsfile" }`
 - Method: `formatting`
 - Command: `npm-groovy-lint`
-- Args: `{ "--format", "-" }`
+- Args: `{ "--failon", "none", "--format", "-" }`
 
 ### [ocamlformat](https://github.com/ocaml-ppx/ocamlformat)
 
