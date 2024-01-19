@@ -34,11 +34,6 @@ M.handler = function(method, original_params, handler)
             callback = function(actions)
                 log:trace("received code actions from generators")
                 log:trace(vim.inspect(actions))
-
-                -- sort actions by title
-                table.sort(actions, function(a, b)
-                    return a.title < b.title
-                end)
                 handler(actions)
             end,
         })
