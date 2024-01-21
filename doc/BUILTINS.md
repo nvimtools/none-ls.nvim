@@ -5114,6 +5114,23 @@ local sources = { null_ls.builtins.formatting.usort }
 - Command: `usort`
 - Args: `{ "format", "-" }`
 
+### [vfmt](https://github.com/vlang/v)
+
+Reformat Vlang source into canonical form.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.vfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "vlang" }`
+- Method: `formatting`
+- Command: `v`
+- Args: `{ "fmt", "-w", "$FILENAME" }`
+
 ### [verible_verilog_format](https://github.com/chipsalliance/verible)
 
 The verible-verilog-format formatter manages whitespace in accordance with a particular style. The main goal is to relieve humans of having to manually manage whitespace, wrapping, and indentation, and to provide a tool that can be integrated into any editor to enable editor-independent consistency.
