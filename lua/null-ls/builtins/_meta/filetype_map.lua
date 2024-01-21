@@ -484,6 +484,9 @@ return {
   vim = {
     diagnostics = { "vint" }
   },
+  vlang = {
+    formatting = { "vfmt" }
+  },
   vue = {
     code_actions = { "eslint", "eslint_d" },
     diagnostics = { "eslint", "eslint_d" },

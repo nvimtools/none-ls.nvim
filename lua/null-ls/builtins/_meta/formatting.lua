@@ -454,6 +454,9 @@ return {
   verible_verilog_format = {
     filetypes = { "verilog", "systemverilog" }
   },
+  vfmt = {
+    filetypes = { "vlang" }
+  },
   xmlformat = {
     filetypes = { "xml" }
   },
