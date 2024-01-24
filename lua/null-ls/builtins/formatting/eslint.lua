@@ -45,7 +45,7 @@ return h.make_builtin({
         dynamic_command = cmd_resolver.from_node_modules(),
         check_exit_code = { 0, 1 },
         cwd = h.cache.by_bufnr(function(params)
-            return u.cosmiconfig("eslint")(params.bufname)
+            return u.cosmiconfig("eslint", "eslintConfig")(params.bufname)
         end),
     },
 })

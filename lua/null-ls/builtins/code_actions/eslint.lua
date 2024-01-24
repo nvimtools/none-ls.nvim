@@ -168,7 +168,7 @@ return h.make_builtin({
         end,
         dynamic_command = cmd_resolver.from_node_modules(),
         cwd = h.cache.by_bufnr(function(params)
-            return u.cosmiconfig("eslint")(params.bufname)
+            return u.cosmiconfig("eslint", "eslintConfig")(params.bufname)
         end),
     },
     factory = h.generator_factory,
