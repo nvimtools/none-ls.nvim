@@ -17,6 +17,7 @@ return h.make_builtin({
             -- NOTE: For backwards compatibility,
             -- we are still using "-a" shorthand' for both "--auto-correct" (pre-1.3.0) and "--autocorrect" (1.3.0+).
             "-a",
+            "--server",
             "-f",
             "quiet",
             "--stderr",
