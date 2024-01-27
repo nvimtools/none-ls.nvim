@@ -4422,7 +4422,7 @@ local sources = { null_ls.builtins.formatting.rubocop }
 - Filetypes: `{ "ruby" }`
 - Method: `formatting`
 - Command: `rubocop`
-- Args: `{ "-a", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" }`
+- Args: `{ "-a", "--server", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" }`
 
 ### [rubyfmt](https://github.com/fables-tales/rubyfmt)
 
