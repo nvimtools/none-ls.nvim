@@ -29,11 +29,20 @@ return h.make_builtin({
             params.messages = {}
             for _, message in ipairs(params.output) do
                 if params.temp_path:match(vim.pesc(message.location.path)) then
+                    local row = nil
                     local col = nil
-                    local row = message.location.lines.begin
-                    if type(row) == "table" then
-                        row = row.line
-                        col = row.column
+
+                    -- Check if the location has the old or new format
+                    if type(message.location.lines) == "table" then
+                        row = message.location.lines.begin
+                        if type(row) == "table" then
+                            row = row.line
+                            col = row.column
+                        end
+                    elseif type(message.location.positions) == "table" then
+                        local positions = message.location.positions
+                        row = positions.begin.line
+                        col = positions.begin.column
                     end
                     table.insert(params.messages, {
                         row = row,
