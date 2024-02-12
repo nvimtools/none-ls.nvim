@@ -20,6 +20,7 @@ local NULL_LS_DIR = vim.loop.cwd()
 local BUILTINS_DIR = join_paths(NULL_LS_DIR, "lua", "null-ls", "builtins")
 local META_DIR = join_paths(BUILTINS_DIR, "_meta")
 local DOC_FILE = join_paths(NULL_LS_DIR, "doc", "BUILTINS.md")
+local JSON_FILE = join_paths(NULL_LS_DIR, "doc", "builtins.json")
 local BUILTINS_URL_TEMPLATE = "https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/%s/%s.lua"
 
 -- metadata
@@ -300,4 +301,5 @@ do
 
     write_file(metadata_files.ft_map, generate_meta_table(filetypes), "w")
     write_file(DOC_FILE, generate_documentation(), "w")
+    write_file(JSON_FILE, vim.json.encode(sources), "w")
 end
