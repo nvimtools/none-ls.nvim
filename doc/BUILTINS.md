@@ -1127,7 +1127,7 @@ local sources = { null_ls.builtins.diagnostics.ktlint }
 - Filetypes: `{ "kotlin" }`
 - Method: `diagnostics_on_save`
 - Command: `ktlint`
-- Args: `{ "--relative", "--reporter=json", "**/*.kt", "**/*.kts" }`
+- Args: `{ "--relative", "--reporter=json", "--log-level=none", "**/*.kt", "**/*.kts" }`
 
 ### [ltrs](https://github.com/jeertmans/languagetool-rust)
 
