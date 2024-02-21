@@ -1,4 +1,4 @@
 contact_links:
   - name: Ask a question
-    url: https://github.com/jose-elias-alvarez/null-ls.nvim/discussions
+    url: https://github.com/nvimtools/none-ls.nvim/discussions
     about: If you need help with configuration or something else

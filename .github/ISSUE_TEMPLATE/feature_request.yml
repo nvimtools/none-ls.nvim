@@ -1,5 +1,5 @@
 name: Feature request
-description: Request an enhancement for null-ls
+description: Request an enhancement for none-ls
 labels: [enhancement]
 body:
   - type: checkboxes
@@ -8,8 +8,9 @@ body:
       label: Issues
       options:
         - label:
-            I have checked [existing issues](https://github.com/jose-elias-alvarez/null-ls.nvim/issues) and there are no
-            existing ones with the same request.
+            I have checked [existing
+            issues](https://github.com/nvimtools/none-ls.nvim/issues) and there
+            are no existing ones with the same request.
           required: true
 
   - type: textarea
@@ -22,7 +23,8 @@ body:
     id: help
     attributes:
       label: "Help"
-      description: "Would you be able to implement this by submitting a pull request?"
+      description:
+        "Would you be able to implement this by submitting a pull request?"
       options:
         - "Yes"
         - "Yes, but I don't know how to start. I would need guidance"
@@ -34,7 +36,7 @@ body:
     attributes:
       label: "Implementation help"
       description:
-        "If you selected yes in the last question please specify in detail what you would need help with in order to
-        implement this."
+        "If you selected yes in the last question please specify in detail what
+        you would need help with in order to implement this."
     validations:
       required: false
