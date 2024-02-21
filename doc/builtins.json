@@ -1,23 +1,5 @@
 {
   "code_actions": {
-    "eslint": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
-    "eslint_d": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
     "gitrebase": {
       "filetypes": [
         "gitrebase"
@@ -36,12 +18,6 @@
         "go"
       ]
     },
-    "ltrs": {
-      "filetypes": [
-        "text",
-        "markdown"
-      ]
-    },
     "proselint": {
       "filetypes": [
         "markdown",
@@ -57,11 +33,6 @@
         "typescript"
       ]
     },
-    "shellcheck": {
-      "filetypes": [
-        "sh"
-      ]
-    },
     "statix": {
       "filetypes": [
         "nix"
@@ -69,14 +40,6 @@
     },
     "ts_node_action": {
       "filetypes": []
-    },
-    "xo": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-      ]
     }
   },
   "completion": {
@@ -107,11 +70,6 @@
     "ansiblelint": {
       "filetypes": [
         "yaml.ansible"
-      ]
-    },
-    "bandit": {
-      "filetypes": [
-        "python"
       ]
     },
     "bslint": {
@@ -145,17 +103,6 @@
         "java"
       ]
     },
-    "chktex": {
-      "filetypes": [
-        "tex"
-      ]
-    },
-    "clang_check": {
-      "filetypes": [
-        "c",
-        "cpp"
-      ]
-    },
     "clazy": {
       "filetypes": [
         "cpp"
@@ -185,12 +132,6 @@
         "c"
       ]
     },
-    "cpplint": {
-      "filetypes": [
-        "cpp",
-        "c"
-      ]
-    },
     "credo": {
       "filetypes": [
         "elixir"
@@ -201,23 +142,9 @@
         "cue"
       ]
     },
-    "curlylint": {
-      "filetypes": [
-        "jinja.html",
-        "htmldjango"
-      ]
-    },
     "deadnix": {
       "filetypes": [
         "nix"
-      ]
-    },
-    "deno_lint": {
-      "filetypes": [
-        "javascript",
-        "typescript",
-        "typescriptreact",
-        "javascriptreact"
       ]
     },
     "djlint": {
@@ -240,32 +167,9 @@
         "eruby"
       ]
     },
-    "eslint": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
-    "eslint_d": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
     "fish": {
       "filetypes": [
         "fish"
-      ]
-    },
-    "flake8": {
-      "filetypes": [
-        "python"
       ]
     },
     "gccdiag": {
@@ -294,11 +198,6 @@
         "go"
       ]
     },
-    "gospel": {
-      "filetypes": [
-        "go"
-      ]
-    },
     "hadolint": {
       "filetypes": [
         "dockerfile"
@@ -307,16 +206,6 @@
     "haml_lint": {
       "filetypes": [
         "haml"
-      ]
-    },
-    "jshint": {
-      "filetypes": [
-        "javascript"
-      ]
-    },
-    "jsonlint": {
-      "filetypes": [
-        "json"
       ]
     },
     "ktlint": {
@@ -329,11 +218,6 @@
         "text",
         "markdown",
         "markdown"
-      ]
-    },
-    "luacheck": {
-      "filetypes": [
-        "lua"
       ]
     },
     "markdownlint": {
@@ -355,9 +239,6 @@
       "filetypes": [
         "markdown"
       ]
-    },
-    "misspell": {
-      "filetypes": []
     },
     "mlint": {
       "filetypes": [
@@ -387,11 +268,6 @@
         "perl"
       ]
     },
-    "php": {
-      "filetypes": [
-        "php"
-      ]
-    },
     "phpcs": {
       "filetypes": [
         "php"
@@ -419,53 +295,12 @@
         "tex"
       ]
     },
-    "protoc_gen_lint": {
-      "filetypes": [
-        "proto"
-      ]
-    },
     "protolint": {
       "filetypes": [
         "proto"
       ]
     },
-    "psalm": {
-      "filetypes": [
-        "php"
-      ]
-    },
-    "puglint": {
-      "filetypes": [
-        "pug"
-      ]
-    },
-    "puppet_lint": {
-      "filetypes": [
-        "puppet",
-        "epuppet"
-      ]
-    },
-    "pycodestyle": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "pydocstyle": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "pylama": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "pylint": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "pyproject_flake8": {
       "filetypes": [
         "python"
       ]
@@ -505,11 +340,6 @@
         "ruby"
       ]
     },
-    "ruff": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "saltlint": {
       "filetypes": [
         "sls"
@@ -531,17 +361,6 @@
         "go"
       ]
     },
-    "semistandardjs": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact"
-      ]
-    },
-    "shellcheck": {
-      "filetypes": [
-        "sh"
-      ]
-    },
     "solhint": {
       "filetypes": [
         "solidity"
@@ -556,17 +375,6 @@
     "sqlfluff": {
       "filetypes": [
         "sql"
-      ]
-    },
-    "standardjs": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact"
-      ]
-    },
-    "standardrb": {
-      "filetypes": [
-        "ruby"
       ]
     },
     "staticcheck": {
@@ -647,19 +455,10 @@
         "terraform-vars"
       ]
     },
-    "tsc": {
-      "filetypes": [
-        "typescript",
-        "typescriptreact"
-      ]
-    },
     "twigcs": {
       "filetypes": [
         "twig"
       ]
-    },
-    "typos": {
-      "filetypes": []
     },
     "vacuum": {
       "filetypes": [
@@ -685,22 +484,9 @@
         "vim"
       ]
     },
-    "vulture": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "write_good": {
       "filetypes": [
         "markdown"
-      ]
-    },
-    "xo": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
       ]
     },
     "yamllint": {
@@ -734,28 +520,9 @@
         "java"
       ]
     },
-    "autoflake": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "autopep8": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "bean_format": {
       "filetypes": [
         "beancount"
-      ]
-    },
-    "beautysh": {
-      "filetypes": [
-        "bash",
-        "csh",
-        "ksh",
-        "sh",
-        "zsh"
       ]
     },
     "bibclean": {
@@ -788,16 +555,6 @@
         "blade"
       ]
     },
-    "blue": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "brittany": {
-      "filetypes": [
-        "haskell"
-      ]
-    },
     "bsfmt": {
       "filetypes": [
         "brs"
@@ -811,11 +568,6 @@
     "buildifier": {
       "filetypes": [
         "bzl"
-      ]
-    },
-    "cabal_fmt": {
-      "filetypes": [
-        "cabal"
       ]
     },
     "cbfmt": {
@@ -877,17 +629,6 @@
         "dart"
       ]
     },
-    "deno_fmt": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "json",
-        "jsonc",
-        "markdown",
-        "typescript",
-        "typescriptreact"
-      ]
-    },
     "dfmt": {
       "filetypes": [
         "d"
@@ -905,31 +646,6 @@
         "django",
         "jinja.html",
         "htmldjango"
-      ]
-    },
-    "docformatter": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "dprint": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json",
-        "jsonc",
-        "markdown",
-        "python",
-        "toml",
-        "rust",
-        "roslyn"
-      ]
-    },
-    "dtsfmt": {
-      "filetypes": [
-        "dts"
       ]
     },
     "elm_format": {
@@ -963,24 +679,6 @@
         "erlang"
       ]
     },
-    "eslint": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
-    "eslint_d": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ]
-    },
     "fantomas": {
       "filetypes": [
         "fsharp"
@@ -989,11 +687,6 @@
     "fish_indent": {
       "filetypes": [
         "fish"
-      ]
-    },
-    "fixjson": {
-      "filetypes": [
-        "json"
       ]
     },
     "fnlfmt": {
@@ -1011,11 +704,6 @@
       "filetypes": [
         "r",
         "rmd"
-      ]
-    },
-    "fourmolu": {
-      "filetypes": [
-        "haskell"
       ]
     },
     "fprettify": {
@@ -1080,11 +768,6 @@
         "hcl"
       ]
     },
-    "htmlbeautifier": {
-      "filetypes": [
-        "eruby"
-      ]
-    },
     "isort": {
       "filetypes": [
         "python"
@@ -1100,21 +783,6 @@
         "clj"
       ]
     },
-    "jq": {
-      "filetypes": [
-        "json"
-      ]
-    },
-    "json_tool": {
-      "filetypes": [
-        "json"
-      ]
-    },
-    "jsonnetfmt": {
-      "filetypes": [
-        "jsonnet"
-      ]
-    },
     "just": {
       "filetypes": [
         "just"
@@ -1125,24 +793,9 @@
         "kotlin"
       ]
     },
-    "latexindent": {
-      "filetypes": [
-        "tex"
-      ]
-    },
     "leptosfmt": {
       "filetypes": [
         "rust"
-      ]
-    },
-    "lua_format": {
-      "filetypes": [
-        "lua"
-      ]
-    },
-    "markdown_toc": {
-      "filetypes": [
-        "markdown"
       ]
     },
     "markdownlint": {
@@ -1200,16 +853,6 @@
     "packer": {
       "filetypes": [
         "hcl"
-      ]
-    },
-    "perlimports": {
-      "filetypes": [
-        "perl"
-      ]
-    },
-    "perltidy": {
-      "filetypes": [
-        "perl"
       ]
     },
     "pg_format": {
@@ -1294,20 +937,9 @@
         "delphi"
       ]
     },
-    "puppet_lint": {
-      "filetypes": [
-        "puppet",
-        "epuppet"
-      ]
-    },
     "purs_tidy": {
       "filetypes": [
         "purescript"
-      ]
-    },
-    "pyflyby": {
-      "filetypes": [
-        "python"
       ]
     },
     "pyink": {
@@ -1340,11 +972,6 @@
         "markdown"
       ]
     },
-    "reorder_python_imports": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "rescript": {
       "filetypes": [
         "rescript"
@@ -1360,24 +987,9 @@
         "ruby"
       ]
     },
-    "ruff": {
-      "filetypes": [
-        "python"
-      ]
-    },
-    "ruff_format": {
-      "filetypes": [
-        "python"
-      ]
-    },
     "rufo": {
       "filetypes": [
         "ruby"
-      ]
-    },
-    "rustfmt": {
-      "filetypes": [
-        "rust"
       ]
     },
     "rustywind": {
@@ -1394,12 +1006,6 @@
     "scalafmt": {
       "filetypes": [
         "scala"
-      ]
-    },
-    "semistandardjs": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact"
       ]
     },
     "shellharden": {
@@ -1438,23 +1044,6 @@
         "sql"
       ]
     },
-    "standardjs": {
-      "filetypes": [
-        "javascript",
-        "javascriptreact"
-      ]
-    },
-    "standardrb": {
-      "filetypes": [
-        "ruby"
-      ]
-    },
-    "standardts": {
-      "filetypes": [
-        "typescript",
-        "typescriptreact"
-      ]
-    },
     "stylelint": {
       "filetypes": [
         "scss",
@@ -1467,11 +1056,6 @@
       "filetypes": [
         "r",
         "rmd"
-      ]
-    },
-    "stylish_haskell": {
-      "filetypes": [
-        "haskell"
       ]
     },
     "stylua": {
@@ -1499,21 +1083,6 @@
     "swiftlint": {
       "filetypes": [
         "swift"
-      ]
-    },
-    "taplo": {
-      "filetypes": [
-        "toml"
-      ]
-    },
-    "templ": {
-      "filetypes": [
-        "templ"
-      ]
-    },
-    "terrafmt": {
-      "filetypes": [
-        "markdown"
       ]
     },
     "terraform_fmt": {
@@ -1544,12 +1113,6 @@
     "treefmt": {
       "filetypes": []
     },
-    "trim_newlines": {
-      "filetypes": []
-    },
-    "trim_whitespace": {
-      "filetypes": []
-    },
     "typstfmt": {
       "filetypes": [
         "typ",
@@ -1575,26 +1138,6 @@
         "systemverilog"
       ]
     },
-    "vfmt": {
-      "filetypes": [
-        "vlang"
-      ]
-    },
-    "xmlformat": {
-      "filetypes": [
-        "xml"
-      ]
-    },
-    "xmllint": {
-      "filetypes": [
-        "xml"
-      ]
-    },
-    "xq": {
-      "filetypes": [
-        "xml"
-      ]
-    },
     "yamlfix": {
       "filetypes": [
         "yaml"
@@ -1608,17 +1151,6 @@
     "yapf": {
       "filetypes": [
         "python"
-      ]
-    },
-    "yq": {
-      "filetypes": [
-        "yml",
-        "yaml"
-      ]
-    },
-    "zigfmt": {
-      "filetypes": [
-        "zig"
       ]
     },
     "zprint": {

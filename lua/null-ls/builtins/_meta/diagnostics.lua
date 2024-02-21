@@ -10,9 +10,6 @@ return {
   ansiblelint = {
     filetypes = { "yaml.ansible" }
   },
-  bandit = {
-    filetypes = { "python" }
-  },
   bslint = {
     filetypes = { "brs" }
   },
@@ -30,12 +27,6 @@ return {
   },
   checkstyle = {
     filetypes = { "java" }
-  },
-  chktex = {
-    filetypes = { "tex" }
-  },
-  clang_check = {
-    filetypes = { "c", "cpp" }
   },
   clazy = {
     filetypes = { "cpp" }
@@ -55,23 +46,14 @@ return {
   cppcheck = {
     filetypes = { "cpp", "c" }
   },
-  cpplint = {
-    filetypes = { "cpp", "c" }
-  },
   credo = {
     filetypes = { "elixir" }
   },
   cue_fmt = {
     filetypes = { "cue" }
   },
-  curlylint = {
-    filetypes = { "jinja.html", "htmldjango" }
-  },
   deadnix = {
     filetypes = { "nix" }
-  },
-  deno_lint = {
-    filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" }
   },
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
@@ -85,17 +67,8 @@ return {
   erb_lint = {
     filetypes = { "eruby" }
   },
-  eslint = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-  },
-  eslint_d = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-  },
   fish = {
     filetypes = { "fish" }
-  },
-  flake8 = {
-    filetypes = { "python" }
   },
   gccdiag = {
     filetypes = { "c", "cpp" }
@@ -112,29 +85,17 @@ return {
   golangci_lint = {
     filetypes = { "go" }
   },
-  gospel = {
-    filetypes = { "go" }
-  },
   hadolint = {
     filetypes = { "dockerfile" }
   },
   haml_lint = {
     filetypes = { "haml" }
   },
-  jshint = {
-    filetypes = { "javascript" }
-  },
-  jsonlint = {
-    filetypes = { "json" }
-  },
   ktlint = {
     filetypes = { "kotlin" }
   },
   ltrs = {
     filetypes = { "text", "markdown", "markdown" }
-  },
-  luacheck = {
-    filetypes = { "lua" }
   },
   markdownlint = {
     filetypes = { "markdown" }
@@ -147,9 +108,6 @@ return {
   },
   mdl = {
     filetypes = { "markdown" }
-  },
-  misspell = {
-    filetypes = {}
   },
   mlint = {
     filetypes = { "matlab", "octave" }
@@ -166,9 +124,6 @@ return {
   perlimports = {
     filetypes = { "perl" }
   },
-  php = {
-    filetypes = { "php" }
-  },
   phpcs = {
     filetypes = { "php" }
   },
@@ -184,34 +139,10 @@ return {
   proselint = {
     filetypes = { "markdown", "tex" }
   },
-  protoc_gen_lint = {
-    filetypes = { "proto" }
-  },
   protolint = {
     filetypes = { "proto" }
   },
-  psalm = {
-    filetypes = { "php" }
-  },
-  puglint = {
-    filetypes = { "pug" }
-  },
-  puppet_lint = {
-    filetypes = { "puppet", "epuppet" }
-  },
-  pycodestyle = {
-    filetypes = { "python" }
-  },
-  pydocstyle = {
-    filetypes = { "python" }
-  },
-  pylama = {
-    filetypes = { "python" }
-  },
   pylint = {
-    filetypes = { "python" }
-  },
-  pyproject_flake8 = {
     filetypes = { "python" }
   },
   qmllint = {
@@ -235,9 +166,6 @@ return {
   rubocop = {
     filetypes = { "ruby" }
   },
-  ruff = {
-    filetypes = { "python" }
-  },
   saltlint = {
     filetypes = { "sls" }
   },
@@ -247,12 +175,6 @@ return {
   semgrep = {
     filetypes = { "typescript", "typescriptreact", "ruby", "python", "java", "go" }
   },
-  semistandardjs = {
-    filetypes = { "javascript", "javascriptreact" }
-  },
-  shellcheck = {
-    filetypes = { "sh" }
-  },
   solhint = {
     filetypes = { "solidity" }
   },
@@ -261,12 +183,6 @@ return {
   },
   sqlfluff = {
     filetypes = { "sql" }
-  },
-  standardjs = {
-    filetypes = { "javascript", "javascriptreact" }
-  },
-  standardrb = {
-    filetypes = { "ruby" }
   },
   staticcheck = {
     filetypes = { "go" }
@@ -310,14 +226,8 @@ return {
   trivy = {
     filetypes = { "terraform", "tf", "terraform-vars" }
   },
-  tsc = {
-    filetypes = { "typescript", "typescriptreact" }
-  },
   twigcs = {
     filetypes = { "twig" }
-  },
-  typos = {
-    filetypes = {}
   },
   vacuum = {
     filetypes = { "yaml", "json" }
@@ -331,14 +241,8 @@ return {
   vint = {
     filetypes = { "vim" }
   },
-  vulture = {
-    filetypes = { "python" }
-  },
   write_good = {
     filetypes = { "markdown" }
-  },
-  xo = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
   },
   yamllint = {
     filetypes = { "yaml" }
