@@ -1,1 +1,1646 @@
-{"hover":{"printenv":{"filetypes":["sh","dosbatch","ps1"]},"dictionary":{"filetypes":["org","text","markdown"]}},"completion":{"vsnip":{"filetypes":[]},"luasnip":{"filetypes":[]},"tags":{"filetypes":[]},"spell":{"filetypes":[]}},"diagnostics":{"vint":{"filetypes":["vim"]},"pycodestyle":{"filetypes":["python"]},"selene":{"filetypes":["lua","luau"]},"jsonlint":{"filetypes":["json"]},"phpmd":{"filetypes":["php"]},"codespell":{"filetypes":[]},"spectral":{"filetypes":["yaml","json"]},"erb_lint":{"filetypes":["eruby"]},"mypy":{"filetypes":["python"]},"textlint":{"filetypes":["txt","markdown"]},"bslint":{"filetypes":["brs"]},"actionlint":{"filetypes":["yaml"]},"pydocstyle":{"filetypes":["python"]},"deadnix":{"filetypes":["nix"]},"clang_check":{"filetypes":["c","cpp"]},"gospel":{"filetypes":["go"]},"protolint":{"filetypes":["proto"]},"ktlint":{"filetypes":["kotlin"]},"dotenv_linter":{"filetypes":["sh"]},"markdownlint_cli2":{"filetypes":["markdown"]},"proselint":{"filetypes":["markdown","tex"]},"phpstan":{"filetypes":["php"]},"trail_space":{"filetypes":[]},"todo_comments":{"filetypes":[]},"zsh":{"filetypes":["zsh"]},"pylama":{"filetypes":["python"]},"eslint":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"vacuum":{"filetypes":["yaml","json"]},"deno_lint":{"filetypes":["javascript","typescript","typescriptreact","javascriptreact"]},"gdlint":{"filetypes":["gdscript"]},"fish":{"filetypes":["fish"]},"write_good":{"filetypes":["markdown"]},"perlimports":{"filetypes":["perl"]},"hadolint":{"filetypes":["dockerfile"]},"yamllint":{"filetypes":["yaml"]},"psalm":{"filetypes":["php"]},"xo":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact"]},"vulture":{"filetypes":["python"]},"shellcheck":{"filetypes":["sh"]},"markuplint":{"filetypes":["html"]},"trivy":{"filetypes":["terraform","tf","terraform-vars"]},"alex":{"filetypes":["markdown"]},"puglint":{"filetypes":["pug"]},"vale":{"filetypes":["markdown","tex","asciidoc"]},"regal":{"filetypes":["rego"]},"typos":{"filetypes":[]},"semistandardjs":{"filetypes":["javascript","javascriptreact"]},"buildifier":{"filetypes":["bzl"]},"pmd":{"filetypes":["java","jsp"]},"twigcs":{"filetypes":["twig"]},"gitlint":{"filetypes":["gitcommit"]},"standardjs":{"filetypes":["javascript","javascriptreact"]},"cppcheck":{"filetypes":["cpp","c"]},"tidy":{"filetypes":["html","xml"]},"statix":{"filetypes":["nix"]},"flake8":{"filetypes":["python"]},"checkmake":{"filetypes":["make"]},"ruff":{"filetypes":["python"]},"stylelint":{"filetypes":["scss","less","css","sass"]},"djlint":{"filetypes":["django","jinja.html","htmldjango"]},"buf":{"filetypes":["proto"]},"tfsec":{"filetypes":["terraform","tf","terraform-vars"]},"textidote":{"filetypes":["markdown","tex"]},"terraform_validate":{"filetypes":["terraform","tf","terraform-vars"]},"clj_kondo":{"filetypes":["clojure"]},"mdl":{"filetypes":["markdown"]},"checkstyle":{"filetypes":["java"]},"ansiblelint":{"filetypes":["yaml.ansible"]},"teal":{"filetypes":["teal"]},"npm_groovy_lint":{"filetypes":["groovy","java","Jenkinsfile"]},"pyproject_flake8":{"filetypes":["python"]},"revive":{"filetypes":["go"]},"puppet_lint":{"filetypes":["puppet","epuppet"]},"stylint":{"filetypes":["stylus"]},"glslc":{"filetypes":["glsl"]},"tsc":{"filetypes":["typescript","typescriptreact"]},"luacheck":{"filetypes":["lua"]},"rubocop":{"filetypes":["ruby"]},"standardrb":{"filetypes":["ruby"]},"sqlfluff":{"filetypes":["sql"]},"cue_fmt":{"filetypes":["cue"]},"cpplint":{"filetypes":["cpp","c"]},"solhint":{"filetypes":["solidity"]},"verilator":{"filetypes":["verilog","systemverilog"]},"misspell":{"filetypes":[]},"semgrep":{"filetypes":["typescript","typescriptreact","ruby","python","java","go"]},"rstcheck":{"filetypes":["rst"]},"cfn_lint":{"filetypes":["yaml","json"]},"staticcheck":{"filetypes":["go"]},"jshint":{"filetypes":["javascript"]},"saltlint":{"filetypes":["sls"]},"phpcs":{"filetypes":["php"]},"rpmspec":{"filetypes":["spec"]},"reek":{"filetypes":["ruby"]},"qmllint":{"filetypes":["qml"]},"gccdiag":{"filetypes":["c","cpp"]},"pylint":{"filetypes":["python"]},"cmake_lint":{"filetypes":["cmake"]},"clazy":{"filetypes":["cpp"]},"markdownlint":{"filetypes":["markdown"]},"opacheck":{"filetypes":["rego"]},"commitlint":{"filetypes":["gitcommit"]},"mlint":{"filetypes":["matlab","octave"]},"ltrs":{"filetypes":["text","markdown","markdown"]},"eslint_d":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"credo":{"filetypes":["elixir"]},"golangci_lint":{"filetypes":["go"]},"curlylint":{"filetypes":["jinja.html","htmldjango"]},"editorconfig_checker":{"filetypes":[]},"swiftlint":{"filetypes":["swift"]},"protoc_gen_lint":{"filetypes":["proto"]},"chktex":{"filetypes":["tex"]},"haml_lint":{"filetypes":["haml"]},"php":{"filetypes":["php"]},"bandit":{"filetypes":["python"]}},"formatting":{"taplo":{"filetypes":["toml"]},"zprint":{"filetypes":["clojure"]},"codespell":{"filetypes":[]},"perltidy":{"filetypes":["perl"]},"dtsfmt":{"filetypes":["dts"]},"pyink":{"filetypes":["python"]},"uncrustify":{"filetypes":["c","cpp","cs","java"]},"beautysh":{"filetypes":["bash","csh","ksh","sh","zsh"]},"latexindent":{"filetypes":["tex"]},"csharpier":{"filetypes":["cs"]},"fantomas":{"filetypes":["fsharp"]},"templ":{"filetypes":["templ"]},"pg_format":{"filetypes":["sql","pgsql"]},"alejandra":{"filetypes":["nix"]},"yamlfix":{"filetypes":["yaml"]},"elm_format":{"filetypes":["elm"]},"leptosfmt":{"filetypes":["rust"]},"eslint":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"bibclean":{"filetypes":["bib"]},"rubocop":{"filetypes":["ruby"]},"reorder_python_imports":{"filetypes":["python"]},"shellharden":{"filetypes":["sh"]},"phpcbf":{"filetypes":["php"]},"racket_fixw":{"filetypes":["racket"]},"yamlfmt":{"filetypes":["yaml"]},"asmfmt":{"filetypes":["asm"]},"joker":{"filetypes":["clj"]},"blackd":{"filetypes":["python"]},"emacs_scheme_mode":{"filetypes":["scheme","scheme.guile"]},"lua_format":{"filetypes":["lua"]},"fixjson":{"filetypes":["json"]},"rescript":{"filetypes":["rescript"]},"yapf":{"filetypes":["python"]},"shfmt":{"filetypes":["sh"]},"ruff":{"filetypes":["python"]},"stylelint":{"filetypes":["scss","less","css","sass"]},"astyle":{"filetypes":["arduino","c","cpp","cs","java"]},"pint":{"filetypes":["php"]},"remark":{"filetypes":["markdown"]},"jq":{"filetypes":["json"]},"raco_fmt":{"filetypes":["racket"]},"fnlfmt":{"filetypes":["fennel","fnl"]},"d2_fmt":{"filetypes":["d2"]},"terrafmt":{"filetypes":["markdown"]},"yq":{"filetypes":["yml","yaml"]},"smlfmt":{"filetypes":["sml"]},"emacs_vhdl_mode":{"filetypes":["vhdl"]},"jsonnetfmt":{"filetypes":["jsonnet"]},"prettier":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue","css","scss","less","html","json","jsonc","yaml","markdown","markdown.mdx","graphql","handlebars"]},"terraform_fmt":{"filetypes":["terraform","tf","terraform-vars"]},"forge_fmt":{"filetypes":["solidity"]},"nimpretty":{"filetypes":["nim"]},"npm_groovy_lint":{"filetypes":["groovy","java","Jenkinsfile"]},"dart_format":{"filetypes":["dart"]},"blade_formatter":{"filetypes":["blade"]},"markdown_toc":{"filetypes":["markdown"]},"rubyfmt":{"filetypes":["ruby"]},"json_tool":{"filetypes":["json"]},"autopep8":{"filetypes":["python"]},"erb_format":{"filetypes":["eruby"]},"eslint_d":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"markdownlint":{"filetypes":["markdown"]},"gn_format":{"filetypes":["gn"]},"swiftlint":{"filetypes":["swift"]},"nixfmt":{"filetypes":["nix"]},"deno_fmt":{"filetypes":["javascript","javascriptreact","json","jsonc","markdown","typescript","typescriptreact"]},"mdformat":{"filetypes":["markdown"]},"prettierd":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue","css","scss","less","html","json","jsonc","yaml","markdown","markdown.mdx","graphql","handlebars"]},"blue":{"filetypes":["python"]},"sqlfmt":{"filetypes":["sql","jinja"]},"erb_lint":{"filetypes":["eruby"]},"nixpkgs_fmt":{"filetypes":["nix"]},"textlint":{"filetypes":["txt","markdown"]},"ruff_format":{"filetypes":["python"]},"gofmt":{"filetypes":["go"]},"rego":{"filetypes":["rego"]},"golines":{"filetypes":["go"]},"brittany":{"filetypes":["haskell"]},"clang_format":{"filetypes":["c","cpp","cs","java","cuda","proto"]},"ktlint":{"filetypes":["kotlin"]},"sqlformat":{"filetypes":["sql"]},"topiary":{"filetypes":["ncl","nickel"]},"sqlfluff":{"filetypes":["sql"]},"rufo":{"filetypes":["ruby"]},"google_java_format":{"filetypes":["java"]},"gofumpt":{"filetypes":["go"]},"prismaFmt":{"filetypes":["prisma"]},"bsfmt":{"filetypes":["brs"]},"sql_formatter":{"filetypes":["sql"]},"perlimports":{"filetypes":["perl"]},"djhtml":{"filetypes":["django","jinja.html","htmldjango"]},"fprettify":{"filetypes":["fortran"]},"ocamlformat":{"filetypes":["ocaml"]},"cljstyle":{"filetypes":["clojure"]},"surface":{"filetypes":["elixir","surface"]},"rustfmt":{"filetypes":["rust"]},"treefmt":{"filetypes":[]},"goimports":{"filetypes":["go"]},"semistandardjs":{"filetypes":["javascript","javascriptreact"]},"buildifier":{"filetypes":["bzl"]},"standardjs":{"filetypes":["javascript","javascriptreact"]},"tidy":{"filetypes":["html","xml"]},"haxe_formatter":{"filetypes":["haxe"]},"zigfmt":{"filetypes":["zig"]},"xq":{"filetypes":["xml"]},"fish_indent":{"filetypes":["fish"]},"buf":{"filetypes":["proto"]},"isort":{"filetypes":["python"]},"swiftformat":{"filetypes":["swift"]},"trim_newlines":{"filetypes":[]},"ocdc":{"filetypes":["markdown"]},"ptop":{"filetypes":["pascal","delphi"]},"rustywind":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue","svelte","html"]},"standardrb":{"filetypes":["ruby"]},"typstfmt":{"filetypes":["typ","typst"]},"verible_verilog_format":{"filetypes":["verilog","systemverilog"]},"usort":{"filetypes":["python"]},"vfmt":{"filetypes":["vlang"]},"puppet_lint":{"filetypes":["puppet","epuppet"]},"cmake_format":{"filetypes":["cmake"]},"standardts":{"filetypes":["typescript","typescriptreact"]},"protolint":{"filetypes":["proto"]},"swift_format":{"filetypes":["swift"]},"stylua":{"filetypes":["lua","luau"]},"stylish_haskell":{"filetypes":["haskell"]},"pretty_php":{"filetypes":["php"]},"cue_fmt":{"filetypes":["cue"]},"docformatter":{"filetypes":["python"]},"gdformat":{"filetypes":["gd","gdscript","gdscript3"]},"hclfmt":{"filetypes":["hcl"]},"trim_whitespace":{"filetypes":[]},"format_r":{"filetypes":["r","rmd"]},"scalafmt":{"filetypes":["scala"]},"fourmolu":{"filetypes":["haskell"]},"goimports_reviser":{"filetypes":["go"]},"erlfmt":{"filetypes":["erlang"]},"just":{"filetypes":["just"]},"djlint":{"filetypes":["django","jinja.html","htmldjango"]},"autoflake":{"filetypes":["python"]},"cabal_fmt":{"filetypes":["cabal"]},"packer":{"filetypes":["hcl"]},"xmlformat":{"filetypes":["xml"]},"gersemi":{"filetypes":["cmake"]},"dprint":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","json","jsonc","markdown","python","toml","rust","roslyn"]},"isortd":{"filetypes":["python"]},"mix":{"filetypes":["elixir"]},"nginx_beautifier":{"filetypes":["nginx"]},"cbfmt":{"filetypes":["markdown","org"]},"black":{"filetypes":["python"]},"htmlbeautifier":{"filetypes":["eruby"]},"bean_format":{"filetypes":["beancount"]},"purs_tidy":{"filetypes":["purescript"]},"pyflyby":{"filetypes":["python"]},"styler":{"filetypes":["r","rmd"]},"phpcsfixer":{"filetypes":["php"]},"biome":{"filetypes":["javascript","typescript","javascriptreact","typescriptreact","json","jsonc"]},"qmlformat":{"filetypes":["qml"]},"crystal_format":{"filetypes":["crystal"]},"cueimports":{"filetypes":["cue"]},"xmllint":{"filetypes":["xml"]},"dfmt":{"filetypes":["d"]}},"code_actions":{"refactoring":{"filetypes":["go","javascript","lua","python","typescript"]},"shellcheck":{"filetypes":["sh"]},"ltrs":{"filetypes":["text","markdown"]},"eslint_d":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"eslint":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact","vue"]},"xo":{"filetypes":["javascript","javascriptreact","typescript","typescriptreact"]},"gitsigns":{"filetypes":[]},"gitrebase":{"filetypes":["gitrebase"]},"ts_node_action":{"filetypes":[]},"statix":{"filetypes":["nix"]},"gomodifytags":{"filetypes":["go"]},"impl":{"filetypes":["go"]},"proselint":{"filetypes":["markdown","tex"]}}}
+{
+  "code_actions": {
+    "eslint": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "eslint_d": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "gitrebase": {
+      "filetypes": [
+        "gitrebase"
+      ]
+    },
+    "gitsigns": {
+      "filetypes": []
+    },
+    "gomodifytags": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "impl": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "ltrs": {
+      "filetypes": [
+        "text",
+        "markdown"
+      ]
+    },
+    "proselint": {
+      "filetypes": [
+        "markdown",
+        "tex"
+      ]
+    },
+    "refactoring": {
+      "filetypes": [
+        "go",
+        "javascript",
+        "lua",
+        "python",
+        "typescript"
+      ]
+    },
+    "shellcheck": {
+      "filetypes": [
+        "sh"
+      ]
+    },
+    "statix": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "ts_node_action": {
+      "filetypes": []
+    },
+    "xo": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ]
+    }
+  },
+  "completion": {
+    "luasnip": {
+      "filetypes": []
+    },
+    "spell": {
+      "filetypes": []
+    },
+    "tags": {
+      "filetypes": []
+    },
+    "vsnip": {
+      "filetypes": []
+    }
+  },
+  "diagnostics": {
+    "actionlint": {
+      "filetypes": [
+        "yaml"
+      ]
+    },
+    "alex": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "ansiblelint": {
+      "filetypes": [
+        "yaml.ansible"
+      ]
+    },
+    "bandit": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "bslint": {
+      "filetypes": [
+        "brs"
+      ]
+    },
+    "buf": {
+      "filetypes": [
+        "proto"
+      ]
+    },
+    "buildifier": {
+      "filetypes": [
+        "bzl"
+      ]
+    },
+    "cfn_lint": {
+      "filetypes": [
+        "yaml",
+        "json"
+      ]
+    },
+    "checkmake": {
+      "filetypes": [
+        "make"
+      ]
+    },
+    "checkstyle": {
+      "filetypes": [
+        "java"
+      ]
+    },
+    "chktex": {
+      "filetypes": [
+        "tex"
+      ]
+    },
+    "clang_check": {
+      "filetypes": [
+        "c",
+        "cpp"
+      ]
+    },
+    "clazy": {
+      "filetypes": [
+        "cpp"
+      ]
+    },
+    "clj_kondo": {
+      "filetypes": [
+        "clojure"
+      ]
+    },
+    "cmake_lint": {
+      "filetypes": [
+        "cmake"
+      ]
+    },
+    "codespell": {
+      "filetypes": []
+    },
+    "commitlint": {
+      "filetypes": [
+        "gitcommit"
+      ]
+    },
+    "cppcheck": {
+      "filetypes": [
+        "cpp",
+        "c"
+      ]
+    },
+    "cpplint": {
+      "filetypes": [
+        "cpp",
+        "c"
+      ]
+    },
+    "credo": {
+      "filetypes": [
+        "elixir"
+      ]
+    },
+    "cue_fmt": {
+      "filetypes": [
+        "cue"
+      ]
+    },
+    "curlylint": {
+      "filetypes": [
+        "jinja.html",
+        "htmldjango"
+      ]
+    },
+    "deadnix": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "deno_lint": {
+      "filetypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+      ]
+    },
+    "djlint": {
+      "filetypes": [
+        "django",
+        "jinja.html",
+        "htmldjango"
+      ]
+    },
+    "dotenv_linter": {
+      "filetypes": [
+        "sh"
+      ]
+    },
+    "editorconfig_checker": {
+      "filetypes": []
+    },
+    "erb_lint": {
+      "filetypes": [
+        "eruby"
+      ]
+    },
+    "eslint": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "eslint_d": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "fish": {
+      "filetypes": [
+        "fish"
+      ]
+    },
+    "flake8": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "gccdiag": {
+      "filetypes": [
+        "c",
+        "cpp"
+      ]
+    },
+    "gdlint": {
+      "filetypes": [
+        "gdscript"
+      ]
+    },
+    "gitlint": {
+      "filetypes": [
+        "gitcommit"
+      ]
+    },
+    "glslc": {
+      "filetypes": [
+        "glsl"
+      ]
+    },
+    "golangci_lint": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "gospel": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "hadolint": {
+      "filetypes": [
+        "dockerfile"
+      ]
+    },
+    "haml_lint": {
+      "filetypes": [
+        "haml"
+      ]
+    },
+    "jshint": {
+      "filetypes": [
+        "javascript"
+      ]
+    },
+    "jsonlint": {
+      "filetypes": [
+        "json"
+      ]
+    },
+    "ktlint": {
+      "filetypes": [
+        "kotlin"
+      ]
+    },
+    "ltrs": {
+      "filetypes": [
+        "text",
+        "markdown",
+        "markdown"
+      ]
+    },
+    "luacheck": {
+      "filetypes": [
+        "lua"
+      ]
+    },
+    "markdownlint": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "markdownlint_cli2": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "markuplint": {
+      "filetypes": [
+        "html"
+      ]
+    },
+    "mdl": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "misspell": {
+      "filetypes": []
+    },
+    "mlint": {
+      "filetypes": [
+        "matlab",
+        "octave"
+      ]
+    },
+    "mypy": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "npm_groovy_lint": {
+      "filetypes": [
+        "groovy",
+        "java",
+        "Jenkinsfile"
+      ]
+    },
+    "opacheck": {
+      "filetypes": [
+        "rego"
+      ]
+    },
+    "perlimports": {
+      "filetypes": [
+        "perl"
+      ]
+    },
+    "php": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "phpcs": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "phpmd": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "phpstan": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "pmd": {
+      "filetypes": [
+        "java",
+        "jsp"
+      ]
+    },
+    "proselint": {
+      "filetypes": [
+        "markdown",
+        "tex"
+      ]
+    },
+    "protoc_gen_lint": {
+      "filetypes": [
+        "proto"
+      ]
+    },
+    "protolint": {
+      "filetypes": [
+        "proto"
+      ]
+    },
+    "psalm": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "puglint": {
+      "filetypes": [
+        "pug"
+      ]
+    },
+    "puppet_lint": {
+      "filetypes": [
+        "puppet",
+        "epuppet"
+      ]
+    },
+    "pycodestyle": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "pydocstyle": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "pylama": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "pylint": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "pyproject_flake8": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "qmllint": {
+      "filetypes": [
+        "qml"
+      ]
+    },
+    "reek": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "regal": {
+      "filetypes": [
+        "rego"
+      ]
+    },
+    "revive": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "rpmspec": {
+      "filetypes": [
+        "spec"
+      ]
+    },
+    "rstcheck": {
+      "filetypes": [
+        "rst"
+      ]
+    },
+    "rubocop": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "ruff": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "saltlint": {
+      "filetypes": [
+        "sls"
+      ]
+    },
+    "selene": {
+      "filetypes": [
+        "lua",
+        "luau"
+      ]
+    },
+    "semgrep": {
+      "filetypes": [
+        "typescript",
+        "typescriptreact",
+        "ruby",
+        "python",
+        "java",
+        "go"
+      ]
+    },
+    "semistandardjs": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "shellcheck": {
+      "filetypes": [
+        "sh"
+      ]
+    },
+    "solhint": {
+      "filetypes": [
+        "solidity"
+      ]
+    },
+    "spectral": {
+      "filetypes": [
+        "yaml",
+        "json"
+      ]
+    },
+    "sqlfluff": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "standardjs": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "standardrb": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "staticcheck": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "statix": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "stylelint": {
+      "filetypes": [
+        "scss",
+        "less",
+        "css",
+        "sass"
+      ]
+    },
+    "stylint": {
+      "filetypes": [
+        "stylus"
+      ]
+    },
+    "swiftlint": {
+      "filetypes": [
+        "swift"
+      ]
+    },
+    "teal": {
+      "filetypes": [
+        "teal"
+      ]
+    },
+    "terraform_validate": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
+    "textidote": {
+      "filetypes": [
+        "markdown",
+        "tex"
+      ]
+    },
+    "textlint": {
+      "filetypes": [
+        "txt",
+        "markdown"
+      ]
+    },
+    "tfsec": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
+    "tidy": {
+      "filetypes": [
+        "html",
+        "xml"
+      ]
+    },
+    "todo_comments": {
+      "filetypes": []
+    },
+    "trail_space": {
+      "filetypes": []
+    },
+    "trivy": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
+    "tsc": {
+      "filetypes": [
+        "typescript",
+        "typescriptreact"
+      ]
+    },
+    "twigcs": {
+      "filetypes": [
+        "twig"
+      ]
+    },
+    "typos": {
+      "filetypes": []
+    },
+    "vacuum": {
+      "filetypes": [
+        "yaml",
+        "json"
+      ]
+    },
+    "vale": {
+      "filetypes": [
+        "markdown",
+        "tex",
+        "asciidoc"
+      ]
+    },
+    "verilator": {
+      "filetypes": [
+        "verilog",
+        "systemverilog"
+      ]
+    },
+    "vint": {
+      "filetypes": [
+        "vim"
+      ]
+    },
+    "vulture": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "write_good": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "xo": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ]
+    },
+    "yamllint": {
+      "filetypes": [
+        "yaml"
+      ]
+    },
+    "zsh": {
+      "filetypes": [
+        "zsh"
+      ]
+    }
+  },
+  "formatting": {
+    "alejandra": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "asmfmt": {
+      "filetypes": [
+        "asm"
+      ]
+    },
+    "astyle": {
+      "filetypes": [
+        "arduino",
+        "c",
+        "cpp",
+        "cs",
+        "java"
+      ]
+    },
+    "autoflake": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "autopep8": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "bean_format": {
+      "filetypes": [
+        "beancount"
+      ]
+    },
+    "beautysh": {
+      "filetypes": [
+        "bash",
+        "csh",
+        "ksh",
+        "sh",
+        "zsh"
+      ]
+    },
+    "bibclean": {
+      "filetypes": [
+        "bib"
+      ]
+    },
+    "biome": {
+      "filetypes": [
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "json",
+        "jsonc"
+      ]
+    },
+    "black": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "blackd": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "blade_formatter": {
+      "filetypes": [
+        "blade"
+      ]
+    },
+    "blue": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "brittany": {
+      "filetypes": [
+        "haskell"
+      ]
+    },
+    "bsfmt": {
+      "filetypes": [
+        "brs"
+      ]
+    },
+    "buf": {
+      "filetypes": [
+        "proto"
+      ]
+    },
+    "buildifier": {
+      "filetypes": [
+        "bzl"
+      ]
+    },
+    "cabal_fmt": {
+      "filetypes": [
+        "cabal"
+      ]
+    },
+    "cbfmt": {
+      "filetypes": [
+        "markdown",
+        "org"
+      ]
+    },
+    "clang_format": {
+      "filetypes": [
+        "c",
+        "cpp",
+        "cs",
+        "java",
+        "cuda",
+        "proto"
+      ]
+    },
+    "cljstyle": {
+      "filetypes": [
+        "clojure"
+      ]
+    },
+    "cmake_format": {
+      "filetypes": [
+        "cmake"
+      ]
+    },
+    "codespell": {
+      "filetypes": []
+    },
+    "crystal_format": {
+      "filetypes": [
+        "crystal"
+      ]
+    },
+    "csharpier": {
+      "filetypes": [
+        "cs"
+      ]
+    },
+    "cue_fmt": {
+      "filetypes": [
+        "cue"
+      ]
+    },
+    "cueimports": {
+      "filetypes": [
+        "cue"
+      ]
+    },
+    "d2_fmt": {
+      "filetypes": [
+        "d2"
+      ]
+    },
+    "dart_format": {
+      "filetypes": [
+        "dart"
+      ]
+    },
+    "deno_fmt": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "markdown",
+        "typescript",
+        "typescriptreact"
+      ]
+    },
+    "dfmt": {
+      "filetypes": [
+        "d"
+      ]
+    },
+    "djhtml": {
+      "filetypes": [
+        "django",
+        "jinja.html",
+        "htmldjango"
+      ]
+    },
+    "djlint": {
+      "filetypes": [
+        "django",
+        "jinja.html",
+        "htmldjango"
+      ]
+    },
+    "docformatter": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "dprint": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "jsonc",
+        "markdown",
+        "python",
+        "toml",
+        "rust",
+        "roslyn"
+      ]
+    },
+    "dtsfmt": {
+      "filetypes": [
+        "dts"
+      ]
+    },
+    "elm_format": {
+      "filetypes": [
+        "elm"
+      ]
+    },
+    "emacs_scheme_mode": {
+      "filetypes": [
+        "scheme",
+        "scheme.guile"
+      ]
+    },
+    "emacs_vhdl_mode": {
+      "filetypes": [
+        "vhdl"
+      ]
+    },
+    "erb_format": {
+      "filetypes": [
+        "eruby"
+      ]
+    },
+    "erb_lint": {
+      "filetypes": [
+        "eruby"
+      ]
+    },
+    "erlfmt": {
+      "filetypes": [
+        "erlang"
+      ]
+    },
+    "eslint": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "eslint_d": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ]
+    },
+    "fantomas": {
+      "filetypes": [
+        "fsharp"
+      ]
+    },
+    "fish_indent": {
+      "filetypes": [
+        "fish"
+      ]
+    },
+    "fixjson": {
+      "filetypes": [
+        "json"
+      ]
+    },
+    "fnlfmt": {
+      "filetypes": [
+        "fennel",
+        "fnl"
+      ]
+    },
+    "forge_fmt": {
+      "filetypes": [
+        "solidity"
+      ]
+    },
+    "format_r": {
+      "filetypes": [
+        "r",
+        "rmd"
+      ]
+    },
+    "fourmolu": {
+      "filetypes": [
+        "haskell"
+      ]
+    },
+    "fprettify": {
+      "filetypes": [
+        "fortran"
+      ]
+    },
+    "gdformat": {
+      "filetypes": [
+        "gd",
+        "gdscript",
+        "gdscript3"
+      ]
+    },
+    "gersemi": {
+      "filetypes": [
+        "cmake"
+      ]
+    },
+    "gn_format": {
+      "filetypes": [
+        "gn"
+      ]
+    },
+    "gofmt": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "gofumpt": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "goimports": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "goimports_reviser": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "golines": {
+      "filetypes": [
+        "go"
+      ]
+    },
+    "google_java_format": {
+      "filetypes": [
+        "java"
+      ]
+    },
+    "haxe_formatter": {
+      "filetypes": [
+        "haxe"
+      ]
+    },
+    "hclfmt": {
+      "filetypes": [
+        "hcl"
+      ]
+    },
+    "htmlbeautifier": {
+      "filetypes": [
+        "eruby"
+      ]
+    },
+    "isort": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "isortd": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "joker": {
+      "filetypes": [
+        "clj"
+      ]
+    },
+    "jq": {
+      "filetypes": [
+        "json"
+      ]
+    },
+    "json_tool": {
+      "filetypes": [
+        "json"
+      ]
+    },
+    "jsonnetfmt": {
+      "filetypes": [
+        "jsonnet"
+      ]
+    },
+    "just": {
+      "filetypes": [
+        "just"
+      ]
+    },
+    "ktlint": {
+      "filetypes": [
+        "kotlin"
+      ]
+    },
+    "latexindent": {
+      "filetypes": [
+        "tex"
+      ]
+    },
+    "leptosfmt": {
+      "filetypes": [
+        "rust"
+      ]
+    },
+    "lua_format": {
+      "filetypes": [
+        "lua"
+      ]
+    },
+    "markdown_toc": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "markdownlint": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "mdformat": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "mix": {
+      "filetypes": [
+        "elixir"
+      ]
+    },
+    "nginx_beautifier": {
+      "filetypes": [
+        "nginx"
+      ]
+    },
+    "nimpretty": {
+      "filetypes": [
+        "nim"
+      ]
+    },
+    "nixfmt": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "nixpkgs_fmt": {
+      "filetypes": [
+        "nix"
+      ]
+    },
+    "npm_groovy_lint": {
+      "filetypes": [
+        "groovy",
+        "java",
+        "Jenkinsfile"
+      ]
+    },
+    "ocamlformat": {
+      "filetypes": [
+        "ocaml"
+      ]
+    },
+    "ocdc": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "packer": {
+      "filetypes": [
+        "hcl"
+      ]
+    },
+    "perlimports": {
+      "filetypes": [
+        "perl"
+      ]
+    },
+    "perltidy": {
+      "filetypes": [
+        "perl"
+      ]
+    },
+    "pg_format": {
+      "filetypes": [
+        "sql",
+        "pgsql"
+      ]
+    },
+    "phpcbf": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "phpcsfixer": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "pint": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "prettier": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+        "markdown.mdx",
+        "graphql",
+        "handlebars"
+      ]
+    },
+    "prettierd": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "css",
+        "scss",
+        "less",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+        "markdown.mdx",
+        "graphql",
+        "handlebars"
+      ]
+    },
+    "pretty_php": {
+      "filetypes": [
+        "php"
+      ]
+    },
+    "prismaFmt": {
+      "filetypes": [
+        "prisma"
+      ]
+    },
+    "protolint": {
+      "filetypes": [
+        "proto"
+      ]
+    },
+    "ptop": {
+      "filetypes": [
+        "pascal",
+        "delphi"
+      ]
+    },
+    "puppet_lint": {
+      "filetypes": [
+        "puppet",
+        "epuppet"
+      ]
+    },
+    "purs_tidy": {
+      "filetypes": [
+        "purescript"
+      ]
+    },
+    "pyflyby": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "pyink": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "qmlformat": {
+      "filetypes": [
+        "qml"
+      ]
+    },
+    "racket_fixw": {
+      "filetypes": [
+        "racket"
+      ]
+    },
+    "raco_fmt": {
+      "filetypes": [
+        "racket"
+      ]
+    },
+    "rego": {
+      "filetypes": [
+        "rego"
+      ]
+    },
+    "remark": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "reorder_python_imports": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "rescript": {
+      "filetypes": [
+        "rescript"
+      ]
+    },
+    "rubocop": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "rubyfmt": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "ruff": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "ruff_format": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "rufo": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "rustfmt": {
+      "filetypes": [
+        "rust"
+      ]
+    },
+    "rustywind": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "svelte",
+        "html"
+      ]
+    },
+    "scalafmt": {
+      "filetypes": [
+        "scala"
+      ]
+    },
+    "semistandardjs": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "shellharden": {
+      "filetypes": [
+        "sh"
+      ]
+    },
+    "shfmt": {
+      "filetypes": [
+        "sh"
+      ]
+    },
+    "smlfmt": {
+      "filetypes": [
+        "sml"
+      ]
+    },
+    "sql_formatter": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "sqlfluff": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "sqlfmt": {
+      "filetypes": [
+        "sql",
+        "jinja"
+      ]
+    },
+    "sqlformat": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "standardjs": {
+      "filetypes": [
+        "javascript",
+        "javascriptreact"
+      ]
+    },
+    "standardrb": {
+      "filetypes": [
+        "ruby"
+      ]
+    },
+    "standardts": {
+      "filetypes": [
+        "typescript",
+        "typescriptreact"
+      ]
+    },
+    "stylelint": {
+      "filetypes": [
+        "scss",
+        "less",
+        "css",
+        "sass"
+      ]
+    },
+    "styler": {
+      "filetypes": [
+        "r",
+        "rmd"
+      ]
+    },
+    "stylish_haskell": {
+      "filetypes": [
+        "haskell"
+      ]
+    },
+    "stylua": {
+      "filetypes": [
+        "lua",
+        "luau"
+      ]
+    },
+    "surface": {
+      "filetypes": [
+        "elixir",
+        "surface"
+      ]
+    },
+    "swift_format": {
+      "filetypes": [
+        "swift"
+      ]
+    },
+    "swiftformat": {
+      "filetypes": [
+        "swift"
+      ]
+    },
+    "swiftlint": {
+      "filetypes": [
+        "swift"
+      ]
+    },
+    "taplo": {
+      "filetypes": [
+        "toml"
+      ]
+    },
+    "templ": {
+      "filetypes": [
+        "templ"
+      ]
+    },
+    "terrafmt": {
+      "filetypes": [
+        "markdown"
+      ]
+    },
+    "terraform_fmt": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
+    "textlint": {
+      "filetypes": [
+        "txt",
+        "markdown"
+      ]
+    },
+    "tidy": {
+      "filetypes": [
+        "html",
+        "xml"
+      ]
+    },
+    "topiary": {
+      "filetypes": [
+        "ncl",
+        "nickel"
+      ]
+    },
+    "treefmt": {
+      "filetypes": []
+    },
+    "trim_newlines": {
+      "filetypes": []
+    },
+    "trim_whitespace": {
+      "filetypes": []
+    },
+    "typstfmt": {
+      "filetypes": [
+        "typ",
+        "typst"
+      ]
+    },
+    "uncrustify": {
+      "filetypes": [
+        "c",
+        "cpp",
+        "cs",
+        "java"
+      ]
+    },
+    "usort": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "verible_verilog_format": {
+      "filetypes": [
+        "verilog",
+        "systemverilog"
+      ]
+    },
+    "vfmt": {
+      "filetypes": [
+        "vlang"
+      ]
+    },
+    "xmlformat": {
+      "filetypes": [
+        "xml"
+      ]
+    },
+    "xmllint": {
+      "filetypes": [
+        "xml"
+      ]
+    },
+    "xq": {
+      "filetypes": [
+        "xml"
+      ]
+    },
+    "yamlfix": {
+      "filetypes": [
+        "yaml"
+      ]
+    },
+    "yamlfmt": {
+      "filetypes": [
+        "yaml"
+      ]
+    },
+    "yapf": {
+      "filetypes": [
+        "python"
+      ]
+    },
+    "yq": {
+      "filetypes": [
+        "yml",
+        "yaml"
+      ]
+    },
+    "zigfmt": {
+      "filetypes": [
+        "zig"
+      ]
+    },
+    "zprint": {
+      "filetypes": [
+        "clojure"
+      ]
+    }
+  },
+  "hover": {
+    "dictionary": {
+      "filetypes": [
+        "org",
+        "text",
+        "markdown"
+      ]
+    },
+    "printenv": {
+      "filetypes": [
+        "sh",
+        "dosbatch",
+        "ps1"
+      ]
+    }
+  }
+}
