@@ -1,6 +1,12 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (formatting/jsonnetfmt.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "jsonnetfmt",
     meta = {

@@ -6,6 +6,12 @@ local severities = {
     warning = vim.lsp.protocol.DiagnosticSeverity.Warning,
 }
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (diagnostics/puppet_lint.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "puppet-lint",
     meta = {

@@ -50,6 +50,12 @@ local custom_end_col = {
     end,
 }
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (diagnostics/flake8.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "flake8",
     meta = {

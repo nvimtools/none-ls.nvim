@@ -28,6 +28,12 @@ local handle_ltrs_output = function(params)
     return actions
 end
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (code_actions/ltrs.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "ltrs",
     meta = {

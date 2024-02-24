@@ -3,6 +3,12 @@ local methods = require("null-ls.methods")
 
 local DIAGNOSTICS = methods.internal.DIAGNOSTICS
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (diagnostics/chktex.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "chktex",
     meta = {

@@ -13,6 +13,12 @@ local extensions = {
     typescriptreact = "tsx",
 }
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (formatting/deno_fmt.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "deno_fmt",
     meta = {

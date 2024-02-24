@@ -3,6 +3,12 @@ local methods = require("null-ls.methods")
 
 local DIAGNOSTICS_ON_SAVE = methods.internal.DIAGNOSTICS_ON_SAVE
 
+vim.notify_once(
+    [[[null-ls] You required a deprecated builtin (diagnostics/clang_check.lua), which will be removed in March.
+Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
+    vim.log.levels.WARN
+)
+
 return h.make_builtin({
     name = "clang_check",
     meta = {
