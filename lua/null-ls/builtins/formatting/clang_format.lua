@@ -4,12 +4,6 @@ local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
 local RANGE_FORMATTING = methods.internal.RANGE_FORMATTING
 
-vim.notify_once(
-    [[[null-ls] You required a deprecated builtin (formatting/clang_format.lua), which will be removed in March.
-Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
-    vim.log.levels.WARN
-)
-
 return h.make_builtin({
     name = "clang_format",
     meta = {
