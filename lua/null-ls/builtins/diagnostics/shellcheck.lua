@@ -3,11 +3,13 @@ local methods = require("null-ls.methods")
 
 local DIAGNOSTICS = methods.internal.DIAGNOSTICS
 
-vim.notify_once(
-    [[[null-ls] You required a deprecated builtin (diagnostics/shellcheck.lua), which will be removed in March.
+if not vim.g.nonels_supress_issue58 then
+    vim.notify_once(
+        [[[null-ls] You required a deprecated builtin (diagnostics/shellcheck.lua), which will be removed in March.
 Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
-    vim.log.levels.WARN
-)
+        vim.log.levels.WARN
+    )
+end
 
 return h.make_builtin({
     name = "shellcheck",

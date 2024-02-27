@@ -5,11 +5,13 @@ local u = require("null-ls.utils")
 
 local FORMATTING = methods.internal.FORMATTING
 
-vim.notify_once(
-    [[[null-ls] You required a deprecated builtin (formatting/eslint.lua), which will be removed in March.
+if not vim.g.nonels_supress_issue58 then
+    vim.notify_once(
+        [[[null-ls] You required a deprecated builtin (formatting/eslint.lua), which will be removed in March.
 Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
-    vim.log.levels.WARN
-)
+        vim.log.levels.WARN
+    )
+end
 
 return h.make_builtin({
     name = "eslint",
