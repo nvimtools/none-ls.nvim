@@ -32,7 +32,7 @@ local handle_eslint_output = function(params)
     return parser({ output = params.messages })
 end
 
-if not vim.g.nonels_supress_issue58 then
+if not (vim.g.nonels_suppress_issue58 or vim.g.nonels_supress_issue58) then
     vim.notify_once(
         [[[null-ls] You required a deprecated builtin (diagnostics/eslint.lua), which will be removed in March.
 Please migrate to alternatives: https://github.com/nvimtools/none-ls.nvim/issues/58]],
