@@ -10,17 +10,8 @@ return {
   astyle = {
     filetypes = { "arduino", "c", "cpp", "cs", "java" }
   },
-  autoflake = {
-    filetypes = { "python" }
-  },
-  autopep8 = {
-    filetypes = { "python" }
-  },
   bean_format = {
     filetypes = { "beancount" }
-  },
-  beautysh = {
-    filetypes = { "bash", "csh", "ksh", "sh", "zsh" }
   },
   bibclean = {
     filetypes = { "bib" }
@@ -37,12 +28,6 @@ return {
   blade_formatter = {
     filetypes = { "blade" }
   },
-  blue = {
-    filetypes = { "python" }
-  },
-  brittany = {
-    filetypes = { "haskell" }
-  },
   bsfmt = {
     filetypes = { "brs" }
   },
@@ -51,9 +36,6 @@ return {
   },
   buildifier = {
     filetypes = { "bzl" }
-  },
-  cabal_fmt = {
-    filetypes = { "cabal" }
   },
   cbfmt = {
     filetypes = { "markdown", "org" }
@@ -88,9 +70,6 @@ return {
   dart_format = {
     filetypes = { "dart" }
   },
-  deno_fmt = {
-    filetypes = { "javascript", "javascriptreact", "json", "jsonc", "markdown", "typescript", "typescriptreact" }
-  },
   dfmt = {
     filetypes = { "d" }
   },
@@ -99,15 +78,6 @@ return {
   },
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
-  },
-  docformatter = {
-    filetypes = { "python" }
-  },
-  dprint = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "markdown", "python", "toml", "rust", "roslyn" }
-  },
-  dtsfmt = {
-    filetypes = { "dts" }
   },
   elm_format = {
     filetypes = { "elm" }
@@ -127,20 +97,11 @@ return {
   erlfmt = {
     filetypes = { "erlang" }
   },
-  eslint = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-  },
-  eslint_d = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-  },
   fantomas = {
     filetypes = { "fsharp" }
   },
   fish_indent = {
     filetypes = { "fish" }
-  },
-  fixjson = {
-    filetypes = { "json" }
   },
   fnlfmt = {
     filetypes = { "fennel", "fnl" }
@@ -150,9 +111,6 @@ return {
   },
   format_r = {
     filetypes = { "r", "rmd" }
-  },
-  fourmolu = {
-    filetypes = { "haskell" }
   },
   fprettify = {
     filetypes = { "fortran" }
@@ -190,9 +148,6 @@ return {
   hclfmt = {
     filetypes = { "hcl" }
   },
-  htmlbeautifier = {
-    filetypes = { "eruby" }
-  },
   isort = {
     filetypes = { "python" }
   },
@@ -202,32 +157,14 @@ return {
   joker = {
     filetypes = { "clj" }
   },
-  jq = {
-    filetypes = { "json" }
-  },
-  json_tool = {
-    filetypes = { "json" }
-  },
-  jsonnetfmt = {
-    filetypes = { "jsonnet" }
-  },
   just = {
     filetypes = { "just" }
   },
   ktlint = {
     filetypes = { "kotlin" }
   },
-  latexindent = {
-    filetypes = { "tex" }
-  },
   leptosfmt = {
     filetypes = { "rust" }
-  },
-  lua_format = {
-    filetypes = { "lua" }
-  },
-  markdown_toc = {
-    filetypes = { "markdown" }
   },
   markdownlint = {
     filetypes = { "markdown" }
@@ -262,12 +199,6 @@ return {
   packer = {
     filetypes = { "hcl" }
   },
-  perlimports = {
-    filetypes = { "perl" }
-  },
-  perltidy = {
-    filetypes = { "perl" }
-  },
   pg_format = {
     filetypes = { "sql", "pgsql" }
   },
@@ -298,14 +229,8 @@ return {
   ptop = {
     filetypes = { "pascal", "delphi" }
   },
-  puppet_lint = {
-    filetypes = { "puppet", "epuppet" }
-  },
   purs_tidy = {
     filetypes = { "purescript" }
-  },
-  pyflyby = {
-    filetypes = { "python" }
   },
   pyink = {
     filetypes = { "python" }
@@ -325,9 +250,6 @@ return {
   remark = {
     filetypes = { "markdown" }
   },
-  reorder_python_imports = {
-    filetypes = { "python" }
-  },
   rescript = {
     filetypes = { "rescript" }
   },
@@ -337,26 +259,14 @@ return {
   rubyfmt = {
     filetypes = { "ruby" }
   },
-  ruff = {
-    filetypes = { "python" }
-  },
-  ruff_format = {
-    filetypes = { "python" }
-  },
   rufo = {
     filetypes = { "ruby" }
-  },
-  rustfmt = {
-    filetypes = { "rust" }
   },
   rustywind = {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "html" }
   },
   scalafmt = {
     filetypes = { "scala" }
-  },
-  semistandardjs = {
-    filetypes = { "javascript", "javascriptreact" }
   },
   shellharden = {
     filetypes = { "sh" }
@@ -379,23 +289,11 @@ return {
   sqlformat = {
     filetypes = { "sql" }
   },
-  standardjs = {
-    filetypes = { "javascript", "javascriptreact" }
-  },
-  standardrb = {
-    filetypes = { "ruby" }
-  },
-  standardts = {
-    filetypes = { "typescript", "typescriptreact" }
-  },
   stylelint = {
     filetypes = { "scss", "less", "css", "sass" }
   },
   styler = {
     filetypes = { "r", "rmd" }
-  },
-  stylish_haskell = {
-    filetypes = { "haskell" }
   },
   stylua = {
     filetypes = { "lua", "luau" }
@@ -412,15 +310,6 @@ return {
   swiftlint = {
     filetypes = { "swift" }
   },
-  taplo = {
-    filetypes = { "toml" }
-  },
-  templ = {
-    filetypes = { "templ" }
-  },
-  terrafmt = {
-    filetypes = { "markdown" }
-  },
   terraform_fmt = {
     filetypes = { "terraform", "tf", "terraform-vars" }
   },
@@ -436,12 +325,6 @@ return {
   treefmt = {
     filetypes = {}
   },
-  trim_newlines = {
-    filetypes = {}
-  },
-  trim_whitespace = {
-    filetypes = {}
-  },
   typstfmt = {
     filetypes = { "typ", "typst" }
   },
@@ -454,18 +337,6 @@ return {
   verible_verilog_format = {
     filetypes = { "verilog", "systemverilog" }
   },
-  vfmt = {
-    filetypes = { "vlang" }
-  },
-  xmlformat = {
-    filetypes = { "xml" }
-  },
-  xmllint = {
-    filetypes = { "xml" }
-  },
-  xq = {
-    filetypes = { "xml" }
-  },
   yamlfix = {
     filetypes = { "yaml" }
   },
@@ -474,12 +345,6 @@ return {
   },
   yapf = {
     filetypes = { "python" }
-  },
-  yq = {
-    filetypes = { "yml", "yaml" }
-  },
-  zigfmt = {
-    filetypes = { "zig" }
   },
   zprint = {
     filetypes = { "clojure" }
