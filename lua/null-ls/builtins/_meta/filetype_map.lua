@@ -96,6 +96,10 @@ return {
   elm = {
     formatting = { "elm_format" }
   },
+  epuppet = {
+    diagnostics = { "puppet_lint" },
+    formatting = { "puppet_lint" }
+  },
   erlang = {
     formatting = { "erlfmt" }
   },
@@ -285,6 +289,10 @@ return {
   },
   ps1 = {
     hover = { "printenv" }
+  },
+  puppet = {
+    diagnostics = { "puppet_lint" },
+    formatting = { "puppet_lint" }
   },
   purescript = {
     formatting = { "purs_tidy" }

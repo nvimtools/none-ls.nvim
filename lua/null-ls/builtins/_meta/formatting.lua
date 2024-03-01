@@ -229,6 +229,9 @@ return {
   ptop = {
     filetypes = { "pascal", "delphi" }
   },
+  puppet_lint = {
+    filetypes = { "puppet", "epuppet" }
+  },
   purs_tidy = {
     filetypes = { "purescript" }
   },

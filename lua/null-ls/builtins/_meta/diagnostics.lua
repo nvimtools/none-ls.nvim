@@ -142,6 +142,9 @@ return {
   protolint = {
     filetypes = { "proto" }
   },
+  puppet_lint = {
+    filetypes = { "puppet", "epuppet" }
+  },
   pylint = {
     filetypes = { "python" }
   },

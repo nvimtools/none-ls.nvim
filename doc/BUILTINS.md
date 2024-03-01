@@ -1125,6 +1125,23 @@ local sources = { null_ls.builtins.diagnostics.protolint }
 - Command: `protolint`
 - Args: `{ "--reporter", "json", "$FILENAME" }`
 
+### [puppet_lint](http://puppet-lint.com/)
+
+Check that your Puppet manifest conforms to the style guide.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.puppet_lint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "puppet", "epuppet" }`
+- Method: `diagnostics`
+- Command: `puppet-lint`
+- Args: `{ "--json", "$FILENAME" }`
+
 ### [pylint](https://github.com/PyCQA/pylint)
 
 Pylint is a Python static code analysis tool which looks for programming
@@ -3134,6 +3151,23 @@ local sources = { null_ls.builtins.formatting.ptop }
 - Method: `formatting`
 - Command: `ptop`
 - Args: `{ "$FILENAME", "$FILENAME" }`
+
+### [puppet_lint](http://puppet-lint.com/)
+
+Check that your Puppet manifest conforms to the style guide
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.puppet_lint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "puppet", "epuppet" }`
+- Method: `formatting`
+- Command: `puppet-lint`
+- Args: `{ "--fix", "$FILENAME" }`
 
 ### [purs_tidy](https://github.com/natefaubion/purescript-tidy)
 

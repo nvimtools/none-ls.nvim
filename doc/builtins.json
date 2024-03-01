@@ -300,6 +300,12 @@
         "proto"
       ]
     },
+    "puppet_lint": {
+      "filetypes": [
+        "puppet",
+        "epuppet"
+      ]
+    },
     "pylint": {
       "filetypes": [
         "python"
@@ -935,6 +941,12 @@
       "filetypes": [
         "pascal",
         "delphi"
+      ]
+    },
+    "puppet_lint": {
+      "filetypes": [
+        "puppet",
+        "epuppet"
       ]
     },
     "purs_tidy": {
