@@ -139,6 +139,9 @@ return {
   gitrebase = {
     code_actions = { "gitrebase" }
   },
+  gleam = {
+    formatting = { "gleam_format" }
+  },
   glsl = {
     diagnostics = { "glslc" }
   },

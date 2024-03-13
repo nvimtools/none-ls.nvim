@@ -121,6 +121,9 @@ return {
   gersemi = {
     filetypes = { "cmake" }
   },
+  gleam_format = {
+    filetypes = { "gleam" }
+  },
   gn_format = {
     filetypes = { "gn" }
   },

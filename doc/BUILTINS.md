@@ -2518,6 +2518,23 @@ local sources = { null_ls.builtins.formatting.gersemi }
 - Command: `gersemi`
 - Args: `{ "-" }`
 
+### [gleam_format](https://github.com/gleam-lang/gleam/)
+
+Default formater for the Gleam programming language
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.gleam_format }
+```
+
+#### Defaults
+
+- Filetypes: `{ "gleam" }`
+- Method: `formatting`
+- Command: `gleam`
+- Args: `{ "format", "--stdin" }`
+
 ### [gn_format](http://gn.googlesource.com/gn)
 
 Format your GN code!
