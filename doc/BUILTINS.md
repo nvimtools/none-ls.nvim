@@ -3498,7 +3498,7 @@ local sources = {
 - Filetypes: `{ "sql" }`
 - Method: `formatting`
 - Command: `sqlfluff`
-- Args: `{ "fix", "--disable-progress-bar", "-f", "-n", "-" }`
+- Args: `{ "fix", "--disable-progress-bar", "-n", "-" }`
 
 #### Notes
 
