@@ -25,7 +25,6 @@ local sources = {
         args = {
             "fix",
             "--disable-progress-bar",
-            "-f",
             "-n",
             "-",
         },
