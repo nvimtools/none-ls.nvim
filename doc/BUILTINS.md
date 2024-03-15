@@ -2400,7 +2400,7 @@ local sources = { null_ls.builtins.formatting.fantomas }
 - Command: `fantomas`
 - Args: `{ "$FILENAME" }`
 
-### [findent](https://github.com/gnikit/findent-pypi)
+### [findent](https://pypi.org/project/findent/)
 
 findent indents/beautifies/converts and can optionally generate the dependencies of Fortran sources.
 
