@@ -100,6 +100,9 @@ return {
   fantomas = {
     filetypes = { "fsharp" }
   },
+  findent = {
+    filetypes = { "fortran" }
+  },
   fish_indent = {
     filetypes = { "fish" }
   },

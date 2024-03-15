@@ -2400,6 +2400,23 @@ local sources = { null_ls.builtins.formatting.fantomas }
 - Command: `fantomas`
 - Args: `{ "$FILENAME" }`
 
+### [findent](https://github.com/gnikit/findent-pypi)
+
+findent indents/beautifies/converts and can optionally generate the dependencies of Fortran sources.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.findent }
+```
+
+#### Defaults
+
+- Filetypes: `{ "fortran" }`
+- Method: `formatting`
+- Command: `findent`
+- Args: `{}`
+
 ### [fish_indent](https://fishshell.com/docs/current/cmds/fish_indent.html)
 
 Indent or otherwise prettify a piece of fish code.
