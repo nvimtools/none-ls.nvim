@@ -118,7 +118,7 @@ return {
     formatting = { "fnlfmt" }
   },
   fortran = {
-    formatting = { "fprettify" }
+    formatting = { "findent", "fprettify" }
   },
   fsharp = {
     formatting = { "fantomas" }
