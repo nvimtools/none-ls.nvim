@@ -298,6 +298,9 @@ return {
   sqlformat = {
     filetypes = { "sql" }
   },
+  standardrb = {
+    filetypes = { "ruby" }
+  },
   stylelint = {
     filetypes = { "scss", "less", "css", "sass" }
   },
