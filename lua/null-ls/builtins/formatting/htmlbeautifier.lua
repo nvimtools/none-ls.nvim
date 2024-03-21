@@ -7,8 +7,7 @@ return h.make_builtin({
     name = "htmlbeautifier",
     meta = {
         url = "https://github.com/threedaymonk/htmlbeautifier",
-        description =
-        "A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates.",
+        description = "A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates.",
     },
     method = FORMATTING,
     filetypes = { "eruby" },
