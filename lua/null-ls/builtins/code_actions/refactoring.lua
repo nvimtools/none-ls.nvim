@@ -9,7 +9,7 @@ return h.make_builtin({
         url = "https://github.com/ThePrimeagen/refactoring.nvim",
         description = "The Refactoring library based off the Refactoring book by Martin Fowler.",
         notes = {
-            [[Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.range_code_action()` (for the default handler) or `:'<,'>Telescope lsp_range_code_actions` (for Telescope).]],
+            [[Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.code_action()`]],
         },
     },
     method = CODE_ACTION,
