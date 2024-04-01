@@ -132,7 +132,7 @@ local sources = { null_ls.builtins.code_actions.refactoring }
 
 #### Notes
 
-- Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.code_action()`.
+- Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.code_action()`
 
 ### [statix](https://github.com/nerdypepper/statix)
 
