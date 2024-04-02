@@ -8,3 +8,7 @@ repos:
     hooks:
       - id: prettier
         exclude: "^test/"
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.27
+    hooks:
+      - id: actionlint
