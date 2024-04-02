@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: none-ls.nvim
+Upstream-Contact: Zephyr Lykos <self@mochaa.ws>
+Source: https://github.com/nvimtools/none-ls.nvim
+
+Files: *
+Copyright: Copyright 2021 Jose Alvarez <j.alvarez11@icloud.com>
+License: Unlicense
+
+Files: lua/null-ls/diff.lua
+Copyright: Copyright Neovim contributors. All rights reserved.
+License: Apache-2.0
