@@ -1,9 +1,17 @@
 name: Auto Generate Docs
+
 permissions:
   contents: write
+
 on:
   push:
     branches: [main]
+    paths:
+      - "lua/"
+      - "scripts/"
+      - ".github/"
+      - "README.md"
+
 jobs:
   docs:
     runs-on: ubuntu-latest
