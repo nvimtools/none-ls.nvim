@@ -1,0 +1,23 @@
+---
+permissions:
+  contents: write
+  pull-requests: write
+
+name: Release Please
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: simple
+          package-name: none-ls.nvim
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
