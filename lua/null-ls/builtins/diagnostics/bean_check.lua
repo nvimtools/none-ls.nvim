@@ -11,16 +11,20 @@ return h.make_builtin({
     },
     method = DIAGNOSTICS_ON_SAVE,
     filetypes = { "beancount" },
-    generator = h.generator_factory{
+    generator = h.generator_factory({
         command = "bean-check",
         args = { "$FILENAME" },
         from_stderr = true,
         to_stdin = true,
         format = "line",
-        check_exit_code = function(exit_code) return exit_code == 0 end,
-        on_output = h.diagnostics.from_patterns{{
-            pattern = [[(.+):(%d+):%s*(.+)]],
-            groups = { "filename", "row", "message" },
-        }},
-    },
+        check_exit_code = function(exit_code)
+            return exit_code == 0
+        end,
+        on_output = h.diagnostics.from_patterns({
+            {
+                pattern = [[(.+):(%d+):%s*(.+)]],
+                groups = { "filename", "row", "message" },
+            },
+        }),
+    }),
 })
