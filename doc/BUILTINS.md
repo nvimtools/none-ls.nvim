@@ -289,6 +289,22 @@ local sources = { null_ls.builtins.diagnostics.ansiblelint }
 - Command: `ansible-lint`
 - Args: `{ "-f", "codeclimate", "-q", "--nocolor", "$FILENAME" }`
 
+### [bean_check](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-check)
+
+This tool will check beancount files for spending errors, balance mismatches and more.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.bean_check }
+```
+
+#### Defaults
+
+- Filetypes: `{ "beancount" }`
+- Method: `diagnostics`
+- Command: `bean-check`
+
 ### [bslint](https://github.com/rokucommunity/bslint)
 
 A brighterscript CLI tool to lint your code without compiling your project.
