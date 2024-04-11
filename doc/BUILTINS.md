@@ -644,6 +644,23 @@ local sources = { null_ls.builtins.diagnostics.dotenv_linter }
 - Command: `dotenv-linter`
 - Args: `{ "$FILENAME" }`
 
+### [dxfmt](https://github.com/dioxuslabs/dioxus)
+
+Format your Dioxus files.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.dxfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "rust" }`
+- Method: `formatting`
+- Command: `dx`
+- Args: `{ "fmt", "--file", "$FILENAME" }`
+
 ### [editorconfig_checker](https://github.com/editorconfig-checker/editorconfig-checker)
 
 A tool to verify that your files are in harmony with your `.editorconfig`.
