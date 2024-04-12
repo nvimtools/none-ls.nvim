@@ -654,6 +654,11 @@
         "htmldjango"
       ]
     },
+    "dxfmt": {
+      "filetypes": [
+        "rust"
+      ]
+    },
     "elm_format": {
       "filetypes": [
         "elm"
