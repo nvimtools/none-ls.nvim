@@ -10,6 +10,9 @@ return {
   ansiblelint = {
     filetypes = { "yaml.ansible" }
   },
+  bean_check = {
+    filetypes = { "beancount" }
+  },
   bslint = {
     filetypes = { "brs" }
   },

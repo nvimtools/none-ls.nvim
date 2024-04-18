@@ -289,9 +289,9 @@ local sources = { null_ls.builtins.diagnostics.ansiblelint }
 - Command: `ansible-lint`
 - Args: `{ "-f", "codeclimate", "-q", "--nocolor", "$FILENAME" }`
 
-### [bean_check](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-check)
+### [bean_check](https://github.com/beancount/beancount)
 
-This tool will check beancount files for spending errors, balance mismatches and more.
+Beancount: text-based double-entry accounting tool
 
 #### Usage
 
@@ -302,8 +302,7 @@ local sources = { null_ls.builtins.diagnostics.bean_check }
 #### Defaults
 
 - Filetypes: `{ "beancount" }`
-- Method: `diagnostics`
-- Command: `bean-check`
+- Method: `diagnostics_on_save`
 
 ### [bslint](https://github.com/rokucommunity/bslint)
 
@@ -643,23 +642,6 @@ local sources = { null_ls.builtins.diagnostics.dotenv_linter }
 - Method: `diagnostics`
 - Command: `dotenv-linter`
 - Args: `{ "$FILENAME" }`
-
-### [dxfmt](https://github.com/dioxuslabs/dioxus)
-
-Format your Dioxus files.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.formatting.dxfmt }
-```
-
-#### Defaults
-
-- Filetypes: `{ "rust" }`
-- Method: `formatting`
-- Command: `dx`
-- Args: `{ "fmt", "--file", "$FILENAME" }`
 
 ### [editorconfig_checker](https://github.com/editorconfig-checker/editorconfig-checker)
 
@@ -2306,6 +2288,23 @@ local sources = { null_ls.builtins.formatting.djlint }
 - Command: `djlint`
 - Args: `{ "--reformat", "-" }`
 
+### [dxfmt](https://github.com/dioxuslabs/dioxus)
+
+Format rust file with dioxus cli
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.dxfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "rust" }`
+- Method: `formatting`
+- Command: `dx`
+- Args: `{ "fmt", "--file", "$FILENAME" }`
+
 ### [elm_format](https://github.com/avh4/elm-format)
 
 elm-format formats Elm source code according to a standard set of rules based on the official [Elm Style Guide](https://elm-lang.org/docs/style-guide).
@@ -3185,14 +3184,14 @@ local sources = { null_ls.builtins.formatting.pretty_php }
 - Command: `pretty-php`
 - Args: `{ "$FILENAME" }`
 
-### [prismaFmt](https://github.com/prisma/prisma-engines)
+### [prisma_format](https://github.com/prisma/prisma-engines)
 
 Formatter for the prisma filetype.
 
 #### Usage
 
 ```lua
-local sources = { null_ls.builtins.formatting.prismaFmt }
+local sources = { null_ls.builtins.formatting.prisma_format }
 ```
 
 #### Defaults

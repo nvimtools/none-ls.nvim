@@ -15,6 +15,7 @@ return {
     formatting = { "asmfmt" }
   },
   beancount = {
+    diagnostics = { "bean_check" },
     formatting = { "bean_format" }
   },
   bib = {
@@ -284,7 +285,7 @@ return {
     formatting = { "phpcbf", "phpcsfixer", "pint", "pretty_php" }
   },
   prisma = {
-    formatting = { "prismaFmt" }
+    formatting = { "prisma_format" }
   },
   proto = {
     diagnostics = { "buf", "protolint" },
@@ -333,7 +334,7 @@ return {
     formatting = { "rubocop", "rubyfmt", "rufo" }
   },
   rust = {
-    formatting = { "leptosfmt" }
+    formatting = { "dxfmt", "leptosfmt" }
   },
   sass = {
     diagnostics = { "stylelint" },

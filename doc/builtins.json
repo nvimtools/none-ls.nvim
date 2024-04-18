@@ -72,6 +72,11 @@
         "yaml.ansible"
       ]
     },
+    "bean_check": {
+      "filetypes": [
+        "beancount"
+      ]
+    },
     "bslint": {
       "filetypes": [
         "brs"
@@ -947,7 +952,7 @@
         "php"
       ]
     },
-    "prismaFmt": {
+    "prisma_format": {
       "filetypes": [
         "prisma"
       ]

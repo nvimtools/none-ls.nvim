@@ -79,6 +79,9 @@ return {
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
   },
+  dxfmt = {
+    filetypes = { "rust" }
+  },
   elm_format = {
     filetypes = { "elm" }
   },
@@ -229,7 +232,7 @@ return {
   pretty_php = {
     filetypes = { "php" }
   },
-  prismaFmt = {
+  prisma_format = {
     filetypes = { "prisma" }
   },
   protolint = {
