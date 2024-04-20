@@ -25,7 +25,7 @@ return h.make_builtin({
         },
         dynamic_command = cmd_resolver.from_node_modules(),
         cwd = h.cache.by_bufnr(function(params)
-            return u.root_pattern("rome.json", "biome.json")(params.bufname)
+            return u.root_pattern("rome.json", "biome.json", "biome.jsonc")(params.bufname)
         end),
         to_stdin = false,
         to_temp_file = true,
