@@ -20,15 +20,14 @@ return h.make_builtin({
         command = "biome",
         args = {
             "format",
-            "--write",
+            "--stdin-file-path",
             "$FILENAME",
         },
         dynamic_command = cmd_resolver.from_node_modules(),
         cwd = h.cache.by_bufnr(function(params)
             return u.root_pattern("rome.json", "biome.json", "biome.jsonc")(params.bufname)
         end),
-        to_stdin = false,
-        to_temp_file = true,
+        to_stdin = true,
     },
     factory = h.formatter_factory,
 })
