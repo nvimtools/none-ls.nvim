@@ -10,7 +10,7 @@ return h.make_builtin({
         description = "Formatter for Gherkin language.",
     },
     method = FORMATTING,
-    filetypes = { "cucumber" },
+    filetypes = { "cucumber", "gherkin" },
     generator_opts = {
         command = "reformat-gherkin",
         args = { "$FILENAME" },

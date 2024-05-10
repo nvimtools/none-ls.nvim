@@ -3362,7 +3362,7 @@ local sources = { null_ls.builtins.formatting.reformat_gherkin }
 
 #### Defaults
 
-- Filetypes: `{ "cucumber" }`
+- Filetypes: `{ "cucumber", "gherkin" }`
 - Method: `formatting`
 - Command: `reformat-gherkin`
 - Args: `{ "$FILENAME" }`
