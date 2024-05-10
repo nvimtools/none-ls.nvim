@@ -999,6 +999,11 @@
         "racket"
       ]
     },
+    "reformat_gherkin": {
+      "filetypes": [
+        "cucumber"
+      ]
+    },
     "rego": {
       "filetypes": [
         "rego"

@@ -3350,6 +3350,23 @@ local sources = { null_ls.builtins.formatting.raco_fmt }
 - Requires Racket 8.0 or later
 - Install with `raco pkg install fmt`
 
+### [reformat-gherkin](https://github.com/ducminh-phan/reformat-gherkin)
+
+Formatter for Gherkin language.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.reformat_gherkin }
+```
+
+#### Defaults
+
+- Filetypes: `{ "cucumber" }`
+- Method: `formatting`
+- Command: `reformat-gherkin`
+- Args: `{ "$FILENAME" }`
+
 ### [rego](https://www.openpolicyagent.org/docs/latest/policy-language)
 
 Rego (opa fmt) Formatter
