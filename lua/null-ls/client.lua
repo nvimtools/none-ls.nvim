@@ -22,7 +22,15 @@ local should_attach = function(bufnr)
     local ft = api.nvim_buf_get_option(bufnr, "filetype")
     for _, source in ipairs(sources.get_all()) do
         if sources.is_available(source, ft) then
-            return true
+
+            -- if a command is defined, attach only if it's executable
+            local opts = source.generator.opts
+            if opts and opts.command then
+                if vim.fn.executable(opts.command) == 1 then
+                    return true
+                end
+            end
+
         end
     end
 
