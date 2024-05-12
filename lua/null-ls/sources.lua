@@ -112,7 +112,7 @@ M.is_executable = function(source)
 end
 
 M.is_available = function(source, filetype, method)
-    if not is_executable(source) or source._disabled or source.generator._failed then
+    if not M.is_executable(source) or source._disabled or source.generator._failed then
         return false
     end
 
