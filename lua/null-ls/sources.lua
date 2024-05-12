@@ -102,8 +102,8 @@ M.is_executable = function(source)
     -- for sources with a command
     if source.generator.opts.command then
         if vim.fn.executable(source.generator.opts.command) == 0 then
-          -- if the command is not executable
-          return false
+            -- if the command is not executable
+            return false
         end
     end
 
