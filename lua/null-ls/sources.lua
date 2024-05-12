@@ -98,8 +98,21 @@ local register_source = function(source)
     registered.names[source.name] = true
 end
 
+M.is_executable = function(source)
+    -- for sources with a command
+    if source.generator.opts.command then
+        if vim.fn.executable(source.generator.opts.command) == 0 then
+          -- if the command is not executable
+          return false
+        end
+    end
+
+    -- for the rest
+    return true
+end
+
 M.is_available = function(source, filetype, method)
-    if source._disabled or source.generator._failed then
+    if not is_executable(source) or source._disabled or source.generator._failed then
         return false
     end
 
