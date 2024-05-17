@@ -395,6 +395,7 @@ describe("e2e", function()
     describe("cached generator", function()
         local actions, null_ls_action
         before_each(function()
+            sources._reset()
             sources.register(builtins._test.cached_code_action)
             tu.edit_test_file("test-file.txt")
             tu.wait()

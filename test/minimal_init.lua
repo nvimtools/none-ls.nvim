@@ -35,6 +35,7 @@ function M.setup()
 end
 
 vim.o.swapfile = false
+vim.treesitter.start = function() end
 _G.__TEST = true
 
 M.setup()
