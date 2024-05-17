@@ -14,7 +14,10 @@ local lsp_methods = {
     HOVER = "textDocument/hover",
     COMPLETION = "textDocument/completion",
 }
-vim.tbl_add_reverse_lookup(lsp_methods)
+local lsp_methods_keys = vim.tbl_keys(lsp_methods)
+for _, k in ipairs(lsp_methods_keys) do
+    lsp_methods[lsp_methods[k]] = k
+end
 
 local internal_methods = {
     CODE_ACTION = "NULL_LS_CODE_ACTION",
@@ -26,7 +29,10 @@ local internal_methods = {
     HOVER = "NULL_LS_HOVER",
     COMPLETION = "NULL_LS_COMPLETION",
 }
-vim.tbl_add_reverse_lookup(internal_methods)
+local internal_methods_keys = vim.tbl_keys(internal_methods)
+for _, k in ipairs(internal_methods_keys) do
+    internal_methods[internal_methods[k]] = k
+end
 
 local lsp_to_internal_map = {
     [lsp_methods.CODE_ACTION] = internal_methods.CODE_ACTION,
