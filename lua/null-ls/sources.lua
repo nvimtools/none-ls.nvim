@@ -103,6 +103,7 @@ M.is_executable = function(source)
     if source.generator.opts.command then
         if vim.fn.executable(source.generator.opts.command) == 0 then
             -- if the command is not executable
+            log:error("failed to execute command: " .. source.generator.opts.command)
             return false
         end
     end
