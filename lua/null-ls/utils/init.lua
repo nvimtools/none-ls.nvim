@@ -1,4 +1,5 @@
 local api = vim.api
+local util = require("null-ls.utils.tbl_flatten")
 
 local is_windows = vim.loop.os_uname().version:match("Windows")
 local path_separator = is_windows and "\\" or "/"
@@ -100,7 +101,7 @@ M.make_conditional_utils = function()
 
     return {
         has_file = function(...)
-            local patterns = vim.tbl_flatten({ ... })
+            local patterns = util.tbl_flatten({ ... })
             for _, name in ipairs(patterns) do
                 local full_path = vim.loop.fs_realpath(name)
                 if full_path and M.path.exists(full_path) then
@@ -110,7 +111,7 @@ M.make_conditional_utils = function()
             return false
         end,
         root_has_file = function(...)
-            local patterns = vim.tbl_flatten({ ... })
+            local patterns = util.tbl_flatten({ ... })
             for _, name in ipairs(patterns) do
                 if M.path.exists(M.path.join(root, name)) then
                     return true
@@ -260,7 +261,7 @@ M.path = {
         return fs_stat_stat ~= nil
     end,
     join = function(...)
-        return table.concat(vim.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
+        return table.concat(util.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
     end,
     -- An iterator like vim.fs.parents but includes the start_path.
     ancestors = function(start_path)
@@ -278,7 +279,7 @@ M.path = {
 ---@vararg string patterns
 ---@return fun(startpath: string, fun(root_dir: string|nil)): nil root_dir
 M.root_pattern_async = function(...)
-    local patterns = vim.tbl_flatten({ ... })
+    local patterns = util.tbl_flatten({ ... })
 
     local function match(path)
         for _, pattern in ipairs(patterns) do
@@ -313,7 +314,7 @@ end
 ---@vararg string patterns
 ---@return fun(startpath: string): string|nil root_dir
 M.root_pattern = function(...)
-    local patterns = vim.tbl_flatten({ ... })
+    local patterns = util.tbl_flatten({ ... })
 
     local function matcher(path)
         if not path then
