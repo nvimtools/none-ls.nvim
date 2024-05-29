@@ -1916,7 +1916,7 @@ local sources = { null_ls.builtins.formatting.biome }
 - Filetypes: `{ "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }`
 - Method: `formatting`
 - Command: `biome`
-- Args: `{ "format", "--write", "$FILENAME" }`
+- Args: `{ "format", "--stdin-file-path", "$FILENAME" }`
 
 #### Notes
 
@@ -2849,7 +2849,7 @@ local sources = { null_ls.builtins.formatting.ktlint }
 - Filetypes: `{ "kotlin" }`
 - Method: `formatting`
 - Command: `ktlint`
-- Args: `{ "--format", "--stdin", "**/*.kt", "**/*.kts" }`
+- Args: `{ "--format", "--stdin", "--log-level=none", "**/*.kt", "**/*.kts" }`
 
 ### [leptosfmt](https://github.com/bram209/leptosfmt)
 
@@ -3044,6 +3044,23 @@ local sources = { null_ls.builtins.formatting.ocdc }
 - Command: `ocdc`
 - Args: `{ "--path", "-" }`
 
+### [opentofu_fmt](https://opentofu.org/docs/cli/commands/fmt/#usage)
+
+The opentofu-fmt command rewrites `opentofu` configuration files to a canonical format and style.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.opentofu_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "terraform", "tf", "terraform-vars" }`
+- Method: `formatting`
+- Command: `tofu`
+- Args: `{ "fmt", "-" }`
+
 ### [packer](https://www.packer.io/docs/commands/fmt)
 
 The packer fmt Packer command is used to format HCL2 configuration files to a canonical format and style.
@@ -3140,14 +3157,14 @@ local sources = { null_ls.builtins.formatting.prettier }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }`
+- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettier`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier.lua))
 
 #### Notes
 
-- Supports more filetypes such as [Svelte](https://github.com/sveltejs/prettier-plugin-svelte) and [TOML](https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml) via plugins. These filetypes are not enabled by default, but you can follow the instructions [here](BUILTIN_CONFIG.md#filetypes) to define your own list of filetypes.
+- [TOML](https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml) via plugins. These filetypes are not enabled by default, but you can follow the instructions [here](BUILTIN_CONFIG.md#filetypes) to define your own list of filetypes.
 - To increase speed, you may want to try [prettierd](https://github.com/fsouza/prettierd). You can also set up [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and format via [eslint_d](https://github.com/mantoni/eslint_d.js/).
 
 ### [prettierd](https://github.com/fsouza/prettierd)
@@ -3162,7 +3179,7 @@ local sources = { null_ls.builtins.formatting.prettierd }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }`
+- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettierd`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettierd.lua))
@@ -3902,6 +3919,23 @@ local sources = { null_ls.builtins.formatting.verible_verilog_format }
 - Method: `formatting`
 - Command: `verible-verilog-format`
 - Args: `{ "--stdin_name", "$FILENAME", "-" }`
+
+### [xmllint](http://xmlsoft.org/xmllint.html)
+
+Despite the name, xmllint can be used to format XML files as well as lint them, and that's the mode this builtin is using.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.xmllint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "xml" }`
+- Method: `formatting`
+- Command: `xmllint`
+- Args: `{ "--format", "-" }`
 
 ### [yamlfix](https://github.com/lyz-code/yamlfix)
 

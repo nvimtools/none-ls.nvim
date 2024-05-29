@@ -881,6 +881,13 @@
         "markdown"
       ]
     },
+    "opentofu_fmt": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
     "packer": {
       "filetypes": [
         "hcl"
@@ -924,7 +931,9 @@
         "markdown",
         "markdown.mdx",
         "graphql",
-        "handlebars"
+        "handlebars",
+        "svelte",
+        "astro"
       ]
     },
     "prettierd": {
@@ -944,7 +953,9 @@
         "markdown",
         "markdown.mdx",
         "graphql",
-        "handlebars"
+        "handlebars",
+        "svelte",
+        "astro"
       ]
     },
     "pretty_php": {
@@ -1173,6 +1184,11 @@
       "filetypes": [
         "verilog",
         "systemverilog"
+      ]
+    },
+    "xmllint": {
+      "filetypes": [
+        "xml"
       ]
     },
     "yamlfix": {

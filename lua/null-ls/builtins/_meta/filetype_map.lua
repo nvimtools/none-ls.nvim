@@ -14,6 +14,9 @@ return {
   asm = {
     formatting = { "asmfmt" }
   },
+  astro = {
+    formatting = { "prettier", "prettierd" }
+  },
   beancount = {
     diagnostics = { "bean_check" },
     formatting = { "bean_format" }
@@ -382,7 +385,7 @@ return {
     formatting = { "surface" }
   },
   svelte = {
-    formatting = { "rustywind" }
+    formatting = { "prettier", "prettierd", "rustywind" }
   },
   swift = {
     diagnostics = { "swiftlint" },
@@ -397,11 +400,11 @@ return {
   },
   terraform = {
     diagnostics = { "terraform_validate", "tfsec", "trivy" },
-    formatting = { "terraform_fmt" }
+    formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   ["terraform-vars"] = {
     diagnostics = { "terraform_validate", "tfsec", "trivy" },
-    formatting = { "terraform_fmt" }
+    formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   tex = {
     code_actions = { "proselint" },
@@ -413,7 +416,7 @@ return {
   },
   tf = {
     diagnostics = { "terraform_validate", "tfsec", "trivy" },
-    formatting = { "terraform_fmt" }
+    formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   twig = {
     diagnostics = { "twigcs" }
@@ -452,7 +455,7 @@ return {
   },
   xml = {
     diagnostics = { "tidy" },
-    formatting = { "tidy" }
+    formatting = { "tidy", "xmllint" }
   },
   yaml = {
     diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint" },

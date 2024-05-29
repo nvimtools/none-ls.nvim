@@ -208,6 +208,9 @@ return {
   ocdc = {
     filetypes = { "markdown" }
   },
+  opentofu_fmt = {
+    filetypes = { "terraform", "tf", "terraform-vars" }
+  },
   packer = {
     filetypes = { "hcl" }
   },
@@ -224,10 +227,10 @@ return {
     filetypes = { "php" }
   },
   prettier = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }
   },
   prettierd = {
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }
   },
   pretty_php = {
     filetypes = { "php" }
@@ -351,6 +354,9 @@ return {
   },
   verible_verilog_format = {
     filetypes = { "verilog", "systemverilog" }
+  },
+  xmllint = {
+    filetypes = { "xml" }
   },
   yamlfix = {
     filetypes = { "yaml" }
