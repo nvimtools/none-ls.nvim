@@ -37,8 +37,9 @@ local sources = {
         end,
         on_output = helpers.diagnostics.from_json({
             attributes = {
-                row = "line",
+                row = "start_line",
                 col = "start_column",
+                end_row = "end_line",
                 end_col = "end_column",
                 severity = "annotation_level",
                 message = "message",
