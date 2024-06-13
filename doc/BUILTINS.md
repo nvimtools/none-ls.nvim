@@ -3869,6 +3869,23 @@ local sources = { null_ls.builtins.formatting.typstfmt }
 - Command: `typstfmt`
 - Args: `{ "-o", "-" }`
 
+### [typstyle](https://github.com/Enter-tainer/typstyle/)
+
+Formatter for typst
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.typstyle }
+```
+
+#### Defaults
+
+- Filetypes: `{ "typ", "typst" }`
+- Method: `formatting`
+- Command: `typstyle`
+- Args: `{}`
+
 ### [uncrustify](https://github.com/uncrustify/uncrustify)
 
 A source code beautifier for C, C++, C#, ObjectiveC, D, Java, Pawn and Vala.
