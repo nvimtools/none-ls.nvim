@@ -5,6 +5,11 @@ local u = require("null-ls.utils")
 
 local DIAGNOSTICS_ON_SAVE = methods.internal.DIAGNOSTICS_ON_SAVE
 
+local function parse_line_col_from_text(text)
+    local line, col = text:match(":(%d+):(%d+):")
+    return tonumber(line), tonumber(col)
+end
+
 return h.make_builtin({
     name = "golangci_lint",
     meta = {
@@ -40,10 +45,11 @@ return h.make_builtin({
             local issues = params.output["Issues"]
             if type(issues) == "table" then
                 for _, d in ipairs(issues) do
+                    local parsed_line, parsed_col = parse_line_col_from_text(d.Text)
                     table.insert(diags, {
                         source = string.format("golangci-lint: %s", d.FromLinter),
-                        row = d.Pos.Line,
-                        col = d.Pos.Column,
+                        row = parsed_line or d.Pos.Line,
+                        col = parsed_col or d.Pos.Column,
                         message = d.Text,
                         severity = h.diagnostics.severities["warning"],
                         filename = u.path.join(params.cwd, d.Pos.Filename),
