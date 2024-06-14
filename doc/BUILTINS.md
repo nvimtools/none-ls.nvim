@@ -3871,7 +3871,7 @@ local sources = { null_ls.builtins.formatting.typstfmt }
 
 ### [typstyle](https://github.com/Enter-tainer/typstyle/)
 
-Formatter for typst
+Beautiful and reliable typst code formatter
 
 #### Usage
 
@@ -3884,7 +3884,6 @@ local sources = { null_ls.builtins.formatting.typstyle }
 - Filetypes: `{ "typ", "typst" }`
 - Method: `formatting`
 - Command: `typstyle`
-- Args: `{}`
 
 ### [uncrustify](https://github.com/uncrustify/uncrustify)
 

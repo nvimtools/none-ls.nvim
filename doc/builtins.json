@@ -1167,6 +1167,12 @@
         "typst"
       ]
     },
+    "typstyle": {
+      "filetypes": [
+        "typ",
+        "typst"
+      ]
+    },
     "uncrustify": {
       "filetypes": [
         "c",

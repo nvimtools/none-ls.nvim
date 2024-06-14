@@ -426,7 +426,7 @@ return {
     formatting = { "textlint" }
   },
   typ = {
-    formatting = { "typstfmt" }
+    formatting = { "typstfmt", "typstyle" }
   },
   typescript = {
     code_actions = { "refactoring" },
@@ -438,7 +438,7 @@ return {
     formatting = { "biome", "prettier", "prettierd", "rustywind" }
   },
   typst = {
-    formatting = { "typstfmt" }
+    formatting = { "typstfmt", "typstyle" }
   },
   verilog = {
     diagnostics = { "verilator" },

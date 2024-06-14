@@ -346,6 +346,9 @@ return {
   typstfmt = {
     filetypes = { "typ", "typst" }
   },
+  typstyle = {
+    filetypes = { "typ", "typst" }
+  },
   uncrustify = {
     filetypes = { "c", "cpp", "cs", "java" }
   },
