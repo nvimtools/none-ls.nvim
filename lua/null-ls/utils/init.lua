@@ -353,4 +353,14 @@ M.cosmiconfig = function(...)
     return require("null-ls.utils.cosmiconfig")(...)
 end
 
+--- Get vcs root
+---@return string|nil
+M.get_vcs_root = function()
+    local uv = vim.uv or vim.loop
+    local cwd = uv.cwd()
+    ---@diagnostic disable-next-line: param-type-mismatch
+    local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr")(cwd)
+    return vcs_root
+end
+
 return M
