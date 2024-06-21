@@ -1,4 +1,4 @@
-*null-ls.txt*                                        Last change: 2024 June 14
+*null-ls.txt*                                        Last change: 2024 June 22
 
 ==============================================================================
 Table of Contents                                  *null-ls-table-of-contents*
@@ -56,7 +56,7 @@ COMMUNITY                                                  *null-ls-community*
 Open a pull request to become a collaborator. If you have contributed to
 `null-ls.nvim` before, simply open an issue or comment on that commit.
 
-If you want to make changes, open a new a pull request. Find another
+If you want to make changes, open a new pull request. Find another
 collaborator to review your changes, as a review is required for the PR to be
 merged by yourself (subject to change if there are more collaborators in the
 future).
