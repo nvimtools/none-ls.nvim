@@ -3835,14 +3835,7 @@ One CLI to format your repo
 #### Usage
 
 ```lua
-local sources = {
-    null_ls.builtins.formatting.treefmt.with({
-        -- treefmt requires a config file
-        condition = function(utils)
-            return utils.root_has_file("treefmt.toml")
-        end,
-    }),
-}
+local sources = { null_ls.builtins.formatting.treefmt }
 ```
 
 #### Defaults
