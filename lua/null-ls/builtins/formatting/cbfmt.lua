@@ -19,6 +19,10 @@ return h.make_builtin({
             "--best-effort",
         },
         to_stdin = true,
+        -- cbfmt requires a config file
+        condition = function(utils)
+            return utils.root_has_file(".cbfmt.toml")
+        end,
     },
     factory = h.formatter_factory,
 })
