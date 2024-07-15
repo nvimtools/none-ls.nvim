@@ -20,6 +20,9 @@ return h.make_builtin({
         command = "vale",
         format = "json",
         to_stdin = true,
+        cwd = function(params)
+            return vim.fn.fnamemodify(params.bufname, ":h")
+        end,
         args = function(params)
             return { "--no-exit", "--output", "JSON", "--ext", "." .. vim.fn.fnamemodify(params.bufname, ":e") }
         end,
