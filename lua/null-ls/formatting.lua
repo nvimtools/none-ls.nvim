@@ -28,9 +28,13 @@ M.handler = function(method, original_params, handler)
 
         -- copy content and options to temp buffer
         local temp_bufnr = api.nvim_create_buf(false, true)
-        api.nvim_buf_set_option(temp_bufnr, "eol", api.nvim_buf_get_option(bufnr, "eol"))
-        api.nvim_buf_set_option(temp_bufnr, "fixeol", api.nvim_buf_get_option(bufnr, "fixeol"))
-        api.nvim_buf_set_option(temp_bufnr, "fileformat", api.nvim_buf_get_option(bufnr, "fileformat"))
+        api.nvim_set_option_value("eol", api.nvim_get_option_value("eol", { buf = bufnr }), { buf = temp_bufnr })
+        api.nvim_set_option_value("fixeol", api.nvim_get_option_value("fixeol", { buf = bufnr }), { buf = temp_bufnr })
+        api.nvim_set_option_value(
+            "fileformat",
+            api.nvim_get_option_value("fileformat", { buf = bufnr }),
+            { buf = temp_bufnr }
+        )
         api.nvim_buf_set_lines(temp_bufnr, 0, -1, false, api.nvim_buf_get_lines(bufnr, 0, -1, false))
 
         local called_handler = false
@@ -63,14 +67,14 @@ M.handler = function(method, original_params, handler)
         local make_params = function()
             local params = u.make_params(original_params, methods.map[method])
             -- override actual content w/ temp buffer content
-            params.content = u.buf.content(temp_bufnr)
+            params.content = u.buf.content(temp_bufnr) --[[ @as string[] ]]
             return params
         end
 
         local after_each = function(edits)
             local ok, err =
                 pcall(lsp.util.apply_text_edits, edits, temp_bufnr, require("null-ls.client").get_offset_encoding())
-            api.nvim_buf_set_option(temp_bufnr, "buflisted", false) -- apply_text_edits sets buflisted to true
+            api.nvim_set_option_value("buflisted", false, { buf = temp_bufnr }) -- apply_text_edits sets buflisted to true
             if not ok then
                 handle_err(err)
             end
@@ -99,7 +103,7 @@ M.handler = function(method, original_params, handler)
         end
 
         require("null-ls.generators").run_registered_sequentially({
-            filetype = api.nvim_buf_get_option(bufnr, "filetype"),
+            filetype = api.nvim_get_option_value("filetype", { buf = bufnr }),
             method = methods.map[method],
             make_params = make_params,
             postprocess = postprocess,

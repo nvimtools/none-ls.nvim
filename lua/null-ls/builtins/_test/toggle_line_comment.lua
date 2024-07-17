@@ -10,7 +10,7 @@ return h.make_builtin({
     generator = {
         fn = function(params)
             local bufnr = vim.api.nvim_get_current_buf()
-            local commentstring = vim.api.nvim_buf_get_option(bufnr, "commentstring")
+            local commentstring = vim.api.nvim_get_option_value("commentstring", { buf = bufnr })
             local raw_commentstring = commentstring:gsub(vim.pesc("%s"), "")
             local line = params.content[params.row]
 

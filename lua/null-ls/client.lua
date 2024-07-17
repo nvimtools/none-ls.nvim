@@ -10,8 +10,9 @@ local lsp = vim.lsp
 
 local client, id
 
+---@param bufnr number
 local should_attach = function(bufnr)
-    if api.nvim_buf_get_option(bufnr, "buftype") ~= "" or api.nvim_buf_get_name(bufnr) == "" then
+    if api.nvim_get_option_value("buftype", { buf = bufnr }) ~= "" or api.nvim_buf_get_name(bufnr) == "" then
         return false
     end
 
@@ -19,7 +20,7 @@ local should_attach = function(bufnr)
         return false
     end
 
-    local ft = api.nvim_buf_get_option(bufnr, "filetype")
+    local ft = api.nvim_get_option_value("filetype", { buf = bufnr })
     for _, source in ipairs(sources.get_all()) do
         if sources.is_available(source, ft) then
             return true
@@ -38,10 +39,10 @@ local get_root_dir = function(bufnr, cb)
     local fname = api.nvim_buf_get_name(bufnr)
     if config.root_dir_async then
         config.root_dir_async(fname, function(found_root_dir)
-            cb(found_root_dir or vim.loop.cwd() or ".")
+            cb(found_root_dir or vim.uv.cwd() or ".")
         end)
     else
-        cb(config.root_dir(fname) or vim.loop.cwd() or ".")
+        cb(config.root_dir(fname) or vim.uv.cwd() or ".")
     end
 end
 
@@ -86,7 +87,7 @@ end
 
 local M = {}
 
----@param root_dir string The root directory of the project.
+---@param root_dir? string The root directory of the project.
 M.start_client = function(root_dir)
     local config = {
         name = "null-ls",
@@ -123,7 +124,8 @@ end
 
 --- This function can be asynchronous. Use cb to run code after the buffer has been retried.
 ---
----@param cb function(did_attach: bool)|nil
+---@param bufnr? number
+---@param cb? fun(did_attach: boolean)
 M.try_add = function(bufnr, cb)
     bufnr = bufnr or api.nvim_get_current_buf()
     if not should_attach(bufnr) then
@@ -208,7 +210,7 @@ M.on_source_change = vim.schedule_wrap(function()
             M.retry_add(bufnr, function()
                 -- if in named buffer, we can register conditional sources immediately
                 -- we need to check only for normal buffers, excluding nofile and terminals
-                local buftype = api.nvim_buf_get_option(bufnr, "buftype")
+                local buftype = api.nvim_get_option_value("buftype", { buf = bufnr })
                 local bufname = api.nvim_buf_get_name(bufnr)
                 if s.has_conditional_sources() and bufname ~= "" and buftype == "" then
                     s.register_conditional_sources()
@@ -277,6 +279,7 @@ M.send_progress_notification = function(token, opts)
             },
         }, {
             client_id = client_id,
+            method = "$/progress",
         })
     end)
 end

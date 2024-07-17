@@ -4055,4 +4055,4 @@ local sources = { null_ls.builtins.hover.printenv }
 
 #### Notes
 
-- This source is similar in function to `printenv` where it shows value of environment variable, however this source uses `vim.loop.os_getenv` instead of `printenv` thus making it cross-platform.
+- This source is similar in function to `printenv` where it shows value of environment variable, however this source uses `vim.uv.os_getenv` instead of `printenv` thus making it cross-platform.

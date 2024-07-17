@@ -71,7 +71,7 @@ end
 ---@field client_id number null-ls client id
 ---@field lsp_method string|nil original LSP method
 ---@field lsp_params LspParams
----@field options table|nil options from LSP params (e.g. formattingOptions)
+---@field options table? options from LSP params (e.g. formattingOptions)
 ---@field content string[] buffer content
 ---@field bufnr number
 ---@field method string null-ls method
@@ -80,12 +80,12 @@ end
 ---@field bufname string
 ---@field filetype string buffer
 ---@field ft string buffer alias for filetype
----@field range NullLsRange|nil converted LSP range
----@field word_to_complete string|nil
+---@field range NullLsRange? converted LSP range
+---@field word_to_complete string?
 ---@field _pos number[]
 ---@field source_id number set by generators.run
----@field command string|nil set by generator_factory
----@field root string|nil set by generator_factory
+---@field command string? set by generator_factory
+---@field root string? set by generator_factory
 local Params = {}
 
 function Params:get_source()
@@ -120,7 +120,7 @@ function Params:new(params)
             end
 
             if k == "ft" or k == "filetype" then
-                local ft = api.nvim_buf_get_option(t.bufnr, "filetype")
+                local ft = api.nvim_get_option_value("filetype", { buf = t.bufnr })
                 rawset(t, k, ft)
                 return ft
             end

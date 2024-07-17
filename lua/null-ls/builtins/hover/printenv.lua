@@ -15,7 +15,7 @@ return h.make_builtin({
             -- Checks if cword is an environment variable
             -- If cword is environment variable and value not nil, show in hover window value of environment variable
             -- Else show in hover window "Error! `cword` is not an environment variable!"
-            local ok, value = pcall(vim.loop.os_getenv, cword)
+            local ok, value = pcall(vim.uv.os_getenv, cword)
             if ok and (value ~= nil) then
                 done({ cword .. ": " .. value })
             else
@@ -27,7 +27,7 @@ return h.make_builtin({
     meta = {
         description = "Shows the value for the current environment variable under the cursor.",
         notes = {
-            "This source is similar in function to `printenv` where it shows value of environment variable, however this source uses `vim.loop.os_getenv` instead of `printenv` thus making it cross-platform.",
+            "This source is similar in function to `printenv` where it shows value of environment variable, however this source uses `vim.uv.os_getenv` instead of `printenv` thus making it cross-platform.",
         },
     },
 })

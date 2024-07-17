@@ -1,7 +1,7 @@
 local log = require("null-ls.logger")
 local u = require("null-ls.utils")
 
-local uv = vim.loop
+local uv = vim.uv
 local wrap = vim.schedule_wrap --[[@as fun(cb: any): function]]
 
 local close_handle = function(handle)
@@ -149,7 +149,7 @@ M.spawn = function(cmd, args, opts)
         args = args,
         env = parsed_env,
         stdio = stdio,
-        cwd = opts.cwd or vim.loop.cwd(),
+        cwd = opts.cwd or vim.uv.cwd(),
     }
 
     handle, pid = uv.spawn(
@@ -224,15 +224,16 @@ end
 ---@param content string
 ---@param bufname string
 ---@param dirname string|nil
----@return string temp_path, fun() cleanup
+---@return string? temp_path, fun() cleanup
 M.temp_file = function(content, bufname, dirname)
     dirname = dirname or vim.fn.fnamemodify(bufname, ":h")
     local base_name = vim.fn.fnamemodify(bufname, ":t")
 
     local filename = string.format(".null-ls_%d_%s", math.random(100000, 999999), base_name)
+    ---@type string?
     local temp_path = u.path.join(dirname, filename)
 
-    local fd, err = uv.fs_open(temp_path, "w", 384)
+    local fd, err = uv.fs_open(temp_path --[[@as string]], "w", 384)
     if not fd then
         error("failed to create temp file: " .. err)
     end
@@ -271,7 +272,9 @@ M.read_file = function(path)
     local content
     local ok, err = pcall(function()
         local fd = uv.fs_open(path, "r", 438)
+        assert(fd)
         local stat = uv.fs_fstat(fd)
+        assert(stat)
         content = uv.fs_read(fd, stat.size, 0)
         uv.fs_close(fd)
     end)
@@ -288,7 +291,7 @@ end
 ---@param flag string|number
 M.write_file = function(path, txt, flag)
     uv.fs_open(path, flag, 438, function(open_err, fd)
-        assert(not open_err, open_err)
+        assert(not open_err and fd, open_err)
         uv.fs_write(fd, txt, -1, function(write_err)
             assert(not write_err, write_err)
             uv.fs_close(fd, function(close_err)

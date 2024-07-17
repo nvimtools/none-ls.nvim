@@ -53,7 +53,7 @@ M.show_window = function(opts)
     opts = opts or {}
     local client = require("null-ls.client").get_client()
     local bufnr = api.nvim_get_current_buf()
-    local filetype = api.nvim_buf_get_option(bufnr, "filetype")
+    local filetype = api.nvim_get_option_value("filetype", { buf = bufnr })
     local highlights = {}
     local is_attached = true
     if not client or not lsp.buf_is_attached(bufnr, client.id) then
@@ -160,12 +160,12 @@ M.show_window = function(opts)
     end
 
     local win_bufnr, win_id = make_window(0.8, 0.7, opts.border or c.get().border)
-    api.nvim_win_set_option(win_id, "winhl", "FloatBorder:NullLsInfoBorder")
+    api.nvim_set_option_value("winhl", "FloatBorder:NullLsInfoBorder", { win = win_id })
 
     api.nvim_buf_set_lines(win_bufnr, 0, -1, true, lines)
-    api.nvim_buf_set_option(win_bufnr, "buftype", "nofile")
-    api.nvim_buf_set_option(win_bufnr, "filetype", "null-ls-info")
-    api.nvim_buf_set_option(win_bufnr, "modifiable", false)
+    api.nvim_set_option_value("buftype", "nofile", { buf = win_bufnr })
+    api.nvim_set_option_value("filetype", "null-ls-info", { buf = win_bufnr })
+    api.nvim_set_option_value("modifiable", false, { buf = win_bufnr })
 
     for _, hi in ipairs(highlights) do
         vim.fn.matchadd(hi[1], hi[2])

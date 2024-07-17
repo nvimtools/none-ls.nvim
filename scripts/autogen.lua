@@ -9,14 +9,16 @@ local methods = {}
 
 -- utils
 local is_directory = function(path)
-    local stat = vim.loop.fs_stat(path)
+    local stat = vim.uv.fs_stat(path)
     return stat and stat.type == "directory" or false
 end
 local write_file = require("null-ls.loop").write_file
 local join_paths = u.path.join
 
 -- constants
-local NULL_LS_DIR = vim.loop.cwd()
+local NULL_LS_DIR = vim.uv.cwd()
+assert(NULL_LS_DIR)
+
 local BUILTINS_DIR = join_paths(NULL_LS_DIR, "lua", "null-ls", "builtins")
 local META_DIR = join_paths(BUILTINS_DIR, "_meta")
 local DOC_FILE = join_paths(NULL_LS_DIR, "doc", "BUILTINS.md")
@@ -186,7 +188,6 @@ local generate_builtin_config = function(source, method, name)
                     table.insert(indented_usage, line)
                 end
             end
-            indented_usage = table.concat(indented_usage, "\n")
 
             vim.list_extend(config, {
                 "",
@@ -203,7 +204,7 @@ local %s = null_ls.builtins.%s.%s.with({
                     method,
                     name,
                     option.key,
-                    indented_usage
+                    table.concat(indented_usage, "\n")
                 ),
             })
         end
@@ -259,7 +260,7 @@ end
 -- main
 do
     -- get methods from builtin dir folder structure
-    for _, entry in ipairs(vim.fn.glob(BUILTINS_DIR .. "/*", 1, 1)) do
+    for _, entry in ipairs(vim.fn.glob(BUILTINS_DIR .. "/*", true, true)) do
         if is_directory(entry) then
             local method = entry:gsub(".*/", "")
             -- ignore internal
@@ -280,7 +281,7 @@ do
         local method_dir = join_paths(BUILTINS_DIR, method)
         local method_pattern = method_dir .. "/*.lua"
         -- sort order is not guaranteed, so ensure it here
-        local files = vim.fn.glob(method_pattern, 1, 1)
+        local files = vim.fn.glob(method_pattern, true, true)
         table.sort(files, function(a, b)
             return a:upper() < b:upper()
         end)
@@ -289,7 +290,7 @@ do
             local name = filename:gsub(".*/", ""):gsub("%.lua$", "")
             local source = builtins[method][name]
             if not source then
-                string.format("failed to load builtin %s for method %s", name, method)
+                error(string.format("failed to load builtin %s for method %s", name, method))
             else
                 generate_source_metadata(source, method, name)
                 generate_builtin_content(source, method, name)

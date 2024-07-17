@@ -5,7 +5,7 @@ local REAL_SOURCE_WAIT_TIME = 400
 
 local M = {}
 
-M.test_dir = u.path.join(vim.loop.cwd(), "test")
+M.test_dir = u.path.join(vim.uv.cwd(), "test")
 
 M.get_test_file_path = function(file)
     return u.path.join(M.test_dir, "files", file)

@@ -30,6 +30,7 @@ local range_formatting_args_factory = function(base_args, start_arg, end_arg, op
         end
 
         local range = params.range
+        assert(range)
         local row, col, end_row, end_col = range.row, range.col, range.end_row, range.end_col
         if opts.row_offset then
             row = row + opts.row_offset

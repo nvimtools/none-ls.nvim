@@ -1,5 +1,5 @@
 -- this template is borrowed from nvim-lspconfig
-local on_windows = vim.loop.os_uname().version:match("Windows")
+local on_windows = vim.uv.os_uname().version:match("Windows")
 
 local function join_paths(...)
     local path_sep = on_windows and "\\" or "/"
@@ -10,7 +10,7 @@ end
 vim.g.loaded_remote_plugins = ""
 vim.cmd([[set runtimepath=$VIMRUNTIME]])
 
-local temp_dir = vim.loop.os_getenv("TEMP") or "/tmp"
+local temp_dir = vim.env.TEMP or "/tmp"
 
 vim.cmd("set packpath=" .. join_paths(temp_dir, "nvim", "site"))
 

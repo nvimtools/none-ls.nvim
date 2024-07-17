@@ -54,6 +54,11 @@ local convert_range = function(diagnostic)
         end_col = 1
     end
 
+    assert(row)
+    assert(col)
+    assert(end_row)
+    assert(end_col)
+
     return u.range.to_lsp({ row = row, col = col, end_row = end_row, end_col = end_col })
 end
 

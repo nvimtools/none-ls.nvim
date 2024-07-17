@@ -466,7 +466,7 @@ describe("e2e", function()
 
                 assert.equals(vim.tbl_count(actions[1].result), 1)
                 assert.equals(copy._opts._last_command, "ls")
-                assert.equals(copy._opts._last_cwd, vim.loop.cwd())
+                assert.equals(copy._opts._last_cwd, vim.uv.cwd())
             end)
         end)
 
