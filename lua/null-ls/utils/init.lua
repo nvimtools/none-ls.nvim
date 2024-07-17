@@ -120,8 +120,7 @@ M.make_conditional_utils = function()
             return false
         end,
         root_has_file_matches = function(pattern)
-            local handle = vim.uv.fs_scandir(root)
-            assert(handle)
+            local handle = assert(vim.uv.fs_scandir(root), "Unable to scan " .. root)
             local entry = vim.uv.fs_scandir_next(handle)
 
             while entry do
@@ -229,15 +228,14 @@ M.get_root = function()
     if not root then
         local fname = api.nvim_buf_get_name(0)
         if fname ~= "" then
-            local v = require("null-ls.config").get().root_dir(fname)
-            assert(v)
+            local v = assert(require("null-ls.config").get().root_dir(fname), "cannot infer root_dir")
             root = v
         end
     end
 
     -- fall back to cwd
-    local cwd = vim.uv.cwd()
-    assert(cwd)
+    local cwd, err_name, err_msg = vim.uv.cwd()
+    assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
 
     return root or cwd
 end
@@ -366,8 +364,8 @@ end
 ---@return string|nil
 M.get_vcs_root = function()
     local uv = vim.uv
-    local cwd = uv.cwd()
-    assert(cwd)
+    local cwd, err_name, err_msg = uv.cwd()
+    assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
     local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr")(cwd)
     return vcs_root
 end

@@ -44,20 +44,19 @@ end
 
 -- assume 1-indexed ranges
 local convert_range = function(diagnostic)
-    local row = tonumber(diagnostic.row or 1)
-    local col = tonumber(diagnostic.col or 1)
-    local end_row = tonumber(diagnostic.end_row or row)
-    local end_col = tonumber(diagnostic.end_col or 1)
+    local format = function(...)
+        return ("cannot convert %s to number"):format(...)
+    end
+
+    local row = assert(tonumber(diagnostic.row or 1), format(diagnostic.row))
+    local col = assert(tonumber(diagnostic.col or 1), format(diagnostic.col))
+    local end_row = assert(tonumber(diagnostic.end_row or row), format(diagnostic.end_row or row))
+    local end_col = assert(tonumber(diagnostic.end_col or 1), format(diagnostic.end_col))
     -- wrap to next line
     if end_row == row and end_col <= col then
         end_row = end_row + 1
         end_col = 1
     end
-
-    assert(row)
-    assert(col)
-    assert(end_row)
-    assert(end_col)
 
     return u.range.to_lsp({ row = row, col = col, end_row = end_row, end_col = end_col })
 end

@@ -271,10 +271,18 @@ end
 M.read_file = function(path)
     local content
     local ok, err = pcall(function()
-        local fd = uv.fs_open(path, "r", 438)
-        assert(fd)
-        local stat = uv.fs_fstat(fd)
-        assert(stat)
+        local err_name, err_msg
+        local fd
+        local stat
+
+        local fmt = function(...)
+            return ("[Error %s]: %s"):format(...)
+        end
+
+        fd, err_name, err_msg = uv.fs_open(path, "r", 438)
+        assert(fd, fmt(err_name, err_msg))
+        stat, err_name, err_msg = uv.fs_fstat(fd)
+        assert(stat, fmt(err_name, err_msg))
         content = uv.fs_read(fd, stat.size, 0)
         uv.fs_close(fd)
     end)
