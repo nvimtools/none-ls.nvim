@@ -32,6 +32,7 @@ return h.make_builtin({
         "handlebars",
         "svelte",
         "astro",
+        "htmlangular",
     },
     generator_opts = {
         command = "prettierd",
