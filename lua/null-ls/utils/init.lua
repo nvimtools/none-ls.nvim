@@ -228,8 +228,8 @@ M.get_root = function()
     if not root then
         local fname = api.nvim_buf_get_name(0)
         if fname ~= "" then
-            local v = assert(require("null-ls.config").get().root_dir(fname), "cannot infer root_dir")
-            root = v
+            -- if root is nil, it will be set to cwd
+            root = require("null-ls.config").get().root_dir(fname)
         end
     end
 
