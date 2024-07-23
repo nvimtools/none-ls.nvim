@@ -174,7 +174,7 @@ return {
     formatting = { "haxe_formatter" }
   },
   hcl = {
-    formatting = { "hclfmt", "packer" }
+    formatting = { "hclfmt", "packer", "terragrunt_fmt" }
   },
   html = {
     diagnostics = { "markuplint", "tidy" },
