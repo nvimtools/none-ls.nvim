@@ -1216,7 +1216,12 @@
       "filetypes": [
         "clojure"
       ]
-    }
+    },
+    "terragrunt_fmt": {
+      "filetypes": [
+        "hcl"
+      ]
+    },
   },
   "hover": {
     "dictionary": {

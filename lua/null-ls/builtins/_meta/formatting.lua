@@ -331,6 +331,9 @@ return {
   terraform_fmt = {
     filetypes = { "terraform", "tf", "terraform-vars" }
   },
+  terragrunt_fmt = {
+    filetypes = { "hcl" }
+  },
   textlint = {
     filetypes = { "txt", "markdown" }
   },

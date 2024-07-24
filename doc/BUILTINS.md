@@ -3760,6 +3760,23 @@ local sources = { null_ls.builtins.formatting.swift_format }
 - Command: `swift-format`
 - Args: `{}`
 
+### [terragrunt_fmt](https://www.terraform.io/docs/cli/commands/fmt.html)
+
+The terragrunt hclfmt command rewrites `terragrunt` configuration files to a canonical format and style.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.terragrunt_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "hcl" }`
+- Method: `formatting`
+- Command: `terragrunt`
+- Args: `{ "hclfmt", "-" }`
+
 ### [terraform_fmt](https://www.terraform.io/docs/cli/commands/fmt.html)
 
 The terraform-fmt command rewrites `terraform` configuration files to a canonical format and style.
