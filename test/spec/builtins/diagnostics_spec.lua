@@ -1605,4 +1605,52 @@ INFO: Analysis cache updated]],
             }, diagnostic)
         end)
     end)
+    describe("terragrunt_validate", function()
+        local linter = diagnostics.terragrunt_validate
+        local parser = linter._opts.on_output
+
+        it("should create a diagnostic for specific errors", function()
+            local output = vim.json.decode([[
+                [{
+                    "severity": "error",
+                    "summary": "Missing name for include",
+                    "detail": "All include blocks must have 1 labels (name).",
+                    "range": {
+                        "filename": "/src/terragrunt.hcl",
+                        "start": {
+                            "line": 1,
+                            "column": 9,
+                            "byte": 8
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10,
+                            "byte": 9
+                        }
+                    },
+                    "snippet": {
+                        "context": "include",
+                        "code": "include {",
+                        "start_line": 1,
+                        "highlight_start_offset": 8,
+                        "highlight_end_offset": 9,
+                        "values": null
+                    }
+                }]
+            ]])
+            local diagnostic = parser({ output = output })
+            assert.same({
+                {
+                    col = 9,
+                    end_col = 10,
+                    end_row = 1,
+                    message = "Missing name for include - All include blocks must have 1 labels (name).",
+                    row = 1,
+                    severity = 1,
+                    source = "terragrunt validate",
+                    filename = "/src/terragrunt.hcl",
+                },
+            }, diagnostic)
+        end)
+    end)
 end)
