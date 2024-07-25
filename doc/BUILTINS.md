@@ -134,6 +134,21 @@ local sources = { null_ls.builtins.code_actions.refactoring }
 
 - Requires visually selecting the code you want to refactor and calling `:'<,'>lua vim.lsp.buf.code_action()`
 
+### [regal](https://docs.styra.com/regal)
+
+Allows ignoring broken rules from Regal linter.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.code_actions.regal }
+```
+
+#### Defaults
+
+- Filetypes: `{ "rego" }`
+- Method: `code_action`
+
 ### [statix](https://github.com/nerdypepper/statix)
 
 Lints and suggestions for the nix programming language.
@@ -3157,7 +3172,7 @@ local sources = { null_ls.builtins.formatting.prettier }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }`
+- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro", "htmlangular" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettier`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettier.lua))
@@ -3179,7 +3194,7 @@ local sources = { null_ls.builtins.formatting.prettierd }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro" }`
+- Filetypes: `{ "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte", "astro", "htmlangular" }`
 - Methods: `formatting, range_formatting`
 - Command: `prettierd`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/prettierd.lua))
@@ -3760,23 +3775,6 @@ local sources = { null_ls.builtins.formatting.swift_format }
 - Command: `swift-format`
 - Args: `{}`
 
-### [terragrunt_fmt](https://www.terraform.io/docs/cli/commands/fmt.html)
-
-The terragrunt hclfmt command rewrites `terragrunt` configuration files to a canonical format and style.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.formatting.terragrunt_fmt }
-```
-
-#### Defaults
-
-- Filetypes: `{ "hcl" }`
-- Method: `formatting`
-- Command: `terragrunt`
-- Args: `{ "hclfmt", "-" }`
-
 ### [terraform_fmt](https://www.terraform.io/docs/cli/commands/fmt.html)
 
 The terraform-fmt command rewrites `terraform` configuration files to a canonical format and style.
@@ -3793,6 +3791,23 @@ local sources = { null_ls.builtins.formatting.terraform_fmt }
 - Method: `formatting`
 - Command: `terraform`
 - Args: `{ "fmt", "-" }`
+
+### [terragrunt_fmt](https://terragrunt.gruntwork.io/docs/reference/cli-options/#hclfmt)
+
+The terragrunt hclfmt command rewrites `terragrunt` configuration files to a canonical format and style.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.terragrunt_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "hcl" }`
+- Method: `formatting`
+- Command: `terragrunt`
+- Args: `{ "hclfmt", "$FILENAME" }`
 
 ### [textlint](https://github.com/textlint/textlint)
 

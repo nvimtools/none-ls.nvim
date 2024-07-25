@@ -33,6 +33,11 @@
         "typescript"
       ]
     },
+    "regal": {
+      "filetypes": [
+        "rego"
+      ]
+    },
     "statix": {
       "filetypes": [
         "nix"
@@ -933,7 +938,8 @@
         "graphql",
         "handlebars",
         "svelte",
-        "astro"
+        "astro",
+        "htmlangular"
       ]
     },
     "prettierd": {
@@ -955,7 +961,8 @@
         "graphql",
         "handlebars",
         "svelte",
-        "astro"
+        "astro",
+        "htmlangular"
       ]
     },
     "pretty_php": {
@@ -1140,6 +1147,11 @@
         "terraform-vars"
       ]
     },
+    "terragrunt_fmt": {
+      "filetypes": [
+        "hcl"
+      ]
+    },
     "textlint": {
       "filetypes": [
         "txt",
@@ -1216,12 +1228,7 @@
       "filetypes": [
         "clojure"
       ]
-    },
-    "terragrunt_fmt": {
-      "filetypes": [
-        "hcl"
-      ]
-    },
+    }
   },
   "hover": {
     "dictionary": {

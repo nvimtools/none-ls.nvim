@@ -19,6 +19,9 @@ return {
   refactoring = {
     filetypes = { "go", "javascript", "lua", "python", "typescript" }
   },
+  regal = {
+    filetypes = { "rego" }
+  },
   statix = {
     filetypes = { "nix" }
   },
