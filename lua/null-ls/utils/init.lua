@@ -215,7 +215,7 @@ end
 --- gets root using best available method
 ---@return string root
 M.get_root = function()
-    ---@type string
+    ---@type string|nil
     local root
 
     -- prefer getting from client
@@ -228,7 +228,6 @@ M.get_root = function()
     if not root then
         local fname = api.nvim_buf_get_name(0)
         if fname ~= "" then
-            -- if root is nil, it will be set to cwd
             root = require("null-ls.config").get().root_dir(fname)
         end
     end
