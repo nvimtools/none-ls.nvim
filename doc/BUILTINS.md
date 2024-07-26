@@ -1567,6 +1567,24 @@ local sources = { null_ls.builtins.diagnostics.terraform_validate }
 - Command: `terraform`
 - Args: `{ "validate", "-json" }`
 
+### [terragrunt_validate](https://terragrunt.gruntwork.io/)
+
+Terragrunt validate is is a subcommand of terragrunt to validate configuration files in a directory
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.terragrunt_validate }
+```
+
+#### Defaults
+
+- Filetypes: `{ "hcl" }`
+- Method: `diagnostics_on_save`
+- Command: `terragrunt`
+- Args: `{ "hclvalidate", "--terragrunt-hclvalidate-json" }`
+
+
 ### [textidote](https://github.com/sylvainhalle/textidote)
 
 Spelling, grammar and style checking on LaTeX documents.

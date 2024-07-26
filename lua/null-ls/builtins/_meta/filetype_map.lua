@@ -174,6 +174,7 @@ return {
     formatting = { "haxe_formatter" }
   },
   hcl = {
+        diagnostics = { "terragrunt_validate" },
     formatting = { "hclfmt", "packer", "terragrunt_fmt" }
   },
   html = {

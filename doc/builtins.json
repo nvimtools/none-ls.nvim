@@ -433,6 +433,11 @@
         "terraform-vars"
       ]
     },
+    "terragrunt_validate": {
+      "filetypes": [
+        "hcl",
+      ]
+    },
     "textidote": {
       "filetypes": [
         "markdown",
