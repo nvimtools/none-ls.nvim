@@ -1567,7 +1567,7 @@ local sources = { null_ls.builtins.diagnostics.terraform_validate }
 - Command: `terraform`
 - Args: `{ "validate", "-json" }`
 
-### [terragrunt_validate](https://terragrunt.gruntwork.io/)
+### [terragrunt_validate](https://terragrunt.gruntwork.io/docs/reference/cli-options/#validate-inputs)
 
 Terragrunt validate is is a subcommand of terragrunt to validate configuration files in a directory
 
@@ -1583,7 +1583,6 @@ local sources = { null_ls.builtins.diagnostics.terragrunt_validate }
 - Method: `diagnostics_on_save`
 - Command: `terragrunt`
 - Args: `{ "hclvalidate", "--terragrunt-hclvalidate-json" }`
-
 
 ### [textidote](https://github.com/sylvainhalle/textidote)
 

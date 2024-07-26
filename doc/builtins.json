@@ -435,7 +435,7 @@
     },
     "terragrunt_validate": {
       "filetypes": [
-        "hcl",
+        "hcl"
       ]
     },
     "textidote": {
