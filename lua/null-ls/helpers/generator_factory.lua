@@ -26,6 +26,9 @@ local parse_args = function(args, params)
         ["FILENAME"] = function()
             return params.temp_path or params.bufname
         end,
+        ["RELPATH"] = function()
+            return vim.fn.fnamemodify(params.bufname, ":p:.")
+        end,
         ["DIRNAME"] = function()
             return vim.fn.fnamemodify(params.bufname, ":h")
         end,
