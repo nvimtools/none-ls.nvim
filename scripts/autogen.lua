@@ -3,21 +3,21 @@
 -- imports
 local builtins = require("null-ls.builtins")
 local u = require("null-ls.utils")
+local loop = require("null-ls.loop")
 
 -- shared
 local methods = {}
 
 -- utils
 local is_directory = function(path)
-    local stat = vim.uv.fs_stat(path)
+    local stat = loop.uv.fs_stat(path)
     return stat and stat.type == "directory" or false
 end
 local write_file = require("null-ls.loop").write_file
 local join_paths = u.path.join
 
 -- constants
-local NULL_LS_DIR = vim.uv.cwd()
-assert(NULL_LS_DIR)
+local NULL_LS_DIR = assert(loop.uv.cwd())
 
 local BUILTINS_DIR = join_paths(NULL_LS_DIR, "lua", "null-ls", "builtins")
 local META_DIR = join_paths(BUILTINS_DIR, "_meta")

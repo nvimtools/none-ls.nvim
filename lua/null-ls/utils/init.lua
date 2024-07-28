@@ -1,7 +1,8 @@
 local api = vim.api
 local util = require("null-ls.utils.tbl_flatten")
+local uv = vim.uv or vim.loop
 
-local is_windows = vim.uv.os_uname().version:match("Windows")
+local is_windows = uv.os_uname().version:match("Windows")
 local path_separator = is_windows and "\\" or "/"
 
 local format_line_ending = {
@@ -103,7 +104,7 @@ M.make_conditional_utils = function()
         has_file = function(...)
             local patterns = util.tbl_flatten({ ... })
             for _, name in ipairs(patterns) do
-                local full_path = vim.uv.fs_realpath(name)
+                local full_path = uv.fs_realpath(name)
                 if full_path and M.path.exists(full_path) then
                     return true
                 end
@@ -120,15 +121,15 @@ M.make_conditional_utils = function()
             return false
         end,
         root_has_file_matches = function(pattern)
-            local handle = assert(vim.uv.fs_scandir(root), "Unable to scan " .. root)
-            local entry = vim.uv.fs_scandir_next(handle)
+            local handle = assert(uv.fs_scandir(root), "Unable to scan " .. root)
+            local entry = uv.fs_scandir_next(handle)
 
             while entry do
                 if entry:match(pattern) then
                     return true
                 end
 
-                entry = vim.uv.fs_scandir_next(handle)
+                entry = uv.fs_scandir_next(handle)
             end
 
             return false
@@ -233,7 +234,7 @@ M.get_root = function()
     end
 
     -- fall back to cwd
-    local cwd, err_name, err_msg = vim.uv.cwd()
+    local cwd, err_name, err_msg = uv.cwd()
     assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
 
     return root or cwd
@@ -245,14 +246,14 @@ end
 ---@field ancestors fun(start_path: string): fun(): string
 M.path = {
     exists = function(filename)
-        local stat = vim.uv.fs_stat(filename)
+        local stat = uv.fs_stat(filename)
         return stat ~= nil
     end,
     exists_async = function(filename)
         local co = coroutine.running()
         local fs_stat_err = nil
         local fs_stat_stat = nil
-        vim.uv.fs_stat(filename, function(err, stat)
+        uv.fs_stat(filename, function(err, stat)
             fs_stat_err, fs_stat_stat = err, stat
             if coroutine.status(co) == "suspended" then
                 coroutine.resume(co)
@@ -362,7 +363,6 @@ end
 --- Get vcs root
 ---@return string|nil
 M.get_vcs_root = function()
-    local uv = vim.uv
     local cwd, err_name, err_msg = uv.cwd()
     assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
     local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr")(cwd)

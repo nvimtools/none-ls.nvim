@@ -1,8 +1,8 @@
 local log = require("null-ls.logger")
 local u = require("null-ls.utils")
 
-local uv = vim.uv
-local wrap = vim.schedule_wrap --[[@as fun(cb: any): function]]
+local uv = vim.uv or vim.loop
+local wrap = vim.schedule_wrap
 
 local close_handle = function(handle)
     if handle and not handle:is_closing() then
@@ -149,7 +149,7 @@ M.spawn = function(cmd, args, opts)
         args = args,
         env = parsed_env,
         stdio = stdio,
-        cwd = opts.cwd or vim.uv.cwd(),
+        cwd = opts.cwd or uv.cwd(),
     }
 
     handle, pid = uv.spawn(
@@ -308,4 +308,7 @@ M.write_file = function(path, txt, flag)
         end)
     end)
 end
+
+M.uv = uv
+
 return M

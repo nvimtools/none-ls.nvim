@@ -4,6 +4,7 @@ local methods = require("null-ls.methods")
 local s = require("null-ls.state")
 local sources = require("null-ls.sources")
 local u = require("null-ls.utils")
+local loop = require("null-ls.loop")
 
 local api = vim.api
 local lsp = vim.lsp
@@ -39,10 +40,10 @@ local get_root_dir = function(bufnr, cb)
     local fname = api.nvim_buf_get_name(bufnr)
     if config.root_dir_async then
         config.root_dir_async(fname, function(found_root_dir)
-            cb(found_root_dir or vim.uv.cwd() or ".")
+            cb(found_root_dir or loop.uv.cwd() or ".")
         end)
     else
-        cb(config.root_dir(fname) or vim.uv.cwd() or ".")
+        cb(config.root_dir(fname) or loop.uv.cwd() or ".")
     end
 end
 

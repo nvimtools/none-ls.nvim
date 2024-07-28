@@ -1,5 +1,6 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
+local loop = require("null-ls.loop")
 
 local HOVER = methods.internal.HOVER
 
@@ -15,7 +16,7 @@ return h.make_builtin({
             -- Checks if cword is an environment variable
             -- If cword is environment variable and value not nil, show in hover window value of environment variable
             -- Else show in hover window "Error! `cword` is not an environment variable!"
-            local ok, value = pcall(vim.uv.os_getenv, cword)
+            local ok, value = pcall(loop.uv.os_getenv, cword)
             if ok and (value ~= nil) then
                 done({ cword .. ": " .. value })
             else
