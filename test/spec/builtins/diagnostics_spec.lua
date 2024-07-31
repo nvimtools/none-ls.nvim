@@ -72,29 +72,6 @@ describe("diagnostics", function()
             }, diagnostic)
         end)
     end)
-    describe("chktex", function()
-        local linter = diagnostics.chktex
-        local parser = linter._opts.on_output
-        local file = {
-            [[\documentclass{article}]],
-            [[\begin{document}]],
-            [[Lorem ipsum dolor \sit amet]],
-            [[\end{document}]],
-        }
-
-        it("should create a diagnostic", function()
-            local output = [[3:23:1:Warning:1:Command terminated with space.]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                code = "1",
-                row = "3",
-                col = "23",
-                end_col = 24,
-                severity = 2,
-                message = "Command terminated with space.",
-            }, diagnostic)
-        end)
-    end)
 
     describe("credo", function()
         local linter = diagnostics.credo
@@ -293,27 +270,6 @@ describe("diagnostics", function()
         end)
     end)
 
-    describe("luacheck", function()
-        local linter = diagnostics.luacheck
-        local parser = linter._opts.on_output
-        local file = {
-            [[sx = {]],
-        }
-
-        it("should create a diagnostic", function()
-            local output = [[test.lua:2:1-1: (E011) expected expression near <eof>]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                code = "011",
-                row = "2",
-                col = "1",
-                end_col = 2,
-                severity = 1,
-                message = "expected expression near <eof>",
-            }, diagnostic)
-        end)
-    end)
-
     describe("write-good", function()
         local linter = diagnostics.write_good
         local parser = linter._opts.on_output
@@ -460,68 +416,6 @@ describe("diagnostics", function()
         end)
     end)
 
-    describe("shellcheck", function()
-        local linter = diagnostics.shellcheck
-        local parser = linter._opts.on_output
-
-        it("should create a diagnostic with info severity", function()
-            local output = vim.json.decode([[
-            {
-              "comments": [{
-                "file": "./OpenCast.sh",
-                "line": 21,
-                "endLine": 21,
-                "column": 8,
-                "endColumn": 37,
-                "level": "info",
-                "code": 1091,
-                "message": "Not following: script/cli_builder.sh was not specified as input (see shellcheck -x).",
-                "fix": null
-              }]
-            } ]])
-            local diagnostic = parser({ output = output })
-            assert.same({
-                {
-                    code = 1091,
-                    row = 21,
-                    end_row = 21,
-                    col = 8,
-                    end_col = 37,
-                    severity = 3,
-                    message = "Not following: script/cli_builder.sh was not specified as input (see shellcheck -x).",
-                },
-            }, diagnostic)
-        end)
-        it("should create a diagnostic with style severity", function()
-            local output = vim.json.decode([[
-            {
-              "comments": [{
-                "file": "./OpenCast.sh",
-                "line": 21,
-                "endLine": 21,
-                "column": 8,
-                "endColumn": 37,
-                "level": "style",
-                "code": 1091,
-                "message": "Not following: script/cli_builder.sh was not specified as input (see shellcheck -x).",
-                "fix": null
-              }]
-            } ]])
-            local diagnostic = parser({ output = output })
-            assert.same({
-                {
-                    code = 1091,
-                    row = 21,
-                    end_row = 21,
-                    col = 8,
-                    end_col = 37,
-                    severity = 4,
-                    message = "Not following: script/cli_builder.sh was not specified as input (see shellcheck -x).",
-                },
-            }, diagnostic)
-        end)
-    end)
-
     describe("selene", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
@@ -594,201 +488,6 @@ describe("diagnostics", function()
         end)
     end)
 
-    describe("eslint", function()
-        local linter = diagnostics.eslint
-        local parser = linter._opts.on_output
-
-        describe("with non fixable diagnostic", function()
-            it("should create a diagnostic with warning severity", function()
-                local output = vim.json.decode([[
-            [{
-              "filePath": "/home/luc/Projects/Pi-OpenCast/webapp/src/index.js",
-              "messages": [
-                {
-                  "ruleId": "quotes",
-                  "severity": 1,
-                  "message": "Strings must use singlequote.",
-                  "line": 1,
-                  "column": 19,
-                  "nodeType": "Literal",
-                  "messageId": "wrongQuotes",
-                  "endLine": 1,
-                  "endColumn": 26
-                }
-              ]
-            }] ]])
-                local diagnostic = parser({ output = output })
-                assert.same({
-                    {
-                        row = 1,
-                        end_row = 1,
-                        col = 19,
-                        end_col = 26,
-                        severity = 2,
-                        code = "quotes",
-                        message = "Strings must use singlequote.",
-                        user_data = {
-                            fixable = false,
-                        },
-                    },
-                }, diagnostic)
-            end)
-
-            it("should create a diagnostic with error severity", function()
-                local output = vim.json.decode([[
-            [{
-              "filePath": "/home/luc/Projects/Pi-OpenCast/webapp/src/index.js",
-              "messages": [
-                {
-                  "ruleId": "quotes",
-                  "severity": 2,
-                  "message": "Strings must use singlequote.",
-                  "line": 1,
-                  "column": 19,
-                  "nodeType": "Literal",
-                  "messageId": "wrongQuotes",
-                  "endLine": 1,
-                  "endColumn": 26
-                }
-              ]
-            }] ]])
-                local diagnostic = parser({ output = output })
-                assert.same({
-                    {
-                        row = 1,
-                        end_row = 1,
-                        col = 19,
-                        end_col = 26,
-                        severity = 1,
-                        code = "quotes",
-                        message = "Strings must use singlequote.",
-                        user_data = {
-                            fixable = false,
-                        },
-                    },
-                }, diagnostic)
-            end)
-        end)
-
-        describe("with fixable diagnostic", function()
-            it("should create a diagnostic with warning severity", function()
-                local output = vim.json.decode([[
-            [{
-              "filePath": "/home/luc/Projects/Pi-OpenCast/webapp/src/index.js",
-              "messages": [
-                {
-                  "ruleId": "quotes",
-                  "severity": 1,
-                  "message": "Strings must use singlequote.",
-                  "line": 1,
-                  "column": 19,
-                  "nodeType": "Literal",
-                  "messageId": "wrongQuotes",
-                  "endLine": 1,
-                  "endColumn": 26,
-                  "fix": {
-                    "range": [
-                      18,
-                      25
-                    ],
-                    "text": "'react'"
-                  }
-                }
-              ]
-            }] ]])
-                local diagnostic = parser({ output = output })
-                assert.same({
-                    {
-                        row = 1,
-                        end_row = 1,
-                        col = 19,
-                        end_col = 26,
-                        severity = 2,
-                        code = "quotes",
-                        message = "Strings must use singlequote.",
-                        user_data = {
-                            fixable = true,
-                        },
-                    },
-                }, diagnostic)
-            end)
-
-            it("should create a diagnostic with error severity", function()
-                local output = vim.json.decode([[
-            [{
-              "filePath": "/home/luc/Projects/Pi-OpenCast/webapp/src/index.js",
-              "messages": [
-                {
-                  "ruleId": "quotes",
-                  "severity": 2,
-                  "message": "Strings must use singlequote.",
-                  "line": 1,
-                  "column": 19,
-                  "nodeType": "Literal",
-                  "messageId": "wrongQuotes",
-                  "endLine": 1,
-                  "endColumn": 26,
-                  "fix": {
-                    "range": [
-                      18,
-                      25
-                    ],
-                    "text": "'react'"
-                  }
-                }
-              ]
-            }] ]])
-                local diagnostic = parser({ output = output })
-                assert.same({
-                    {
-                        row = 1,
-                        end_row = 1,
-                        col = 19,
-                        end_col = 26,
-                        severity = 1,
-                        code = "quotes",
-                        message = "Strings must use singlequote.",
-                        user_data = {
-                            fixable = true,
-                        },
-                    },
-                }, diagnostic)
-            end)
-        end)
-    end)
-
-    describe("standardjs", function()
-        local linter = diagnostics.standardjs
-        local parser = linter._opts.on_output
-
-        it("should create a diagnostic with error severity", function()
-            local file = {
-                [[export const foo = () => { return 'hello']],
-            }
-            local output = [[rules.js:1:2: Parsing error: Unexpected token]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                row = "1",
-                col = "2",
-                severity = 1,
-                message = "Unexpected token",
-            }, diagnostic)
-        end)
-        it("should create a diagnostic with warning severity", function()
-            local file = {
-                [[export const foo = () => { return "hello" }]],
-            }
-            local output = [[rules.js:1:35: Strings must use singlequote.]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                row = "1",
-                col = "35",
-                severity = 2,
-                message = "Strings must use singlequote.",
-            }, diagnostic)
-        end)
-    end)
-
     describe("hadolint", function()
         local linter = diagnostics.hadolint
         local parser = linter._opts.on_output
@@ -839,162 +538,6 @@ describe("diagnostics", function()
         end)
     end)
 
-    describe("flake8", function()
-        local linter = diagnostics.flake8
-        local parser = linter._opts.on_output
-        local file = {
-            [[#===- run-clang-tidy.py - Parallel clang-tidy runner ---------*- python -*--===#]],
-        }
-
-        it("should create a diagnostic", function()
-            local output = [[run-clang-tidy.py:3:1: E265 block comment should start with '# ']]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                row = "3",
-                col = "1",
-                severity = 1,
-                code = "E265",
-                message = "block comment should start with '# '",
-            }, diagnostic)
-        end)
-    end)
-
-    describe("pylint", function()
-        local linter = diagnostics.pylint
-        local parser = linter._opts.on_output
-        local u = require("null-ls.utils")
-        local params = { bufnr = 4, bufname = "test" }
-        local root_pattern
-        local output = vim.json.decode([[
-        [
-            {
-                "type": "convention",
-                "module": "test",
-                "obj": "",
-                "line": 1,
-                "column": 0,
-                "endLine": null,
-                "endColumn": null,
-                "path": "test.py",
-                "symbol": "missing-module-docstring",
-                "message": "Missing module docstring",
-                "message-id": "C0114"
-                },
-                {
-                "type": "convention",
-                "module": "test",
-                "obj": "",
-                "line": 1,
-                "column": 0,
-                "endLine": 1,
-                "endColumn": 1,
-                "path": "test.py",
-                "symbol": "invalid-name",
-                "message": "Constant name \"s\" doesn't conform to UPPER_CASE naming style",
-                "message-id": "C0103"
-                }
-        ]
-        ]])
-        before_each(function()
-            root_pattern = stub(u, "root_pattern")
-        end)
-        after_each(function()
-            root_pattern:revert()
-        end)
-
-        it("should set the cwd param", function()
-            assert.truthy(type(linter._opts.cwd) == "function")
-            local s = spy.new(function(loc_params)
-                return loc_params
-            end)
-            root_pattern.returns(s)
-            local cwd = linter._opts.cwd(params)
-            assert.same(params.bufname, cwd)
-            assert.stub(root_pattern).was.called_with("pylintrc", ".pylintrc", "pyproject.toml", "setup.cfg", "tox.ini")
-            assert.spy(s).was.called_with(params.bufname)
-        end)
-
-        it("should create a diagnostic from json output", function()
-            local diagnostic = parser({ output = output })
-            assert.same({
-                {
-                    code = "missing-module-docstring",
-                    col = 1,
-                    message_id = "C0114",
-                    message = "Missing module docstring",
-                    row = 1,
-                    severity = 3,
-                    symbol = "missing-module-docstring",
-                },
-                {
-                    row = 1,
-                    col = 1,
-                    severity = 3,
-                    code = "invalid-name",
-                    message_id = "C0103",
-                    message = 'Constant name "s" doesn\'t conform to UPPER_CASE naming style',
-                    symbol = "invalid-name",
-                    end_col = 2,
-                    end_row = 1,
-                },
-            }, diagnostic)
-        end)
-    end)
-
-    describe("pylama", function()
-        local linter = diagnostics.pylama
-        local parser = linter._opts.on_output
-        local exit_func = linter._opts.check_exit_code
-
-        it("should create a diagnostic with error severity", function()
-            local output = vim.json.decode([[
-                  [{
-                    "lnum": 3,
-                    "col": 1,
-                    "etype": "E",
-                    "message": "block comment should start with '# '",
-                    "number": "E265",
-                    "source": "run-clang-tidy.py"
-                  }]
-            ]])
-            local diagnostic = parser({ output = output })
-            assert.same({
-                {
-                    row = 3,
-                    col = 1,
-                    severity = 1,
-                    code = "E265",
-                    message = "block comment should start with '# '",
-                    source = "run-clang-tidy.py",
-                },
-            }, diagnostic)
-        end)
-        it("should count exit code of 1 as success", function()
-            assert.is.True(exit_func(1))
-            assert.is.True(exit_func(0))
-            assert.is.False(exit_func(255))
-        end)
-    end)
-
-    describe("misspell", function()
-        local linter = diagnostics.misspell
-        local parser = linter._opts.on_output
-        local file = {
-            [[Did I misspell langauge ?]],
-        }
-
-        it("should create a diagnostic", function()
-            local output = [[stdin:1:15: "langauge" is a misspelling of "language"]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                row = "1",
-                col = 16,
-                severity = 3,
-                message = [["langauge" is a misspelling of "language"]],
-            }, diagnostic)
-        end)
-    end)
-
     describe("vint", function()
         local linter = diagnostics.vint
         local parser = linter._opts.on_output
@@ -1040,24 +583,6 @@ describe("diagnostics", function()
                 severity = 2,
                 code = "document-start",
                 message = 'missing document start "---"',
-            }, diagnostic)
-        end)
-    end)
-
-    describe("jsonlint", function()
-        local linter = diagnostics.jsonlint
-        local parser = linter._opts.on_output
-        local file = {
-            [[{ "name"* "foo" }]],
-        }
-
-        it("should create a diagnostic", function()
-            local output = [[rules.json: line 1, col 8, found: 'INVALID' - expected: 'EOF', '}', ':', ',', ']'.]]
-            local diagnostic = parser(output, { content = file })
-            assert.same({
-                row = "1",
-                col = "8",
-                message = "found: 'INVALID' - expected: 'EOF', '}', ':', ',', ']'.",
             }, diagnostic)
         end)
     end)
@@ -1159,46 +684,6 @@ describe("diagnostics", function()
                     source = "protolint",
                 },
             }, protolint_diagnostics)
-        end)
-    end)
-
-    describe("protoc-gen-lint", function()
-        local linter = diagnostics.protoc_gen_lint
-        local parser = linter._opts.on_output
-
-        it("should create a diagnostic with error severity", function()
-            local file = [[
-                syntax = "proto3";
-
-                package sample;
-
-                service Samle {
-                // Faulty rpc
-                rpc () returns () {}
-                }
-            ]]
-
-            local output = [[sample.proto:6:7: Expected method name.]]
-            local diagnostic = parser(output, { content = file })
-
-            assert.same({
-                row = "6",
-                col = "7",
-                message = "Expected method name.",
-            }, diagnostic)
-        end)
-        it("should create a generic diagnostic with error severity", function()
-            local file = [[
-                yntax = "proto3"; // Faulty syntax definition
-            ]]
-
-            local output =
-                [[[libprotobuf WARNING google/protobuf/compiler/parser.cc:562] No syntax specified for the proto file: null-ls_1UTH9g.proto. Please use 'syntax = "proto2";' or 'syntax = "proto3";' to specify a syntax version. (Defaulted to proto2 syntax.)]]
-            local diagnostic = parser(output, { content = file })
-
-            assert.same({
-                message = "No syntax specified for the proto file: null-ls_1UTH9g.proto. Please use 'syntax = \"proto2\";' or 'syntax = \"proto3\";' to specify a syntax version. (Defaulted to proto2 syntax.)",
-            }, diagnostic)
         end)
     end)
 
@@ -2120,27 +1605,51 @@ INFO: Analysis cache updated]],
             }, diagnostic)
         end)
     end)
-
-    describe("typos", function()
-        local linter = diagnostics.typos
+    describe("terragrunt_validate", function()
+        local linter = diagnostics.terragrunt_validate
         local parser = linter._opts.on_output
-        local file = {
-            [[Did I misspell langauge ?]],
-        }
 
-        it("should crrate a diagnostic with warning severity", function()
-            local output =
-                [[{"type":"typo","path":"diagnostics_spec.lua","line_num":1,"byte_offset":16,"typo":"Ba","corrections":["By","Be"]}]]
-            local diagnostic = parser(output, { content = file })
+        it("should create a diagnostic for specific errors", function()
+            local output = vim.json.decode([[
+                [{
+                    "severity": "error",
+                    "summary": "Missing name for include",
+                    "detail": "All include blocks must have 1 labels (name).",
+                    "range": {
+                        "filename": "/src/terragrunt.hcl",
+                        "start": {
+                            "line": 1,
+                            "column": 9,
+                            "byte": 8
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10,
+                            "byte": 9
+                        }
+                    },
+                    "snippet": {
+                        "context": "include",
+                        "code": "include {",
+                        "start_line": 1,
+                        "highlight_start_offset": 8,
+                        "highlight_end_offset": 9,
+                        "values": null
+                    }
+                }]
+            ]])
+            local diagnostic = parser({ output = output })
             assert.same({
-                message = "`Ba` should be `By` or `Be`.",
-                severity = 2,
-                row = 1,
-                col = 17,
-                end_col = 19,
-                end_row = 1,
-                source = "Typos",
-                user_data = { corrections = { "By", "Be" } },
+                {
+                    col = 9,
+                    end_col = 10,
+                    end_row = 1,
+                    message = "Missing name for include - All include blocks must have 1 labels (name).",
+                    row = 1,
+                    severity = 1,
+                    source = "terragrunt validate",
+                    filename = "/src/terragrunt.hcl",
+                },
             }, diagnostic)
         end)
     end)

@@ -1,7 +1,7 @@
 local stub = require("luassert.stub")
 local mock = require("luassert.mock")
 
-local uv = mock(vim.loop, true)
+local uv = mock(vim.uv, true)
 
 describe("loop", function()
     stub(vim, "schedule_wrap")

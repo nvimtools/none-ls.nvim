@@ -24,7 +24,9 @@ function log:add_entry(msg, level)
     end
 
     if self.__handle then
-        self.__handle[level](msg)
+        local fmt_msg = self.__handle[level]
+        ---@cast fmt_msg fun(msg: string)
+        fmt_msg(msg)
         return
     end
 
@@ -44,14 +46,16 @@ function log:add_entry(msg, level)
     end
 
     local handle = plenary_log.new(default_opts)
-    handle[level](msg)
+    local fmt_msg = handle[level]
+    ---@cast fmt_msg fun(msg: string)
+    fmt_msg(msg)
     self.__handle = handle
 end
 
----Retrieves the path of the logfile
----@return string path of the logfile
+--- Retrieves the path of the logfile
+---@return string path path of the logfile
 function log:get_path()
-    return u.path.join(vim.fn.stdpath("cache"), "null-ls.log")
+    return u.path.join(vim.fn.stdpath("cache") --[[@as string]], "null-ls.log")
 end
 
 ---Add a log entry at TRACE level

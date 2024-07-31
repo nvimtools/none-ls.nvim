@@ -30,6 +30,9 @@ return h.make_builtin({
         "markdown.mdx",
         "graphql",
         "handlebars",
+        "svelte",
+        "astro",
+        "htmlangular",
     },
     generator_opts = {
         command = "prettierd",

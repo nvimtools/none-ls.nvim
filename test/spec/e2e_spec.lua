@@ -395,6 +395,7 @@ describe("e2e", function()
     describe("cached generator", function()
         local actions, null_ls_action
         before_each(function()
+            sources._reset()
             sources.register(builtins._test.cached_code_action)
             tu.edit_test_file("test-file.txt")
             tu.wait()
@@ -465,7 +466,7 @@ describe("e2e", function()
 
                 assert.equals(vim.tbl_count(actions[1].result), 1)
                 assert.equals(copy._opts._last_command, "ls")
-                assert.equals(copy._opts._last_cwd, vim.loop.cwd())
+                assert.equals(copy._opts._last_cwd, vim.uv.cwd())
             end)
         end)
 

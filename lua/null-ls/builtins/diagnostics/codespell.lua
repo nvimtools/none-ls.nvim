@@ -3,6 +3,31 @@ local methods = require("null-ls.methods")
 
 local DIAGNOSTICS = methods.internal.DIAGNOSTICS
 
+local function sanitize(str)
+    local rep_tbl = {
+        ["%"] = "%%",
+        ["-"] = "%-",
+        ["+"] = "%+",
+        ["*"] = "%*",
+        ["?"] = "%?",
+        ["^"] = "%^",
+        ["$"] = "%$",
+        ["."] = "%.",
+        ["("] = "%(",
+        [")"] = "%)",
+        ["["] = "%[",
+        ["]"] = "%]",
+    }
+
+    for what, with in pairs(rep_tbl) do
+        what = string.gsub(what, "[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%1") -- escape pattern
+        with = string.gsub(with, "[%%]", "%%%%") -- escape replacement
+        str = string.gsub(str, what, with)
+    end
+
+    return str
+end
+
 return h.make_builtin({
     name = "codespell",
     meta = {
@@ -29,16 +54,25 @@ return h.make_builtin({
                 row = tonumber(row)
                 -- Note: We cannot always get the misspelled columns directly from codespell (version 2.1.0) outputs,
                 -- where indents in the detected lines have been truncated.
-                local line = content[row]
-                local col, end_col = line:find(misspelled)
-                table.insert(diagnostics, {
-                    row = row,
-                    col = col,
-                    end_col = end_col + 1,
-                    source = "codespell",
-                    message = message,
-                    severity = 2,
-                })
+                if misspelled ~= nil then
+                    local line = content[row]
+                    misspelled = sanitize(misspelled)
+                    local col, end_col = line:find(misspelled)
+                    if col == nil then
+                        col = 0
+                    end
+                    if end_col == nil then
+                        end_col = 0
+                    end
+                    table.insert(diagnostics, {
+                        row = row,
+                        col = col,
+                        end_col = end_col + 1,
+                        source = "codespell",
+                        message = message,
+                        severity = 2,
+                    })
+                end
             end
             return done(diagnostics)
         end,

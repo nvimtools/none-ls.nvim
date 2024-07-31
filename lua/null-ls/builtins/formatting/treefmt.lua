@@ -8,15 +8,6 @@ return h.make_builtin({
     meta = {
         url = "https://github.com/numtide/treefmt",
         description = "One CLI to format your repo",
-        usage = [[
-local sources = {
-    null_ls.builtins.formatting.treefmt.with({
-        -- treefmt requires a config file
-        condition = function(utils)
-            return utils.root_has_file("treefmt.toml")
-        end,
-    }),
-}]],
     },
     method = FORMATTING,
     filetypes = {},
@@ -24,6 +15,10 @@ local sources = {
         command = "treefmt",
         args = { "--allow-missing-formatter", "--stdin", "$FILENAME" },
         to_stdin = true,
+        -- treefmt requires a config file
+        condition = function(utils)
+            return utils.root_has_file("treefmt.toml")
+        end,
     },
     factory = h.formatter_factory,
 })

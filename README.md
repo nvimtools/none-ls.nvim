@@ -24,10 +24,9 @@ That's it.
 Open a pull request to become a collaborator. If you have contributed to
 `null-ls.nvim` before, simply open an issue or comment on that commit.
 
-If you want to make changes, open a new a pull request. Find another
-collaborator to review your changes, as a review is required for the PR to be
-merged by yourself (subject to change if there are more collaborators in the
-future).
+If you want to make changes, open a new pull request. Find another collaborator
+to review your changes, as a review is required for the PR to be merged by
+yourself (subject to change if there are more collaborators in the future).
 
 ---
 
@@ -103,8 +102,8 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.completion.spell,
+        require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
     },
 })
 ```

@@ -81,7 +81,7 @@ describe("formatting", function()
 
             local opts = generators.run_registered_sequentially.calls[1].refs[1]
 
-            assert.equals(opts.filetype, vim.api.nvim_buf_get_option(mock_params.bufnr, "filetype"))
+            assert.equals(opts.filetype, vim.api.nvim_get_option_value("filetype", { buf = mock_params.bufnr }))
             assert.equals(opts.method, methods.map[method])
             assert.equals(type(opts.make_params), "function")
             assert.equals(type(opts.postprocess), "function")

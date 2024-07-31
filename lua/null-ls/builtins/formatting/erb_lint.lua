@@ -20,7 +20,7 @@ return h.make_builtin({
         output = "raw",
         on_output = function(params, done)
             local output = params.output
-            local metadata_end = output:match(".*==()") + 1
+            local metadata_end = output:match(".*====()") + 1
             return done({ { text = output:sub(metadata_end) } })
         end,
     },

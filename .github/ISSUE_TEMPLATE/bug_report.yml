@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a problem with null-ls
+description: Report a problem with none-ls
 labels: [bug]
 body:
   - type: checkboxes
@@ -8,8 +8,9 @@ body:
       label: FAQ
       options:
         - label:
-            I have checked the [FAQ](https://github.com/jose-elias-alvarez/null-ls.nvim#faq) and it didn't resolve my
-            problem.
+            I have checked the
+            [FAQ](https://github.com/nvimtools/none-ls.nvim#faq) and it didn't
+            resolve my problem.
           required: true
 
   - type: checkboxes
@@ -18,8 +19,9 @@ body:
       label: Issues
       options:
         - label:
-            I have checked [existing issues](https://github.com/jose-elias-alvarez/null-ls.nvim/issues?q=is%3Aissue) and
-            there are no issues with the same problem.
+            I have checked [existing
+            issues](https://github.com/nvimtools/none-ls.nvim/issues?q=is%3Aissue)
+            and there are no issues with the same problem.
           required: true
 
   - type: input
@@ -33,16 +35,20 @@ body:
     id: version-check
     attributes:
       label: Dev Version?
-      description: If your issue is exclusive to a dev version of Neovim, support is provided
-        on a best-effort basis, and you are encouraged to submit a PR solving your issue.
+      description:
+        If your issue is exclusive to a dev version of Neovim, support is
+        provided on a best-effort basis, and you are encouraged to submit a PR
+        solving your issue.
       options:
-        - label: I am using a stable Neovim release version, or if I am using a dev version
-            of Neovim I have confirmed that my issue is reproducible on a stable version.
+        - label:
+            I am using a stable Neovim release version, or if I am using a dev
+            version of Neovim I have confirmed that my issue is reproducible on
+            a stable version.
 
   - type: input
     attributes:
       label: Operating System
-      description: The operating system and version you are using null-ls on.
+      description: The operating system and version you are using none-ls on.
     validations:
       required: true
 
@@ -50,10 +56,11 @@ body:
     attributes:
       label: Minimal Config
       render: Lua
-      description: Download the minimal config using `curl -fLO
-        https://raw.githubusercontent.com/jose-elias-alvarez/null-ls.nvim/main/scripts/minimal_init.lua`. Edit it to
-        include the configuration necessary to reproduce your bug and paste it here. Do **not** use your personal null-ls
-        config!
+      description:
+        Download the minimal config using `curl -fLO
+        https://raw.githubusercontent.com/nvimtools/none-ls.nvim/main/scripts/minimal_init.lua`.
+        Edit it to include the configuration necessary to reproduce your bug and
+        paste it here. Do **not** use your personal none-ls config!
     validations:
       required: true
 
@@ -61,8 +68,9 @@ body:
     attributes:
       label: Steps to Reproduce
       description:
-        Full reproduction steps, starting with `nvim --clean -u minimal_init.lua`. Include a sample file if your issue
-        relates to a specific filetype.
+        Full reproduction steps, starting with `nvim --clean -u
+        minimal_init.lua`. Include a sample file if your issue relates to a
+        specific filetype.
     validations:
       required: true
 
@@ -70,9 +78,10 @@ body:
     attributes:
       label: Reproducibility Check
       options:
-        - label: I confirm that my minimal config is based on the `minimal_init.lua` template
-            and that my issue is reproducible by running `nvim --clean -u minimal_init.lua` and
-            following the steps above.
+        - label:
+            I confirm that my minimal config is based on the `minimal_init.lua`
+            template and that my issue is reproducible by running `nvim --clean
+            -u minimal_init.lua` and following the steps above.
     validations:
       required: true
 
@@ -94,8 +103,8 @@ body:
     attributes:
       label: Debug Log
       description:
-        Debug log output from `:NullLsLog`, limited to the output from following your reproduction steps. Include this
-        even if you think it's irrelevant.
+        Debug log output from `:NullLsLog`, limited to the output from following
+        your reproduction steps. Include this even if you think it's irrelevant.
     validations:
       required: true
 
@@ -103,7 +112,8 @@ body:
     id: help
     attributes:
       label: Help
-      description: Would you be able to resolve this issue by submitting a pull request?
+      description:
+        Would you be able to resolve this issue by submitting a pull request?
       options:
         - "Yes"
         - "Yes, but I don't know how to start. I would need guidance"
@@ -115,8 +125,8 @@ body:
     attributes:
       label: Implementation Help
       description:
-        If you selected yes in the last question please specify in detail what you would need help with in order to
-        implement this.
+        If you selected yes in the last question please specify in detail what
+        you would need help with in order to implement this.
     validations:
       required: false
 
@@ -126,6 +136,7 @@ body:
       label: Requirements
       options:
         - label:
-            I have read and followed the instructions above and understand that my issue will be closed if I did not
-            provide the required information.
+            I have read and followed the instructions above and understand that
+            my issue will be closed if I did not provide the required
+            information.
           required: true

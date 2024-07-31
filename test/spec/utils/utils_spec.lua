@@ -259,7 +259,7 @@ describe("utils", function()
         describe("content", function()
             before_each(function()
                 test_utils.edit_test_file("test-file.lua")
-                vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), "eol", true)
+                vim.api.nvim_set_option_value("eol", true, { buf = vim.api.nvim_get_current_buf() })
             end)
 
             it("should get buffer content as table", function()
@@ -404,7 +404,7 @@ describe("utils", function()
         it("should fall back to cwd", function()
             local root = u.get_root()
 
-            assert.equals(root, vim.loop.cwd())
+            assert.equals(root, vim.uv.cwd())
         end)
     end)
 

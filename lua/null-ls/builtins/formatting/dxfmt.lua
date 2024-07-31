@@ -4,20 +4,23 @@ local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
 
 return h.make_builtin({
-    name = "htmlbeautifier",
+    name = "dxfmt",
     meta = {
-        url = "https://github.com/threedaymonk/htmlbeautifier",
-        description = "A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates.",
+        url = "https://github.com/dioxuslabs/dioxus",
+        description = "Format rust file with dioxus cli",
     },
     method = FORMATTING,
-    filetypes = { "eruby" },
+    filetypes = { "rust" },
     generator_opts = {
-        command = "htmlbeautifier",
+        command = "dx",
         args = {
+            "fmt",
+            "--file",
             "$FILENAME",
         },
         to_stdin = false,
         to_temp_file = true,
+        from_temp_file = true,
     },
     factory = h.formatter_factory,
 })

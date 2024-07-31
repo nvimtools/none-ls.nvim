@@ -36,8 +36,8 @@ Sources must be **registered**, either by the user or by an integration, before
 they are active. You can get, set, and manipulate sources using the source API,
 as described in [SOURCES](./SOURCES.md).
 
-Sources can also define a **name**, which allows integrations to see if sources
-null-ls has already registered their sources to prevent duplicate registration.
+Sources can also define a **name**, which allows integrations to check whether
+null-ls has already registered them to prevent duplicate registration.
 
 Sources may define a **condition**, which determines whether null-ls should
 register the source.

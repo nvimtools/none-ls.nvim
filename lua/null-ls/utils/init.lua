@@ -1,6 +1,8 @@
 local api = vim.api
+local util = require("null-ls.utils.tbl_flatten")
+local uv = vim.uv or vim.loop
 
-local is_windows = vim.loop.os_uname().version:match("Windows")
+local is_windows = uv.os_uname().version:match("Windows")
 local path_separator = is_windows and "\\" or "/"
 
 local format_line_ending = {
@@ -15,7 +17,7 @@ local M = {}
 ---@param bufnr number?
 ---@return string line_ending
 M.get_line_ending = function(bufnr)
-    return format_line_ending[api.nvim_buf_get_option(bufnr or 0, "fileformat")] or "\n"
+    return format_line_ending[api.nvim_get_option_value("fileformat", { buf = bufnr or 0 })] or "\n"
 end
 
 --- joins text using the line ending for the buffer
@@ -100,9 +102,9 @@ M.make_conditional_utils = function()
 
     return {
         has_file = function(...)
-            local patterns = vim.tbl_flatten({ ... })
+            local patterns = util.tbl_flatten({ ... })
             for _, name in ipairs(patterns) do
-                local full_path = vim.loop.fs_realpath(name)
+                local full_path = uv.fs_realpath(name)
                 if full_path and M.path.exists(full_path) then
                     return true
                 end
@@ -110,7 +112,7 @@ M.make_conditional_utils = function()
             return false
         end,
         root_has_file = function(...)
-            local patterns = vim.tbl_flatten({ ... })
+            local patterns = util.tbl_flatten({ ... })
             for _, name in ipairs(patterns) do
                 if M.path.exists(M.path.join(root, name)) then
                     return true
@@ -119,15 +121,15 @@ M.make_conditional_utils = function()
             return false
         end,
         root_has_file_matches = function(pattern)
-            local handle = vim.loop.fs_scandir(root)
-            local entry = vim.loop.fs_scandir_next(handle)
+            local handle = assert(uv.fs_scandir(root), "Unable to scan " .. root)
+            local entry = uv.fs_scandir_next(handle)
 
             while entry do
                 if entry:match(pattern) then
                     return true
                 end
 
-                entry = vim.loop.fs_scandir_next(handle)
+                entry = uv.fs_scandir_next(handle)
             end
 
             return false
@@ -146,7 +148,8 @@ M.buf = {
     content = function(bufnr, to_string)
         bufnr = bufnr or api.nvim_get_current_buf()
 
-        local should_add_eol = api.nvim_buf_get_option(bufnr, "eol") and api.nvim_buf_get_option(bufnr, "fixeol")
+        local should_add_eol = api.nvim_get_option_value("eol", { buf = bufnr })
+            and api.nvim_get_option_value("fixeol", { buf = bufnr })
         local line_ending = M.get_line_ending(bufnr)
 
         local lines = api.nvim_buf_get_lines(bufnr, 0, -1, false)
@@ -213,6 +216,7 @@ end
 --- gets root using best available method
 ---@return string root
 M.get_root = function()
+    ---@type string|nil
     local root
 
     -- prefer getting from client
@@ -230,25 +234,26 @@ M.get_root = function()
     end
 
     -- fall back to cwd
-    root = root or vim.loop.cwd()
+    local cwd, err_name, err_msg = uv.cwd()
+    assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
 
-    return root
+    return root or cwd
 end
 
 ---@class PathUtils
 ---@field exists fun(filename: string): boolean
----@field join function(paths: ...): string
+---@field join fun(...: string): string
 ---@field ancestors fun(start_path: string): fun(): string
 M.path = {
     exists = function(filename)
-        local stat = vim.loop.fs_stat(filename)
+        local stat = uv.fs_stat(filename)
         return stat ~= nil
     end,
     exists_async = function(filename)
         local co = coroutine.running()
         local fs_stat_err = nil
         local fs_stat_stat = nil
-        vim.loop.fs_stat(filename, function(err, stat)
+        uv.fs_stat(filename, function(err, stat)
             fs_stat_err, fs_stat_stat = err, stat
             if coroutine.status(co) == "suspended" then
                 coroutine.resume(co)
@@ -260,7 +265,8 @@ M.path = {
         return fs_stat_stat ~= nil
     end,
     join = function(...)
-        return table.concat(vim.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
+        local v, _ = table.concat(util.tbl_flatten({ ... }), path_separator):gsub(path_separator .. "+", path_separator)
+        return v
     end,
     -- An iterator like vim.fs.parents but includes the start_path.
     ancestors = function(start_path)
@@ -274,11 +280,13 @@ M.path = {
     end,
 }
 
+---@alias root_pattern_cb fun(root_dir: string|nil)
+
 --- creates a callback that returns the first root matching a specified pattern
 ---@vararg string patterns
----@return fun(startpath: string, fun(root_dir: string|nil)): nil root_dir
+---@return fun(startpath: string, root_pattern_cb): nil root_dir
 M.root_pattern_async = function(...)
-    local patterns = vim.tbl_flatten({ ... })
+    local patterns = util.tbl_flatten({ ... })
 
     local function match(path)
         for _, pattern in ipairs(patterns) do
@@ -301,7 +309,7 @@ M.root_pattern_async = function(...)
         coroutine.wrap(function()
             local result = traverse_ancestors(start_path)
             -- Schedule, so that clients can freely call Lua API functions.
-            -- They wouldn't be able otherwise, because traverse_ancestors uses vim.loop's callbacks under the hood.
+            -- They wouldn't be able otherwise, because traverse_ancestors uses vim.uv's callbacks under the hood.
             vim.schedule(function()
                 cb(result)
             end)
@@ -313,7 +321,7 @@ end
 ---@vararg string patterns
 ---@return fun(startpath: string): string|nil root_dir
 M.root_pattern = function(...)
-    local patterns = vim.tbl_flatten({ ... })
+    local patterns = util.tbl_flatten({ ... })
 
     local function matcher(path)
         if not path then
@@ -350,6 +358,15 @@ end
 
 M.cosmiconfig = function(...)
     return require("null-ls.utils.cosmiconfig")(...)
+end
+
+--- Get vcs root
+---@return string|nil
+M.get_vcs_root = function()
+    local cwd, err_name, err_msg = uv.cwd()
+    assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
+    local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr")(cwd)
+    return vcs_root
 end
 
 return M

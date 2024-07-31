@@ -37,7 +37,8 @@ M.generic = function(prefix)
             return
         end
 
-        local resolved_executable = search_ancestors_for_executable(params.bufname, u.get_root(), executable_to_find)
+        local stop_path = u.get_vcs_root() or u.get_root()
+        local resolved_executable = search_ancestors_for_executable(params.bufname, stop_path, executable_to_find)
         return resolved_executable
     end)
 end

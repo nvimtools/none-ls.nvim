@@ -452,7 +452,7 @@ describe("generator_factory", function()
 
         assert.equals(generator.opts._last_command, "cat")
         assert.same(generator.opts._last_args, { "-b" })
-        assert.same(generator.opts._last_cwd, vim.loop.cwd())
+        assert.same(generator.opts._last_cwd, vim.uv.cwd())
     end)
 
     it("should set async to true", function()

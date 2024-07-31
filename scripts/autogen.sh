@@ -11,3 +11,6 @@ declare -x NULL_LS_DIR="$PWD"
 nvim -u NONE --headless \
 	--cmd "set rtp+=${NULL_LS_DIR}" \
 	+"luafile scripts/autogen.lua" +q
+
+jq -S . doc/builtins.json > doc/builtins.json~
+mv doc/builtins.json{~,}

@@ -1,0 +1,16 @@
+version = 1
+SPDX-PackageName = "none-ls.nvim"
+SPDX-PackageSupplier = "Zephyr Lykos <self@mochaa.ws>"
+SPDX-PackageDownloadLocation = "https://github.com/nvimtools/none-ls.nvim"
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright 2021 Jose Alvarez <j.alvarez11@icloud.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
+path = "lua/null-ls/diff.lua"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright Neovim contributors. All rights reserved."
+SPDX-License-Identifier = "Apache-2.0"

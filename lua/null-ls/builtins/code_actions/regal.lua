@@ -1,7 +1,6 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 local logger = require("null-ls.logger")
-local Job = require("plenary.job")
 
 local CODE_ACTION = methods.internal.CODE_ACTION
 local REGAL_CFG = ".regal/config.yaml"
@@ -32,6 +31,7 @@ local ignore_inline_action = function(params, d, prev_ln, prev_ign, indent)
 end
 
 local ignore_config_action = function(d)
+    local Job = require("plenary.job")
     return {
         title = "Ignore Regal rule '" .. d.code .. "' via " .. REGAL_CFG,
         action = function()

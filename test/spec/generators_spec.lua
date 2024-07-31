@@ -5,7 +5,7 @@ local spy = require("luassert.spy")
 local methods = require("null-ls.methods")
 local sources = require("null-ls.sources")
 
-local uv = vim.loop
+local uv = vim.uv
 
 mock(require("null-ls.logger"), true)
 
