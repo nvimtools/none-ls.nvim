@@ -13,24 +13,24 @@ local progress_token = 0
 -- the returned results to avoid holding them in memory because we know we won't
 -- need them.
 local once = function(func)
-  local called = nil
-  return function(...)
-    if called == nil then
-      called = true
-      return func(...)
+    local called = nil
+    return function(...)
+        if called == nil then
+            called = true
+            return func(...)
+        end
     end
-  end
 end
 
 -- Think about this function as plenary's wrap, but for iterators.
 local wrap_iter = function(func, argc)
-  local once_func = once(func)
-  return function(...)
-    local params = { ... }
-    return function()
-      return coroutine.yield(once_func, argc, unpack(params))
+    local once_func = once(func)
+    return function(...)
+        local params = { ... }
+        return function()
+            return coroutine.yield(once_func, argc, unpack(params))
+        end
     end
-  end
 end
 
 M.run = function(generators, params, opts, callback)
