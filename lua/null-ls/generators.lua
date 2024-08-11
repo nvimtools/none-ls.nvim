@@ -93,7 +93,7 @@ M.run = function(generators, params, opts, callback)
             local filter = generator.opts and generator.opts.filter
             local postprocess, after_each = opts.postprocess, opts.after_each
 
-            if generator.thread then
+            if generator.async_iterator then
                 local results = {}
                 local iter = wrap_iter(generator.fn, 2)
                 for result in iter(copied_params) do
