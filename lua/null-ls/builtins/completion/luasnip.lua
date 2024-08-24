@@ -50,7 +50,7 @@ return h.make_builtin({
                             items[#items + 1] = {
                                 word = snip.trigger,
                                 label = snip.trigger,
-                                detail = snip.description,
+                                detail = detail,
                                 kind = vim.lsp.protocol.CompletionItemKind.Snippet,
                                 data = data,
                                 documentation = {
