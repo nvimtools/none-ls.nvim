@@ -96,8 +96,10 @@ M.run = function(generators, params, opts, callback)
             if generator.async_iterator then
                 local results = {}
                 local iter = wrap_iter(generator.fn, 2)
+                local no_results = true
                 for result in iter(copied_params) do
                     if not filter or filter(result) then
+                        no_results = false
                         if postprocess then
                             postprocess(result, copied_params, generator)
                         end
@@ -109,6 +111,10 @@ M.run = function(generators, params, opts, callback)
                             after_each(results, copied_params, generator)
                         end
                     end
+                end
+                if no_results and after_each then
+                    a.util.scheduler()
+                    after_each(results, copied_params, generator)
                 end
             else
                 local to_run = generator.async and a.wrap(generator.fn, 2) or generator.fn
