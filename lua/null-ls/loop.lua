@@ -231,7 +231,20 @@ M.temp_file = function(content, bufname, dirname)
 
     local filename = string.format(".null-ls_%d_%s", math.random(100000, 999999), base_name)
     ---@type string?
-    local temp_path = u.path.join(dirname, filename)
+    local temp_path
+
+    if u.path.exists(dirname) then
+        temp_path = u.path.join(dirname, filename)
+    else
+        local temp_dir =
+            -- windows
+            os.getenv("TEMP") or
+            os.getenv("TMP") or
+            -- linux / mac
+            os.getenv("TMPDIR") or
+            "/tmp"
+        temp_path = u.path.join(temp_dir, filename)
+    end
 
     local fd, err = uv.fs_open(temp_path --[[@as string]], "w", 384)
     if not fd then
