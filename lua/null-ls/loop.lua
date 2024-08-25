@@ -238,11 +238,11 @@ M.temp_file = function(content, bufname, dirname)
     else
         local temp_dir =
             -- windows
-            os.getenv("TEMP") or
-            os.getenv("TMP") or
+            os.getenv("TEMP")
+            or os.getenv("TMP")
             -- linux / mac
-            os.getenv("TMPDIR") or
-            "/tmp"
+            or os.getenv("TMPDIR")
+            or "/tmp"
         temp_path = u.path.join(temp_dir, filename)
     end
 
