@@ -12,6 +12,7 @@ return function(module_name, pkg_json_field_name)
         ".{NAME}rc.yml",
         ".{NAME}rc.js",
         ".{NAME}rc.ts",
+        ".{NAME}rc.mjs",
         ".{NAME}rc.cjs",
         "{NAME}.config.js",
         "{NAME}.config.ts",
