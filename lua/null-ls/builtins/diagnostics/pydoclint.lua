@@ -65,7 +65,7 @@ return h.make_builtin({
             return code <= 2
         end,
         multiple_files = false,
-        on_output = function(line, params)
+        on_output = function(line)
             -- Filter lines using Lua pattern matching
             if line:match("^[^:]+:%d+:") then
                 -- Process the line as needed
