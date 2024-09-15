@@ -393,3 +393,8 @@ it again).
 Like `by_bufnr`, but `callback` is an async function. That is, `callback` is a
 function that takes two arguments: a `params` table and a `done` callback that
 must be invoked with the result.
+
+### by_bufroot_async(callback)
+
+Like `by_bufnr`, but `callback` is an async function, and the result is indexed
+by `root` rather than `bufrn`.
