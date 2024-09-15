@@ -177,7 +177,7 @@ Not compatible with `ignore_stderr`.
 
 Reads the contents of the temp file created by `to_temp_file` after running
 `command` and assigns it to `params.output`. Useful for formatters that don't
-output to `stdin` (see `formatter_factory`).
+output to `stdout` (see `formatter_factory`).
 
 This option depends on `to_temp_file`.
 
