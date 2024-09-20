@@ -1327,6 +1327,22 @@ The Ruby Linter/Formatter that Serves and Protects.
 local sources = { null_ls.builtins.diagnostics.rubocop }
 ```
 
+### [ruff](https://github.com/charliermarsh/ruff/)
+
+An extremely fast Python linter, written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.ruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `diagnostics`
+- Command: `ruff`
+- Args: `{ "-n", "-e", "--stdin-filename", "$FILENAME", "-" }`
 #### Defaults
 
 - Filetypes: `{ "ruby" }`
@@ -3491,6 +3507,23 @@ local sources = { null_ls.builtins.formatting.rubyfmt }
 #### Notes
 
 - Install to your PATH with `brew install rubyfmt`. Ensure you have the latest version.
+### [ruff](https://github.com/charliermarsh/ruff/)
+
+An extremely fast Python linter, written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.ruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `formatting`
+- Command: `ruff`
+- Args: `{ "--fix", "-e", "-n", "--stdin-filename", "$FILENAME", "-" }`
+
 
 ### [rufo](https://github.com/ruby-formatter/rufo)
 

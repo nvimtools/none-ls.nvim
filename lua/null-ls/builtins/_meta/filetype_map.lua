@@ -310,8 +310,8 @@ return {
   },
   python = {
     code_actions = { "refactoring" },
-    diagnostics = { "mypy", "pylint", "semgrep" },
-    formatting = { "black", "blackd", "isort", "isortd", "pyink", "usort", "yapf" }
+    diagnostics = { "mypy", "pylint","ruff", "semgrep" },
+    formatting = { "black", "blackd", "isort", "isortd", "pyink", "usort", "yapf", "ruff" }
   },
   qml = {
     diagnostics = { "qmllint" },

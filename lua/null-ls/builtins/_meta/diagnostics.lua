@@ -172,6 +172,9 @@ return {
   rubocop = {
     filetypes = { "ruby" }
   },
+  ruff = {
+    filetypes = { "python"}
+   },
   saltlint = {
     filetypes = { "sls" }
   },
