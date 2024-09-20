@@ -55,6 +55,7 @@ return h.make_builtin({
     generator_opts = {
         command = "ruff",
         args = {
+            "check",
             "-n",
             "-e",
             "--stdin-filename",
@@ -75,12 +76,12 @@ return h.make_builtin({
                     custom_end_col,
                 },
                 severities = {
-                    E = h.diagnostics.severities["error"], -- pycodestyle errors
-                    W = h.diagnostics.severities["warning"], -- pycodestyle warnings
+                    E = h.diagnostics.severities["error"],       -- pycodestyle errors
+                    W = h.diagnostics.severities["warning"],     -- pycodestyle warnings
                     F = h.diagnostics.severities["information"], -- pyflakes
                     A = h.diagnostics.severities["information"], -- flake8-builtins
-                    B = h.diagnostics.severities["warning"], -- flake8-bugbear
-                    C = h.diagnostics.severities["warning"], -- flake8-comprehensions
+                    B = h.diagnostics.severities["warning"],     -- flake8-bugbear
+                    C = h.diagnostics.severities["warning"],     -- flake8-comprehensions
                     T = h.diagnostics.severities["information"], -- flake8-print
                     U = h.diagnostics.severities["information"], -- pyupgrade
                     D = h.diagnostics.severities["information"], -- pydocstyle
