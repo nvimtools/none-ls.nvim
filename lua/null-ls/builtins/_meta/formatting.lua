@@ -17,7 +17,7 @@ return {
     filetypes = { "bib" }
   },
   biome = {
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css", "graphql" }
   },
   black = {
     filetypes = { "python" }

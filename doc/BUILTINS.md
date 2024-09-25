@@ -1935,7 +1935,7 @@ local sources = { null_ls.builtins.formatting.bibclean }
 
 ### [biome](https://biomejs.dev)
 
-Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, and CSS.
+Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, CSS and GraphQL.
 
 #### Usage
 
@@ -1945,14 +1945,14 @@ local sources = { null_ls.builtins.formatting.biome }
 
 #### Defaults
 
-- Filetypes: `{ "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }`
+- Filetypes: `{ "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css", "graphql" }`
 - Method: `formatting`
 - Command: `biome`
 - Args: `{ "format", "--stdin-file-path", "$FILENAME" }`
 
 #### Notes
 
-- Currently support only JavaScript, TypeScript and JSON. See status [here](https://biomejs.dev/internals/language-support/)
+- Currently support only JavaScript, TypeScript, JSON, CSS and GraphQL. See status [here](https://biomejs.dev/internals/language-support/)
 
 ### [black](https://github.com/psf/black)
 

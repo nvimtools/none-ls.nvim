@@ -62,7 +62,7 @@ return {
   },
   css = {
     diagnostics = { "stylelint" },
-    formatting = { "prettier", "prettierd", "stylelint" }
+    formatting = { "biome", "prettier", "prettierd", "stylelint" }
   },
   cuda = {
     formatting = { "clang_format" }
@@ -158,7 +158,7 @@ return {
     formatting = { "gofmt", "gofumpt", "goimports", "goimports_reviser", "golines" }
   },
   graphql = {
-    formatting = { "prettier", "prettierd" }
+    formatting = { "biome", "prettier", "prettierd" }
   },
   groovy = {
     diagnostics = { "npm_groovy_lint" },
