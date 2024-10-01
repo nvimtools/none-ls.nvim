@@ -15,10 +15,6 @@ return h.make_builtin({
         command = "treefmt",
         args = { "--allow-missing-formatter", "--stdin", "$FILENAME" },
         to_stdin = true,
-        -- treefmt requires a config file
-        condition = function(utils)
-            return utils.root_has_file("treefmt.toml")
-        end,
     },
     factory = h.formatter_factory,
 })
