@@ -3881,6 +3881,10 @@ local sources = { null_ls.builtins.formatting.topiary }
 
 One CLI to format your repo
 
+### [treefmt_nix](https://github.com/numtide/treefmt-nix)
+
+Fast and convenient multi-file formatting with Nix
+
 #### Usage
 
 ```lua
