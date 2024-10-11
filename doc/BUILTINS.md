@@ -166,6 +166,23 @@ local sources = { null_ls.builtins.code_actions.statix }
 - Command: `statix`
 - Args: `{ "check", "--stdin", "--format=json" }`
 
+### [textlint](https://github.com/textlint/textlint)
+
+The pluggable linting tool for text and Markdown.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.code_actions.textlint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "text", "markdown" }`
+- Method: `code_action`
+- Command: `textlint`
+- Args: `{ "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" }`
+
 ### [ts_node_action](https://github.com/CKolkey/ts-node-action)
 
 A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.
