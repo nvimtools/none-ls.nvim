@@ -105,10 +105,11 @@ directory defaults to the project's root.
 
 ### dynamic_command
 
-Optional callback to set `command` dynamically. Takes one arguments, a `params`
-table. The generator's original command (if set) is available as
-`params.command`. The callback should return a string containing the command to
-run or `nil`, meaning that no command should run.
+Optional callback to set `command` dynamically. Takes two arguments, a `params`
+table and a `done` callback. The generator's original command (if set) is
+available as `params.command`. The `done` callback should be invoked with a
+string containing the command to run or `nil`, meaning that no command should
+run.
 
 `dynamic_command` runs every time its parent generator runs and can affect
 performance, so it's best to cache its output when possible.
@@ -362,17 +363,25 @@ Helpers used to cache output from callbacks and help improve performance.
 
 ### by_bufnr(callback)
 
-Creates a function that caches the result of `callback`, indexed by `bufnr`. On
-the first run of the created function, null-ls will call `callback` with a
-`params` table. On the next run, it will directly return the cached value
-without calling `callback` again.
+Creates a function that caches the result of `callback`, indexed by `bufnr`.
+`callback` is a function that takes one argument: a `params` table.
 
-This is useful when the return value of `callback` is not expected to change
-over the lifetime of the buffer, which works well for `cwd` and
-`runtime_condition` callbacks. Users can use it as a simple shortcut to improve
-performance, and built-in authors can use it to add logic that would otherwise
-be too performance-intensive to include out-of-the-box.
+On the first run of the created function, null-ls will invoke `callback`. On the
+next run, it will directly return the cached value without calling `callback`
+again.
 
-Note that if `callback` returns `nil`, the helper will override the return value
-and instead cache `false` (so that it can determine that it already ran
-`callback` once and should not run it again).
+This is useful when the result of `callback` is not expected to change over the
+lifetime of the buffer, which works well for `cwd` and `runtime_condition`
+callbacks. Users can use it as a simple shortcut to improve performance, and
+built-in authors can use it to add logic that would otherwise be too
+performance-intensive to include out-of-the-box.
+
+Note that if `callback` resolved to `nil`, the helper will instead cache `false`
+(so that it can determine that it already ran `callback` once and should not run
+it again).
+
+### by_bufnr_async(callback)
+
+Like `by_bufnr`, but `callback` is an async function. That is, `callback` is a
+function that takes two arguments: a `params` table and a `done` callback that
+must be invoked with the result.

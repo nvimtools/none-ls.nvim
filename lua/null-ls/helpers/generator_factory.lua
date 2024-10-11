@@ -133,6 +133,12 @@ return function(opts)
         end
     end
 
+    if dynamic_command == nil then
+        dynamic_command = function(params, done)
+            done(params.command)
+        end
+    end
+
     local is_nil_table_or_func = function(v)
         return v == nil or vim.tbl_contains({ "function", "table" }, type(v))
     end
@@ -279,65 +285,60 @@ return function(opts)
 
             params.command = command
 
-            local resolved_command
-            if dynamic_command then
-                resolved_command = dynamic_command(params)
-            else
-                resolved_command = command
-            end
-
-            -- if dynamic_command returns nil, don't fall back to command
-            if not resolved_command then
-                log:debug(string.format("unable to resolve command %s; aborting", command))
-                return done()
-            end
-
-            local resolved_cwd = cwd and cwd(params) or root
-            params.cwd = resolved_cwd
-
-            if type(env) == "function" then
-                env = env(params)
-            end
-
-            local spawn_opts = {
-                cwd = resolved_cwd,
-                input = to_stdin and get_content(params) or nil,
-                handler = wrapper,
-                check_exit_code = check_exit_code,
-                timeout = timeout or c.get().default_timeout,
-                env = env,
-            }
-
-            if to_temp_file then
-                local content = get_content(params)
-                local temp_path, cleanup = loop.temp_file(content, params.bufname, temp_dir or c.get().temp_dir)
-
-                spawn_opts.on_stdout_end = function()
-                    if from_temp_file then
-                        params.output = loop.read_file(temp_path)
-                    end
-                    cleanup()
+            dynamic_command(params, function(resolved_command)
+                -- if dynamic_command returns nil, don't fall back to command
+                if not resolved_command then
+                    log:debug(string.format("unable to resolve command %s; aborting", command))
+                    return done()
                 end
-                params.temp_path = temp_path
-            end
 
-            local resolved_args = args or {}
-            resolved_args = type(resolved_args) == "function" and resolved_args(params) or resolved_args
-            resolved_args = parse_args(resolved_args, params)
+                local resolved_cwd = cwd and cwd(params) or root
+                params.cwd = resolved_cwd
 
-            opts._last_command = resolved_command
-            opts._last_args = resolved_args
-            opts._last_cwd = resolved_cwd
+                if type(env) == "function" then
+                    env = env(params)
+                end
 
-            log:debug(
-                string.format(
-                    "spawning command %s at %s with args %s",
-                    vim.inspect(resolved_command),
-                    resolved_cwd,
-                    vim.inspect(resolved_args)
+                local spawn_opts = {
+                    cwd = resolved_cwd,
+                    input = to_stdin and get_content(params) or nil,
+                    handler = wrapper,
+                    check_exit_code = check_exit_code,
+                    timeout = timeout or c.get().default_timeout,
+                    env = env,
+                }
+
+                if to_temp_file then
+                    local content = get_content(params)
+                    local temp_path, cleanup = loop.temp_file(content, params.bufname, temp_dir or c.get().temp_dir)
+
+                    spawn_opts.on_stdout_end = function()
+                        if from_temp_file then
+                            params.output = loop.read_file(temp_path)
+                        end
+                        cleanup()
+                    end
+                    params.temp_path = temp_path
+                end
+
+                local resolved_args = args or {}
+                resolved_args = type(resolved_args) == "function" and resolved_args(params) or resolved_args
+                resolved_args = parse_args(resolved_args, params)
+
+                opts._last_command = resolved_command
+                opts._last_args = resolved_args
+                opts._last_cwd = resolved_cwd
+
+                log:debug(
+                    string.format(
+                        "spawning command %s at %s with args %s",
+                        vim.inspect(resolved_command),
+                        resolved_cwd,
+                        vim.inspect(resolved_args)
+                    )
                 )
-            )
-            loop.spawn(resolved_command, resolved_args, spawn_opts)
+                loop.spawn(resolved_command, resolved_args, spawn_opts)
+            end)
         end,
         filetypes = opts.filetypes,
         opts = opts,

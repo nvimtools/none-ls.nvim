@@ -297,6 +297,18 @@ describe("client", function()
             c._set({ on_attach = on_attach })
         end)
 
+        local api
+
+        -- set up setup_buffer conditions
+        before_each(function()
+            api = mock(vim.api, true)
+            api.nvim_get_option_value.returns("")
+            sources.get.returns({})
+        end)
+        after_each(function()
+            mock.revert(api)
+        end)
+
         it("should do nothing if no client", function()
             client.setup_buffer(mock_bufnr)
 
