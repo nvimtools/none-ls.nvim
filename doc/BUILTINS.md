@@ -168,7 +168,7 @@ local sources = { null_ls.builtins.code_actions.statix }
 
 ### [textlint](https://github.com/textlint/textlint)
 
-The pluggable linting tool for text and Markdown.
+Linter for text and Markdown. Can fix some issues via code actions.
 
 #### Usage
 

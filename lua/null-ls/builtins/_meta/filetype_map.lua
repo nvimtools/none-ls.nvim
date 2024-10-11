@@ -240,7 +240,7 @@ return {
     diagnostics = { "checkmake" }
   },
   markdown = {
-    code_actions = { "proselint" },
+    code_actions = { "proselint", "textlint" },
     diagnostics = { "alex", "ltrs", "ltrs", "markdownlint", "markdownlint_cli2", "mdl", "proselint", "textidote", "textlint", "vale", "write_good" },
     formatting = { "cbfmt", "markdownlint", "mdformat", "ocdc", "prettier", "prettierd", "remark", "textlint" },
     hover = { "dictionary" }
@@ -416,6 +416,7 @@ return {
     diagnostics = { "proselint", "textidote", "vale" }
   },
   text = {
+    code_actions = { "textlint" },
     diagnostics = { "ltrs" },
     hover = { "dictionary" }
   },

@@ -25,6 +25,9 @@ return {
   statix = {
     filetypes = { "nix" }
   },
+  textlint = {
+    filetypes = { "text", "markdown" }
+  },
   ts_node_action = {
     filetypes = {}
   }
