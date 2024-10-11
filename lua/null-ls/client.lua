@@ -162,6 +162,15 @@ M.setup_buffer = function(bufnr)
         return
     end
 
+    -- Notify each generator for this filetype. This gives them a chance to
+    -- precompute information.
+    local filetype = api.nvim_get_option_value("filetype", { buf = bufnr })
+    for k, source in ipairs(require("null-ls.sources").get({ filetype = filetype })) do
+        source.generator.setup_buffer(bufnr, function()
+            -- Nothing to do here.
+        end)
+    end
+
     local on_attach = c.get().on_attach
     if on_attach then
         on_attach(client, bufnr)
