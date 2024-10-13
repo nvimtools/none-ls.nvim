@@ -1,6 +1,7 @@
 local c = require("null-ls.config")
 local log = require("null-ls.logger")
 local methods = require("null-ls.methods")
+local cache = require("null-ls.helpers").cache
 
 local notification_cache = {}
 
@@ -139,6 +140,7 @@ M.start = function(dispatchers)
             return stopped
         end,
         terminate = function()
+            cache._reset()
             stopped = true
         end,
     }
