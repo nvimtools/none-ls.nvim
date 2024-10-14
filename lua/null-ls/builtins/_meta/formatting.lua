@@ -346,6 +346,9 @@ return {
   treefmt = {
     filetypes = {}
   },
+  treefmt_nix = {
+    filetypes = {}
+  },
   typstfmt = {
     filetypes = { "typ", "typst" }
   },
