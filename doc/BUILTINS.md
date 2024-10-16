@@ -706,7 +706,7 @@ local sources = { null_ls.builtins.diagnostics.erb_lint }
 
 - Filetypes: `{ "eruby" }`
 - Method: `diagnostics`
-- Command: `erblint`
+- Command: `erb_lint`
 - Args: `{ "--format", "json", "--stdin", "$FILENAME" }`
 
 ### [fish](https://github.com/fish-shell/fish-shell)
@@ -2444,7 +2444,7 @@ local sources = { null_ls.builtins.formatting.erb_lint }
 
 - Filetypes: `{ "eruby" }`
 - Method: `formatting`
-- Command: `erblint`
+- Command: `erb_lint`
 - Args: `{ "--autocorrect", "--stdin", "$FILENAME" }`
 
 ### [erlfmt](https://github.com/WhatsApp/erlfmt)
