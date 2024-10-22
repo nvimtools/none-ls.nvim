@@ -29,7 +29,7 @@ return h.make_builtin({
             local snips = require("snippets").get_loaded_snippets()
             local targets = vim.tbl_filter(function(item)
                 local start_col = regex:match_str(line_to_cursor)
-                return (nil ~= start_col) and line_to_cursor:sub(start_col) == item.prefix
+                return (nil ~= start_col) and line_to_cursor:sub(start_col + 1) == item.prefix
             end, snips)
             for _, item in ipairs(targets) do
                 items[#items + 1] = {
