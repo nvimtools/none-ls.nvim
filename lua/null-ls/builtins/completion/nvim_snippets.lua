@@ -36,19 +36,24 @@ return h.make_builtin({
         fn = function(params, done)
             local line_to_cursor = params.content[params.row]:sub(1, params.col)
             local start_col = regex:match_str(line_to_cursor)
+
+            if nil == start_col then
+                done({ { items = {}, isIncomplete = true } })
+                return
+            end
+
             local items = {}
             local snips = get_loaded_snippets()
-            local targets = vim.tbl_filter(function(item)
-                return (nil ~= start_col) and vim.startswith(item.prefix, line_to_cursor:sub(start_col + 1))
-            end, snips)
-            for _, item in ipairs(targets) do
-                items[#items + 1] = {
-                    label = item.prefix,
-                    kind = vim.lsp.protocol.CompletionItemKind.Snippet,
-                    insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
-                    detail = item.description,
-                    insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body,
-                }
+            for _, item in pairs(snips) do
+                if vim.startswith(item.prefix, line_to_cursor:sub(start_col + 1)) then
+                    items[#items + 1] = {
+                        label = item.prefix,
+                        kind = vim.lsp.protocol.CompletionItemKind.Snippet,
+                        insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
+                        detail = item.description,
+                        insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body,
+                    }
+                end
             end
             done({ { items = items, isIncomplete = #items == 0 } })
         end,
