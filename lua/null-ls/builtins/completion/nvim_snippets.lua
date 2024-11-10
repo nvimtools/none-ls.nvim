@@ -7,13 +7,23 @@ local COMPLETION = methods.internal.COMPLETION
 local pattern = "\\%([^[:alnum:][:blank:]]\\+\\|\\w\\+\\)"
 local regex = vim.regex([[\%(]] .. pattern .. [[\)\m$]])
 
+local function nvim_snippet_exists()
+    local status, _ = pcall(require, "snippets")
+
+    return status
+end
+
+local function get_loaded_snippets()
+    return require("snippets").get_loaded_snippets()
+end
+
 return h.make_builtin({
     name = "nvim_snippets",
-    can_run = function()
-        local status, _ = pcall(require, "snippets")
-
-        return status
-    end,
+    can_run = nvim_snippet_exists,
+    condition = nvim_snippet_exists,
+    runtime_condition = h.cache.by_bufnr(function()
+        return not vim.tbl_isempty(get_loaded_snippets())
+    end),
     meta = {
         url = "https://github.com/garymjr/nvim-snippets",
         description = "Snippets managed by nvim-snippets.",
@@ -26,7 +36,7 @@ return h.make_builtin({
         fn = function(params, done)
             local line_to_cursor = params.content[params.row]:sub(1, params.col)
             local items = {}
-            local snips = require("snippets").get_loaded_snippets()
+            local snips = get_loaded_snippets()
             local targets = vim.tbl_filter(function(item)
                 local start_col = regex:match_str(line_to_cursor)
                 return (nil ~= start_col) and vim.startswith(item.prefix, line_to_cursor:sub(start_col + 1))
