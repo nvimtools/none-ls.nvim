@@ -43,15 +43,25 @@ return h.make_builtin({
             end
 
             local items = {}
-            local snips = get_loaded_snippets()
-            for _, item in pairs(snips) do
-                if vim.startswith(item.prefix, line_to_cursor:sub(start_col + 1)) then
+            local snippets = get_loaded_snippets()
+            for _, item in pairs(snippets) do
+                if vim.startswith(item.prefix, line_to_cursor:sub(start_col)) then
+                    local insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body
+                    local textEdit = {
+                        range = {
+                            start = { line = params.row - 1, character = start_col },
+                            ["end"] = { line = params.row - 1, character = params.col - start_col },
+                        },
+                        newText = insertText,
+                    }
+
                     items[#items + 1] = {
                         label = item.prefix,
                         kind = vim.lsp.protocol.CompletionItemKind.Snippet,
                         insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
                         detail = item.description,
-                        insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body,
+                        insertText = insertText,
+                        textEdit = textEdit,
                     }
                 end
             end
