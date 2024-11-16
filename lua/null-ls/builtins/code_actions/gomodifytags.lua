@@ -36,7 +36,7 @@ return h.make_builtin({
                 local col = params.range.col
 
                 -- Execution helpers
-                local exec = function(struct_name, field_name, op, tag)
+                local exec = function(struct_name, field_name, flags)
                     local cmd_opts = vim.list_extend(
                         { opts.command },
                         opts.args or {} -- customizable common args
@@ -45,7 +45,7 @@ return h.make_builtin({
                     if field_name ~= nil then
                         vim.list_extend(cmd_opts, { "-field", field_name })
                     end
-                    vim.list_extend(cmd_opts, { op, tag })
+                    vim.list_extend(cmd_opts, flags)
 
                     vim.fn.execute(":update") -- write when the buffer has been modified
                     local cmd = table.concat(cmd_opts, " ")
@@ -61,14 +61,39 @@ return h.make_builtin({
                         if tag == nil then
                             return
                         end
-                        exec(struct_name, field_name, op, tag)
+                        exec(struct_name, field_name, { op, tag })
                     end)
+                end
+                local get_transform_and_get_input_tag_and_exec = function(struct_name, field_name, op)
+                    vim.ui.select(
+                        { "snakecase", "camelcase", "lispcase", "pascalcase", "titlecase", "keep" },
+                        {},
+                        function(transform)
+                            if transform == nil then
+                                return
+                            end
+                            vim.ui.input({ prompt = "Enter tags: " }, function(tag)
+                                if tag == nil then
+                                    return
+                                end
+                                exec(struct_name, field_name, { op, tag, "-transform", transform })
+                            end)
+                        end
+                    )
                 end
                 local add_tags = function(struct_name, field_name)
                     return {
                         title = "gomodifytags: add tags",
                         action = function()
                             get_input_tag_and_exec(struct_name, field_name, "-add-tags")
+                        end,
+                    }
+                end
+                local add_tags_with_transform = function(struct_name, field_name)
+                    return {
+                        title = "gomodifytags: add tags with transform",
+                        action = function()
+                            get_transform_and_get_input_tag_and_exec(struct_name, field_name, "-add-tags")
                         end,
                     }
                 end
@@ -84,7 +109,7 @@ return h.make_builtin({
                     return {
                         title = "gomodifytags: clear tags",
                         action = function()
-                            exec(struct_name, field_name, "-clear-tags", nil)
+                            exec(struct_name, field_name, { "-clear-tags", nil })
                         end,
                     }
                 end
@@ -108,7 +133,7 @@ return h.make_builtin({
                     return {
                         title = "gomodifytags: clear options",
                         action = function()
-                            exec(struct_name, field_name, "-clear-options", nil)
+                            exec(struct_name, field_name, { "-clear-options", nil })
                         end,
                     }
                 end
@@ -174,6 +199,7 @@ return h.make_builtin({
                     end
 
                     table.insert(actions, add_tags(struct_name))
+                    table.insert(actions, add_tags_with_transform(struct_name))
                     table.insert(actions, remove_tags(struct_name))
                     table.insert(actions, clear_tags(struct_name))
 
@@ -216,6 +242,7 @@ return h.make_builtin({
                     end
 
                     table.insert(actions, add_tags(struct_name, field_name))
+                    table.insert(actions, add_tags_with_transform(struct_name, field_name))
                     table.insert(actions, remove_tags(struct_name, field_name))
                     table.insert(actions, clear_tags(struct_name, field_name))
 
