@@ -128,12 +128,41 @@ return h.make_builtin({
                     return actions
                 end
 
-                -- Ops on struct
-                if (tsnode:type()) == "type_identifier" then
-                    local tspnode = tsnode:parent()
-                    if tspnode == nil or tspnode:type() ~= "type_spec" then
-                        return
+                if tsnode:type() == "type_declaration" then
+                    if tsnode:child_count() > 1 then
+                        local c = tsnode:child(1)
+                        if c ~= nil then
+                            tsnode = c
+                        end
                     end
+                end
+
+                if tsnode:type() == "field_declaration_list" then
+                    local p = tsnode:parent()
+                    if p ~= nil then
+                        tsnode = p
+                    end
+                end
+
+                if tsnode:type() == "struct_type" then
+                    local p = tsnode:parent()
+                    if p ~= nil then
+                        tsnode = p
+                    end
+                end
+
+                if tsnode:type() == "type_spec" then
+                    if tsnode:child_count() > 0 then
+                        local c = tsnode:child(0)
+                        if c ~= nil then
+                            tsnode = c
+                        end
+                    end
+                end
+
+                -- Ops on struct
+                local tspnode = tsnode:parent()
+                if (tsnode:type()) == "type_identifier" and tspnode ~= nil and tspnode:type() == "type_spec" then
                     local typename_node = tspnode:field("type")[1]
                     if typename_node == nil or typename_node:type() ~= "struct_type" then
                         return
@@ -154,10 +183,29 @@ return h.make_builtin({
                     return actions
                 end
 
+                while tsnode:parent() ~= nil do
+                    if tsnode:type() == "field_declaration" then
+                        break
+                    end
+                    local p = tsnode:parent()
+                    if p ~= nil then
+                        tsnode = p
+                    end
+                end
+
+                if tsnode:type() == "field_declaration" then
+                    if tsnode:child_count() > 0 then
+                        local c = tsnode:child(0)
+                        if c ~= nil then
+                            tsnode = c
+                        end
+                    end
+                end
+
                 -- Ops on struct field
                 if (tsnode:type()) == "field_identifier" then
                     local field_name = treesitter_get_node_text(tsnode, 0)
-                    local tspnode = tsnode:parent():parent():parent()
+                    tspnode = tsnode:parent():parent():parent()
                     if tspnode ~= nil and (tspnode:type()) == "struct_type" then
                         tspnode = tspnode:parent():child(0)
                         struct_name = treesitter_get_node_text(tspnode, 0)
