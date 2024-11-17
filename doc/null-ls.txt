@@ -1,4 +1,4 @@
-*null-ls.txt*                                     Last change: 2024 October 17
+*null-ls.txt*                                    Last change: 2024 November 17
 
 ==============================================================================
 Table of Contents                                  *null-ls-table-of-contents*
