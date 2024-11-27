@@ -3194,6 +3194,23 @@ local sources = { null_ls.builtins.formatting.pint }
 - Command: `pint`
 - Args: `{ "--no-interaction", "--quiet", "$FILENAME" }`
 
+### [duster](https://github.com/tighten/duster)
+
+Automatic configuration for Laravel apps to apply Tighten's standard linting & code standards.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.duster }
+```
+
+#### Defaults
+
+- Filetypes: `{ "php" }`
+- Method: `formatting`
+- Command: `duster`
+- Args: `{ "fix", "$FILENAME", "--no-interaction", "--quiet" }`
+
 ### [prettier](https://github.com/prettier/prettier)
 
 Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
