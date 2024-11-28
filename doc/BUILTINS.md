@@ -219,6 +219,21 @@ local sources = { null_ls.builtins.completion.luasnip }
 
 - Registering this source will show available snippets in the completion list, but luasnip is in charge of expanding them. Consult [luasnip's documentation](https://github.com/L3MON4D3/LuaSnip#keymaps) to set up keymaps for expansion and jumping.
 
+### [nvim_snippets](https://github.com/garymjr/nvim-snippets)
+
+Snippets managed by nvim-snippets.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.completion.nvim_snippets }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `completion`
+
 ### spell
 
 Spell suggestions completion source.
