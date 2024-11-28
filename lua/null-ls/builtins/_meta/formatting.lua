@@ -79,6 +79,9 @@ return {
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
   },
+  duster = {
+    filetypes = { "php" }
+  },
   dxfmt = {
     filetypes = { "rust" }
   },

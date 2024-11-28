@@ -289,7 +289,7 @@ return {
   },
   php = {
     diagnostics = { "phpcs", "phpmd", "phpstan" },
-    formatting = { "phpcbf", "phpcsfixer", "pint", "pretty_php" }
+    formatting = { "duster", "phpcbf", "phpcsfixer", "pint", "pretty_php" }
   },
   prisma = {
     formatting = { "prisma_format" }

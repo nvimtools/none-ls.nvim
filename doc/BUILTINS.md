@@ -2337,6 +2337,23 @@ local sources = { null_ls.builtins.formatting.djlint }
 - Command: `djlint`
 - Args: `{ "--reformat", "-" }`
 
+### [duster](https://github.com/tighten/duster)
+
+Automatic configuration for Laravel apps to apply Tighten's standard linting & code standards.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.duster }
+```
+
+#### Defaults
+
+- Filetypes: `{ "php" }`
+- Method: `formatting`
+- Command: `duster`
+- Args: `{ "fix", "$FILENAME", "--no-interaction", "--quiet" }`
+
 ### [dxfmt](https://github.com/dioxuslabs/dioxus)
 
 Format rust file with dioxus cli
@@ -3193,23 +3210,6 @@ local sources = { null_ls.builtins.formatting.pint }
 - Method: `formatting`
 - Command: `pint`
 - Args: `{ "--no-interaction", "--quiet", "$FILENAME" }`
-
-### [duster](https://github.com/tighten/duster)
-
-Automatic configuration for Laravel apps to apply Tighten's standard linting & code standards.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.formatting.duster }
-```
-
-#### Defaults
-
-- Filetypes: `{ "php" }`
-- Method: `formatting`
-- Command: `duster`
-- Args: `{ "fix", "$FILENAME", "--no-interaction", "--quiet" }`
 
 ### [prettier](https://github.com/prettier/prettier)
 
