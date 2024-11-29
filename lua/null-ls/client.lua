@@ -47,6 +47,7 @@ local get_root_dir = function(bufnr, cb)
     end
 end
 
+---@param new_client vim.lsp.Client
 local on_init = function(new_client, initialize_result)
     local capability_is_disabled = function(method)
         -- TODO: extract map to prevent future issues
@@ -56,7 +57,8 @@ local on_init = function(new_client, initialize_result)
     end
 
     -- null-ls broadcasts all capabilities on launch, so this lets us have finer control
-    new_client.supports_method = function(method)
+    ---@param method string
+    local supports_method = function(method)
         -- allow users to specifically disable capabilities
         if capability_is_disabled(method) then
             return false
@@ -70,6 +72,14 @@ local on_init = function(new_client, initialize_result)
 
         -- return true for supported methods w/o a corresponding internal method (init, shutdown)
         return methods.lsp[method] ~= nil
+    end
+
+    if vim.fn.has("nvim-0.11") == 1 then
+        new_client.supports_method = function(_, method)
+            return supports_method(method)
+        end
+    else
+        new_client.supports_method = supports_method
     end
 
     if c.get().on_init then
