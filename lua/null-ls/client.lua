@@ -9,6 +9,7 @@ local loop = require("null-ls.loop")
 local api = vim.api
 local lsp = vim.lsp
 
+---@type vim.lsp.Client?, integer?
 local client, id
 
 ---@param bufnr number
@@ -198,7 +199,11 @@ M.notify_client = function(method, params)
         return
     end
 
-    client.notify(method, params)
+    if vim.fn.has("nvim-0.11") == 1 then
+        client:notify(method, params)
+    else
+        client.notify(method, params)
+    end
 end
 
 M.resolve_handler = function(method)
