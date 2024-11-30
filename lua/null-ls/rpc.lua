@@ -103,7 +103,7 @@ M.start = function(dispatchers)
     end
 
     local function request(method, params, callback, notify_callback)
-        log:trace("received LSP request for method " .. method)
+        log:trace("received LSP request for method " .. vim.inspect(method))
 
         -- clear pending requests from client object
         local success = handle(method, params, callback)
@@ -128,7 +128,7 @@ M.start = function(dispatchers)
             clear_cache(params)
         end
 
-        log:trace("received LSP notification for method " .. method)
+        log:trace("received LSP notification for method " .. vim.inspect(method))
         return handle(method, params, nil, true)
     end
 
