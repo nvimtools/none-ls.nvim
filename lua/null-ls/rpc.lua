@@ -132,14 +132,9 @@ M.start = function(dispatchers)
         return handle(method, params, nil, true)
     end
 
-    local use_class_method = vim.fn.has("nvim-0.11") == 1
     return {
-        request = use_class_method and function(_, ...)
-            request(...)
-        end or request,
-        notify = use_class_method and function(_, ...)
-            notify(...)
-        end or notify,
+        request = request,
+        notify = notify,
         is_closing = function()
             return stopped
         end,
