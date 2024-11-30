@@ -310,6 +310,9 @@ return {
   sqlformat = {
     filetypes = { "sql" }
   },
+  sqruff = {
+    filetypes = { "sql" }
+  },
   stylelint = {
     filetypes = { "scss", "less", "css", "sass" }
   },
