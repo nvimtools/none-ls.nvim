@@ -99,7 +99,7 @@ end
 
 local M = {}
 
----@param root_dir? string The root directory of the project.
+---@param root_dir string? The root directory of the project.
 M.start_client = function(root_dir)
     local config = {
         name = "null-ls",
@@ -136,8 +136,8 @@ end
 
 --- This function can be asynchronous. Use cb to run code after the buffer has been retried.
 ---
----@param bufnr? number
----@param cb? fun(did_attach: boolean)
+---@param bufnr number?
+---@param cb fun(did_attach: boolean)?
 M.try_add = function(bufnr, cb)
     bufnr = bufnr or api.nvim_get_current_buf()
     if not should_attach(bufnr) then
@@ -191,6 +191,8 @@ M.get_offset_encoding = function()
     return client and client.offset_encoding or "utf-16"
 end
 
+---@param method vim.lsp.protocol.Method|string
+---@param params table
 M.notify_client = function(method, params)
     if not client then
         log:debug(
@@ -202,10 +204,13 @@ M.notify_client = function(method, params)
     if vim.fn.has("nvim-0.11") == 1 then
         client:notify(method, params)
     else
+        ---@diagnostic disable-next-line: param-type-mismatch
         client.notify(method, params)
     end
 end
 
+---@param method vim.lsp.protocol.Method|string
+---@return lsp.Handler handler
 M.resolve_handler = function(method)
     return client and client.handlers[method] or lsp.handlers[method]
 end
