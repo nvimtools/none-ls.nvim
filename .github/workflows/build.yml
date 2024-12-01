@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         version:
-          - latest
+          - stable
           - nightly
     steps:
       - uses: actions/checkout@v4
