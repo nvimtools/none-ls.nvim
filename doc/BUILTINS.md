@@ -1476,6 +1476,23 @@ local sources = {
 
 - SQLFluff needs a mandatory `--dialect` argument. Use `extra_args` to add yours, or create a .sqlfluff file in the same directory as the SQL file to specify the dialect (see the sqlfluff docs for details). `extra_args` can also be a function to build more sophisticated logic.
 
+### [sqruff](https://github.com/quarylabs/sqruff)
+
+A high-speed SQL linter written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.sqruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "sql" }`
+- Method: `diagnostics`
+- Command: `sqruff`
+- Args: `{ "lint", "--format", "github-annotation-native", "$FILENAME" }`
+
 ### [staticcheck](https://staticcheck.io/)
 
 Advanced Go linter.
@@ -3721,6 +3738,23 @@ local sources = { null_ls.builtins.formatting.sql_formatter }
 - Filetypes: `{ "sql" }`
 - Method: `formatting`
 - Command: `sql-formatter`
+
+### [sqruff](https://github.com/quarylabs/sqruff)
+
+A high-speed SQL linter written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.sqruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "sql" }`
+- Method: `formatting`
+- Command: `sqruff`
+- Args: `{ "fix", "-" }`
 
 ### [stylelint](https://github.com/stylelint/stylelint)
 

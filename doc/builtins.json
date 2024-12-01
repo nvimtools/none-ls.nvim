@@ -402,6 +402,11 @@
         "sql"
       ]
     },
+    "sqruff": {
+      "filetypes": [
+        "sql"
+      ]
+    },
     "staticcheck": {
       "filetypes": [
         "go"
