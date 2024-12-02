@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/johnnymorganz/stylua
-    rev: v0.20.0
+    rev: v2.0.1
     hooks:
       - id: stylua-github
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -9,6 +9,11 @@ repos:
       - id: prettier
         exclude: "^test/"
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.1
+    rev: v1.7.4
     hooks:
       - id: actionlint
+  - repo: https://github.com/Kampfkarren/selene
+    rev: "391b18dead24fa6bfc6f446f814a91d4edfa6e0f"
+    hooks:
+      - id: selene-github
+        exclude: "^test/"

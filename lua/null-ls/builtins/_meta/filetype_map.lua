@@ -62,7 +62,7 @@ return {
   },
   css = {
     diagnostics = { "stylelint" },
-    formatting = { "prettier", "prettierd", "stylelint" }
+    formatting = { "biome", "prettier", "prettierd", "stylelint" }
   },
   cuda = {
     formatting = { "clang_format" }
@@ -158,7 +158,7 @@ return {
     formatting = { "gofmt", "gofumpt", "goimports", "goimports_reviser", "golines" }
   },
   graphql = {
-    formatting = { "prettier", "prettierd" }
+    formatting = { "biome", "prettier", "prettierd" }
   },
   groovy = {
     diagnostics = { "npm_groovy_lint" },
@@ -240,7 +240,7 @@ return {
     diagnostics = { "checkmake" }
   },
   markdown = {
-    code_actions = { "proselint" },
+    code_actions = { "proselint", "textlint" },
     diagnostics = { "alex", "ltrs", "ltrs", "markdownlint", "markdownlint_cli2", "mdl", "proselint", "textidote", "textlint", "vale", "write_good" },
     formatting = { "cbfmt", "markdownlint", "mdformat", "ocdc", "prettier", "prettierd", "remark", "textlint" },
     hover = { "dictionary" }
@@ -289,7 +289,7 @@ return {
   },
   php = {
     diagnostics = { "phpcs", "phpmd", "phpstan" },
-    formatting = { "phpcbf", "phpcsfixer", "pint", "pretty_php" }
+    formatting = { "duster", "phpcbf", "phpcsfixer", "pint", "pretty_php" }
   },
   prisma = {
     formatting = { "prisma_format" }
@@ -380,8 +380,8 @@ return {
     diagnostics = { "rpmspec" }
   },
   sql = {
-    diagnostics = { "sqlfluff" },
-    formatting = { "pg_format", "sql_formatter", "sqlfluff", "sqlfmt", "sqlformat" }
+    diagnostics = { "sqlfluff", "sqruff" },
+    formatting = { "pg_format", "sql_formatter", "sqlfluff", "sqlfmt", "sqlformat", "sqruff" }
   },
   stylus = {
     diagnostics = { "stylint" }
@@ -416,6 +416,7 @@ return {
     diagnostics = { "proselint", "textidote", "vale" }
   },
   text = {
+    code_actions = { "textlint" },
     diagnostics = { "ltrs" },
     hover = { "dictionary" }
   },

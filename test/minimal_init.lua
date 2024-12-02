@@ -9,28 +9,30 @@ end
 function M.load(plugin)
     local name = plugin:match(".*/(.*)")
     local package_root = M.root(".tests/site/pack/deps/start/")
-    if not vim.uv.fs_stat(package_root .. name) then
+    local uv = vim.uv or vim.loop
+    if not uv.fs_stat(package_root .. name) then
         print("Installing " .. plugin)
         vim.fn.mkdir(package_root, "p")
         vim.fn.system({
             "git",
             "clone",
             "--depth=1",
+            "--filter=blob:none",
             "https://github.com/" .. plugin .. ".git",
-            package_root .. "/" .. name,
+            vim.fs.joinpath(package_root, name),
         })
     end
 end
 
 function M.setup()
-    vim.cmd([[set runtimepath=$VIMRUNTIME]])
+    vim.o.runtimepath = vim.env["VIMRUNTIME"]
     vim.opt.runtimepath:append(M.root())
     vim.opt.packpath = { M.root(".tests/site") }
     M.load("nvim-lua/plenary.nvim")
-    vim.env.XDG_CONFIG_HOME = M.root(".tests/config")
-    vim.env.XDG_DATA_HOME = M.root(".tests/data")
-    vim.env.XDG_STATE_HOME = M.root(".tests/state")
-    vim.env.XDG_CACHE_HOME = M.root(".tests/cache")
+    vim.env["XDG_CONFIG_HOME"] = M.root(".tests/config")
+    vim.env["XDG_DATA_HOME"] = M.root(".tests/data")
+    vim.env["XDG_STATE_HOME"] = M.root(".tests/state")
+    vim.env["XDG_CACHE_HOME"] = M.root(".tests/cache")
     require("null-ls.config")._set({ log = { enable = false } })
 end
 

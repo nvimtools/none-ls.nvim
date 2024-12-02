@@ -17,7 +17,7 @@ return {
     filetypes = { "bib" }
   },
   biome = {
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" }
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css", "graphql" }
   },
   black = {
     filetypes = { "python" }
@@ -78,6 +78,9 @@ return {
   },
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
+  },
+  duster = {
+    filetypes = { "php" }
   },
   dxfmt = {
     filetypes = { "rust" }
@@ -305,6 +308,9 @@ return {
     filetypes = { "sql", "jinja" }
   },
   sqlformat = {
+    filetypes = { "sql" }
+  },
+  sqruff = {
     filetypes = { "sql" }
   },
   stylelint = {
