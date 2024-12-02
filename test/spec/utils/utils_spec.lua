@@ -270,7 +270,7 @@ describe("utils", function()
             end)
 
             it("should not add final newline to table when eol option is false", function()
-                vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), "eol", false)
+                vim.api.nvim_set_option_value("eol", false, { buf = vim.api.nvim_get_current_buf() })
                 local content = u.buf.content()
 
                 assert.same(content, { 'print("I am a test file!")' })
@@ -284,7 +284,7 @@ describe("utils", function()
             end)
 
             it("should not add final newline to string when eol option is false", function()
-                vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), "eol", false)
+                vim.api.nvim_set_option_value("eol", false, { buf = vim.api.nvim_get_current_buf() })
                 local content = u.buf.content(nil, true)
 
                 assert.equals(content, 'print("I am a test file!")')

@@ -4,6 +4,9 @@ return {
   luasnip = {
     filetypes = {}
   },
+  nvim_snippets = {
+    filetypes = {}
+  },
   spell = {
     filetypes = {}
   },

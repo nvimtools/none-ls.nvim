@@ -37,7 +37,7 @@ return h.make_builtin({
     method = DIAGNOSTICS,
     filetypes = { "eruby" },
     generator_opts = {
-        command = "erblint",
+        command = "erb_lint",
         args = { "--format", "json", "--stdin", "$FILENAME" },
         to_stdin = true,
         format = "json",

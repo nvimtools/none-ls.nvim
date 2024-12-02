@@ -203,7 +203,7 @@ M.table = {
 
 --- if opt is a function, call it with args; otherwise, return a copy of opt
 ---@param opt any
----@vararg any args
+---@param ... any args
 ---@return any
 M.handle_function_opt = function(opt, ...)
     if type(opt) == "function" then
@@ -283,7 +283,7 @@ M.path = {
 ---@alias root_pattern_cb fun(root_dir: string|nil)
 
 --- creates a callback that returns the first root matching a specified pattern
----@vararg string patterns
+---@param ... string patterns
 ---@return fun(startpath: string, root_pattern_cb): nil root_dir
 M.root_pattern_async = function(...)
     local patterns = util.tbl_flatten({ ... })
@@ -318,7 +318,7 @@ M.root_pattern_async = function(...)
 end
 
 --- creates a callback that returns the first root matching a specified pattern
----@vararg string patterns
+---@param ... string patterns
 ---@return fun(startpath: string): string|nil root_dir
 M.root_pattern = function(...)
     local patterns = util.tbl_flatten({ ... })
@@ -331,7 +331,6 @@ M.root_pattern = function(...)
         -- escape wildcard characters in the path so that it is not treated like a glob
         path = path:gsub("([%[%]%?%*])", "\\%1")
         for _, pattern in ipairs(patterns) do
-            ---@diagnostic disable-next-line: param-type-mismatch
             for _, p in ipairs(vim.fn.glob(M.path.join(path, pattern), true, true)) do
                 if M.path.exists(p) then
                     return path
@@ -352,10 +351,12 @@ M.root_pattern = function(...)
     end
 end
 
+---@module "null-ls.utils.make_params"
 M.make_params = function(...)
     return require("null-ls.utils.make_params")(...)
 end
 
+---@module "null-ls.utils.cosmiconfig"
 M.cosmiconfig = function(...)
     return require("null-ls.utils.cosmiconfig")(...)
 end
@@ -365,7 +366,7 @@ end
 M.get_vcs_root = function()
     local cwd, err_name, err_msg = uv.cwd()
     assert(cwd, string.format("[Error %s]: %s", err_name, err_msg))
-    local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr")(cwd)
+    local vcs_root = M.root_pattern(".git", ".hg", ".svn", ".bzr", ".fossil", "_darcs", ".pijul")(cwd)
     return vcs_root
 end
 

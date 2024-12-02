@@ -219,6 +219,21 @@ local sources = { null_ls.builtins.completion.luasnip }
 
 - Registering this source will show available snippets in the completion list, but luasnip is in charge of expanding them. Consult [luasnip's documentation](https://github.com/L3MON4D3/LuaSnip#keymaps) to set up keymaps for expansion and jumping.
 
+### [nvim_snippets](https://github.com/garymjr/nvim-snippets)
+
+Snippets managed by nvim-snippets.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.completion.nvim_snippets }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `completion`
+
 ### spell
 
 Spell suggestions completion source.
@@ -706,7 +721,7 @@ local sources = { null_ls.builtins.diagnostics.erb_lint }
 
 - Filetypes: `{ "eruby" }`
 - Method: `diagnostics`
-- Command: `erblint`
+- Command: `erb_lint`
 - Args: `{ "--format", "json", "--stdin", "$FILENAME" }`
 
 ### [fish](https://github.com/fish-shell/fish-shell)
@@ -1460,6 +1475,23 @@ local sources = {
 #### Notes
 
 - SQLFluff needs a mandatory `--dialect` argument. Use `extra_args` to add yours, or create a .sqlfluff file in the same directory as the SQL file to specify the dialect (see the sqlfluff docs for details). `extra_args` can also be a function to build more sophisticated logic.
+
+### [sqruff](https://github.com/quarylabs/sqruff)
+
+A high-speed SQL linter written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.sqruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "sql" }`
+- Method: `diagnostics`
+- Command: `sqruff`
+- Args: `{ "lint", "--format", "github-annotation-native", "$FILENAME" }`
 
 ### [staticcheck](https://staticcheck.io/)
 
@@ -2337,6 +2369,23 @@ local sources = { null_ls.builtins.formatting.djlint }
 - Command: `djlint`
 - Args: `{ "--reformat", "-" }`
 
+### [duster](https://github.com/tighten/duster)
+
+Automatic configuration for Laravel apps to apply Tighten's standard linting & code standards.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.duster }
+```
+
+#### Defaults
+
+- Filetypes: `{ "php" }`
+- Method: `formatting`
+- Command: `duster`
+- Args: `{ "fix", "$FILENAME", "--no-interaction", "--quiet" }`
+
 ### [dxfmt](https://github.com/dioxuslabs/dioxus)
 
 Format rust file with dioxus cli
@@ -2444,7 +2493,7 @@ local sources = { null_ls.builtins.formatting.erb_lint }
 
 - Filetypes: `{ "eruby" }`
 - Method: `formatting`
-- Command: `erblint`
+- Command: `erb_lint`
 - Args: `{ "--autocorrect", "--stdin", "$FILENAME" }`
 
 ### [erlfmt](https://github.com/WhatsApp/erlfmt)
@@ -3689,6 +3738,23 @@ local sources = { null_ls.builtins.formatting.sql_formatter }
 - Filetypes: `{ "sql" }`
 - Method: `formatting`
 - Command: `sql-formatter`
+
+### [sqruff](https://github.com/quarylabs/sqruff)
+
+A high-speed SQL linter written in Rust.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.sqruff }
+```
+
+#### Defaults
+
+- Filetypes: `{ "sql" }`
+- Method: `formatting`
+- Command: `sqruff`
+- Args: `{ "fix", "-" }`
 
 ### [stylelint](https://github.com/stylelint/stylelint)
 

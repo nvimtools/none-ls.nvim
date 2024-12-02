@@ -110,7 +110,13 @@ describe("client", function()
                 local supports_method
                 before_each(function()
                     on_init(mock_client)
-                    supports_method = mock_client.supports_method
+                    if vim.fn.has("nvim-0.11") == 1 then
+                        supports_method = function(method)
+                            return mock_client:supports_method(method)
+                        end
+                    else
+                        supports_method = mock_client.supports_method
+                    end
                 end)
                 after_each(function()
                     can_run.returns(nil)
@@ -254,7 +260,7 @@ describe("client", function()
         it("should not attach if buftype is not empty", function()
             api.nvim_get_option_value.returns("nofile")
 
-            client.try_add(mock_bufnr, function()
+            client.try_add(mock_bufnr, function(did_attach)
                 assert.falsy(did_attach)
             end)
         end)
@@ -262,7 +268,7 @@ describe("client", function()
         it("should not attach if name is empty", function()
             api.nvim_buf_get_name.returns("")
 
-            client.try_add(mock_bufnr, function()
+            client.try_add(mock_bufnr, function(did_attach)
                 assert.falsy(did_attach)
             end)
         end)
@@ -270,7 +276,7 @@ describe("client", function()
         it("should not attach if no source is available", function()
             sources.is_available.returns(false)
 
-            client.try_add(mock_bufnr, function()
+            client.try_add(mock_bufnr, function(did_attach)
                 assert.falsy(did_attach)
             end)
         end)
@@ -330,7 +336,11 @@ describe("client", function()
 
             client.notify_client(mock_method, mock_params)
 
-            assert.stub(notify).was_called_with(mock_method, mock_params)
+            if vim.fn.has("nvim-0.11") == 1 then
+                assert.stub(notify).was_called_with(mock_client, mock_method, mock_params)
+            else
+                assert.stub(notify).was_called_with(mock_method, mock_params)
+            end
         end)
     end)
 

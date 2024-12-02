@@ -289,7 +289,7 @@ return {
   },
   php = {
     diagnostics = { "phpcs", "phpmd", "phpstan" },
-    formatting = { "phpcbf", "phpcsfixer", "pint", "pretty_php" }
+    formatting = { "duster", "phpcbf", "phpcsfixer", "pint", "pretty_php" }
   },
   prisma = {
     formatting = { "prisma_format" }
@@ -380,8 +380,8 @@ return {
     diagnostics = { "rpmspec" }
   },
   sql = {
-    diagnostics = { "sqlfluff" },
-    formatting = { "pg_format", "sql_formatter", "sqlfluff", "sqlfmt", "sqlformat" }
+    diagnostics = { "sqlfluff", "sqruff" },
+    formatting = { "pg_format", "sql_formatter", "sqlfluff", "sqlfmt", "sqlformat", "sqruff" }
   },
   stylus = {
     diagnostics = { "stylint" }

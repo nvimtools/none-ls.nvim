@@ -13,7 +13,7 @@ return h.make_builtin({
     filetypes = { "eruby" },
     factory = h.generator_factory,
     generator_opts = {
-        command = "erblint",
+        command = "erb_lint",
         args = { "--autocorrect", "--stdin", "$FILENAME" },
         ignore_stderr = true,
         to_stdin = true,

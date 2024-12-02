@@ -79,6 +79,9 @@ return {
   djlint = {
     filetypes = { "django", "jinja.html", "htmldjango" }
   },
+  duster = {
+    filetypes = { "php" }
+  },
   dxfmt = {
     filetypes = { "rust" }
   },
@@ -305,6 +308,9 @@ return {
     filetypes = { "sql", "jinja" }
   },
   sqlformat = {
+    filetypes = { "sql" }
+  },
+  sqruff = {
     filetypes = { "sql" }
   },
   stylelint = {
