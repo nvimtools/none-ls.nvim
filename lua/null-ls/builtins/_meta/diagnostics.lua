@@ -190,6 +190,9 @@ return {
   sqlfluff = {
     filetypes = { "sql" }
   },
+  sqruff = {
+    filetypes = { "sql" }
+  },
   staticcheck = {
     filetypes = { "go" }
   },

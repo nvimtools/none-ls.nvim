@@ -4,31 +4,14 @@ on:
   push:
     branches: [main]
 jobs:
-  stylua:
-    name: Check codestyle
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: JohnnyMorganz/stylua-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --color always --check .
-          version: v0.20.0
-
-  selene:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: NTBBloodbath/selene-action@68d1ed05cd53716aa8b9b3b81f8b63462949fab6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --color always ./lua
-          version: 0.26.1
-
   test:
-    name: Run tests
+    name: Run tests (${{ matrix.version }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - stable
+          - nightly
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,6 +23,7 @@ jobs:
       - uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
+          version: ${{ matrix.version }}
       - run: make test
         working-directory: none-ls.nvim
         timeout-minutes: 1

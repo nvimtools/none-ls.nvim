@@ -57,6 +57,9 @@
     "luasnip": {
       "filetypes": []
     },
+    "nvim_snippets": {
+      "filetypes": []
+    },
     "spell": {
       "filetypes": []
     },
@@ -399,6 +402,11 @@
         "sql"
       ]
     },
+    "sqruff": {
+      "filetypes": [
+        "sql"
+      ]
+    },
     "staticcheck": {
       "filetypes": [
         "go"
@@ -675,6 +683,11 @@
         "django",
         "jinja.html",
         "htmldjango"
+      ]
+    },
+    "duster": {
+      "filetypes": [
+        "php"
       ]
     },
     "dxfmt": {
@@ -1108,6 +1121,11 @@
       ]
     },
     "sqlformat": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "sqruff": {
       "filetypes": [
         "sql"
       ]

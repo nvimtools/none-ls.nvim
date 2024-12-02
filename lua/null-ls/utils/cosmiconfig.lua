@@ -3,7 +3,7 @@ local u = require("null-ls.utils")
 -- Create the default root_pattern for tools using cosmiconfig.
 -- https://github.com/cosmiconfig/cosmiconfig#usage-for-end-users
 ---@param module_name string The module name.
----@param pkg_json_field_name? string The field name in package.json.
+---@param pkg_json_field_name string? The field name in package.json.
 return function(module_name, pkg_json_field_name)
     local patterns = {
         ".{NAME}rc",

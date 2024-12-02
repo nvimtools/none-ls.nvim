@@ -15,6 +15,8 @@ local postprocess = function(action)
     }
 end
 
+---@param method vim.lsp.protocol.Method
+---@param handler fun(actions: table)
 M.handler = function(method, original_params, handler)
     if method == methods.lsp.CODE_ACTION then
         if not original_params.textDocument then

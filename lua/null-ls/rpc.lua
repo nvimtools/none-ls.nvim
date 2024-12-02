@@ -56,10 +56,16 @@ local capabilities = {
 
 M.capabilities = capabilities
 
+---@param dispatchers vim.lsp.rpc.Dispatchers
+---@return vim.lsp.rpc.PublicClient
 M.start = function(dispatchers)
     local message_id = 1
     local stopped = false
 
+    ---@param method vim.lsp.protocol.Method|string LSP method name.
+    ---@param params table? LSP request params.
+    ---@param callback fun(err: lsp.ResponseError|nil, result: any)?
+    ---@param is_notify boolean?
     local function handle(method, params, callback, is_notify)
         params = params or {}
         callback = callback and vim.schedule_wrap(callback)
@@ -103,6 +109,10 @@ M.start = function(dispatchers)
         return true, message_id
     end
 
+    ---@param method vim.lsp.protocol.Method|string LSP method name.
+    ---@param params table? LSP request params.
+    ---@param callback fun(err: lsp.ResponseError|nil, result: any)
+    ---@param notify_callback fun(message_id: integer)?
     local function request(method, params, callback, notify_callback)
         log:trace("received LSP request for method " .. method)
 
@@ -119,6 +129,8 @@ M.start = function(dispatchers)
         return success, message_id
     end
 
+    ---@param method string LSP method name.
+    ---@param params table? LSP request params.
     local function notify(method, params)
         if should_cache(method) then
             set_cache(params)
