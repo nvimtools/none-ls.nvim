@@ -1,12 +1,12 @@
 vim.g.loaded_remote_plugins = ""
 vim.o.runtimepath = vim.env["VIMRUNTIME"]
 
-local temp_dir = vim.fs.dirname(vim.fn.tempname())
+local temp_dir = vim.fs.dirname(vim.fs.dirname(vim.fn.tempname()))
 
-vim.o.packpath = vim.fs.joinpath(temp_dir, "nvim", "site")
+local package_root = vim.fs.joinpath(temp_dir, "nvim", "site")
+vim.o.packpath = package_root
 
-local package_root = vim.fs.joinpath(temp_dir, "nvim", "site", "pack")
-local install_path = vim.fs.joinpath(package_root, "deps", "start", "mini.deps")
+local install_path = vim.fs.joinpath(package_root, "pack", "deps", "start", "mini.deps")
 
 local null_ls_config = function()
     local null_ls = require("null-ls")
