@@ -388,9 +388,9 @@ describe("generator_factory", function()
 
         it("should call dynamic_command with params but not override original command", function()
             local original_command
-            generator_opts.dynamic_command = function(params)
+            generator_opts.dynamic_command = function(params, done)
                 original_command = params.command
-                return "tldr"
+                done("tldr")
             end
 
             local generator = helpers.generator_factory(generator_opts)
@@ -402,8 +402,8 @@ describe("generator_factory", function()
         end)
 
         it("should not spawn command and return done if dynamic_command returns nil", function()
-            generator_opts.dynamic_command = function()
-                return nil
+            generator_opts.dynamic_command = function(params, done)
+                done(nil)
             end
 
             local generator = helpers.generator_factory(generator_opts)
@@ -415,9 +415,9 @@ describe("generator_factory", function()
 
         it("should call dynamic_command once on each run", function()
             local count = 0
-            generator_opts.dynamic_command = function()
+            generator_opts.dynamic_command = function(params, done)
                 count = count + 1
-                return "cat"
+                done("cat")
             end
 
             local generator = helpers.generator_factory(generator_opts)

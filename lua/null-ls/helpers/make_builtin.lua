@@ -98,9 +98,11 @@ local function make_builtin(opts)
         local prefix = type(maybe_prefix) == "string" and maybe_prefix or nil
         local resolver = cmd_resolver.generic(prefix)
 
-        generator_opts.dynamic_command = function(params)
-            local resolved_command = resolver(params) or (prefer_local and params.command)
-            return resolved_command
+        generator_opts.dynamic_command = function(params, done)
+            resolver(params, function(val)
+                local resolved_command = val or (prefer_local and params.command)
+                done(resolved_command)
+            end)
         end
     end
 
