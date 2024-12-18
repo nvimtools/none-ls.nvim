@@ -106,10 +106,17 @@ directory defaults to the project's root.
 ### dynamic_command
 
 Optional callback to set `command` dynamically. Takes two arguments, a `params`
-table and a `done` callback. The generator's original command (if set) is
-available as `params.command`. The `done` callback should be invoked with a
-string containing the command to run or `nil`, meaning that no command should
-run.
+table and a `done` callback.
+
+`params` is a table with the following keys:
+
+- `bufnr`
+- `bufname`
+- `root`
+- `command`: The generator's original command (if set)
+
+The `done` callback should be invoked with a string containing the command to
+run or `nil`, meaning that no command should run.
 
 `dynamic_command` runs every time its parent generator runs and can affect
 performance, so it's best to cache its output when possible.
@@ -281,6 +288,7 @@ helpers.make_builtin({
     factory, -- function (optional)
     filetypes, -- table
     generator, -- function (optional, but required if factory is not set)
+    setup_buffer_async, -- function (optional)
     generator_opts, -- table
     method, -- internal null-ls method (string)
     meta, -- table

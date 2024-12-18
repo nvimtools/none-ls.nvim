@@ -3,6 +3,12 @@ local log = require("null-ls.logger")
 local s = require("null-ls.state")
 local u = require("null-ls.utils")
 
+---@class NullLsDynamicCommandParams
+---@field bufnr number
+---@field root string
+---@field bufname string
+---@field command string?
+
 local output_formats = {
     raw = "raw", -- receive error_output and output directly
     none = nil, -- same as raw but will not send error output
@@ -133,12 +139,6 @@ return function(opts)
         end
     end
 
-    if dynamic_command == nil then
-        dynamic_command = function(params, done)
-            done(params.command)
-        end
-    end
-
     local is_nil_table_or_func = function(v)
         return v == nil or vim.tbl_contains({ "function", "table" }, type(v))
     end
@@ -184,7 +184,27 @@ return function(opts)
         return true
     end
 
+    local function get_command_async(bufnr, done)
+        if dynamic_command then
+            dynamic_command({
+                bufnr = bufnr,
+                bufname = vim.api.nvim_buf_get_name(0),
+                root = u.get_root(),
+                command = command,
+            }, done)
+        else
+            done(command)
+        end
+    end
+
     return {
+        setup_buffer_async = function(bufnr, done)
+            -- Here we invoke `get_command_async` and throw away the result. Why? If
+            -- the underlying `dynamic_command` is expensive to compute, it's
+            -- nice to immediately start computing it, rather than waiting for
+            -- someone to need it.
+            get_command_async(bufnr, done)
+        end,
         fn = function(params, done)
             local loop = require("null-ls.loop")
 
@@ -285,7 +305,7 @@ return function(opts)
 
             params.command = command
 
-            dynamic_command(params, function(resolved_command)
+            get_command_async(params.bufnr, function(resolved_command)
                 -- if dynamic_command returns nil, don't fall back to command
                 if not resolved_command then
                     log:debug(string.format("unable to resolve command %s; aborting", command))

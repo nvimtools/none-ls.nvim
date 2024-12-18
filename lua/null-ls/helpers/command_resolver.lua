@@ -29,8 +29,7 @@ end
 --- creates a resolver that searches for a local executable and caches results by bufnr
 ---@param prefix string|nil
 M.generic = function(prefix)
-    ---@param params NullLsParams
-    ---@return string|nil
+    ---@param params NullLsDynamicCommandParams
     return cache.by_bufnr_async(function(params, done)
         local executable_to_find = prefix and u.path.join(prefix, params.command) or params.command
         if not executable_to_find then
