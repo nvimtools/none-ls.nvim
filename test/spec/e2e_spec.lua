@@ -612,6 +612,32 @@ describe("e2e", function()
         end)
     end)
 
+    describe("dynamic_command", function()
+        it("should run immediately, plus each time we need a command", function()
+            local source = builtins._test.dynamic_command_code_action
+            sources.register(source)
+            tu.edit_test_file("test-file.txt")
+            tu.wait()
+
+            -- Make sure we already ran `dynamic_command` once, even though we haven't needed it yet.
+            -- This allows generators to pre-compute `dynamic_command` if it's
+            -- time consuming to compute.
+            assert.equals(1, source._opts._dynamic_command_call_count)
+
+            -- Query for code actions, make sure we've run `dynamic_command` twice.
+            local actions = get_code_actions()
+            tu.wait()
+            assert.equals("ls", source._opts._last_command)
+            assert.equals(2, source._opts._dynamic_command_call_count)
+
+            -- Query for code actions, make sure we've run `dynamic_command` thrice.
+            local actions = get_code_actions()
+            tu.wait()
+            assert.equals("ls", source._opts._last_command)
+            assert.equals(3, source._opts._dynamic_command_call_count)
+        end)
+    end)
+
     -- https://github.com/neovim/neovim/commit/8260e4860b27a54a061bd8e2a9da23069993953a
     -- hover no longer supports handler
     if not vim.fn.has("nvim-0.11") == 1 then
