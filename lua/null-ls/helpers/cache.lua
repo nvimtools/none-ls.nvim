@@ -57,8 +57,4 @@ M.by_bufnr_async = function(cb)
     end
 end
 
-M._reset = function()
-    M.cache = {}
-end
-
 return M
