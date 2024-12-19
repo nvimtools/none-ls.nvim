@@ -12,6 +12,7 @@ return h.make_builtin({
     },
     method = { FORMATTING, RANGE_FORMATTING },
     filetypes = { "lua", "luau" },
+    check_exit_code = h.check_exit_code(0),
     generator_opts = {
         command = "stylua",
         args = h.range_formatting_args_factory({
