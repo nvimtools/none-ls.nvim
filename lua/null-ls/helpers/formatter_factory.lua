@@ -19,7 +19,8 @@ return function(opts)
     end
 
     if opts.check_exit_code == nil then
-        opts.check_exit_code = require("null-ls.helpers").check_exit_code(0)
+        vim.print(opts)
+        opts.check_exit_code = require("null-ls.helpers").check_exit_code(0, opts.command)
     end
 
     return require("null-ls.helpers").generator_factory(opts)
