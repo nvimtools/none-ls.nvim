@@ -1,3 +1,5 @@
+local logger = require("null-ls.logger")
+
 return function(success_codes)
     return function(code, stderr)
         local success
@@ -9,8 +11,9 @@ return function(success_codes)
         end
 
         if not success then
+            logger:add_entry(("failed to run formatter: %s"):format(stderr), "warn")
             vim.schedule(function()
-                require("null-ls.logger"):warn(("failed to format: %s"):format(stderr))
+                logger:warn("failed to run formatter; see `:NullLsLog`")
             end)
         end
     end
