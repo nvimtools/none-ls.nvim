@@ -11,10 +11,10 @@ return function(success_codes)
         end
 
         if not success then
-            logger:add_entry(string.format("failed to run formatter: %s", stderr), "warn")
             vim.schedule(function()
                 logger:warn("failed to run formatter; see `:NullLsLog`")
             end)
+            logger:add_entry(string.format("failed to run formatter: %s", stderr), "warn")
         end
     end
 end
