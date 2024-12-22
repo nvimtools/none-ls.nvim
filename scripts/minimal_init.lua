@@ -1,22 +1,12 @@
--- this template is borrowed from nvim-lspconfig
-local on_windows = vim.uv.os_uname().version:match("Windows")
-
-local function join_paths(...)
-    local path_sep = on_windows and "\\" or "/"
-    local result = table.concat({ ... }, path_sep)
-    return result
-end
-
 vim.g.loaded_remote_plugins = ""
-vim.cmd([[set runtimepath=$VIMRUNTIME]])
+vim.o.runtimepath = vim.env["VIMRUNTIME"]
 
-local temp_dir = vim.env.TEMP or "/tmp"
+local temp_dir = vim.fs.dirname(vim.fs.dirname(vim.fn.tempname()))
 
-vim.cmd("set packpath=" .. join_paths(temp_dir, "nvim", "site"))
+local package_root = vim.fs.joinpath(temp_dir, "nvim", "site")
+vim.o.packpath = package_root
 
-local package_root = join_paths(temp_dir, "nvim", "site", "pack")
-local install_path = join_paths(package_root, "packer", "start", "packer.nvim")
-local compile_path = join_paths(install_path, "plugin", "packer_compiled.lua")
+local install_path = vim.fs.joinpath(package_root, "pack", "deps", "start", "mini.deps")
 
 local null_ls_config = function()
     local null_ls = require("null-ls")
@@ -29,27 +19,20 @@ end
 
 local function load_plugins()
     -- only add other plugins if they are necessary to reproduce the issue
-    require("packer").startup({
-        {
-            "wbthomason/packer.nvim",
-            {
-                "nvimtools/none-ls.nvim",
-                requires = { "nvim-lua/plenary.nvim" },
-                config = null_ls_config,
-            },
-        },
-        config = {
-            package_root = package_root,
-            compile_path = compile_path,
+    local deps = require("mini.deps")
+    deps.setup({
+        path = {
+            package = package_root,
         },
     })
+    deps.add({
+        source = "nvimtools/none-ls.nvim",
+        depends = { "nvim-lua/plenary.nvim" },
+    })
+    deps.later(null_ls_config)
 end
 
 if vim.fn.isdirectory(install_path) == 0 then
-    vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-    load_plugins()
-    require("packer").sync()
-else
-    load_plugins()
-    require("packer").sync()
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/echasnovski/mini.deps", install_path })
 end
+load_plugins()

@@ -601,7 +601,7 @@ describe("e2e", function()
             tu.edit_test_file("test-file.txt")
         end)
         after_each(function()
-            require("null-ls.client").get_client().handlers[methods.lsp.CODE_ACTION] = nil
+            require("null-ls.client").get_client().handlers[methods.lsp.FORMATTING] = nil
         end)
 
         it("should use client handler", function()
@@ -612,29 +612,58 @@ describe("e2e", function()
         end)
     end)
 
-    describe("hover", function()
-        local mock_handler = require("luassert.stub").new()
-
-        before_each(function()
-            sources.register(builtins._test.mock_hover)
+    describe("dynamic_command", function()
+        it("should run immediately, plus each time we need a command", function()
+            local source = builtins._test.dynamic_command_code_action
+            sources.register(source)
             tu.edit_test_file("test-file.txt")
             tu.wait()
 
-            local client = require("null-ls.client").get_client()
-            client.handlers[methods.lsp.HOVER] = mock_handler
-        end)
-        after_each(function()
-            require("null-ls.client").get_client().handlers[methods.lsp.HOVER] = nil
-        end)
+            -- Make sure we already ran `dynamic_command` once, even though we haven't needed it yet.
+            -- This allows generators to pre-compute `dynamic_command` if it's
+            -- time consuming to compute.
+            assert.equals(1, source._opts._dynamic_command_call_count)
 
-        it("should call handler with results", function()
-            vim.lsp.buf.hover()
+            -- Query for code actions, make sure we've run `dynamic_command` twice.
+            local actions = get_code_actions()
             tu.wait()
+            assert.equals("ls", source._opts._last_command)
+            assert.equals(2, source._opts._dynamic_command_call_count)
 
-            assert.stub(mock_handler).was_called()
-            assert.same(mock_handler.calls[1].refs[2], { contents = { { "test" } } })
+            -- Query for code actions, make sure we've run `dynamic_command` thrice.
+            local actions = get_code_actions()
+            tu.wait()
+            assert.equals("ls", source._opts._last_command)
+            assert.equals(3, source._opts._dynamic_command_call_count)
         end)
     end)
+
+    -- https://github.com/neovim/neovim/commit/8260e4860b27a54a061bd8e2a9da23069993953a
+    -- hover no longer supports handler
+    if not vim.fn.has("nvim-0.11") == 1 then
+        describe("hover", function()
+            local mock_handler = require("luassert.stub").new()
+
+            before_each(function()
+                local client = require("null-ls.client").get_client()
+                client.handlers[methods.lsp.HOVER] = mock_handler
+
+                sources.register(builtins._test.mock_hover)
+                tu.edit_test_file("test-file.txt")
+            end)
+            after_each(function()
+                require("null-ls.client").get_client().handlers[methods.lsp.HOVER] = nil
+            end)
+
+            it("should call handler with results", function()
+                lsp.buf.hover()
+                tu.wait()
+
+                assert.stub(mock_handler).was_called()
+                assert.same(mock_handler.calls[1].refs[2], { contents = { { "test" } } })
+            end)
+        end)
+    end
 
     describe("client", function()
         it("should not leave pending requests on client object", function()

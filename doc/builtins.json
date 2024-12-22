@@ -43,12 +43,21 @@
         "nix"
       ]
     },
+    "textlint": {
+      "filetypes": [
+        "text",
+        "markdown"
+      ]
+    },
     "ts_node_action": {
       "filetypes": []
     }
   },
   "completion": {
     "luasnip": {
+      "filetypes": []
+    },
+    "nvim_snippets": {
       "filetypes": []
     },
     "spell": {
@@ -393,6 +402,11 @@
         "sql"
       ]
     },
+    "sqruff": {
+      "filetypes": [
+        "sql"
+      ]
+    },
     "staticcheck": {
       "filetypes": [
         "go"
@@ -558,7 +572,9 @@
         "javascriptreact",
         "typescriptreact",
         "json",
-        "jsonc"
+        "jsonc",
+        "css",
+        "graphql"
       ]
     },
     "black": {
@@ -667,6 +683,11 @@
         "django",
         "jinja.html",
         "htmldjango"
+      ]
+    },
+    "duster": {
+      "filetypes": [
+        "php"
       ]
     },
     "dxfmt": {
@@ -1100,6 +1121,11 @@
       ]
     },
     "sqlformat": {
+      "filetypes": [
+        "sql"
+      ]
+    },
+    "sqruff": {
       "filetypes": [
         "sql"
       ]

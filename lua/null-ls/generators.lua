@@ -6,6 +6,33 @@ local M = {}
 
 local progress_token = 0
 
+-- returns a function that when first called calls the wrapped function
+-- and returns its returned values.
+-- On consecutive calls the function is not called and the function retursn nil.
+-- Don't confuse this with a memoized function, here we are explicitly ignoring
+-- the returned results to avoid holding them in memory because we know we won't
+-- need them.
+local once = function(func)
+    local called = nil
+    return function(...)
+        if called == nil then
+            called = true
+            return func(...)
+        end
+    end
+end
+
+-- Think about this function as plenary's wrap, but for iterators.
+local wrap_iter = function(func, argc)
+    local once_func = once(func)
+    return function(...)
+        local params = { ... }
+        return function()
+            return coroutine.yield(once_func, argc, unpack(params))
+        end
+    end
+end
+
 M.run = function(generators, params, opts, callback)
     local a = require("plenary.async")
 
@@ -62,52 +89,79 @@ M.run = function(generators, params, opts, callback)
                 })
             end
 
-            local to_run = generator.async and a.wrap(generator.fn, 2) or generator.fn
-            local protected_call = generator.async and a.util.apcall or pcall
-            local ok, results = protected_call(to_run, copied_params)
-            a.util.scheduler()
-
             -- filter results with the filter option
             local filter = generator.opts and generator.opts.filter
-            if filter and results then
-                results = vim.tbl_filter(filter, results)
-            end
-
-            if results then
-                -- allow generators to pass errors without throwing them (e.g. in luv callbacks)
-                if results._generator_err then
-                    ok = false
-                    results = results._generator_err
-                end
-
-                -- allow generators to deregister their parent sources
-                if results._should_deregister and generator.source_id then
-                    results = nil
-                    vim.schedule(function()
-                        require("null-ls.sources").deregister({ id = generator.source_id })
-                    end)
-                end
-            end
-
-            -- TODO: pass generator error trace
-            if not ok then
-                log:warn("failed to run generator: " .. results)
-                generator._failed = true
-                return
-            end
-
-            results = results or {}
             local postprocess, after_each = opts.postprocess, opts.after_each
-            for _, result in ipairs(results) do
-                if postprocess then
-                    postprocess(result, copied_params, generator)
+
+            if generator.async_iterator then
+                local results = {}
+                local iter = wrap_iter(generator.fn, 2)
+                local no_results = true
+                for result in iter(copied_params) do
+                    if not filter or filter(result) then
+                        no_results = false
+                        if postprocess then
+                            postprocess(result, copied_params, generator)
+                        end
+
+                        table.insert(results, result)
+                        table.insert(all_results, result)
+
+                        if after_each then
+                            after_each(results, copied_params, generator)
+                        end
+                    end
+                end
+                if no_results and after_each then
+                    a.util.scheduler()
+                    after_each(results, copied_params, generator)
+                end
+            else
+                local to_run = generator.async and a.wrap(generator.fn, 2) or generator.fn
+                local protected_call = generator.async and a.util.apcall or pcall
+                local ok, results = protected_call(to_run, copied_params)
+                a.util.scheduler()
+
+                -- filter results with the filter option
+                if filter and results then
+                    results = vim.tbl_filter(filter, results)
                 end
 
-                table.insert(all_results, result)
-            end
+                if results then
+                    -- allow generators to pass errors without throwing them (e.g. in luv callbacks)
+                    if results._generator_err then
+                        ok = false
+                        results = results._generator_err
+                    end
 
-            if after_each then
-                after_each(results, copied_params, generator)
+                    -- allow generators to deregister their parent sources
+                    if results._should_deregister and generator.source_id then
+                        results = nil
+                        vim.schedule(function()
+                            require("null-ls.sources").deregister({ id = generator.source_id })
+                        end)
+                    end
+                end
+
+                -- TODO: pass generator error trace
+                if not ok then
+                    log:warn("failed to run generator: " .. results)
+                    generator._failed = true
+                    return
+                end
+
+                results = results or {}
+                for _, result in ipairs(results) do
+                    if postprocess then
+                        postprocess(result, copied_params, generator)
+                    end
+
+                    table.insert(all_results, result)
+                end
+
+                if after_each then
+                    after_each(results, copied_params, generator)
+                end
             end
         end)
     end

@@ -40,11 +40,17 @@ return h.make_builtin({
                             snip_id = snip.id,
                             show_condition = snip.show_condition,
                         }
+                        local detail
+                        if type(snip.detail) == "table" then
+                            detail = table.concat(snip.detail, "\n")
+                        else
+                            detail = snip.detail
+                        end
                         if not snip.hidden then
                             items[#items + 1] = {
                                 word = snip.trigger,
                                 label = snip.trigger,
-                                detail = snip.description,
+                                detail = detail,
                                 kind = vim.lsp.protocol.CompletionItemKind.Snippet,
                                 data = data,
                                 documentation = {

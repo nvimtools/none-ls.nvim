@@ -29,25 +29,27 @@ end
 --- creates a resolver that searches for a local executable and caches results by bufnr
 ---@param prefix string|nil
 M.generic = function(prefix)
-    ---@param params NullLsParams
-    ---@return string|nil
-    return cache.by_bufnr(function(params)
+    ---@param params NullLsDynamicCommandParams
+    return cache.by_bufnr_async(function(params, done)
         local executable_to_find = prefix and u.path.join(prefix, params.command) or params.command
         if not executable_to_find then
+            done(nil)
             return
         end
 
         local stop_path = u.get_vcs_root() or u.get_root()
         local resolved_executable = search_ancestors_for_executable(params.bufname, stop_path, executable_to_find)
-        return resolved_executable
+        done(resolved_executable)
     end)
 end
 
 --- creates a resolver that searches for a local node_modules executable and falls back to a global executable
 M.from_node_modules = function()
     local node_modules_resolver = M.generic(u.path.join("node_modules", ".bin"))
-    return function(params)
-        return node_modules_resolver(params) or params.command
+    return function(params, done)
+        node_modules_resolver(params, function(resolved)
+            done(resolved or params.command)
+        end)
     end
 end
 

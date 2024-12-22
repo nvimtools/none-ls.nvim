@@ -3,6 +3,12 @@ local log = require("null-ls.logger")
 local s = require("null-ls.state")
 local u = require("null-ls.utils")
 
+---@class NullLsDynamicCommandParams
+---@field bufnr number
+---@field root string
+---@field bufname string
+---@field command string?
+
 local output_formats = {
     raw = "raw", -- receive error_output and output directly
     none = nil, -- same as raw but will not send error output
@@ -178,7 +184,27 @@ return function(opts)
         return true
     end
 
+    local function get_command_async(bufnr, done)
+        if dynamic_command then
+            dynamic_command({
+                bufnr = bufnr,
+                bufname = vim.api.nvim_buf_get_name(0),
+                root = u.get_root(),
+                command = command,
+            }, done)
+        else
+            done(command)
+        end
+    end
+
     return {
+        setup_buffer_async = function(bufnr, done)
+            -- Here we invoke `get_command_async` and throw away the result. Why? If
+            -- the underlying `dynamic_command` is expensive to compute, it's
+            -- nice to immediately start computing it, rather than waiting for
+            -- someone to need it.
+            get_command_async(bufnr, done)
+        end,
         fn = function(params, done)
             local loop = require("null-ls.loop")
 
@@ -279,65 +305,60 @@ return function(opts)
 
             params.command = command
 
-            local resolved_command
-            if dynamic_command then
-                resolved_command = dynamic_command(params)
-            else
-                resolved_command = command
-            end
-
-            -- if dynamic_command returns nil, don't fall back to command
-            if not resolved_command then
-                log:debug(string.format("unable to resolve command %s; aborting", command))
-                return done()
-            end
-
-            local resolved_cwd = cwd and cwd(params) or root
-            params.cwd = resolved_cwd
-
-            if type(env) == "function" then
-                env = env(params)
-            end
-
-            local spawn_opts = {
-                cwd = resolved_cwd,
-                input = to_stdin and get_content(params) or nil,
-                handler = wrapper,
-                check_exit_code = check_exit_code,
-                timeout = timeout or c.get().default_timeout,
-                env = env,
-            }
-
-            if to_temp_file then
-                local content = get_content(params)
-                local temp_path, cleanup = loop.temp_file(content, params.bufname, temp_dir or c.get().temp_dir)
-
-                spawn_opts.on_stdout_end = function()
-                    if from_temp_file then
-                        params.output = loop.read_file(temp_path)
-                    end
-                    cleanup()
+            get_command_async(params.bufnr, function(resolved_command)
+                -- if dynamic_command returns nil, don't fall back to command
+                if not resolved_command then
+                    log:debug(string.format("unable to resolve command %s; aborting", command))
+                    return done()
                 end
-                params.temp_path = temp_path
-            end
 
-            local resolved_args = args or {}
-            resolved_args = type(resolved_args) == "function" and resolved_args(params) or resolved_args
-            resolved_args = parse_args(resolved_args, params)
+                local resolved_cwd = cwd and cwd(params) or root
+                params.cwd = resolved_cwd
 
-            opts._last_command = resolved_command
-            opts._last_args = resolved_args
-            opts._last_cwd = resolved_cwd
+                if type(env) == "function" then
+                    env = env(params)
+                end
 
-            log:debug(
-                string.format(
-                    "spawning command %s at %s with args %s",
-                    vim.inspect(resolved_command),
-                    resolved_cwd,
-                    vim.inspect(resolved_args)
+                local spawn_opts = {
+                    cwd = resolved_cwd,
+                    input = to_stdin and get_content(params) or nil,
+                    handler = wrapper,
+                    check_exit_code = check_exit_code,
+                    timeout = timeout or c.get().default_timeout,
+                    env = env,
+                }
+
+                if to_temp_file then
+                    local content = get_content(params)
+                    local temp_path, cleanup = loop.temp_file(content, params.bufname, temp_dir or c.get().temp_dir)
+
+                    spawn_opts.on_stdout_end = function()
+                        if from_temp_file then
+                            params.output = loop.read_file(temp_path)
+                        end
+                        cleanup()
+                    end
+                    params.temp_path = temp_path
+                end
+
+                local resolved_args = args or {}
+                resolved_args = type(resolved_args) == "function" and resolved_args(params) or resolved_args
+                resolved_args = parse_args(resolved_args, params)
+
+                opts._last_command = resolved_command
+                opts._last_args = resolved_args
+                opts._last_cwd = resolved_cwd
+
+                log:debug(
+                    string.format(
+                        "spawning command %s at %s with args %s",
+                        vim.inspect(resolved_command),
+                        resolved_cwd,
+                        vim.inspect(resolved_args)
+                    )
                 )
-            )
-            loop.spawn(resolved_command, resolved_args, spawn_opts)
+                loop.spawn(resolved_command, resolved_args, spawn_opts)
+            end)
         end,
         filetypes = opts.filetypes,
         opts = opts,

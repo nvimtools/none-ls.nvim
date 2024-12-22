@@ -9,13 +9,13 @@ return h.make_builtin({
     name = "biome",
     meta = {
         url = "https://biomejs.dev",
-        description = "Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, and CSS.",
+        description = "Formatter, linter, bundler, and more for JavaScript, TypeScript, JSON, HTML, Markdown, CSS and GraphQL.",
         notes = {
-            "Currently support only JavaScript, TypeScript and JSON. See status [here](https://biomejs.dev/internals/language-support/)",
+            "Currently support only JavaScript, TypeScript, JSON, CSS and GraphQL. See status [here](https://biomejs.dev/internals/language-support/)",
         },
     },
     method = FORMATTING,
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" },
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css", "graphql" },
     generator_opts = {
         command = "biome",
         args = {
