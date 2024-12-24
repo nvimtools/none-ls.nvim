@@ -421,11 +421,11 @@ describe("diagnostics", function()
         local parser = linter._opts.on_output
         local selene_diagnostics = {}
         local function done(_diagnostics)
-            selene_diagnostics[#selene_diagnostics + 1] = _diagnostics
+            table.insert(selene_diagnostics, _diagnostics)
         end
         it("should create a diagnostic with an Error severity", function()
             local output = [[
-                [{"type":"Diagnostic","severity":"Error","code":"undefined_variable","message":"`vim` is not defined","primary_label":{"filename":"init.lua","span":{"start":0,"start_line":0,"start_column":0,"end":3,"end_line":0,"end_column":3},"message":""},"notes":[],"secondary_labels":[]}]
+                {"type":"Diagnostic","severity":"Error","code":"undefined_variable","message":"`vim` is not defined","primary_label":{"filename":"init.lua","span":{"start":0,"start_line":0,"start_column":0,"end":3,"end_line":0,"end_column":3},"message":""},"notes":[],"secondary_labels":[]}
             ]]
 
             parser({ output = output }, done)
@@ -434,10 +434,10 @@ describe("diagnostics", function()
                     code = "undefined_variable",
                     col = 1,
                     end_col = 4,
-                    endLine = 1,
-                    line = 1,
+                    end_row = 1,
+                    row = 1,
                     message = "`vim` is not defined\n",
-                    severity = 4,
+                    severity = 1,
                 },
             }, selene_diagnostics[1])
         end)
