@@ -416,7 +416,7 @@ describe("diagnostics", function()
         end)
     end)
 
-    describe("selene2", function()
+    describe("selene", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
         it("should create a diagnostic with an Error severity", function()
@@ -426,13 +426,15 @@ describe("diagnostics", function()
 
             local diagnostic = parser({ output = output })
             assert.same({
-                code = "undefined_variable",
-                col = 1,
-                end_col = 4,
-                endLine = 1,
-                line = 1,
-                message = "`vim` is not defined\n",
-                severity = 4,
+                {
+                    code = "undefined_variable",
+                    col = 1,
+                    end_col = 4,
+                    endLine = 1,
+                    line = 1,
+                    message = "`vim` is not defined\n",
+                    severity = 4,
+                },
             }, diagnostic)
         end)
 
@@ -443,13 +445,15 @@ describe("diagnostics", function()
 
             local diagnostic = parser({ output = output })
             assert.same({
-                code = "unused_variable",
-                row = 2,
-                end_row = 2,
-                col = 1,
-                end_col = 11,
-                message = "CACHE_PATH is assigned a value, but never used\n",
-                severity = 2,
+                {
+                    code = "unused_variable",
+                    row = 2,
+                    end_row = 2,
+                    col = 1,
+                    end_col = 11,
+                    message = "CACHE_PATH is assigned a value, but never used\n",
+                    severity = 2,
+                },
             }, diagnostic)
         end)
 
