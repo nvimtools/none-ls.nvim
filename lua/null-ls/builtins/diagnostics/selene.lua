@@ -56,7 +56,7 @@ return h.make_builtin({
                     end_row = 1,
                 },
             })
-            done(parser({ output = all_diagnostics }))
+            return done(parser({ output = all_diagnostics }))
         end,
         cwd = h.cache.by_bufnr(function(params)
             -- https://kampfkarren.github.io/selene/usage/configuration.html
