@@ -420,9 +420,9 @@ describe("diagnostics", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
         it("should create a diagnostic with an Error severity", function()
-            local output = vim.json.decode([[
+            local output = [[
                 [{"type":"Diagnostic","severity":"Error","code":"undefined_variable","message":"`vim` is not defined","primary_label":{"filename":"init.lua","span":{"start":0,"start_line":0,"start_column":0,"end":3,"end_line":0,"end_column":3},"message":""},"notes":[],"secondary_labels":[]}]
-            ]])
+            ]]
 
             local diagnostic = parser({ output = output })
             assert.same({
@@ -439,9 +439,9 @@ describe("diagnostics", function()
         end)
 
         it("should create a diagnostic", function()
-            local output = vim.json.decode([[
+            local output = [[
                 {"type":"Diagnostic","severity":"Warning","code":"unused_variable","message":"CACHE_PATH is assigned a value, but never used","primary_label":{"filename":"lua/default-config.lua","span":{"start":1,"start_line":1,"start_column":0,"end":1,"end_line":1,"end_column":10},"message":""},"notes":[],"secondary_labels":[]}
-            ]])
+            ]]
 
             local diagnostic = parser({ output = output })
             assert.same({
@@ -458,9 +458,9 @@ describe("diagnostics", function()
         end)
 
         it("should not create a diagnostic for summary", function()
-            local output = vim.json.decode([[
+            local output = [[
                 {"type":"Summary","errors":1,"warnings":1,"parse_errors":0}
-            ]])
+            ]]
 
             local diagnostic = parser({ output = output })
             assert.same({}, diagnostic)
