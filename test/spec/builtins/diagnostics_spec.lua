@@ -419,7 +419,7 @@ describe("diagnostics", function()
     describe("selene", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
-        local selene_diagnostics = nil
+        local selene_diagnostics = {}
         local function done(_diagnostics)
             selene_diagnostics[#selene_diagnostics + 1] = _diagnostics
         end
