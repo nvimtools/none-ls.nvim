@@ -419,12 +419,16 @@ describe("diagnostics", function()
     describe("selene", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
+        local selene_diagnostics = nil
+        local function done(_diagnostics)
+            selene_diagnostics = _diagnostics
+        end
         it("should create a diagnostic with an Error severity", function()
             local output = [[
                 [{"type":"Diagnostic","severity":"Error","code":"undefined_variable","message":"`vim` is not defined","primary_label":{"filename":"init.lua","span":{"start":0,"start_line":0,"start_column":0,"end":3,"end_line":0,"end_column":3},"message":""},"notes":[],"secondary_labels":[]}]
             ]]
 
-            local diagnostic = parser({ output = output })
+            local diagnostic = parser({ output = output }, done)
             assert.same({
                 {
                     code = "undefined_variable",
@@ -443,7 +447,7 @@ describe("diagnostics", function()
                 {"type":"Diagnostic","severity":"Warning","code":"unused_variable","message":"CACHE_PATH is assigned a value, but never used","primary_label":{"filename":"lua/default-config.lua","span":{"start":1,"start_line":1,"start_column":0,"end":1,"end_line":1,"end_column":10},"message":""},"notes":[],"secondary_labels":[]}
             ]]
 
-            local diagnostic = parser({ output = output })
+            local diagnostic = parser({ output = output }, done)
             assert.same({
                 {
                     code = "unused_variable",
@@ -462,7 +466,7 @@ describe("diagnostics", function()
                 {"type":"Summary","errors":1,"warnings":1,"parse_errors":0}
             ]]
 
-            local diagnostic = parser({ output = output })
+            local diagnostic = parser({ output = output }, done)
             assert.same({}, diagnostic)
         end)
     end)
