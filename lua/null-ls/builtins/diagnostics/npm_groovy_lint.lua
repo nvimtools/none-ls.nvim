@@ -66,7 +66,20 @@ return h.make_builtin({
     filetypes = { "groovy", "java", "Jenkinsfile" },
     generator_opts = {
         command = "npm-groovy-lint",
-        args = { "--failon", "none", "-o", "json", "$FILENAME" },
+        args = function(params)
+            local args = {
+                "--failon",
+                "none",
+                "-o",
+                "json",
+                "$FILENAME",
+            }
+            if params.bufname:find("Jenkinsfile") or vim.bo.filetype == "Jenkinsfile" then
+                -- https://github.com/nvuillam/npm-groovy-lint/issues/422#issuecomment-2324321544
+                table.insert(args, #args, "--no-parse")
+            end
+            return args
+        end,
         to_stdin = false,
         to_temp_file = true,
         from_stderr = false,
