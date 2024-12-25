@@ -7,7 +7,7 @@ local errors_to_diagnostic = function(error)
     -- initial diagnostic
     diagnostic = {
         message = error.msg,
-        ruleId = error.id,
+        ruleId = error.rule,
         level = error.severity,
         line = error.line,
     }
