@@ -13,16 +13,17 @@ local function nvim_snippet_exists()
     return status
 end
 
-local function get_loaded_snippets()
-    return require("snippets").get_loaded_snippets()
+local function get_loaded_snippets(filetype)
+    return require("snippets").load_snippets_for_ft(filetype)
 end
 
 return h.make_builtin({
     name = "nvim_snippets",
     can_run = nvim_snippet_exists,
     condition = nvim_snippet_exists,
-    runtime_condition = h.cache.by_bufnr(function()
-        return not vim.tbl_isempty(get_loaded_snippets())
+    --- @param params NullLsParams
+    runtime_condition = h.cache.by_bufnr(function(params)
+        return not vim.tbl_isempty(get_loaded_snippets(params.filetype))
     end),
     meta = {
         url = "https://github.com/garymjr/nvim-snippets",
@@ -43,7 +44,7 @@ return h.make_builtin({
             end
 
             local items = {}
-            local snippets = get_loaded_snippets()
+            local snippets = get_loaded_snippets(params.filetype)
             for _, item in pairs(snippets) do
                 if vim.startswith(item.prefix, line_to_cursor:sub(start_col)) then
                     local insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body
