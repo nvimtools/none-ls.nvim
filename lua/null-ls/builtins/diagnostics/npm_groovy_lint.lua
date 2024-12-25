@@ -48,7 +48,6 @@ local handle_npm_groovy_lint_output = function(params)
             local errors = {}
             -- create table with null_ls compatible tables from json output
             for _, error in ipairs(file.errors) do
-                vim.print("error: " .. vim.inspect("error: "))
                 table.insert(errors, errors_to_diagnostic(error))
             end
             return parser({ output = errors })
