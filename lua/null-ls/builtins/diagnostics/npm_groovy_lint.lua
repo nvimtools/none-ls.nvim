@@ -74,8 +74,7 @@ return h.make_builtin({
                 "json",
                 "$FILENAME",
             }
-            local JENKINSFILE = "Jenkinsfile"
-            if params.bufname:find(JENKINSFILE) or vim.bo.filetype == JENKINSFILE then
+            if params.bufname:find("Jenkinsfile") then
                 -- https://github.com/nvuillam/npm-groovy-lint/issues/422#issuecomment-2324321544
                 table.insert(args, #args, "--no-parse")
             end
