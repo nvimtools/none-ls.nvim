@@ -7,7 +7,7 @@ local errors_to_diagnostic = function(error)
     -- initial diagnostic
     diagnostic = {
         message = error.msg,
-        ruleId = error.id,
+        ruleId = error.rule,
         level = error.severity,
         line = error.line,
     }
@@ -35,8 +35,8 @@ end
 
 local handle_npm_groovy_lint_output = function(params)
     if params.output and params.output.files then
-        -- "0" is the first file in the output.files table. not an array
-        local file = params.output.files["0"]
+        local file_key = vim.tbl_keys(params.output.files)[1]
+        local file = params.output.files[file_key]
         if file and file.errors then
             local parser = h.diagnostics.from_json({
                 severities = {
@@ -66,8 +66,22 @@ return h.make_builtin({
     filetypes = { "groovy", "java", "Jenkinsfile" },
     generator_opts = {
         command = "npm-groovy-lint",
-        args = { "-o", "json", "-" },
-        to_stdin = true,
+        args = function(params)
+            local args = {
+                "--failon",
+                "none",
+                "-o",
+                "json",
+                "$FILENAME",
+            }
+            if params.bufname:find("Jenkinsfile") then
+                -- https://github.com/nvuillam/npm-groovy-lint/issues/422#issuecomment-2324321544
+                table.insert(args, #args, "--no-parse")
+            end
+            return args
+        end,
+        to_stdin = false,
+        to_temp_file = true,
         from_stderr = false,
         ignore_stderr = true,
         format = "json_raw",
