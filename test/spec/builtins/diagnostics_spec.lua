@@ -419,35 +419,55 @@ describe("diagnostics", function()
     describe("selene", function()
         local linter = diagnostics.selene
         local parser = linter._opts.on_output
-        local file = {
-            "vim.cmd [[",
-            [[CACHE_PATH = vim.fn.stdpath "cache"]],
-        }
+        local selene_diagnostics = {}
+        local function done(_diagnostics)
+            table.insert(selene_diagnostics, _diagnostics)
+        end
+        it("should create a diagnostic with an Error severity", function()
+            local output = [[
+                {"type":"Diagnostic","severity":"Error","code":"undefined_variable","message":"`vim` is not defined","primary_label":{"filename":"init.lua","span":{"start":0,"start_line":0,"start_column":0,"end":3,"end_line":0,"end_column":3},"message":""},"notes":[],"secondary_labels":[]}
+            ]]
 
-        it("should create a diagnostic (quote is between backquotes)", function()
-            local output = [[init.lua:1:1: error[undefined_variable]: `vim` is not defined]]
-            local diagnostic = parser(output, { content = file })
+            parser({ output = output }, done)
             assert.same({
-                row = "1",
-                col = "1",
-                end_col = 4,
-                severity = 1,
-                code = "undefined_variable",
-                message = "`vim` is not defined",
-            }, diagnostic)
+                {
+                    code = "undefined_variable",
+                    col = 1,
+                    end_col = 4,
+                    end_row = 1,
+                    row = 1,
+                    message = "`vim` is not defined\n",
+                    severity = 1,
+                },
+            }, selene_diagnostics[1])
         end)
-        it("should create a diagnostic (quote is not between backquotes)", function()
-            local output =
-                [[lua/default-config.lua:2:1: warning[unused_variable]: CACHE_PATH is defined, but never used]]
-            local diagnostic = parser(output, { content = file })
+
+        it("should create a diagnostic", function()
+            local output = [[
+                {"type":"Diagnostic","severity":"Warning","code":"unused_variable","message":"CACHE_PATH is assigned a value, but never used","primary_label":{"filename":"lua/default-config.lua","span":{"start":1,"start_line":1,"start_column":0,"end":1,"end_line":1,"end_column":10},"message":""},"notes":[],"secondary_labels":[]}
+            ]]
+
+            parser({ output = output }, done)
             assert.same({
-                row = "2",
-                col = "1",
-                end_col = 11,
-                severity = 2,
-                code = "unused_variable",
-                message = "CACHE_PATH is defined, but never used",
-            }, diagnostic)
+                {
+                    code = "unused_variable",
+                    row = 2,
+                    end_row = 2,
+                    col = 1,
+                    end_col = 11,
+                    message = "CACHE_PATH is assigned a value, but never used\n",
+                    severity = 2,
+                },
+            }, selene_diagnostics[2])
+        end)
+
+        it("should not create a diagnostic for summary", function()
+            local output = [[
+                {"type":"Summary","errors":1,"warnings":1,"parse_errors":0}
+            ]]
+
+            parser({ output = output }, done)
+            assert.same({}, selene_diagnostics[3])
         end)
     end)
 
