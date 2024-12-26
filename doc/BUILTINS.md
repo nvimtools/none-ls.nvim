@@ -1398,7 +1398,7 @@ local sources = { null_ls.builtins.diagnostics.selene }
 - Filetypes: `{ "lua", "luau" }`
 - Method: `diagnostics`
 - Command: `selene`
-- Args: `{ "--display-style", "quiet", "-" }`
+- Args: `{ "--display-style", "json2", "-" }`
 
 ### [semgrep](https://semgrep.dev/)
 
