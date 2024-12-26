@@ -1025,7 +1025,7 @@ local sources = { null_ls.builtins.diagnostics.npm_groovy_lint }
 - Filetypes: `{ "groovy", "java", "Jenkinsfile" }`
 - Method: `diagnostics`
 - Command: `npm-groovy-lint`
-- Args: `{ "-o", "json", "-" }`
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/npm_groovy_lint.lua))
 
 ### [opacheck](https://www.openpolicyagent.org/docs/latest/cli/#opa-check)
 
