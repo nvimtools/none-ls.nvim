@@ -75,7 +75,7 @@ local on_init = function(new_client, initialize_result)
         return methods.lsp[method] ~= nil
     end
 
-    if vim.fn.has("nvim-0.11") == 1 then
+    if vim.fn.has("nvim-0.10.3") == 1 then
         new_client.supports_method = function(_, method)
             return supports_method(method)
         end
