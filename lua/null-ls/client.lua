@@ -9,6 +9,28 @@ local loop = require("null-ls.loop")
 local api = vim.api
 local lsp = vim.lsp
 
+-- Inspired by upstream neovim:
+-- <https://github.com/neovim/neovim/blob/43d552c56648bc3125c7509b3d708b6bf6c0c09c/runtime/lua/vim/lsp/client.lua#L234-L249>.
+-- This can go away sometime after neovim drops support for the legacy way
+-- of invoking these functions.
+-- Alternatively, we could get out of the business of monkeypatching Neovim
+-- functions, see <https://github.com/nvimtools/none-ls.nvim/discussions/229>.
+--- @param obj table<string,any>
+--- @param cls table<string,function>
+--- @param name string
+local function method_wrapper(obj, cls, name)
+    local func = assert(obj[name], "couldn't find " .. name .. " function")
+    obj[name] = function(maybe_self, ...)
+        if maybe_self and getmetatable(maybe_self) == cls then
+            -- First argument is self. Drop it and call `func` directly.
+            return func(...)
+        end
+        vim.deprecate("client." .. name, "client:" .. name, "0.13")
+        -- First argument is not self, include it when calling `func`.
+        return func(maybe_self, ...)
+    end
+end
+
 ---@type vim.lsp.Client?, integer?
 local client, id
 
@@ -75,12 +97,9 @@ local on_init = function(new_client, initialize_result)
         return methods.lsp[method] ~= nil
     end
 
+    new_client.supports_method = supports_method
     if vim.fn.has("nvim-0.11") == 1 then
-        new_client.supports_method = function(_, method)
-            return supports_method(method)
-        end
-    else
-        new_client.supports_method = supports_method
+        method_wrapper(new_client, vim.lsp.client, "supports_method")
     end
 
     if c.get().on_init then
