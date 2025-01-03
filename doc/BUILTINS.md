@@ -1940,6 +1940,23 @@ local sources = { null_ls.builtins.formatting.astyle }
 - Command: `astyle`
 - Args: `{ "--quiet" }`
 
+### [atlas_fmt](https://atlasgo.io/cli-reference#atlas-schema-fmt)
+
+atlas fmt command rewrites `atlas` config and schema files to a canonical format and style.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.atlas_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test"}`
+- Method: `formatting`
+- Command: `atlas`
+- Args: `{ "schema", "fmt", "$FILENAME" }`
+
 ### [bean_format](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
 
 This pure text processing tool will reformat `beancount` input to right-align all the numbers at the same, minimal column.
