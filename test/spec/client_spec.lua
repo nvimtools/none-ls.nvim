@@ -24,6 +24,7 @@ describe("client", function()
             resolved_capabilities = {},
             server_capabilities = {},
         }
+        setmetatable(mock_client, vim.lsp.client)
         lsp.start_client.returns(mock_client_id)
         sources.get_filetypes.returns(mock_filetypes)
     end)
@@ -130,6 +131,16 @@ describe("client", function()
                     assert.stub(can_run).was_called_with(vim.bo.filetype, methods.internal.CODE_ACTION)
                     assert.equals(is_supported, true)
                 end)
+
+                if vim.fn.has("nvim-0.11") == 1 then
+                    it("can still use legacy . syntax", function()
+                        can_run.returns(true)
+                        local is_supported = mock_client.supports_method(methods.lsp.CODE_ACTION)
+
+                        assert.stub(can_run).was_called_with(vim.bo.filetype, methods.internal.CODE_ACTION)
+                        assert.equals(is_supported, true)
+                    end)
+                end
 
                 it("should return result of methods.is_supported if no corresponding internal method", function()
                     local is_supported = supports_method(methods.lsp.SHUTDOWN)
