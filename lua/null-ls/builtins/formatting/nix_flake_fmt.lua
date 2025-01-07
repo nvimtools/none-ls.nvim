@@ -130,7 +130,7 @@ local find_nix_fmt = function(opts, done)
         if status ~= 0 then
             local stderr = table.concat(stderr_lines, "\n")
             vim.defer_fn(function()
-                log:warn(string.format("unable discover 'nix fmt' command. stderr: %s", stderr))
+                log:warn(string.format("unable to discover 'nix fmt' command. stderr: %s", stderr))
             end, 0)
             done(nil)
             return
