@@ -132,14 +132,10 @@ return function(opts)
         opts.temp_dir,
         opts.prepend_extra_args
 
-    local codes = check_exit_code
-    if type(codes) == "table" then
+    if type(check_exit_code) == "table" then
+        local codes = check_exit_code
         check_exit_code = function(code)
             return vim.tbl_contains(codes, code)
-        end
-    elseif type(codes) == "number" then
-        check_exit_code = function(code)
-            return code <= codes
         end
     end
 
