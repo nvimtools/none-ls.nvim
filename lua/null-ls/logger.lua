@@ -80,14 +80,18 @@ end
 ---@param msg any
 function log:warn(msg)
     self:add_entry(msg, "warn")
-    vim.notify(self.__notify_fmt(msg), vim.log.levels.WARN, default_notify_opts)
+    vim.schedule(function()
+        vim.notify(self.__notify_fmt(msg), vim.log.levels.WARN, default_notify_opts)
+    end)
 end
 
 ---Add a log entry at ERROR level
 ---@param msg any
 function log:error(msg)
     self:add_entry(msg, "error")
-    vim.notify(self.__notify_fmt(msg), vim.log.levels.ERROR, default_notify_opts)
+    vim.schedule(function()
+        vim.notify(self.__notify_fmt(msg), vim.log.levels.ERROR, default_notify_opts)
+    end)
 end
 
 setmetatable({}, log)
