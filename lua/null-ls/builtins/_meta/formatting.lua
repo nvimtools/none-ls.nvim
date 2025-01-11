@@ -10,6 +10,9 @@ return {
   astyle = {
     filetypes = { "arduino", "c", "cpp", "cs", "java" }
   },
+  atlas_fmt = {
+    filetypes = { "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test" }
+  },
   bean_format = {
     filetypes = { "beancount" }
   },
@@ -195,6 +198,9 @@ return {
   },
   nimpretty = {
     filetypes = { "nim" }
+  },
+  nix_flake_fmt = {
+    filetypes = {}
   },
   nixfmt = {
     filetypes = { "nix" }
