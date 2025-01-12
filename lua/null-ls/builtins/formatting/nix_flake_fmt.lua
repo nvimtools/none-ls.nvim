@@ -2,24 +2,8 @@ local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 local log = require("null-ls.logger")
 local client = require("null-ls.client")
-local async = require("plenary.async")
-local Job = require("plenary.job")
 
 local FORMATTING = methods.internal.FORMATTING
-
-local run_job = async.wrap(function(opts, done)
-    opts.on_exit = function(j, status)
-        done(status, j:result(), j:stderr_result())
-    end
-
-    Job:new(opts):start()
-end, 2)
-
-local tmpname = async.wrap(function(done)
-    vim.defer_fn(function()
-        done(vim.fn.tempname())
-    end, 0)
-end, 1)
 
 --- Asynchronously computes the command that `nix fmt` would run, or nil if
 --- we're not in a flake with a formatter, or if we fail to discover the
@@ -37,6 +21,23 @@ end, 1)
 --- By doing this ourselves, we can cache the result.
 local find_nix_fmt = function(opts, done)
     done = vim.schedule_wrap(done)
+
+    local async = require("plenary.async")
+    local Job = require("plenary.job")
+
+    local run_job = async.wrap(function(_opts, _done)
+        _opts.on_exit = function(j, status)
+            _done(status, j:result(), j:stderr_result())
+        end
+
+        Job:new(_opts):start()
+    end, 2)
+
+    local tmpname = async.wrap(function(_done)
+        vim.defer_fn(function()
+            _done(vim.fn.tempname())
+        end, 0)
+    end, 1)
 
     async.run(function()
         local title = "discovering `nix fmt` entrypoint"
