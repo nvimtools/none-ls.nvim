@@ -1952,7 +1952,7 @@ local sources = { null_ls.builtins.formatting.atlas_fmt }
 
 #### Defaults
 
-- Filetypes: `{ "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test"}`
+- Filetypes: `{ "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test" }`
 - Method: `formatting`
 - Command: `atlas`
 - Args: `{ "schema", "fmt", "$FILENAME" }`
@@ -3107,6 +3107,22 @@ local sources = { null_ls.builtins.formatting.nixpkgs_fmt }
 - Filetypes: `{ "nix" }`
 - Method: `formatting`
 - Command: `nixpkgs-fmt`
+
+### [nix_flake_fmt](https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-fmt)
+
+`nix fmt` - reformat your code in the standard style (this is a generic formatter, not to be confused with nixfmt, a formatter for .nix files)
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.nix_flake_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `formatting`
+- Args: `{ "$FILENAME" }`
 
 ### [npm_groovy_lint](https://github.com/nvuillam/npm-groovy-lint)
 
