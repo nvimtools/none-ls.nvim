@@ -4,8 +4,7 @@ local methods = require("null-ls.methods")
 local COMPLETION = methods.internal.COMPLETION
 
 -- based on pattern from cmp-luasnip
-local pattern = "\\%([^[:alnum:][:blank:]]\\+\\|\\w\\+\\)"
-local regex = vim.regex([[\%(]] .. pattern .. [[\)\m$]])
+local regex = vim.regex([===[\%(\%([^[:alnum:][:blank:]]\+\|\w\+\)\)\m$]===])
 
 local function nvim_snippet_exists()
     local status, _ = pcall(require, "snippets")
@@ -43,10 +42,12 @@ return h.make_builtin({
                 return
             end
 
+            local prefix = vim.trim(line_to_cursor:sub(start_col))
             local items = {}
             local snippets = get_loaded_snippets(params.filetype)
+
             for _, item in pairs(snippets) do
-                if vim.startswith(item.prefix, line_to_cursor:sub(start_col)) then
+                if vim.startswith(item.prefix, prefix) then
                     local insertText = (type(item.body) == "table") and table.concat(item.body, "\n") or item.body
                     local textEdit = {
                         range = {
