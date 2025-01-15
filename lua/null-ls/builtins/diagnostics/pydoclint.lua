@@ -87,9 +87,9 @@ return h.make_builtin({
         end,
     },
     factory = h.generator_factory,
-    --- Checks if the null_pydoclint executable is available in the system path.
-    -- @return boolean True if null_pydoclint is executable, false otherwise.
+    --- Checks if the pydoclint executable is available in the system path.
+    -- @return boolean True if pydoclint is executable, false otherwise.
     can_run = function()
-        return u.is_executable("null_pydoclint")
+        return u.is_executable("pydoclint")
     end,
 })
