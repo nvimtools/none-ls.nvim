@@ -4,6 +4,7 @@ local u = require("null-ls.utils")
 
 local DIAGNOSTICS = methods.internal.DIAGNOSTICS
 
+-- https://jsh9.github.io/pydoclint/violation_codes.html
 local overrides = {
     severities = {
         DOC101 = h.diagnostics.severities["warning"],
@@ -45,7 +46,8 @@ return h.make_builtin({
     name = "pydoclint",
     meta = {
         url = "https://github.com/jsh9/pydoclint",
-        description = "Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation.",
+        description =
+        "Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation. To see all violation codes go to [pydoclint](https://jsh9.github.io/pydoclint/violation_codes.html)",
     },
     method = DIAGNOSTICS,
     filetypes = { "python" },
@@ -85,6 +87,8 @@ return h.make_builtin({
         end,
     },
     factory = h.generator_factory,
+    --- Checks if the null_pydoclint executable is available in the system path.
+    -- @return boolean True if null_pydoclint is executable, false otherwise.
     can_run = function()
         return u.is_executable("null_pydoclint")
     end,
