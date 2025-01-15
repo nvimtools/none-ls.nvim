@@ -46,8 +46,7 @@ return h.make_builtin({
     name = "pydoclint",
     meta = {
         url = "https://github.com/jsh9/pydoclint",
-        description =
-        "Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation. To see all violation codes go to [pydoclint](https://jsh9.github.io/pydoclint/violation_codes.html)",
+        description = "Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation. To see all violation codes go to [pydoclint](https://jsh9.github.io/pydoclint/violation_codes.html)",
     },
     method = DIAGNOSTICS,
     filetypes = { "python" },
