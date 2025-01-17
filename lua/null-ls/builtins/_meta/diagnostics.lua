@@ -148,6 +148,9 @@ return {
   puppet_lint = {
     filetypes = { "puppet", "epuppet" }
   },
+  pydoclint = {
+    filetypes = { "python" }
+  },
   pylint = {
     filetypes = { "python" }
   },

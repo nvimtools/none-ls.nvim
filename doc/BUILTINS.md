@@ -1010,23 +1010,6 @@ local sources = { null_ls.builtins.diagnostics.mypy }
 - Command: `mypy`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/mypy.lua))
 
-### [pydoclint](https://jsh9.github.io/pydoclint/)
-
-Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation.
-Usage
-
-```lua
-local sources = { null_ls.builtins.diagnostics.pydoclint }
-```
-
-#### Defaults
-
-- Filetypes: `{ "python" }`
-- Method: `diagnostics`
-- Command: `pydoclint`
-- Args: dynamically resolved (see source)
-
-
 ### [npm_groovy_lint](https://github.com/nvuillam/npm-groovy-lint)
 
 Lint, format and auto-fix Groovy, Jenkinsfile, and Gradle files.
@@ -1220,6 +1203,23 @@ local sources = { null_ls.builtins.diagnostics.puppet_lint }
 - Method: `diagnostics`
 - Command: `puppet-lint`
 - Args: `{ "--json", "$FILENAME" }`
+
+### [pydoclint](https://github.com/jsh9/pydoclint)
+
+Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation. To see all violation codes go to [pydoclint](https://jsh9.github.io/pydoclint/violation_codes.html)
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.pydoclint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `diagnostics`
+- Command: `pydoclint`
+- Args: `{ "--show-filenames-in-every-violation-message=true", "-q", "$FILENAME" }`
 
 ### [pylint](https://github.com/PyCQA/pylint)
 
