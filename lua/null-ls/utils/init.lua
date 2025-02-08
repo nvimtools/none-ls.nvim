@@ -370,4 +370,15 @@ M.get_vcs_root = function()
     return vcs_root
 end
 
+M.validate = function(validators)
+    if vim.fn.has("nvim-0.11.0") ~= 1 then
+        vim.validate(validators)
+        return
+    end
+
+    for vname, spec in pairs(validators) do
+        vim.validate(vname, spec[1], spec[2], spec[3])
+    end
+end
+
 return M
