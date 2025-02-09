@@ -144,7 +144,7 @@ M.start_client = function(root_dir)
     }
 
     log:trace("starting null-ls client")
-    id = lsp.start_client(config)
+    id = lsp.start(config)
 
     if not id then
         log:error(string.format("failed to start null-ls client with config: %s", vim.inspect(config)))
