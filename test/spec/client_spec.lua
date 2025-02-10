@@ -25,12 +25,12 @@ describe("client", function()
             server_capabilities = {},
         }
         setmetatable(mock_client, vim.lsp.client)
-        lsp.start_client.returns(mock_client_id)
+        lsp.start.returns(mock_client_id)
         sources.get_filetypes.returns(mock_filetypes)
     end)
 
     after_each(function()
-        lsp.start_client:clear()
+        lsp.start:clear()
         lsp.buf_attach_client:clear()
 
         c.reset()
@@ -44,7 +44,7 @@ describe("client", function()
             local id = client.start_client("mock-root")
 
             assert.equals(id, mock_client_id)
-            local opts = lsp.start_client.calls[1].refs[1]
+            local opts = lsp.start.calls[1].refs[1]
             assert.equals(opts.name, "null-ls")
             assert.equals(opts.root_dir, "mock-root")
             assert.equals(opts.cmd, require("null-ls.rpc").start)
@@ -60,7 +60,7 @@ describe("client", function()
             c._set({ on_init = on_init })
 
             client.start_client("mock-file")
-            lsp.start_client.calls[1].refs[1].on_init(mock_client, mock_initialize_result)
+            lsp.start.calls[1].refs[1].on_init(mock_client, mock_initialize_result)
 
             assert.stub(on_init).was_called_with(mock_client, mock_initialize_result)
         end)
@@ -69,9 +69,9 @@ describe("client", function()
             local on_exit
             before_each(function()
                 client.start_client()
-                lsp.start_client.calls[1].refs[1].on_init(mock_client)
+                lsp.start.calls[1].refs[1].on_init(mock_client)
 
-                on_exit = lsp.start_client.calls[1].refs[1].on_exit
+                on_exit = lsp.start.calls[1].refs[1].on_exit
             end)
 
             it("should clear client and id", function()
@@ -95,7 +95,7 @@ describe("client", function()
             local on_init
             before_each(function()
                 client.start_client()
-                on_init = lsp.start_client.calls[1].refs[1].on_init
+                on_init = lsp.start.calls[1].refs[1].on_init
             end)
 
             it("should set client and override client.supports_method", function()
@@ -163,7 +163,7 @@ describe("client", function()
 
         it("should clear client and id on exit", function()
             client.start_client()
-            local opts = lsp.start_client.calls[1].refs[1]
+            local opts = lsp.start.calls[1].refs[1]
             opts.on_init(mock_client)
 
             opts.on_exit()
@@ -218,7 +218,7 @@ describe("client", function()
             c._set({ root_dir = root_dir })
 
             client.try_add(mock_bufnr, function()
-                local opts = lsp.start_client.calls[1].refs[1]
+                local opts = lsp.start.calls[1].refs[1]
                 assert.equals(opts.root_dir, vim.uv.cwd())
             end)
         end)
@@ -229,7 +229,7 @@ describe("client", function()
             c._set({ root_dir = root_dir })
 
             client.try_add(mock_bufnr, function()
-                local opts = lsp.start_client.calls[1].refs[1]
+                local opts = lsp.start.calls[1].refs[1]
                 assert.equals(opts.root_dir, "mock-root")
             end)
         end)
@@ -254,7 +254,7 @@ describe("client", function()
             end)
 
             coroutine.yield()
-            local opts = lsp.start_client.calls[1].refs[1]
+            local opts = lsp.start.calls[1].refs[1]
             assert.equals(opts.root_dir, "mock-root")
         end)
 
@@ -328,7 +328,7 @@ describe("client", function()
 
         it("should call on_attach with client and bufnr if client", function()
             client.start_client()
-            lsp.start_client.calls[1].refs[1].on_init(mock_client)
+            lsp.start.calls[1].refs[1].on_init(mock_client)
 
             client.setup_buffer(mock_bufnr)
 
@@ -344,7 +344,7 @@ describe("client", function()
         local on_init
         before_each(function()
             client.start_client()
-            on_init = lsp.start_client.calls[1].refs[1].on_init
+            on_init = lsp.start.calls[1].refs[1].on_init
         end)
 
         it("should do nothing if no client", function()
@@ -375,7 +375,7 @@ describe("client", function()
         local on_init
         before_each(function()
             client.start_client()
-            on_init = lsp.start_client.calls[1].refs[1].on_init
+            on_init = lsp.start.calls[1].refs[1].on_init
         end)
 
         it("should return client handler if defined", function()
@@ -400,7 +400,7 @@ describe("client", function()
     describe("update_filetypes", function()
         before_each(function()
             client.start_client()
-            lsp.start_client.calls[1].refs[1].on_init(mock_client)
+            lsp.start.calls[1].refs[1].on_init(mock_client)
         end)
 
         it("should update client filetypes", function()
