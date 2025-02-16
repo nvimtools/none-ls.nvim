@@ -46,6 +46,9 @@ return {
   clang_format = {
     filetypes = { "c", "cpp", "cs", "java", "cuda", "proto" }
   },
+  cljfmt = {
+    filetypes = { "clojure" }
+  },
   cljstyle = {
     filetypes = { "clojure" }
   },

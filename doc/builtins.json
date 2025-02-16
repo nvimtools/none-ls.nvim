@@ -643,6 +643,11 @@
         "proto"
       ]
     },
+    "cljfmt": {
+      "filetypes": [
+        "clojure"
+      ]
+    },
     "cljstyle": {
       "filetypes": [
         "clojure"
