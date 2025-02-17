@@ -74,7 +74,7 @@ return {
   },
   clojure = {
     diagnostics = { "clj_kondo" },
-    formatting = { "cljstyle", "zprint" }
+    formatting = { "cljfmt", "cljstyle", "zprint" }
   },
   cmake = {
     diagnostics = { "cmake_lint" },

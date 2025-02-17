@@ -2201,6 +2201,23 @@ local sources = { null_ls.builtins.formatting.clang_format }
 - Command: `clang-format`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/clang_format.lua))
 
+### [cljfmt](https://github.com/weavejester/cljfmt)
+
+A tool for formatting Clojure code
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.cljfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "clojure" }`
+- Method: `formatting`
+- Command: `cljfmt`
+- Args: `{ "fix", "-" }`
+
 ### [cljstyle](https://github.com/greglook/cljstyle)
 
 Formatter for Clojure code.
