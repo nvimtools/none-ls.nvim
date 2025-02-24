@@ -74,7 +74,8 @@ end
 local on_init = function(new_client, initialize_result)
     local capability_is_disabled = function(method)
         -- TODO: extract map to prevent future issues
-        local required_capability = lsp._request_name_to_capability[method]
+        local request_name_to_capability = lsp.protocol._request_name_to_capability or lsp._request_name_to_capability
+        local required_capability = request_name_to_capability[method]
         return not required_capability
             or vim.tbl_get(new_client.server_capabilities, unpack(required_capability)) == false
     end
