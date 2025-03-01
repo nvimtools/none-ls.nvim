@@ -74,7 +74,7 @@ local make_diagnostic = function(entries, defaults, attr_adapters, params, offse
 
         local byte_index_col
         if u.has_version("0.11") then
-            byte_index_col = vim.str_byteindex(content_line, "utf-8", col)
+            byte_index_col = vim.str_byteindex(content_line, "utf-32", col)
         else
             byte_index_col = vim.str_byteindex(content_line, col)
         end
