@@ -102,7 +102,7 @@ end
 
 --- Parse a linter's output using a regex pattern
 -- @param pattern The regex pattern
--- @param groups The groups defined by the pattern: {"line", "message", "col", ["end_col"], ["code"], ["severity"]}
+-- @param groups The groups defined by the pattern: {"line", "message", "col", ["end_col"], ["code"], ["severity"], ["filename"]}
 -- @param overrides A table providing overrides for {adapters, diagnostic, severities, offsets}
 -- @param overrides.diagnostic An optional table of diagnostic default values
 -- @param overrides.severities An optional table of severity overrides (see default_severities)
