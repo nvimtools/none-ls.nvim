@@ -1,5 +1,7 @@
 local api = vim.api
 
+local u = require("null-ls.utils")
+
 ---@class RangeFormattingArgsFactoryOpts
 ---@field row_offset? number offset applied to row numbers
 ---@field col_offset? number offset applied to column numbers
@@ -14,7 +16,7 @@ local api = vim.api
 ---@param opts RangeFormattingArgsFactoryOpts table of options
 ---@return fun(params: NullLsParams): string[]
 local range_formatting_args_factory = function(base_args, start_arg, end_arg, opts)
-    vim.validate({
+    u.validate({
         base_args = { base_args, "table" },
         start_arg = { start_arg, "string" },
         end_arg = { end_arg, "string", true },
