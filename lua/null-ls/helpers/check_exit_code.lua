@@ -21,6 +21,8 @@ return function(codes, silent, command)
                 logger:warn(string.format("failed to run %s; see `:NullLsLog`", command))
                 logger:add_entry(string.format("failed to run %s: %s", command, stderr), "warn")
             end
+
+            return result
         end
     end
     return check

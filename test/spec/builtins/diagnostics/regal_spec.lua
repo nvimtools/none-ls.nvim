@@ -7,6 +7,10 @@ stub(vim, "notify")
 describe("diagnostics regal", function()
     local parser = diagnostics.regal._opts.on_output
 
+    local wait_for_scheduler = function()
+        vim.wait(0)
+    end
+
     it("should create a diagnostic with error severity", function()
         local output = vim.json.decode([[
           {
@@ -62,6 +66,7 @@ describe("diagnostics regal", function()
     it("should log error for non-json output", function()
         local diagnostic = parser({ output = "non-json-output", err = "json error" })
         assert.same({}, diagnostic)
+        wait_for_scheduler()
         assert
             .stub(vim.notify)
             .was_called_with("[null-ls] non-json-output", vim.log.levels.ERROR, { title = "null-ls" })

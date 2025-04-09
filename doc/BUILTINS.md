@@ -1204,6 +1204,23 @@ local sources = { null_ls.builtins.diagnostics.puppet_lint }
 - Command: `puppet-lint`
 - Args: `{ "--json", "$FILENAME" }`
 
+### [pydoclint](https://github.com/jsh9/pydoclint)
+
+Pydoclint is a Python docstring linter to check whether a docstring's sections (arguments, returns, raises, ...) match the function signature or function implementation. To see all violation codes go to [pydoclint](https://jsh9.github.io/pydoclint/violation_codes.html)
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.pydoclint }
+```
+
+#### Defaults
+
+- Filetypes: `{ "python" }`
+- Method: `diagnostics`
+- Command: `pydoclint`
+- Args: `{ "--show-filenames-in-every-violation-message=true", "-q", "$FILENAME" }`
+
 ### [pylint](https://github.com/PyCQA/pylint)
 
 Pylint is a Python static code analysis tool which looks for programming
@@ -1952,7 +1969,7 @@ local sources = { null_ls.builtins.formatting.atlas_fmt }
 
 #### Defaults
 
-- Filetypes: `{ "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test"}`
+- Filetypes: `{ "hcl", "atlas-config", "atlas-schema-mysql", "atlas-schema-sqlite", "atlas-schema-mariadb", "atlas-schema-redshift", "atlas-schema-clickhouse", "atlas-schema-postgresql", "atlas-schema-mssql", "atlas-plan", "atlas-test" }`
 - Method: `formatting`
 - Command: `atlas`
 - Args: `{ "schema", "fmt", "$FILENAME" }`
@@ -2183,6 +2200,23 @@ local sources = { null_ls.builtins.formatting.clang_format }
 - Methods: `formatting, range_formatting`
 - Command: `clang-format`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/formatting/clang_format.lua))
+
+### [cljfmt](https://github.com/weavejester/cljfmt)
+
+A tool for formatting Clojure code
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.cljfmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "clojure" }`
+- Method: `formatting`
+- Command: `cljfmt`
+- Args: `{ "fix", "-" }`
 
 ### [cljstyle](https://github.com/greglook/cljstyle)
 
@@ -3107,6 +3141,22 @@ local sources = { null_ls.builtins.formatting.nixpkgs_fmt }
 - Filetypes: `{ "nix" }`
 - Method: `formatting`
 - Command: `nixpkgs-fmt`
+
+### [nix_flake_fmt](https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-fmt)
+
+`nix fmt` - reformat your code in the standard style (this is a generic formatter, not to be confused with nixfmt, a formatter for .nix files)
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.nix_flake_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `formatting`
+- Args: `{ "$FILENAME" }`
 
 ### [npm_groovy_lint](https://github.com/nvuillam/npm-groovy-lint)
 

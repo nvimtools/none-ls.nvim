@@ -23,10 +23,11 @@ return h.make_builtin({
         to_stdin = false,
         from_stderr = true,
         format = "line",
+        multiple_files = true,
         on_output = h.diagnostics.from_pattern(
             [[^([^:]+):(%d+):(%d+):%s+([^:]+):%s+(.*)$]],
             -- [[(%w+):(%d+):(%d+): (%w+): (.*)]],
-            { "file", "row", "col", "severity", "message" },
+            { "filename", "row", "col", "severity", "message" },
             {
                 severities = {
                     ["fatal error"] = h.diagnostics.severities.error,
