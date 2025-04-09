@@ -17,5 +17,4 @@ return function(opts)
 
         return done({ { text = output } })
     end
-
 end
