@@ -17,6 +17,4 @@ return function(opts)
 
         return done({ { text = output } })
     end
-
-    return require("null-ls.helpers").generator_factory(opts)
 end
