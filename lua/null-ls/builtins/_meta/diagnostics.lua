@@ -124,6 +124,9 @@ return {
   opacheck = {
     filetypes = { "rego" }
   },
+  opentofu_validate = {
+    filetypes = { "terraform", "tf", "terraform-vars" }
+  },
   perlimports = {
     filetypes = { "perl" }
   },

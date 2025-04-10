@@ -1044,6 +1044,25 @@ local sources = { null_ls.builtins.diagnostics.opacheck }
 - Command: `opa`
 - Args: `{ "check", "-f", "json", "--strict", "$ROOT", "--ignore=*.yaml", "--ignore=*.yml", "--ignore=*.json", "--ignore=.git/**/*" }`
 
+### [opentofu_validate](https://opentofu.org/docs/cli/commands/validate)
+
+OpenTofu `validate` is a subcommand of OpenTofu to validate configuration files in a directory,
+            referring only to the configuration and not accessing any remote services such as remote state,
+            provider APIs, etc.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.opentofu_validate }
+```
+
+#### Defaults
+
+- Filetypes: `{ "terraform", "tf", "terraform-vars" }`
+- Method: `diagnostics_on_save`
+- Command: `tofu`
+- Args: `{ "validate", "-json" }`
+
 ### [perlimports](https://metacpan.org/dist/App-perlimports/view/script/perlimports)
 
 A command line utility for cleaning up imports in your Perl code
@@ -3209,9 +3228,10 @@ local sources = { null_ls.builtins.formatting.ocdc }
 - Command: `ocdc`
 - Args: `{ "--path", "-" }`
 
-### [opentofu_fmt](https://opentofu.org/docs/cli/commands/fmt/#usage)
+### [opentofu_fmt](https://opentofu.org/docs/cli/commands/fmt)
 
-The opentofu-fmt command rewrites `opentofu` configuration files to a canonical format and style.
+The OpenTofu `fmt` command rewrites OpenTofu configuration files to a canonical
+            format and style.
 
 #### Usage
 

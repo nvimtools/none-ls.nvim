@@ -434,11 +434,11 @@ return {
     diagnostics = { "teal" }
   },
   terraform = {
-    diagnostics = { "terraform_validate", "tfsec", "trivy" },
+    diagnostics = { "opentofu_validate", "terraform_validate", "tfsec", "trivy" },
     formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   ["terraform-vars"] = {
-    diagnostics = { "terraform_validate", "tfsec", "trivy" },
+    diagnostics = { "opentofu_validate", "terraform_validate", "tfsec", "trivy" },
     formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   tex = {
@@ -451,7 +451,7 @@ return {
     hover = { "dictionary" }
   },
   tf = {
-    diagnostics = { "terraform_validate", "tfsec", "trivy" },
+    diagnostics = { "opentofu_validate", "terraform_validate", "tfsec", "trivy" },
     formatting = { "opentofu_fmt", "terraform_fmt" }
   },
   twig = {
