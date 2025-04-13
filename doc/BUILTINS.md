@@ -825,11 +825,7 @@ A Go linter aggregator.
 #### Usage
 
 ```lua
-local sources = {
-    null_ls.builtins.diagnostics.golangci_lint.with({
-        prefer_local = ".bin", -- look for repo-specific binary to a different major version from what's in your PATH
-    }),
-}
+local sources = { null_ls.builtins.diagnostics.golangci_lint }
 ```
 
 #### Defaults
@@ -837,7 +833,7 @@ local sources = {
 - Filetypes: `{ "go" }`
 - Method: `diagnostics_on_save`
 - Command: `golangci-lint`
-- Args: `{ "run", "--fix=false", "--out-format=json", "$DIRNAME" }` for v1 or `{ "run", "--fix=false", "--show-stats=false", "--output.json.path=stdout", "$DIRNAME" }` for v2
+- Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/golangci_lint.lua))
 
 ### [hadolint](https://github.com/hadolint/hadolint)
 
