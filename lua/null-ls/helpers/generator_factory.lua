@@ -316,6 +316,9 @@ return function(opts)
                     return done()
                 end
 
+                -- update command so that args might use it
+                params.command = resolved_command
+
                 local resolved_cwd = cwd and cwd(params) or root
                 params.cwd = resolved_cwd
 
