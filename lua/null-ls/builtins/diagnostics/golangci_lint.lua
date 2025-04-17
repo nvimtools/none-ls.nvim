@@ -20,27 +20,10 @@ return h.make_builtin({
         ignore_stderr = true,
         multiple_files = true,
         cwd = h.cache.by_bufnr(function(params)
-            -- find the nearest config and use that directory since v2 defaults to
-            -- "relative-path-mode: cfg" which reports file names relative to
-            -- the directory of the config file
-            local cfg_path_yml = u.root_pattern(".golangci.yml")(params.bufname)
-            if cfg_path_yml then
-                return cfg_path_yml
-            end
-            local cfg_path_yaml = u.root_pattern(".golangci.yaml")(params.bufname)
-            if cfg_path_yaml then
-                return cfg_path_yaml
-            end
-            local cfg_path_toml = u.root_pattern(".golangci.toml")(params.bufname)
-            if cfg_path_toml then
-                return cfg_path_toml
-            end
-            local cfg_path_json = u.root_pattern(".golangci.json")(params.bufname)
-            if cfg_path_json then
-                return cfg_path_json
-            end
-            -- nil defaults to git root
-            return nil
+            -- there might be cases when it's needed to setup cwd manually:
+            -- check the golangci-lint docs for relative-path-mode.
+            -- usually projects contain settings in root so this is sane default.
+            return u.root_pattern("go.mod")(params.bufname)
         end),
         args = h.cache.by_bufnr(function(params)
             -- params.command respects prefer_local and only_local options
@@ -48,11 +31,9 @@ return h.make_builtin({
             -- from observation the version can be either v2.x.x or 2.x.x
             -- depending on packaging
             if version and (version:match("version v2") or version:match("version 2")) then
-                return { "run", "--fix=false", "--show-stats=false", "--output.json.path=stdout", "$DIRNAME" }
+                return { "run", "--fix=false", "--show-stats=false", "--output.json.path=stdout" }
             end
-            -- DIRNAME is the absolute path to the directory of the file being
-            -- linted
-            return { "run", "--fix=false", "--out-format=json", "$DIRNAME" }
+            return { "run", "--fix=false", "--out-format=json" }
         end),
         format = "json",
         check_exit_code = function(code)
