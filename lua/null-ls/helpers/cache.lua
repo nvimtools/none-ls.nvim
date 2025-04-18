@@ -49,7 +49,7 @@ M.by_bufnr_async = function(cb)
     return function(params, done)
         local bufnr = params.bufnr
         -- if we haven't cached a value yet, get it from cb
-        if M.cache[key][bufnr] == nil then
+        if M.cache[key] and M.cache[key][bufnr] == nil then
             -- make sure we always store a value so we know we've already called cb
             cb(params, function(result)
                 M.cache[key][bufnr] = result or false
