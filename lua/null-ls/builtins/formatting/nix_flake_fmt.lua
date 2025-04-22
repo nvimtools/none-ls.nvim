@@ -65,15 +65,52 @@ local find_nix_fmt = function(opts, done)
         return nix_current_system
     end
 
+    local get_flake_ref = function(root)
+        local status, stdout_lines, stderr_lines = run_job({
+            command = "nix",
+            args = {
+                "--extra-experimental-features",
+                "nix-command flakes",
+                "flake",
+                "metadata",
+                "--json",
+                root,
+            },
+        })
+
+        if status ~= 0 then
+            local stderr = table.concat(stderr_lines, "\n")
+            vim.defer_fn(function()
+                log:warn(string.format("unable to get flake ref for '%s'. stderr: %s", root, stderr))
+            end, 0)
+            return
+        end
+
+        local stdout = table.concat(stdout_lines, "\n")
+        local metadata = vim.json.decode(stdout)
+        local flake_ref = metadata.resolvedUrl
+        if flake_ref == nil then
+            vim.defer_fn(function()
+                log:warn(
+                    string.format("flake metadata does not have a 'resolvedUrl'. metadata: %s", vim.inspect(metadata))
+                )
+            end, 0)
+            return
+        end
+
+        return flake_ref
+    end
+
     local evaluate_flake_formatter = function(root)
         local nix_current_system = get_current_system()
         if nix_current_system == nil then
             return
         end
-
+        local flake_ref = get_flake_ref(root)
         local eval_nix_formatter = [[
           let
             system = "]] .. nix_current_system .. [[";
+            flake = builtins.getFlake "]] .. flake_ref .. [[";
             # Various functions vendored from nixpkgs lib (to avoid adding a
             # dependency on nixpkgs).
             lib = rec {
@@ -87,19 +124,21 @@ local find_nix_fmt = function(opts, done)
               # getExe is simplified to assume meta.mainProgram is specified.
               getExe = x: getExe' x x.meta.mainProgram;
             };
-          in
-          formatterBySystem:
-            builtins.toJSON (
-              if formatterBySystem ? ${system} then
-                let
-                  formatter = formatterBySystem.${system};
-                  drv = formatter.drvPath;
-                  bin = lib.getExe formatter;
-                in
-                { inherit drv bin; }
+            result =
+              if flake ? formatter then
+                if flake.formatter ? ${system} then
+                  let
+                    formatter = flake.formatter.${system};
+                    drv = formatter.drvPath;
+                    bin = lib.getExe formatter;
+                  in
+                  { inherit drv bin; }
+                else
+                  { error = "this flake does not define a formatter for system: ${system}"; }
               else
-                { error = "this flake does not define a formatter for system: ${system}"; }
-            )
+                { error = "this flake does not define any formatters"; };
+          in
+            builtins.toJSON result
         ]]
 
         client.send_progress_notification(NOTIFICATION_TOKEN, {
@@ -114,12 +153,13 @@ local find_nix_fmt = function(opts, done)
                 "--extra-experimental-features",
                 "nix-command flakes",
                 "eval",
-                ".#formatter",
                 "--raw",
-                "--apply",
+                -- We need `--impure` to be able to call `builtins.getFlake`
+                -- on an unlocked flake ref.
+                "--impure",
+                "--expr",
                 eval_nix_formatter,
             },
-            cwd = root,
         })
 
         if status ~= 0 then
