@@ -4,6 +4,8 @@ local log = require("null-ls.logger")
 local client = require("null-ls.client")
 
 local FORMATTING = methods.internal.FORMATTING
+local NOTIFICATION_TITLE = "discovering `nix fmt` entrypoint"
+local NOTIFICATION_TOKEN = "nix-flake-fmt-discovery"
 
 --- Asynchronously computes the command that `nix fmt` would run, or nil if
 --- we're not in a flake with a formatter, or if we fail to discover the
@@ -39,25 +41,7 @@ local find_nix_fmt = function(opts, done)
         end, 0)
     end, 1)
 
-    async.run(function()
-        local title = "discovering `nix fmt` entrypoint"
-        local progress_token = "nix-flake-fmt-discovery"
-
-        client.send_progress_notification(progress_token, {
-            kind = "begin",
-            title = title,
-        })
-
-        local root = opts.root
-
-        -- Discovering `currentSystem` here lets us keep the *next* eval pure.
-        -- We want to keep that part pure as a performance improvement: an impure
-        -- eval that references the flake would copy *all* files (including
-        -- gitignored files!), which can be quite expensive if you've got many GiB
-        -- of artifacts in the directory. This optimization can probably go away
-        -- once the [Lazy trees PR] lands.
-        --
-        -- [Lazy trees PR]: https://github.com/NixOS/nix/pull/6530
+    local get_current_system = function()
         local status, stdout_lines, stderr_lines = run_job({
             command = "nix",
             args = {
@@ -74,11 +58,18 @@ local find_nix_fmt = function(opts, done)
             vim.defer_fn(function()
                 log:warn(string.format("unable to discover builtins.currentSystem from nix. stderr: %s", stderr))
             end, 0)
-            done(nil)
             return
         end
 
         local nix_current_system = stdout_lines[1]
+        return nix_current_system
+    end
+
+    local evaluate_flake_formatter = function(root)
+        local nix_current_system = get_current_system()
+        if nix_current_system == nil then
+            return
+        end
 
         local eval_nix_formatter = [[
           let
@@ -109,12 +100,13 @@ local find_nix_fmt = function(opts, done)
               ""
         ]]
 
-        client.send_progress_notification(progress_token, {
+        client.send_progress_notification(NOTIFICATION_TOKEN, {
             kind = "report",
-            title = title,
+            title = NOTIFICATION_TITLE,
             message = "evaluating",
         })
-        status, stdout_lines, stderr_lines = run_job({
+
+        local status, stdout_lines, stderr_lines = run_job({
             command = "nix",
             args = {
                 "--extra-experimental-features",
@@ -133,7 +125,6 @@ local find_nix_fmt = function(opts, done)
             vim.defer_fn(function()
                 log:warn(string.format("unable to discover 'nix fmt' command. stderr: %s", stderr))
             end, 0)
-            done(nil)
             return
         end
 
@@ -143,7 +134,6 @@ local find_nix_fmt = function(opts, done)
                     string.format("this flake does not define a formatter for your system: %s", nix_current_system)
                 )
             end, 0)
-            done(nil)
             return
         end
 
@@ -151,21 +141,27 @@ local find_nix_fmt = function(opts, done)
         --  1. drv path
         --  2. exe path
         local drv_path, nix_fmt_path = unpack(stdout_lines)
+        return drv_path, nix_fmt_path
+    end
 
-        -- Build the derivation. This ensures that `nix_fmt_path` exists.
-        client.send_progress_notification(progress_token, {
-            kind = "report",
-            title = title,
-            message = "building",
-        })
-        status, stdout_lines, stderr_lines = run_job({
+    local build_derivation = function(options)
+        if type(options.drv) ~= "string" then
+            error("missing drv")
+        elseif type(options.out_link) ~= "string" then
+            error("missing out_link")
+        end
+
+        local drv_path = options.drv
+        local out_link = options.out_link
+
+        local status, _, stderr_lines = run_job({
             command = "nix",
             args = {
                 "--extra-experimental-features",
                 "nix-command",
                 "build",
                 "--out-link",
-                tmpname(),
+                out_link,
                 drv_path .. "^out",
             },
         })
@@ -175,13 +171,37 @@ local find_nix_fmt = function(opts, done)
             vim.defer_fn(function()
                 log:warn(string.format("unable to build 'nix fmt' entrypoint. stderr: %s", stderr))
             end, 0)
+            return false
+        end
+
+        return true
+    end
+
+    async.run(function()
+        client.send_progress_notification(NOTIFICATION_TOKEN, {
+            kind = "begin",
+            title = NOTIFICATION_TITLE,
+        })
+
+        local drv_path, nix_fmt_path = evaluate_flake_formatter(opts.root)
+        if drv_path == nil then
+            return
+        end
+
+        -- Build the derivation. This ensures that `nix_fmt_path` exists.
+        client.send_progress_notification(NOTIFICATION_TOKEN, {
+            kind = "report",
+            title = NOTIFICATION_TITLE,
+            message = "building",
+        })
+        if not build_derivation({ drv = drv_path, out_link = tmpname() }) then
             done(nil)
             return
         end
 
-        client.send_progress_notification(progress_token, {
+        client.send_progress_notification(NOTIFICATION_TOKEN, {
             kind = "end",
-            title = title,
+            title = NOTIFICATION_TITLE,
             message = "done",
         })
 
