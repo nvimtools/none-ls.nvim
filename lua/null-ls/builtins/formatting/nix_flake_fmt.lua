@@ -73,7 +73,7 @@ local find_nix_fmt = function(opts, done)
 
         local eval_nix_formatter = [[
           let
-            currentSystem = "]] .. nix_current_system .. [[";
+            system = "]] .. nix_current_system .. [[";
             # Various functions vendored from nixpkgs lib (to avoid adding a
             # dependency on nixpkgs).
             lib = rec {
@@ -89,15 +89,17 @@ local find_nix_fmt = function(opts, done)
             };
           in
           formatterBySystem:
-            if formatterBySystem ? ${currentSystem} then
-              let
-                formatter = formatterBySystem.${currentSystem};
-                drv = formatter.drvPath;
-                bin = lib.getExe formatter;
-              in
-                drv + "\n" + bin + "\n"
-            else
-              ""
+            builtins.toJSON (
+              if formatterBySystem ? ${system} then
+                let
+                  formatter = formatterBySystem.${system};
+                  drv = formatter.drvPath;
+                  bin = lib.getExe formatter;
+                in
+                { inherit drv bin; }
+              else
+                { error = "this flake does not define a formatter for system: ${system}"; }
+            )
         ]]
 
         client.send_progress_notification(NOTIFICATION_TOKEN, {
@@ -128,19 +130,18 @@ local find_nix_fmt = function(opts, done)
             return
         end
 
-        if #stdout_lines == 0 then
+        local stdout = table.concat(stdout_lines, "\n")
+        local result = vim.json.decode(stdout)
+
+        if result.error ~= nil then
             vim.defer_fn(function()
-                log:warn(
-                    string.format("this flake does not define a formatter for your system: %s", nix_current_system)
-                )
+                log:warn(result.error)
             end, 0)
             return
         end
 
-        -- stdout has 2 lines of output:
-        --  1. drv path
-        --  2. exe path
-        local drv_path, nix_fmt_path = unpack(stdout_lines)
+        local drv_path = result.drv
+        local nix_fmt_path = result.bin
         return drv_path, nix_fmt_path
     end
 
