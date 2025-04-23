@@ -224,7 +224,7 @@ local find_nix_fmt = function(opts, done)
             title = NOTIFICATION_TITLE,
         })
 
-        local _done = function (result)
+        local _done = function(result)
             done(result)
             client.send_progress_notification(NOTIFICATION_TOKEN, {
                 kind = "end",
