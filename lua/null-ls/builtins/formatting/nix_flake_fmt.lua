@@ -224,9 +224,18 @@ local find_nix_fmt = function(opts, done)
             title = NOTIFICATION_TITLE,
         })
 
+        local _done = function (result)
+            done(result)
+            client.send_progress_notification(NOTIFICATION_TOKEN, {
+                kind = "end",
+                title = NOTIFICATION_TITLE,
+                message = "done",
+            })
+        end
+
         local drv_path, nix_fmt_path = evaluate_flake_formatter(opts.root)
         if drv_path == nil then
-            return
+            return _done(nil)
         end
 
         -- Build the derivation. This ensures that `nix_fmt_path` exists.
@@ -236,17 +245,10 @@ local find_nix_fmt = function(opts, done)
             message = "building",
         })
         if not build_derivation({ drv = drv_path, out_link = tmpname() }) then
-            done(nil)
-            return
+            return _done(nil)
         end
 
-        client.send_progress_notification(NOTIFICATION_TOKEN, {
-            kind = "end",
-            title = NOTIFICATION_TITLE,
-            message = "done",
-        })
-
-        done(nix_fmt_path)
+        return _done(nix_fmt_path)
     end)
 end
 
