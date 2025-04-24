@@ -30,8 +30,14 @@ return h.make_builtin({
             local version = vim.system({ params.command, "version" }, { text = true }):wait().stdout
             -- from observation the version can be either v2.x.x or 2.x.x
             -- depending on packaging
-            if version and (version:match("version v2") or version:match("version 2")) then
+            if version and (version:match("version v2.0.") or version:match("version 2.0.")) then
+                -- for v2.0.{0,1,2} Go submodules (with golangci-lint config at
+                -- the project root) require "relative-path-mode: gomod" or cwd
+                -- set to where the golangci-lint config file is and $DIRNAME
+                -- in extra_args
                 return { "run", "--fix=false", "--show-stats=false", "--output.json.path=stdout" }
+            elseif version and (version:match("version v2") or version:match("version 2")) then
+                return { "run", "--fix=false", "--show-stats=false", "--output.json.path=stdout", "--path-mode=abs" }
             end
             return { "run", "--fix=false", "--out-format=json" }
         end),
@@ -48,13 +54,19 @@ return h.make_builtin({
             local issues = params.output["Issues"]
             if type(issues) == "table" then
                 for _, d in ipairs(issues) do
+                    -- prepend cwd to filename to get absolute path unless
+                    -- already absolute
+                    local filename = d.Pos.Filename
+                    if filename:sub(1, #params.cwd) ~= params.cwd then
+                        filename = u.path.join(params.cwd, d.Pos.Filename)
+                    end
                     table.insert(diags, {
                         source = string.format("golangci-lint: %s", d.FromLinter),
                         row = d.Pos.Line,
                         col = d.Pos.Column,
                         message = d.Text,
                         severity = h.diagnostics.severities["warning"],
-                        filename = u.path.join(params.cwd, d.Pos.Filename),
+                        filename = filename,
                     })
                 end
             end
