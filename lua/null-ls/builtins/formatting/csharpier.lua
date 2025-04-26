@@ -12,9 +12,11 @@ return h.make_builtin({
     method = FORMATTING,
     filetypes = { "cs" },
     generator_opts = {
-        command = "dotnet-csharpier",
+        command = "csharpier",
         args = {
+            "format",
             "--write-stdout",
+            "$FILENAME",
         },
         to_stdin = true,
     },
