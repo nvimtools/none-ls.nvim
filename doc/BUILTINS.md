@@ -2319,8 +2319,8 @@ local sources = { null_ls.builtins.formatting.csharpier }
 
 - Filetypes: `{ "cs" }`
 - Method: `formatting`
-- Command: `dotnet-csharpier`
-- Args: `{ "--write-stdout" }`
+- Command: `csharpier`
+- Args: `{ "format", "--write-stdout" }`
 
 ### [cueimports](https://pkg.go.dev/github.com/asdine/cueimports)
 
