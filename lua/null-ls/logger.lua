@@ -55,7 +55,7 @@ end
 --- Retrieves the path of the logfile
 ---@return string path path of the logfile
 function log:get_path()
-    return u.path.join(vim.fn.stdpath("cache") --[[@as string]], "null-ls.log")
+    return u.path.join(vim.fn.stdpath("log") --[[@as string]], "null-ls.log")
 end
 
 ---Add a log entry at TRACE level
