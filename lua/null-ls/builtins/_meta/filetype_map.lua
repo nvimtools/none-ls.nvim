@@ -443,7 +443,8 @@ return {
   },
   tex = {
     code_actions = { "proselint" },
-    diagnostics = { "proselint", "textidote", "vale" }
+    diagnostics = { "proselint", "textidote", "vale" },
+    formatting = { "tex_fmt" }
   },
   text = {
     code_actions = { "textlint" },

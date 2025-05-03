@@ -349,6 +349,9 @@ return {
   terragrunt_fmt = {
     filetypes = { "hcl" }
   },
+  tex_fmt = {
+    filetypes = { "tex" }
+  },
   textlint = {
     filetypes = { "txt", "markdown" }
   },

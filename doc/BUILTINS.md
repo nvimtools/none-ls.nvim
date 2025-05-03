@@ -3996,6 +3996,23 @@ local sources = { null_ls.builtins.formatting.terragrunt_fmt }
 - Command: `terragrunt`
 - Args: `{ "hclfmt", "$FILENAME" }`
 
+### [tex-fmt](https://github.com/WGUNDERWOOD/tex-fmt)
+
+An extremely fast LaTeX formatter written in Rust
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.tex_fmt }
+```
+
+#### Defaults
+
+- Filetypes: `{ "tex" }`
+- Method: `formatting`
+- Command: `tex-fmt`
+- Args: `{ "--stdin" }`
+
 ### [textlint](https://github.com/textlint/textlint)
 
 The pluggable linting tool for text and Markdown.

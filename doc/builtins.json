@@ -1218,6 +1218,11 @@
         "hcl"
       ]
     },
+    "tex_fmt": {
+      "filetypes": [
+        "tex"
+      ]
+    },
     "textlint": {
       "filetypes": [
         "txt",
