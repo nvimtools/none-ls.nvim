@@ -107,6 +107,9 @@ local legacy_find_nix_fmt = function(root)
             return
         end
         local flake_ref = get_flake_ref(_root)
+        if flake_ref == nil then
+            return
+        end
         local eval_nix_formatter = [[
           let
             system = "]] .. nix_current_system .. [[";
