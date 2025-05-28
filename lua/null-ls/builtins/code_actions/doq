@@ -1,0 +1,98 @@
+-- settings/null_ls/code_actions/doq.lua
+local null_ls = require("null-ls")
+local ts_utils = require("nvim-treesitter.ts_utils")
+
+-- Helper functions (keep your existing ones)
+local function has_existing_docstring(node)
+    local body = node:field("body")[1]
+    if not body then
+        return false
+    end
+    local first = body:named_child(0)
+    if not first then
+        return false
+    end
+    return first:type() == "expression_statement"
+        and first:named_child(0)
+        and first:named_child(0):type() == "string"
+end
+
+local function get_definition_node()
+    local node = ts_utils.get_node_at_cursor()
+    while node do
+        local t = node:type()
+        if t == "function_definition" or t == "class_definition" then
+            return node
+        end
+        node = node:parent()
+    end
+    return nil
+end
+
+-- Return the source directly (NOT using make_builtin)
+return {
+    name = "doq",
+    method = null_ls.methods.CODE_ACTION,
+    filetypes = { "python" },
+    generator = {
+        fn = function(params)
+            local node = get_definition_node()
+            if not node then
+                return nil
+            end
+
+            -- Only show on the definition line
+            local def_row = node:start()
+            if def_row + 1 ~= params.row then
+                return nil
+            end
+
+            -- Only if no docstring
+            if has_existing_docstring(node) then
+                return nil
+            end
+
+            return {
+                {
+                    title = "Generate docstring with doq",
+                    action = function()
+                        local config_path = vim.fn.expand("~/.config/doq/setup.cfg")
+                        local start_row, start_col, end_row, end_col = node:range()
+                        local lines = vim.api.nvim_buf_get_text(
+                            params.bufnr,
+                            start_row,
+                            start_col,
+                            end_row,
+                            end_col,
+                            {}
+                        )
+
+                        local cmd = { "doq", "-c", config_path }
+                        local input = table.concat(lines, "\n")
+                        local formatted = vim.fn.systemlist(cmd, input)
+
+                        if vim.v.shell_error ~= 0 then
+                            vim.notify(
+                                "doq failed to generate docstring",
+                                vim.log.levels.ERROR
+                            )
+                            return
+                        end
+
+                        if formatted[#formatted] == "" then
+                            table.remove(formatted)
+                        end
+
+                        vim.api.nvim_buf_set_lines(
+                            params.bufnr,
+                            start_row,
+                            end_row + 1,
+                            false,
+                            formatted
+                        )
+                    end,
+                },
+            }
+        end,
+    },
+}
