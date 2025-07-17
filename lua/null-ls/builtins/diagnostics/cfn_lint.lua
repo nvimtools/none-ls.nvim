@@ -22,7 +22,7 @@ return h.make_builtin({
     filetypes = { "yaml", "json" },
     generator_opts = {
         command = "cfn-lint",
-        args = { "--format", "parseable", "-" },
+        args = { "--format", "parseable" },
         to_stdin = true,
         from_stderr = true,
         format = "line",
