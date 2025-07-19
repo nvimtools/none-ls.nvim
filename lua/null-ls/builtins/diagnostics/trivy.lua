@@ -1,6 +1,5 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
-local u = require("null-ls.utils")
 
 local DIAGNOSTICS_ON_SAVE = methods.internal.DIAGNOSTICS_ON_SAVE
 
@@ -12,6 +11,27 @@ local severities = {
     UNKNOWN = h.diagnostics.severities["information"],
 }
 
+-- NOTE: (vkhitrin) custom logic to derive the directory name for trivy execution:
+-- * If buffer is inside a helm chart, attempt to set the directory to the directory
+--   containing Chart.yaml.
+-- * Otherwise, set the directory to none-ls' '$DIRNAME'.
+local trivy_working_dir = function()
+    local filetype = vim.bo.filetype
+    if filetype == "helm" then
+        local dir = vim.fn.expand("%:p:h")
+        while dir ~= "/" do
+            local chart_path = dir .. "/Chart.yaml"
+            if vim.fn.filereadable(chart_path) == 1 then
+                return dir
+            end
+            dir = vim.fn.fnamemodify(dir, ":h")
+        end
+        return dir
+    else
+        return "$DIRNAME"
+    end
+end
+
 return h.make_builtin({
     name = "trivy",
     meta = {
@@ -19,7 +39,7 @@ return h.make_builtin({
         description = "Find misconfigurations and vulnerabilities",
     },
     method = DIAGNOSTICS_ON_SAVE,
-    filetypes = { "terraform", "tf", "terraform-vars" },
+    filetypes = { "terraform", "tf", "terraform-vars", "helm", "dockerfile" },
     generator_opts = {
         command = "trivy",
         timeout = 30000, -- Trivy can be slow, so increase timeout
@@ -29,7 +49,7 @@ return h.make_builtin({
                 "--format",
                 "json",
                 "--quiet",
-                "$DIRNAME",
+                trivy_working_dir(),
             }
 
             local config_file_path = vim.fs.find("trivy.yaml", {
@@ -55,8 +75,8 @@ return h.make_builtin({
         cwd = h.cache.by_bufnr(function(params)
             return vim.fs.dirname(params.bufname)
         end),
-        from_stderr = false, -- Trivy outputs logs to stderr that even --quiet doesn't silence
-        ignore_stderr = true,
+        from_stderr = true, -- https://github.com/aquasecurity/trivy/pull/2289
+        ignore_stderr = false,
         to_stdin = false,
         multiple_files = true,
         format = "json",
@@ -84,10 +104,11 @@ return h.make_builtin({
                     local rewritten_diagnostic = {
                         message = misconfiguration.ID .. " - " .. misconfiguration.Title,
                         row = misconfiguration.CauseMetadata.StartLine,
+                        end_row = misconfiguration.CauseMetadata.EndLine,
                         col = 0,
                         source = "trivy",
                         severity = severities[misconfiguration.Severity],
-                        filename = u.path.join(params.cwd, result.Target),
+                        filename = result.Target,
                     }
                     table.insert(combined_diagnostics, rewritten_diagnostic)
                 end
