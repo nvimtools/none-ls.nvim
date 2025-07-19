@@ -1779,7 +1779,7 @@ local sources = { null_ls.builtins.diagnostics.trivy }
 
 #### Defaults
 
-- Filetypes: `{ "terraform", "tf", "terraform-vars" }`
+- Filetypes: `{ "terraform", "tf", "terraform-vars", "helmfile", "dockerfile" }`
 - Method: `diagnostics_on_save`
 - Command: `trivy`
 - Args: dynamically resolved (see [source](https://github.com/nvimtools/none-ls.nvim/blob/main/lua/null-ls/builtins/diagnostics/trivy.lua))

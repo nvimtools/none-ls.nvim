@@ -499,7 +499,9 @@
       "filetypes": [
         "terraform",
         "tf",
-        "terraform-vars"
+        "terraform-vars",
+        "helmfile",
+        "dockerfile"
       ]
     },
     "twigcs": {
