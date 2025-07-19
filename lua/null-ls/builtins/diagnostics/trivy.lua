@@ -103,7 +103,7 @@ return h.make_builtin({
                 for _, misconfiguration in ipairs(result.Misconfigurations or {}) do
                     local rewritten_diagnostic = {
                         code = misconfiguration.ID,
-                        message =  misconfiguration.Title,
+                        message = misconfiguration.Title,
                         row = misconfiguration.CauseMetadata.StartLine,
                         end_row = misconfiguration.CauseMetadata.EndLine,
                         col = 0,
