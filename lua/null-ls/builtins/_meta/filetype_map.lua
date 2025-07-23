@@ -118,7 +118,7 @@ return {
     formatting = { "djhtml", "djlint" }
   },
   dockerfile = {
-    diagnostics = { "hadolint" }
+    diagnostics = { "hadolint", "trivy" }
   },
   dosbatch = {
     hover = { "printenv" }
@@ -497,7 +497,7 @@ return {
     formatting = { "tidy", "xmllint" }
   },
   yaml = {
-    diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint", "trivy" },
+    diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint" },
     formatting = { "prettier", "prettierd", "yamlfix", "yamlfmt" }
   },
   ["yaml.ansible"] = {

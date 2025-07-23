@@ -500,7 +500,7 @@
         "terraform",
         "tf",
         "terraform-vars",
-        "helmfile",
+        "helm",
         "dockerfile"
       ]
     },
