@@ -417,7 +417,7 @@ local sources = { null_ls.builtins.diagnostics.cfn_lint }
 - Filetypes: `{ "yaml", "json" }`
 - Method: `diagnostics`
 - Command: `cfn-lint`
-- Args: `{ "--format", "parseable", "-" }`
+- Args: `{ "--format", "parseable" }`
 
 #### Notes
 
