@@ -3,6 +3,7 @@
 ## General
 
 - Before committing, please go through the following steps:
+
   1. Lint Lua files with [selene](https://github.com/Kampfkarren/selene)
   2. Format Lua files with [StyLua](https://github.com/JohnnyMorganz/StyLua)
   3. If you've updated documentation, format Markdown files with
@@ -115,6 +116,7 @@ local diagnostic = {
 - If your source can produce project-level diagnostics (i.e. diagnostics for
   more than one file at a time), use the `multiple_files` option described in
   [HELPERS](./HELPERS.md).
+
   - Specify that your source supports project diagnostics in its documentation.
 
   - Make sure each multi-file diagnostic includes either a `filename` or a
