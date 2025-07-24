@@ -473,12 +473,10 @@ local sources = {
 - Checkstyle only offers a jar file as download. It is recommended to put an executable wrapper script in
 your path.
 Example wrapper script:
-
 ```bash
 #!/usr/bin/env bash
 java -jar path/to/checkstyle.jar "$@"
 ```
-
 - Checkstyle needs a mandatory `-c` argument. Use `extra_args` to add yours. `extra_args` can also be a
 function to build more sophisticated logic.
 
@@ -503,7 +501,6 @@ local sources = { null_ls.builtins.diagnostics.clazy }
 
 - `clazy` needs a compilation database (`compile_commands.json`) to work. By default `clazy` will search for a compilation database in all parent folders of the input file.
 - If the compilation database is not in a parent folder, the `-p` option can be used to point to the corresponding folder (e.g. the projects build directory):
-
 ```lua
 local sources = {
     null_ls.builtins.diagnostics.clazy.with({
@@ -511,8 +508,7 @@ local sources = {
     }),
 }
 ```
-
-- Alternatively, `compile_commands.json` can be linked into the project's root directory. For more information see <https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html>
+- Alternatively, `compile_commands.json` can be linked into the project's root directory. For more information see https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html
 - `clazy` will be run only when files are saved to disk, so that `compile_commands.json` can be used.
 
 ### [clj_kondo](https://github.com/clj-kondo/clj-kondo)
@@ -890,6 +886,23 @@ local sources = { null_ls.builtins.diagnostics.ktlint }
 - Command: `ktlint`
 - Args: `{ "--relative", "--reporter=json", "--log-level=none", "**/*.kt", "**/*.kts" }`
 
+### [kube_linter](https://github.com/stackrox/kube-linter)
+
+KubeLinter is a static analysis tool that checks Kubernetes YAML files and Helm charts to ensure the applications represented in them adhere to best practices.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.kube_linter }
+```
+
+#### Defaults
+
+- Filetypes: `{ "helm", "yaml" }`
+- Method: `diagnostics`
+- Command: `kube-linter`
+- Args: `{ "lint", "--format", "json", "$ROOT" }`
+
 ### [ltrs](https://github.com/jeertmans/languagetool-rust)
 
 LanguageTool-Rust (LTRS) is both an executable and a Rust library that aims to provide correct and safe bindings for the LanguageTool API.
@@ -1169,12 +1182,10 @@ local sources = {
 - PMD only offers parameterized wrapper scripts as download. It is recommended to put an executable wrapper
 script in your path.
 Example wrapper script:
-
 ```bash
 #!/usr/bin/env bash
 path/to/pmd/bin/run.sh pmd "$@"
 ```
-
 - PMD needs a mandatory `--rulesets`/`-rulesets`/`-R` argument. Use `extra_args` to add yours. `extra_args`
 can also be a function to build more sophisticated logic.
 
@@ -2099,35 +2110,27 @@ local sources = { null_ls.builtins.formatting.blackd }
 ##### `hostname` (string)
 
 Address to bind the server to. Defaults to localhost.
-
 ##### `port` (string)
 
 Port to listen on. Defaults to 45484.
-
 ##### `line_length` (number)
 
 Set how many characters per line to allow. Defaults to 88.
-
 ##### `skip_source_first_line` (boolean)
 
 If set to true, the first line of the source code will be ignored. Defaults to false.
-
 ##### `skip_string_normalization` (boolean)
 
 If set to true, no string normalization will be performed. Defaults to false.
-
 ##### `skip_magic_trailing_comma` (boolean)
 
 If set to true, trailing commas will not be used as a reason to split lines. Defaults to false.
-
 ##### `preview` (boolean)
 
 If set to true, experimental and potentially disruptive style changes will be used. Defaults to false.
-
 ##### `fast` (boolean)
 
 If set to true, Black will not perform an AST safety check after formatting. Defaults to false.
-
 ##### `python_variant` (string)
 
 If set to pyi, Black will format all input files like typing stubs regardless of the file extension. Otherwise, its value must correspond to a Python version or a set of comma-separated Python versions, optionally prefixed with py. (e.g. py3.5,py3.6). Defaults to empty string.
@@ -2978,7 +2981,6 @@ local sources = { null_ls.builtins.formatting.isortd }
 ##### `hostname` (string)
 
 Address that the isortd server listens on. Defaults to localhost.
-
 ##### `port` (string)
 
 Port that the isortd server listens on. Defaults to 47393.
@@ -3016,24 +3018,6 @@ local sources = { null_ls.builtins.formatting.just }
 - Method: `formatting`
 - Command: `just`
 - Args: `{ "--fmt", "--unstable", "-f", "$FILENAME" }`
-
-### [kube-linter](https://github.com/stackrox/kube-linter)
-
-KubeLinter is a static analysis tool that checks Kubernetes YAML files and Helm charts to ensure 
-the applications represented in them adhere to best practices.
-
-#### Usage
-
-```lua
-local sources = { null_ls.builtins.diagnostics.kube_linter }
-```
-
-#### Defaults
-
-- Filetypes: `{ "helm", "yaml" }`
-- Method: `diagnostics`
-- Command: `kube-linter`
-- Args: `{ "lint", "--format", "json" "$ROOT" }`
 
 ### [ktlint](https://ktlint.github.io/)
 

@@ -232,6 +232,12 @@
         "kotlin"
       ]
     },
+    "kube_linter": {
+      "filetypes": [
+        "helm",
+        "yaml"
+      ]
+    },
     "ltrs": {
       "filetypes": [
         "text",

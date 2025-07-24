@@ -94,11 +94,11 @@ return {
   haml_lint = {
     filetypes = { "haml" }
   },
-  kube_linter = {
-    filetypes = { "helm", "yaml" }
-  },
   ktlint = {
     filetypes = { "kotlin" }
+  },
+  kube_linter = {
+    filetypes = { "helm", "yaml" }
   },
   ltrs = {
     filetypes = { "text", "markdown", "markdown" }
