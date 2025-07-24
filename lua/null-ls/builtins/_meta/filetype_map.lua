@@ -208,7 +208,7 @@ return {
     formatting = { "atlas_fmt", "hclfmt", "packer", "terragrunt_fmt" }
   },
   helm = {
-    diagnostics = { "trivy" }
+    diagnostics = { "trivy", "kube_linter" },
   },
   html = {
     diagnostics = { "markuplint", "tidy" },
@@ -497,7 +497,7 @@ return {
     formatting = { "tidy", "xmllint" }
   },
   yaml = {
-    diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint" },
+    diagnostics = { "actionlint", "cfn_lint", "spectral", "vacuum", "yamllint", "kube_linter" },
     formatting = { "prettier", "prettierd", "yamlfix", "yamlfmt" }
   },
   ["yaml.ansible"] = {
