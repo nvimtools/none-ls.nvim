@@ -118,7 +118,7 @@ return {
     formatting = { "djhtml", "djlint" }
   },
   dockerfile = {
-    diagnostics = { "hadolint" }
+    diagnostics = { "hadolint", "trivy" }
   },
   dosbatch = {
     hover = { "printenv" }
@@ -208,7 +208,7 @@ return {
     formatting = { "atlas_fmt", "hclfmt", "packer", "terragrunt_fmt" }
   },
   helm = {
-    diagnostics = { "kube_linter" },
+    diagnostics = { "trivy", "kube_linter" },
   },
   html = {
     diagnostics = { "markuplint", "tidy" },

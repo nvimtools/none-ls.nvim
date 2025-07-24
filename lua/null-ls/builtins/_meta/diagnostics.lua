@@ -245,7 +245,7 @@ return {
     filetypes = {}
   },
   trivy = {
-    filetypes = { "terraform", "tf", "terraform-vars" }
+    filetypes = { "terraform", "tf", "terraform-vars", "helm", "dockerfile" }
   },
   twigcs = {
     filetypes = { "twig" }
