@@ -17,6 +17,7 @@ return h.make_builtin({
     filetypes = { "markdown" },
     generator_opts = {
         command = "markdownlint-cli2",
+        args = { "$FILENAME" },
         from_stderr = true,
         format = "line",
         multiple_files = true,
