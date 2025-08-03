@@ -952,6 +952,7 @@ local sources = { null_ls.builtins.diagnostics.markdownlint_cli2 }
 - Filetypes: `{ "markdown" }`
 - Method: `diagnostics_on_save`
 - Command: `markdownlint-cli2`
+- Args: `{ "$FILENAME" }`
 
 #### Notes
 
