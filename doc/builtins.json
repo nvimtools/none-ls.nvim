@@ -910,6 +910,11 @@
         "markdown"
       ]
     },
+    "meson_format": {
+      "filetypes": [
+        "meson"
+      ]
+    },
     "mix": {
       "filetypes": [
         "elixir"

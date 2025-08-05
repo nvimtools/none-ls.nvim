@@ -284,6 +284,9 @@ return {
   matlab = {
     diagnostics = { "mlint" }
   },
+  meson = {
+    formatting = { "meson_format" }
+  },
   ncl = {
     formatting = { "topiary" }
   },

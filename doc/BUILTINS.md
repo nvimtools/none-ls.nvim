@@ -3096,6 +3096,23 @@ local sources = { null_ls.builtins.formatting.mdformat }
 
 - Mdformat offers an extensible plugin system for both code fence content formatting and Markdown parser extensions (like GFM tables). A comprehensive list of plugins is documented [here](https://mdformat.readthedocs.io/en/stable/users/plugins.html)
 
+### [meson_format](https://mesonbuild.com/Commands.html#format)
+
+Meson's builtin formatter
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.formatting.meson_format }
+```
+
+#### Defaults
+
+- Filetypes: `{ "meson" }`
+- Method: `formatting`
+- Command: `meson`
+- Args: `{ "format", "--", "$FILENAME" }`
+
 ### [mix](https://hexdocs.pm/mix/1.12/Mix.html)
 
 Build tool that provides tasks for creating, compiling, and testing elixir projects, managing its dependencies, and more.

@@ -193,6 +193,9 @@ return {
   mdformat = {
     filetypes = { "markdown" }
   },
+  meson_format = {
+    filetypes = { "meson" }
+  },
   mix = {
     filetypes = { "elixir" }
   },
