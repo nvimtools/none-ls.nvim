@@ -3,16 +3,16 @@ name: vim
 globals:
   after_each:
     args:
-    - type: function
+      - type: function
   assert.equals:
     args:
-    - type: any
-    - type: any
-    - required: false
-      type: any
+      - type: any
+      - type: any
+      - required: false
+        type: any
   assert.falsy:
     args:
-    - type: any
+      - type: any
   assert.has_error:
     any: true
   assert.is_not:
@@ -21,27 +21,27 @@ globals:
     any: true
   assert.same:
     args:
-    - type: any
-    - type: any
+      - type: any
+      - type: any
   assert.spy:
     args:
-    - type: any
+      - type: any
   assert.stub:
     args:
-    - type: any
+      - type: any
   assert.truthy:
     args:
-    - type: any
+      - type: any
   before_each:
     args:
-    - type: function
+      - type: function
   describe:
     args:
-    - type: string
-    - type: function
+      - type: string
+      - type: function
   it:
     args:
-    - type: string
-    - type: function
+      - type: string
+      - type: function
   vim:
     any: true
