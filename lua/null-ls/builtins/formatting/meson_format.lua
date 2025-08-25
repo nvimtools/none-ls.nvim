@@ -13,7 +13,7 @@ return h.make_builtin({
     filetypes = { "meson" },
     generator_opts = {
         command = "meson",
-        args = { "format", "--", "$FILENAME" },
+        args = { "format", "--", "-" },
         to_stdin = true,
     },
     factory = h.formatter_factory,
