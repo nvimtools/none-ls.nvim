@@ -2026,6 +2026,7 @@ local sources = { null_ls.builtins.formatting.bean_format }
 - Filetypes: `{ "beancount" }`
 - Method: `formatting`
 - Command: `bean-format`
+- Args: `{ "-" }`
 
 #### Notes
 
