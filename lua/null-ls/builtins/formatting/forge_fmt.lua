@@ -1,4 +1,5 @@
 local h = require("null-ls.helpers")
+local u = require("null-ls.utils")
 local methods = require("null-ls.methods")
 
 local FORMATTING = methods.internal.FORMATTING
@@ -17,6 +18,9 @@ return h.make_builtin({
             "fmt",
             "$FILENAME",
         },
+        cwd = h.cache.by_bufnr(function(params)
+            return u.root_pattern("foundry.toml")(params.bufname)
+        end),
         to_stdin = false,
         to_temp_file = true,
     },
