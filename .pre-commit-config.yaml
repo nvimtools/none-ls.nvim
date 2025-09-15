@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/johnnymorganz/stylua
-    rev: v2.1.0
+    rev: v2.2.0
     hooks:
       - id: stylua-github
   - repo: https://github.com/pre-commit/mirrors-prettier
