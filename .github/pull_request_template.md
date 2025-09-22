@@ -1,13 +1,11 @@
-## Pull Request
+## What does this PR do?
 
-### Description
+<!-- Please describe what changes you're making and why -->
 
-<!-- Describe your changes here -->
+## Checklist
 
-### Checklist
+**Important**: New builtins belong in [nvimtools/none-ls-extras.nvim](https://github.com/nvimtools/none-ls-extras.nvim)
 
-- [ ] **Required**: If you are adding a new builtin, it should go to
-      [nvimtools/none-ls-extras.nvim](https://github.com/nvimtools/none-ls-extras.nvim)
-      instead of this repository
-- [ ] I have tested my changes
-- [ ] I have updated documentation if necessary
+- [ ] **Required**: If I'm adding a new builtin (linter, formatter, code action, etc.), I understand it should be contributed to [nvimtools/none-ls-extras.nvim](https://github.com/nvimtools/none-ls-extras.nvim) instead
+- [ ] I've tested these changes locally
+- [ ] I've updated any relevant documentation
