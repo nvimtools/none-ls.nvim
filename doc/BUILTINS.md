@@ -113,7 +113,7 @@ local sources = { null_ls.builtins.code_actions.proselint }
 - Filetypes: `{ "markdown", "tex" }`
 - Method: `code_action`
 - Command: `proselint`
-- Args: `{ "--json" }`
+- Args: `{ "check", "--output-format=json" }`
 
 ### [refactoring](https://github.com/ThePrimeagen/refactoring.nvim)
 
@@ -1205,7 +1205,7 @@ local sources = { null_ls.builtins.diagnostics.proselint }
 - Filetypes: `{ "markdown", "tex" }`
 - Method: `diagnostics`
 - Command: `proselint`
-- Args: `{ "--json" }`
+- Args: `{ "check", "--output-format=json" }`
 
 ### [protolint](https://github.com/yoheimuta/protolint)
 
