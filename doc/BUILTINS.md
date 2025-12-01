@@ -3112,7 +3112,7 @@ local sources = { null_ls.builtins.formatting.meson_format }
 - Filetypes: `{ "meson" }`
 - Method: `formatting`
 - Command: `meson`
-- Args: `{ "format", "--", "-" }`
+- Args: `{ "format", "--source-file-path", "$FILENAME", "--", "-" }`
 
 ### [mix](https://hexdocs.pm/mix/1.12/Mix.html)
 
