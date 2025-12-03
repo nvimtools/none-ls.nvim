@@ -27,6 +27,7 @@ return h.make_builtin({
         multiple_files = false,
         on_output = function(line, params)
             local path = params.temp_path
+            path = path:gsub("([-.])", "%%%1") -- Escape special characters from path
             -- rel/path/to/file.py:42: DOC000: Diagnostic message
             local pattern = path .. [[:(%d+): (DOC%d+: .*)]]
             return h.diagnostics.from_pattern(pattern, { "row", "message" })(line, params)
