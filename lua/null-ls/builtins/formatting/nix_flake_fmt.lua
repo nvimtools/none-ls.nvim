@@ -340,8 +340,8 @@ return h.make_builtin({
         },
         to_temp_file = true,
     },
-    condition = function(utils)
-        return utils.root_has_file("flake.nix")
+    condition = function(_)
+        return vim.fs.root(".", "flake.nix") ~= nil
     end,
     factory = h.formatter_factory,
 })
