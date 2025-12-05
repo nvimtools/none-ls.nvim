@@ -381,4 +381,28 @@ M.validate = function(validators)
     end
 end
 
+--- Make a string literal to match in lua pattern
+---@param literal string
+---@return string
+M.escape = function(literal)
+      local matches =
+  {
+    ["^"] = "%^";
+    ["$"] = "%$";
+    ["("] = "%(";
+    [")"] = "%)";
+    ["%"] = "%%";
+    ["."] = "%.";
+    ["["] = "%[";
+    ["]"] = "%]";
+    ["*"] = "%*";
+    ["+"] = "%+";
+    ["-"] = "%-";
+    ["?"] = "%?";
+    ["\0"] = "%z";
+  }
+
+  return (literal:gsub(".", matches))
+end
+
 return M

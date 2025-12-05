@@ -1,5 +1,6 @@
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
+local u = require("null-ls.utils")
 
 local DIAGNOSTICS = methods.internal.DIAGNOSTICS
 
@@ -26,8 +27,7 @@ return h.make_builtin({
         end,
         multiple_files = false,
         on_output = function(line, params)
-            local path = params.temp_path
-            path = path:gsub("([-.])", "%%%1") -- Escape special characters from path
+            local path = u.escape(params.temp_path)
             -- rel/path/to/file.py:42: DOC000: Diagnostic message
             local pattern = path .. [[:(%d+): (DOC%d+: .*)]]
             return h.diagnostics.from_pattern(pattern, { "row", "message" })(line, params)
