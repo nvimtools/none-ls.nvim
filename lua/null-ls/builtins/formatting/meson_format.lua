@@ -4,19 +4,16 @@ local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
 
 return h.make_builtin({
-    name = "csharpier",
+    name = "meson_format",
     meta = {
-        url = "https://csharpier.com/",
-        description = "CSharpier is an opinionated code formatter for c#",
+        url = "https://mesonbuild.com/Commands.html#format",
+        description = "Meson's builtin formatter",
     },
     method = FORMATTING,
-    filetypes = { "cs" },
+    filetypes = { "meson" },
     generator_opts = {
-        command = "csharpier",
-        args = {
-            "format",
-            "--write-stdout",
-        },
+        command = "meson",
+        args = { "format", "--source-file-path", "$FILENAME", "--", "-" },
         to_stdin = true,
     },
     factory = h.formatter_factory,

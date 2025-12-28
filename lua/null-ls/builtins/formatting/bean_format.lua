@@ -17,6 +17,7 @@ return h.make_builtin({
     filetypes = { "beancount" },
     generator_opts = {
         command = "bean-format",
+        args = { "-" },
         to_stdin = true,
     },
     factory = h.formatter_factory,

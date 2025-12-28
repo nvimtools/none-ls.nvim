@@ -5,6 +5,7 @@ local c = require("null-ls.config")
 local helpers = require("null-ls.helpers")
 local loop = require("null-ls.loop")
 local s = require("null-ls.state")
+local u = require("null-ls.utils")
 
 mock(require("null-ls.logger"), true)
 
@@ -18,7 +19,7 @@ describe("generator_factory", function()
     stub(s, "get_cache")
     stub(s, "set_cache")
 
-    local validate = stub(vim, "validate")
+    local validate = stub(u, "validate")
     local done = stub.new()
     local on_output = stub.new()
 
@@ -50,7 +51,7 @@ describe("generator_factory", function()
         s.set_cache:clear()
 
         validate:clear()
-        vim.validate = validate
+        u.validate = validate
 
         c.reset()
     end)
@@ -323,7 +324,7 @@ describe("generator_factory", function()
         end)
 
         it("should trigger deregistration if validation fails", function()
-            vim.validate = function(_)
+            u.validate = function(_)
                 error("validation failed")
             end
 

@@ -55,7 +55,7 @@ end
 --- Retrieves the path of the logfile
 ---@return string path path of the logfile
 function log:get_path()
-    return u.path.join(vim.fn.stdpath("cache") --[[@as string]], "null-ls.log")
+    return u.path.join(vim.fn.stdpath("log") --[[@as string]], "null-ls.log")
 end
 
 ---Add a log entry at TRACE level
@@ -80,14 +80,18 @@ end
 ---@param msg any
 function log:warn(msg)
     self:add_entry(msg, "warn")
-    vim.notify(self.__notify_fmt(msg), vim.log.levels.WARN, default_notify_opts)
+    vim.schedule(function()
+        vim.notify(self.__notify_fmt(msg), vim.log.levels.WARN, default_notify_opts)
+    end)
 end
 
 ---Add a log entry at ERROR level
 ---@param msg any
 function log:error(msg)
     self:add_entry(msg, "error")
-    vim.notify(self.__notify_fmt(msg), vim.log.levels.ERROR, default_notify_opts)
+    vim.schedule(function()
+        vim.notify(self.__notify_fmt(msg), vim.log.levels.ERROR, default_notify_opts)
+    end)
 end
 
 setmetatable({}, log)

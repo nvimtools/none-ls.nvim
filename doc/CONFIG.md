@@ -64,7 +64,7 @@ local defaults = {
 ```
 
 null-ls allows configuring a subset of the options used by nvim-lspconfig's
-`setup` method (shared with `vim.lsp.start_client`), as described
+`setup` method (shared with `vim.lsp.start`), as described
 [here](https://github.com/neovim/nvim-lspconfig/wiki/Understanding-setup-%7B%7D).
 If an option you want to use is missing, open an issue or PR.
 

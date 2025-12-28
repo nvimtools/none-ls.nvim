@@ -177,7 +177,7 @@ Not compatible with `ignore_stderr`.
 
 Reads the contents of the temp file created by `to_temp_file` after running
 `command` and assigns it to `params.output`. Useful for formatters that don't
-output to `stdin` (see `formatter_factory`).
+output to `stdout` (see `formatter_factory`).
 
 This option depends on `to_temp_file`.
 
@@ -393,3 +393,8 @@ it again).
 Like `by_bufnr`, but `callback` is an async function. That is, `callback` is a
 function that takes two arguments: a `params` table and a `done` callback that
 must be invoked with the result.
+
+### by_bufroot_async(callback)
+
+Like `by_bufnr`, but `callback` is an async function, and the result is indexed
+by `root` rather than `bufrn`.

@@ -132,10 +132,14 @@ return function(opts)
         opts.temp_dir,
         opts.prepend_extra_args
 
-    if type(check_exit_code) == "table" then
-        local codes = check_exit_code
+    local codes = check_exit_code
+    if type(codes) == "table" then
         check_exit_code = function(code)
             return vim.tbl_contains(codes, code)
+        end
+    elseif type(codes) == "number" then
+        check_exit_code = function(code)
+            return code <= codes
         end
     end
 
@@ -145,7 +149,7 @@ return function(opts)
 
     local _validated
     local validate_opts = function(params)
-        local validated, validation_err = pcall(vim.validate, {
+        local validated, validation_err = pcall(u.validate, {
             args = { args, is_nil_table_or_func, "function or table" },
             env = { env, is_nil_table_or_func, "function or table" },
             on_output = { on_output, "function" },
@@ -311,6 +315,9 @@ return function(opts)
                     log:debug(string.format("unable to resolve command %s; aborting", command))
                     return done()
                 end
+
+                -- update command so that args might use it
+                params.command = resolved_command
 
                 local resolved_cwd = cwd and cwd(params) or root
                 params.cwd = resolved_cwd

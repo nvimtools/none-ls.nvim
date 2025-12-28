@@ -4,19 +4,16 @@ local methods = require("null-ls.methods")
 local FORMATTING = methods.internal.FORMATTING
 
 return h.make_builtin({
-    name = "csharpier",
+    name = "cljfmt",
     meta = {
-        url = "https://csharpier.com/",
-        description = "CSharpier is an opinionated code formatter for c#",
+        url = "https://github.com/weavejester/cljfmt",
+        description = "A tool for formatting Clojure code",
     },
     method = FORMATTING,
-    filetypes = { "cs" },
+    filetypes = { "clojure" },
     generator_opts = {
-        command = "csharpier",
-        args = {
-            "format",
-            "--write-stdout",
-        },
+        command = "cljfmt",
+        args = { "fix", "-" },
         to_stdin = true,
     },
     factory = h.formatter_factory,

@@ -1,6 +1,6 @@
 local u = require("null-ls.utils")
 
-local validate = vim.validate
+local validate = u.validate
 
 local defaults = {
     cmd = { "nvim" },

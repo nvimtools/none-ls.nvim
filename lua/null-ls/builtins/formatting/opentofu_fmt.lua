@@ -6,8 +6,11 @@ local FORMATTING = methods.internal.FORMATTING
 return h.make_builtin({
     name = "opentofu_fmt",
     meta = {
-        url = "https://opentofu.org/docs/cli/commands/fmt/#usage",
-        description = "The opentofu-fmt command rewrites `opentofu` configuration files to a canonical format and style.",
+        url = "https://opentofu.org/docs/cli/commands/fmt",
+        description = [[
+            The OpenTofu `fmt` command rewrites OpenTofu configuration files to a canonical
+            format and style.
+        ]],
     },
     method = FORMATTING,
     filetypes = { "terraform", "tf", "terraform-vars" },

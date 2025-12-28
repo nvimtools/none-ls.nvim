@@ -4,7 +4,7 @@ local methods = require("null-ls.methods")
 local s = require("null-ls.state")
 local u = require("null-ls.utils")
 
-local validate = vim.validate
+local validate = u.validate
 
 local registered = {
     names = {},

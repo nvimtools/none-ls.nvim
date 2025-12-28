@@ -232,6 +232,12 @@
         "kotlin"
       ]
     },
+    "kube_linter": {
+      "filetypes": [
+        "helm",
+        "yaml"
+      ]
+    },
     "ltrs": {
       "filetypes": [
         "text",
@@ -282,6 +288,13 @@
         "rego"
       ]
     },
+    "opentofu_validate": {
+      "filetypes": [
+        "terraform",
+        "tf",
+        "terraform-vars"
+      ]
+    },
     "perlimports": {
       "filetypes": [
         "perl"
@@ -323,6 +336,11 @@
       "filetypes": [
         "puppet",
         "epuppet"
+      ]
+    },
+    "pydoclint": {
+      "filetypes": [
+        "python"
       ]
     },
     "pylint": {
@@ -487,7 +505,9 @@
       "filetypes": [
         "terraform",
         "tf",
-        "terraform-vars"
+        "terraform-vars",
+        "helm",
+        "dockerfile"
       ]
     },
     "twigcs": {
@@ -553,6 +573,21 @@
         "cpp",
         "cs",
         "java"
+      ]
+    },
+    "atlas_fmt": {
+      "filetypes": [
+        "hcl",
+        "atlas-config",
+        "atlas-schema-mysql",
+        "atlas-schema-sqlite",
+        "atlas-schema-mariadb",
+        "atlas-schema-redshift",
+        "atlas-schema-clickhouse",
+        "atlas-schema-postgresql",
+        "atlas-schema-mssql",
+        "atlas-plan",
+        "atlas-test"
       ]
     },
     "bean_format": {
@@ -621,6 +656,11 @@
         "java",
         "cuda",
         "proto"
+      ]
+    },
+    "cljfmt": {
+      "filetypes": [
+        "clojure"
       ]
     },
     "cljstyle": {
@@ -870,6 +910,11 @@
         "markdown"
       ]
     },
+    "meson_format": {
+      "filetypes": [
+        "meson"
+      ]
+    },
     "mix": {
       "filetypes": [
         "elixir"
@@ -884,6 +929,9 @@
       "filetypes": [
         "nim"
       ]
+    },
+    "nix_flake_fmt": {
+      "filetypes": []
     },
     "nixfmt": {
       "filetypes": [
