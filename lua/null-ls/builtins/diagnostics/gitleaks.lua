@@ -8,6 +8,9 @@ local handle_gitleaks_output = function(params)
         attributes = {
             code = "code",
         },
+        diagnostic = {
+            source = "gitleaks",
+        },
     })
 
     local offenses = {}
@@ -37,7 +40,7 @@ return h.make_builtin({
     generator_opts = {
         command = "gitleaks",
         args = {
-            "dir",
+            "stdin",
             "--report-format",
             "json",
             "--report-path",
@@ -45,10 +48,9 @@ return h.make_builtin({
             "--exit-code",
             "0",
             "--no-banner",
-            "$FILENAME",
         },
         format = "json",
-        to_stdin = false,
+        to_stdin = true,
         from_stderr = true,
         ignore_stderr = true,
         check_exit_code = function(code)
