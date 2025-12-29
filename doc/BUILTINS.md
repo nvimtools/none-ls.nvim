@@ -775,6 +775,23 @@ local sources = { null_ls.builtins.diagnostics.gdlint }
 - Command: `gdlint`
 - Args: `{ "$FILENAME" }`
 
+### [gitleaks](https://github.com/gitleaks/gitleaks)
+
+Gitleaks is a SAST tool for detecting and preventing hardcoded secrets like passwords, API keys, and tokens in git repos.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.gitleaks }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `diagnostics`
+- Command: `gitleaks`
+- Args: `{ "stdin", "--report-format", "json", "--report-path", "-", "--exit-code", "0", "--no-banner" }`
+
 ### [gitlint](https://jorisroovers.com/gitlint/)
 
 Linter for Git commit messages.

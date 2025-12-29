@@ -79,6 +79,9 @@ return {
   gdlint = {
     filetypes = { "gdscript" }
   },
+  gitleaks = {
+    filetypes = {}
+  },
   gitlint = {
     filetypes = { "gitcommit" }
   },
