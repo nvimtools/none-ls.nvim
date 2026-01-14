@@ -27,7 +27,7 @@ return h.make_builtin({
         end,
         on_output = function(params)
             local diags = {}
-            if params.output.resultSet.results == vim.NIL then
+            if params.output.resultSet.results == vim.NIL or params.output.resultSet.results == nil then
                 return diags
             end
 
