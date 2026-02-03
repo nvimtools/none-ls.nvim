@@ -1,6 +1,9 @@
 name: Push to Luarocks
 
 on:
+  push:
+    tags:
+      - "v*"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -15,6 +18,5 @@ jobs:
         env:
           LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
         with:
-          version: "scm"
-          extra_luarocks_args: |
-            --force
+          version: ${{ github.ref_type == 'tag' && github.ref_name || 'scm' }}
+          extra_luarocks_args: ${{ github.ref_type != 'tag' && '--force' || '' }}
