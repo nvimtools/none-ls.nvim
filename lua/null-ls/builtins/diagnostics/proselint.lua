@@ -13,7 +13,7 @@ return h.make_builtin({
     filetypes = { "markdown", "tex" },
     generator_opts = {
         command = "proselint",
-        args = { "--json" },
+        args = { "check", "--output-format=json" },
         format = "json",
         to_stdin = true,
         check_exit_code = function(c)
@@ -26,16 +26,43 @@ return h.make_builtin({
                 warning = 2,
                 suggestion = 4,
             }
-            for _, d in ipairs(params.output.data.errors) do
-                table.insert(diags, {
-                    row = d.line,
-                    col = d.column,
-                    end_col = d.column + d.extent - 1,
-                    code = d.check,
-                    message = d.message,
-                    severity = sev[d.severity],
-                })
+
+            local output = params.output
+            if not output then
+                return diags
             end
+
+            if output.error then
+                return diags
+            end
+
+            local result = output.result
+            if not result then
+                return diags
+            end
+
+            for _, file_output in pairs(result) do
+                if file_output.diagnostics then
+                    for _, d in ipairs(file_output.diagnostics) do
+                        local line = d.pos[1]
+                        local col = d.pos[2]
+
+                        -- span = {start_col, end_col}
+                        local end_col = d.span[2]
+
+                        table.insert(diags, {
+                            row = line,
+                            col = col,
+                            end_col = end_col,
+                            code = d.check_path,
+                            message = d.message,
+                            -- Proselint no longer includes a severity -> choose warning
+                            severity = sev.warning,
+                        })
+                    end
+                end
+            end
+
             return diags
         end,
     },

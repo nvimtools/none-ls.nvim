@@ -13,10 +13,10 @@ jobs:
           - stable
           - nightly
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: none-ls.nvim
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: nvim-lua/plenary.nvim
           path: none-ls.nvim/.tests/site/pack/deps/start/plenary.nvim

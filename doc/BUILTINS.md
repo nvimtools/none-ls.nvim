@@ -113,7 +113,7 @@ local sources = { null_ls.builtins.code_actions.proselint }
 - Filetypes: `{ "markdown", "tex" }`
 - Method: `code_action`
 - Command: `proselint`
-- Args: `{ "--json" }`
+- Args: `{ "check", "--output-format=json" }`
 
 ### [refactoring](https://github.com/ThePrimeagen/refactoring.nvim)
 
@@ -775,6 +775,23 @@ local sources = { null_ls.builtins.diagnostics.gdlint }
 - Command: `gdlint`
 - Args: `{ "$FILENAME" }`
 
+### [gitleaks](https://github.com/gitleaks/gitleaks)
+
+Gitleaks is a SAST tool for detecting and preventing hardcoded secrets like passwords, API keys, and tokens in git repos.
+
+#### Usage
+
+```lua
+local sources = { null_ls.builtins.diagnostics.gitleaks }
+```
+
+#### Defaults
+
+- Filetypes: `{}`
+- Method: `diagnostics`
+- Command: `gitleaks`
+- Args: `{ "stdin", "--report-format", "json", "--report-path", "-", "--exit-code", "0", "--no-banner" }`
+
 ### [gitlint](https://jorisroovers.com/gitlint/)
 
 Linter for Git commit messages.
@@ -1205,7 +1222,7 @@ local sources = { null_ls.builtins.diagnostics.proselint }
 - Filetypes: `{ "markdown", "tex" }`
 - Method: `diagnostics`
 - Command: `proselint`
-- Args: `{ "--json" }`
+- Args: `{ "check", "--output-format=json" }`
 
 ### [protolint](https://github.com/yoheimuta/protolint)
 
@@ -2026,6 +2043,7 @@ local sources = { null_ls.builtins.formatting.bean_format }
 - Filetypes: `{ "beancount" }`
 - Method: `formatting`
 - Command: `bean-format`
+- Args: `{ "-" }`
 
 #### Notes
 
@@ -3111,7 +3129,7 @@ local sources = { null_ls.builtins.formatting.meson_format }
 - Filetypes: `{ "meson" }`
 - Method: `formatting`
 - Command: `meson`
-- Args: `{ "format", "--", "$FILENAME" }`
+- Args: `{ "format", "--source-file-path", "$FILENAME", "--", "-" }`
 
 ### [mix](https://hexdocs.pm/mix/1.12/Mix.html)
 
