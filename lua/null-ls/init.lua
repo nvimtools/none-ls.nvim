@@ -1,3 +1,8 @@
+local ok, _ = pcall(require, "plenary")
+if not ok then
+    error("none-ls.nvim requires plenary.nvim - https://github.com/nvim-lua/plenary.nvim")
+end
+
 local c = require("null-ls.config")
 local helpers = require("null-ls.helpers")
 local sources = require("null-ls.sources")
