@@ -1,4 +1,4 @@
-local ok, _ = pcall(require, "plenary")
+local ok, _ = pcall(require, "plenary.async")
 if not ok then
     error("none-ls.nvim requires plenary.nvim - https://github.com/nvim-lua/plenary.nvim")
 end
