@@ -25,6 +25,7 @@ local make_window = function(height_percentage, width_percentage, border)
         height = height,
         style = "minimal",
         border = border or "solid",
+        zindex = 50,
     }
 
     local bufnr = api.nvim_create_buf(false, true)
@@ -34,6 +35,40 @@ local make_window = function(height_percentage, width_percentage, border)
     vim.cmd("setlocal nocursorcolumn ts=2 sw=2")
 
     return bufnr, win_id
+end
+
+local make_backdrop = function(backdrop)
+    -- adapted from `lazy.nvim`
+    local normal, has_bg
+    if vim.fn.has("nvim-0.9.0") == 0 then
+        normal = vim.api.nvim_get_hl_by_name("Normal", true)
+        has_bg = normal and normal.background ~= nil
+    else
+        normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        has_bg = normal and normal.bg ~= nil
+    end
+
+    if has_bg and backdrop and backdrop < 100 and vim.o.termguicolors then
+        local backdrop_buf = api.nvim_create_buf(false, true)
+        local backdrop_win = api.nvim_open_win(backdrop_buf, false, {
+            relative = "editor",
+            width = vim.o.columns,
+            height = vim.o.lines,
+            row = 0,
+            col = 0,
+            style = "minimal",
+            focusable = false,
+            zindex = 49,
+        })
+
+        vim.api.nvim_set_hl(0, "NullLsBackdrop", { bg = "#000000", default = true })
+        vim.wo[backdrop_win].winhighlight = "Normal:NullLsBackdrop"
+        vim.wo[backdrop_win].winblend = backdrop or 60
+        vim.bo[backdrop_buf].buftype = "nofile"
+        vim.bo[backdrop_buf].filetype = "null-ls-backdrop"
+
+        return backdrop_buf, backdrop_win
+    end
 end
 
 local function indent_lines(lines, offset)
@@ -159,6 +194,7 @@ M.show_window = function(opts)
         lines = vim.list_extend(lines, indent_lines(info_lines))
     end
 
+    local backdrop_buf, backdrop_win = make_backdrop(opts.backdrop or 60)
     local win_bufnr, win_id = make_window(0.8, 0.7, opts.border or c.get().border)
     api.nvim_set_option_value("winhl", "FloatBorder:NullLsInfoBorder", { win = win_id })
 
@@ -172,6 +208,13 @@ M.show_window = function(opts)
     end
 
     local close = function()
+        if backdrop_win and api.nvim_win_is_valid(backdrop_win) then
+            api.nvim_win_close(backdrop_win, true)
+        end
+        if backdrop_buf and api.nvim_buf_is_valid(backdrop_buf) then
+            api.nvim_buf_delete(backdrop_buf, { force = true })
+        end
+
         if api.nvim_buf_is_valid(win_bufnr) then
             api.nvim_buf_delete(win_bufnr, { force = true })
         end
