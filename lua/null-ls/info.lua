@@ -63,7 +63,7 @@ local make_backdrop = function(backdrop)
 
         vim.api.nvim_set_hl(0, "NullLsBackdrop", { bg = "#000000", default = true })
         vim.wo[backdrop_win].winhighlight = "Normal:NullLsBackdrop"
-        vim.wo[backdrop_win].winblend = backdrop or 60
+        vim.wo[backdrop_win].winblend = backdrop
         vim.bo[backdrop_buf].buftype = "nofile"
         vim.bo[backdrop_buf].filetype = "null-ls-backdrop"
 
@@ -194,7 +194,7 @@ M.show_window = function(opts)
         lines = vim.list_extend(lines, indent_lines(info_lines))
     end
 
-    local backdrop_buf, backdrop_win = make_backdrop(opts.backdrop or 60)
+    local backdrop_buf, backdrop_win = make_backdrop(opts.backdrop or c.get().backdrop)
     local win_bufnr, win_id = make_window(0.8, 0.7, opts.border or c.get().border)
     api.nvim_set_option_value("winhl", "FloatBorder:NullLsInfoBorder", { win = win_id })
 

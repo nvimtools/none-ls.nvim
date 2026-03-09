@@ -21,6 +21,7 @@ local defaults = {
     update_in_insert = false,
     -- prevent double setup
     _setup = false,
+    backdrop = 100,
 }
 
 local config = vim.deepcopy(defaults)
@@ -34,6 +35,7 @@ local type_overrides = {
     sources = { "table", "nil" },
     temp_dir = { "string", "nil" },
     border = { "table", "string", "nil" },
+    backdrop = { "number", "nil" },
 }
 
 local wanted_type = function(k)
