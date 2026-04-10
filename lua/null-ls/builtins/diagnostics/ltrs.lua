@@ -49,7 +49,7 @@ return h.make_builtin({
     filetypes = { "text", "markdown", "markdown" },
     generator_opts = {
         command = "ltrs",
-        args = { "check", "-m", "-r", "--text", "$TEXT" },
+        args = { "check", "-r", "$FILENAME" },
         format = "json",
         check_exit_code = function(c)
             return c <= 1
