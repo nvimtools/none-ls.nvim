@@ -18,8 +18,10 @@ local function get_document_root(bufnr, filetype)
         return
     end
 
-    local has_parser, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
-    if not has_parser then
+    -- `error = false` is only needed for nvim 0.11; on 0.12+ get_parser never
+    -- throws and returns nil when no parser is available.
+    local parser = vim.treesitter.get_parser(bufnr, lang, { error = false })
+    if not parser then
         log:debug("no parser available for lang " .. lang)
         return
     end
