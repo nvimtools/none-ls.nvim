@@ -78,7 +78,10 @@ local on_init = function(new_client, initialize_result)
             or lsp._request_name_to_capability
             or lsp.protocol._request_name_to_server_capability
         local required_capability = method_to_required_capability_map[method]
-        return not required_capability
+        -- neovim commit 13cf80d: A server capability equal to the method means there is no related server capability
+        local has_related_server_capability = required_capability
+            and not (#required_capability == 1 and required_capability[1] == method)
+        return not has_related_server_capability
             or vim.tbl_get(new_client.server_capabilities, unpack(required_capability)) == false
     end
 
