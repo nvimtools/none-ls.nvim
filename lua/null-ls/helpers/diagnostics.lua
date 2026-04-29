@@ -70,11 +70,11 @@ local make_diagnostic = function(entries, defaults, attr_adapters, params, offse
     -- and https://github.com/nvimtools/none-ls.nvim/issues/226
     if entries["col"] ~= nil and content_line ~= nil then
         local col = tonumber(entries["col"]) or math.huge
-        col = math.min(col, vim.fn.strwidth(content_line))
+        col = math.min(col, vim.fn.strchars(content_line))
 
         local byte_index_col
         if u.has_version("0.11") then
-            byte_index_col = vim.str_byteindex(content_line, "utf-32", col)
+            byte_index_col = vim.str_byteindex(content_line, "utf-32", col, false)
         else
             byte_index_col = vim.str_byteindex(content_line, col)
         end

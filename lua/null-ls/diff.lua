@@ -155,8 +155,8 @@ function M.compute_diff(old_lines, new_lines, line_ending)
         adj_end_char = #old_lines[#old_lines + end_line + 1] + end_char + 1
     end
 
-    local adjusted_start_char = vim.str_utfindex(old_lines[start_line], "utf-16", start_char - 1)
-    local adjusted_end_char = vim.str_utfindex(old_lines[#old_lines + end_line + 1], "utf-16", adj_end_char)
+    local adjusted_start_char = vim.str_utfindex(old_lines[start_line], "utf-16", start_char - 1, false)
+    local adjusted_end_char = vim.str_utfindex(old_lines[#old_lines + end_line + 1], "utf-16", adj_end_char, false)
     start_char = adjusted_start_char
     end_char = adjusted_end_char
 
