@@ -28,6 +28,7 @@ return h.make_builtin({
         "less",
         "html",
         "json",
+        "json5",
         "jsonc",
         "yaml",
         "markdown",
