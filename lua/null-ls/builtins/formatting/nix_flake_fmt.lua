@@ -97,7 +97,7 @@ local find_nix_fmt = function(opts, done)
             vim.defer_fn(function()
                 log:warn(string.format("command 'nix formatter build' failed. stdout: %s stderr: %s", stdout, stderr))
             end, 0)
-            return false
+            _done(nil)
         end
 
         nix_fmt_path = stdout
