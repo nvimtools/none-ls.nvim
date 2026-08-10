@@ -91,15 +91,15 @@ local find_nix_fmt = function(opts, done)
             cwd = opts.root,
         })
 
+        local stdout = table.concat(stdout_lines, "\n")
         if status ~= 0 then
             local stderr = table.concat(stderr_lines, "\n")
             vim.defer_fn(function()
-                log:warn(string.format("unable to build 'nix fmt' entrypoint. stderr: %s", stderr))
+                log:warn(string.format("command 'nix formatter build' failed. stdout: %s stderr: %s", stdout, stderr))
             end, 0)
             return false
         end
 
-        local stdout = table.concat(stdout_lines, "\n")
         nix_fmt_path = stdout
 
         return _done(nix_fmt_path)
