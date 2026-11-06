@@ -10,7 +10,7 @@ return h.make_builtin({
         description = "A shell parser, formatter, and interpreter with `bash` support.",
     },
     method = FORMATTING,
-    filetypes = { "sh" },
+    filetypes = { "sh", "bats" },
     generator_opts = {
         command = "shfmt",
         args = { "-filename", "$FILENAME" },
