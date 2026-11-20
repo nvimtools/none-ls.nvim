@@ -40,7 +40,11 @@ return h.make_builtin({
         command = "codespell",
         args = { "-" },
         to_stdin = true,
-        from_stderr = true,
+        from_stderr = false,
+        ignore_stderr = true,
+        check_exit_code = function(code)
+            return code == 0 or code == 65
+        end,
         on_output = function(params, done)
             local output = params.output
             if not output then
