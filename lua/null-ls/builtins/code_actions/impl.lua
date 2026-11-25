@@ -186,9 +186,16 @@ return h.make_builtin({
                     }
                 end
 
+                local has_parser, parser = pcall(vim.treesitter.get_parser, bufnr, "go", { error = false })
+                if not has_parser or not parser then
+                    log:debug("no parser available for lang go")
+                    return
+                end
+                parser:parse()
+
                 local tsnode
                 if u.has_version("0.9.0") then
-                    tsnode = vim.treesitter.get_node({ bufnr = bufnr, row = row - 1, col = col - 1 })
+                    tsnode = vim.treesitter.get_node({ bufnr = bufnr, lang = "go", pos = { row - 1, col - 1 } })
                 else
                     tsnode = vim.treesitter.get_node_at_pos(bufnr, row - 1, col - 1, {})
                 end

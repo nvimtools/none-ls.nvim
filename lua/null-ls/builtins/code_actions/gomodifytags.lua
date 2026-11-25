@@ -140,9 +140,16 @@ return h.make_builtin({
                 -- End of Execution helpers
 
                 -- Main
+                local has_parser, parser = pcall(vim.treesitter.get_parser, bufnr, "go", { error = false })
+                if not has_parser or not parser then
+                    log:debug("no parser available for lang go")
+                    return
+                end
+                parser:parse()
+
                 local tsnode
                 if u.has_version("0.9.0") then
-                    tsnode = vim.treesitter.get_node({ bufnr = bufnr, row = row - 1, col = col - 1 })
+                    tsnode = vim.treesitter.get_node({ bufnr = bufnr, lang = "go", pos = { row - 1, col - 1 } })
                 else
                     tsnode = vim.treesitter.get_node_at_pos(bufnr, row - 1, col - 1, {})
                 end
@@ -193,7 +200,7 @@ return h.make_builtin({
                         return
                     end
 
-                    struct_name = treesitter_get_node_text(tsnode, 0)
+                    struct_name = treesitter_get_node_text(tsnode, bufnr)
                     if struct_name == nil then
                         return
                     end
@@ -230,11 +237,11 @@ return h.make_builtin({
 
                 -- Ops on struct field
                 if (tsnode:type()) == "field_identifier" then
-                    local field_name = treesitter_get_node_text(tsnode, 0)
+                    local field_name = treesitter_get_node_text(tsnode, bufnr)
                     tspnode = tsnode:parent():parent():parent()
                     if tspnode ~= nil and (tspnode:type()) == "struct_type" then
                         tspnode = tspnode:parent():child(0)
-                        struct_name = treesitter_get_node_text(tspnode, 0)
+                        struct_name = treesitter_get_node_text(tspnode, bufnr)
                     end
 
                     if struct_name == nil or field_name == nil then
